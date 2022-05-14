@@ -52,24 +52,25 @@ nav {
 #navbar a:active {
   text-decoration: line-through;
 }
+/* From my understanding ca */
 @keyframes disappear {
   10%{
-    opacity: calc(15%);
+    opacity: calc(15% - 100%);
   }
   20% {
-    opacity: calc(35%);   
+    opacity: calc(35% - 100%);   
   }
   30% {
-    opacity: calc(40%);   
+    opacity: calc(40% - 100%);   
   }
   50% {
-    opacity: calc(60%);   
+    opacity: calc(60% - 100%);   
   }
   75% {
-    opacity: calc(95%);   
+    opacity: calc(95% - 100%);   
   }
   100% {
-    opacity: calc(100%);   
+    opacity: calc(100% - 100%);   
   }
 }
 
