@@ -52,7 +52,7 @@ nav {
 #navbar a:active {
   text-decoration: line-through;
 }
-/* From my understanding ca */
+/* From my understanding calc() allows for math to be used in properties, I used it here to have the text completely disappear */
 @keyframes disappear {
   10%{
     opacity: calc(15% - 100%);
