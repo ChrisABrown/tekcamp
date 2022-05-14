@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Form Styling</title>
     <link rel="stylesheet" href="/HTML/styles.css">
-<link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300&display=swap" rel="stylesheet">
     <style>
       * {
         box-sizing: border-box;
@@ -17,6 +17,8 @@
       body {
         background: url(/HTML/images/akatsuki.jpg) repeat;
         font-family:'Fira Sans', sans-serif;
+        color: antiquewhite;
+      
       }
 
       a {
@@ -31,22 +33,20 @@
       }
 
       .form-wrap {
-        /* 
-          This is the white area around the form and heading, etc
-        */
+       background-color: var(--accent-color);
+       padding: 50px 50px;
+       margin: 50px 30px;
       }
 
       .form-wrap h1,
       .form-wrap p {
-        /* 
-          May want to center these
-        */
+        text-align: center;
       }
 
       .form-wrap .form-group {
-        /* 
-          Each label, input is wrapped in .form-group
-        */
+        display: block;
+        margin: auto;
+        padding: 0;
       }
 
       .form-wrap .form-group label {
