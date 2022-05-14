@@ -41,63 +41,60 @@
       .form-wrap h1,
       .form-wrap p {
         text-align: center;
+        padding: 10px 10px;
       }
 
       .form-wrap .form-group {
         display: block;
-        margin: auto;
+        margin: 10px 30px;
         padding: 0;
+        text-align: center;
       }
 
       .form-wrap .form-group label {
-        /* 
-          Label should be turned into a block element
-        */
+        display: block;
+        color: whitesmoke;
       }
 
       .form-wrap .form-group input {
-        /* 
-          Inputs should reach accross the .form-wrap 100% and have some padding
-        */
+       width: 100%;
+       border-radius: 3em;
+       border: var(--font-color) 2px solid;
       }
 
       .form-wrap button {
-        /* 
-          Button should wrap accross 100% and display as block
-          Background color for button is #49c1a2
-        */
+        display: block;
+        width: 100%;
+        padding: 20px;
+        margin-top: 40px;
+        background: #ffff;
+        cursor: zoom-in;
       }
 
       .form-wrap button:hover {
-        /* 
-          Hover background color for button is #37a08e
-        */
+        background-color: var(--font-color);
       }
 
       .form-wrap .bottom-text {
-        /* 
-          Bottom text is smaller
-        */
+        font-size: 10px;
+        margin-top: auto;
+
       }
 
       footer {
-        /* 
-        Should be centered
-       */
+        text-align: center;
       }
 
       footer a {
-        /* 
-          Footer link color is #49c1a2
-        */
+        color: var(--accent-color);
       }
     </style>
   </head>
   <body>
     <div id="container">
       <div class="form-wrap">
-        <h1>Sign Up</h1>
-        <p>It's free and only takes a minute</p>
+        <h1>Q & A</h1>
+        <p>Feel free to ask any questions about my website and thanks for taking a look at my work.</p>
         <form>
           <div class="form-group">
             <label for="first-name">First Name</label>
@@ -109,11 +106,11 @@
           </div>
           <div class="form-group">
             <label for="email">Email</label>
-            <input type="email" name="email" id="email" />
+            <input type="email" name="email" id="email" required />
           </div>
           <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" name="password" id="password" />
+            <label for="checkbox">Was my page easy to navigate?</label>
+            <input type="checkbox" name="checkbox" id="checkbox">Yes
           </div>
           <div class="form-group">
             <label for="password2">Confirm Password</label>
