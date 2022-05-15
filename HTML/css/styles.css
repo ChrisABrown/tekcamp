@@ -114,25 +114,24 @@ article h2 {
 }
 /* gallery css starts here */
 #nav-bar {
-  display: inline-flex;
+  display: flex;
+  justify-content: space-between;
   font-family: "Permanent Marker";
-  margin: 10px;
+  margin: 50px;
   padding: 10px; 
   overflow: auto;
   list-style: none;
   
 }
 
-#nav-bar ul {
-  float: left;
-}
 #nav-bar li a {
   color: var(--font-color);
-  float: right;
   list-style: none;
   text-decoration: none;
-  margin: 25px;
-  padding: 0;
+  padding: 10px;
+  background: #000000;
+  border-radius: 50px;
+  font-size: 1.5rem;
 }
 
 #nav-bar a:link {
@@ -150,18 +149,18 @@ article h2 {
 }
 
 figcaption{
-  text-align: right;
+  text-align: center;
   font-size: 1.8rem;
   font-weight: 600;
   font-family: monospace;
   background-color: whitesmoke;
-  padding: auto;
+  padding: 4px;
   margin: auto;
+  border-radius: 50px;
   
 }
 
 img{
-  padding: .5px .5px;
   margin: 2px 2px;
   border: #950101 3px solid;
   border-radius: 50px;
