@@ -66,22 +66,35 @@
         width: 70%;
       }
 
-      .form-wrap button {
+      .form-wrap .btn button {
         display: block;
         width: 100%;
         padding: 20px;
         margin-top: 40px;
         background: #ffff;
-        cursor: zoom-in;
+        cursor: pointer;
       }
 
-      .form-wrap button:hover {
-        background-color: var(--font-color);
+      button a:hover {
+        background: darkred;
+        text-transform: uppercase;
+        color: #ffff;
+        font-size: larger;
+
+      }
+      button a:link {
+        color: #ffff;
       }
 
       .form-wrap .bottom-text {
         font-size: 10px;
         margin-top: auto;
+
+      }
+
+      .btn {
+        width: 100%;
+        padding: 25px;
 
       }
 
@@ -110,7 +123,7 @@
           </div>
           <div class="form-group">
             <label for="email">Email</label>
-            <input type="email" name="email" id="email" required />
+            <input type="email" name="email" id="email" />
           </div>
           <!-- Learned dropdown options from freecodecamp.org responsive web design courses -->
           <div class="form-group">
@@ -128,7 +141,7 @@
           </div>
          
           
-          <button type="submit" class="btn"> <a href="/HTML/index.html">Home</a></button>
+          <button type="button" class="btn"> <a href="/HTML/index.html" target="_top">Home</a> </button>
         </form>
       </div>
   </body>
