@@ -146,17 +146,16 @@ article h2 {
   text-align: center;
   border-radius: 50px; 
 }
-main {
-  display: grid;
-  
-}
 
 figcaption{
-  text-align: center;
-  font-size: .8rem;
+  text-align: right;
+  font-size: 1.8rem;
   font-weight: 600;
   font-family: monospace;
-  background-color: transparent;
+  background-color: whitesmoke;
+  padding: auto;
+  margin: auto;
+
 }
 
 img{
@@ -165,9 +164,13 @@ img{
   filter: grayscale(35%);
 }
 
-#gallery{
-  display: grid;
-
+.container {
+  width: auto;
+  display: flex;
+  flex-flow: row wrap;
+  align-content: space-around;
+  padding: 10px 10px;
+  margin: 50px 50px;
 }
 
 @media only screen and (max-width: 600px) {
