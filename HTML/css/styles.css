@@ -25,6 +25,7 @@ h1 {
   color: whitesmoke; 
 }
 #hobbies {
+  margin-top: 10px;
   text-align: center;
 }
 #hobbies ul {
