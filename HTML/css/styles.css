@@ -16,18 +16,28 @@ body {
   color: var(--font-color);
   font-family: var(--main-font);
   display: flex;
+  margin: 20px 20px;
+  padding: 10px 10px;
 
 }
 h1 {
   font-size: 4em;
-  
+  color: whitesmoke; 
+}
+#hobbies {
+  text-align: center;
+}
+#hobbies ul {
+  list-style: none;
 }
 article {
+  margin-top: 10px;
   color: ghostwhite;
   line-height: 300%;
   padding: 0% 5% 0% 3%;
 }
 article p {
+  margin-top: 20px;
   padding-left: 3%;
   font-style: var(--primary-color);
 }
@@ -38,9 +48,6 @@ article h2 {
   display: inline-block;
 }
 #money_shot{
-  border: var(--accent-color) .5vw solid;
-  border-left: none;
-  border-right: none;
   text-align: center;
   border-radius: 50px; 
 }
@@ -103,14 +110,20 @@ article h2 {
 }
 .accent-box {
   display: flexbox;
-  border-radius: .3em;
+  border-radius: .6em;
   background-color: var(--accent-color);
 }
 .accent2-box {
   display: flex;
-  text-align: justify;
+  align-items: center;
   border-radius: .6em;
   background-color: var(--font-color) ;
+}
+.accent2-box p {
+  border-left: 2px var(--accent-color) solid;
+  margin-top: 5px;
+  margin-bottom: 5px;
+
 }
 /* gallery css starts here */
 #nav-bar {
@@ -121,9 +134,7 @@ article h2 {
   padding: 10px; 
   overflow: auto;
   list-style: none;
-  
 }
-
 #nav-bar li a {
   color: var(--font-color);
   list-style: none;
@@ -148,7 +159,7 @@ article h2 {
   text-decoration: line-through;
 }
 
-figcaption{
+figcaption { /* Also used in index.html */
   text-align: center;
   font-size: 1.8rem;
   font-weight: 600;
