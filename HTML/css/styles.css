@@ -197,17 +197,55 @@ img:hover {
 @media only screen and (width="device-width") {
   body {
     min-width: 100vw;
-    height: 100vh;
+    height: 100%;
 
   }
   #navbar {
     height: 5%;
     width: 5%;
-    position: relative;
+    position: absolute;
+    z-index: -100;
   }
-  img {
+  #gallery{
     display: grid;
-    grid-template-columns: auto;
-
+    grid-auto-columns: auto;
+    grid-auto-rows: minmax(50px, auto);
+    gap: 20px;
+  }
+  .one {
+    grid-column: auto;
+    grid-row: auto;
+  }
+  .two {
+    grid-column: auto;
+    grid-row: auto;
+  }
+  .three {
+    grid-column: auto;
+    grid-row: auto
+  }
+  .four {
+    grid-column: auto;
+    grid-row: auto;
+  }
+  .five {
+    grid-column: auto;
+    grid-row: auto;
+  }
+  .six {
+    grid-column: auto;
+    grid-row: auto;
+  }
+  .seven {
+    grid-column: auto;
+    grid-row: auto;
+  }
+  .eight {
+    grid-column: auto;
+    grid-row: auto;
+  }
+  .nine {
+    grid-column: auto;
+    grid-row: auto;
   }
 }
