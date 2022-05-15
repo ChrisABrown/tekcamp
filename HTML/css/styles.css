@@ -20,9 +20,31 @@ body {
 }
 h1 {
   font-size: 4em;
-
+  
 }
-nav {
+article {
+  color: ghostwhite;
+  line-height: 300%;
+  padding: 0% 5% 0% 3%;
+}
+article p {
+  padding-left: 3%;
+  font-style: var(--primary-color);
+}
+article h2 {
+  padding-right: 3%;
+}
+.money-shot {
+  display: inline-block;
+}
+#money_shot{
+  border: var(--accent-color) .5vw solid;
+  border-left: none;
+  border-right: none;
+  text-align: center;
+  border-radius: 50px; 
+}
+#navbar {
   background: url(/HTML/images/akatsuki.jpg) repeat top left/cover;
   background-attachment: fixed;
   display: flex;
@@ -90,7 +112,7 @@ nav {
   border-radius: .6em;
   background-color: var(--font-color) ;
 }
-
+/* gallery css starts here */
 #nav-bar {
   display: inline-flex;
   font-family: "Permanent Marker";
@@ -98,6 +120,7 @@ nav {
   padding: 10px; 
   overflow: auto;
   list-style: none;
+  
 }
 
 #nav-bar ul {
@@ -125,28 +148,6 @@ nav {
 #nav-bar a:active {
   text-decoration: line-through;
 }
-article {
-  color: ghostwhite;
-  line-height: 300%;
-  padding: 0% 5% 0% 3%;
-}
-article p {
-  padding-left: 3%;
-  font-style: var(--primary-color);
-}
-article h2 {
-  padding-right: 3%;
-}
-.money-shot {
-  display: inline-block;
-}
-#money_shot{
-  border: var(--accent-color) .5vw solid;
-  border-left: none;
-  border-right: none;
-  text-align: center;
-  border-radius: 50px; 
-}
 
 figcaption{
   text-align: right;
@@ -156,13 +157,19 @@ figcaption{
   background-color: whitesmoke;
   padding: auto;
   margin: auto;
-
+  
 }
 
 img{
-  padding: 10px 0 0 0;
+  padding: .5px .5px;
+  margin: 2px 2px;
+  border: #950101 3px solid;
   border-radius: 50px;
   filter: grayscale(35%);
+}
+
+img:hover {
+  filter: grayscale(100%);
 }
 
 .container {
@@ -173,6 +180,7 @@ img{
   padding: 10px 10px;
   margin: 50px 50px;
 }
+/* gallery css ends here */
 
 @media only screen and (max-width: 600px) {
   #main {
