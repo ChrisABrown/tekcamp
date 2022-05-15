@@ -203,11 +203,11 @@ img:hover {
   #navbar {
     height: 5%;
     width: 5%;
-    position: fixed;
+    position: relative;
   }
   img {
-    max-height: 5%;
-    max-width: 5%;
+    display: grid;
+    grid-template-columns: auto;
 
   }
 }
