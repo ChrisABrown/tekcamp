@@ -92,22 +92,24 @@ nav {
 }
 
 #nav-bar {
+  display: inline-flex;
   font-family: "Permanent Marker";
-  margin: 0;
-  padding: 0; 
+  margin: 10px;
+  padding: 10px; 
   overflow: auto;
   list-style: none;
 }
 
-#nav-bar li {
+#nav-bar ul {
   float: left;
 }
 #nav-bar li a {
   color: var(--font-color);
-  display: block;
+  float: right;
   list-style: none;
   text-decoration: none;
-  padding: 15px 20px;
+  margin: 25px;
+  padding: 0;
 }
 
 #nav-bar a:link {
@@ -123,7 +125,6 @@ nav {
 #nav-bar a:active {
   text-decoration: line-through;
 }
-
 article {
   color: ghostwhite;
   line-height: 300%;
