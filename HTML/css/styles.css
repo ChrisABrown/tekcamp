@@ -54,7 +54,8 @@ article h2 {
 }
 #navbar {
   background: url(/HTML/images/akatsuki.jpg) repeat top left/cover;
-  background-attachment: fixed;
+  background-attachment: local;
+  position: fixed;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -200,12 +201,13 @@ img:hover {
 
   }
   #navbar {
-    max-height: 10%;
-    max-width: 25%;
+    height: 5%;
+    width: 5%;
+    position: fixed;
   }
   img {
+    max-height: 5%;
     max-width: 5%;
-    max-width: 25%;
 
   }
 }
