@@ -203,4 +203,9 @@ img:hover {
     height: min-content;
     max-width: 25vw;
   }
+  img {
+    height: min-content;
+    max-width: 25vw;
+
+  }
 }
