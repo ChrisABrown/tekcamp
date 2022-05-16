@@ -1,9 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@200&family=Permanent+Marker&display=swap');
-/* *{
+*{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-} */
+}
 :root{
   --primary-color: #000000;
   --accent-color: #3D0001;
@@ -160,15 +160,14 @@ article h2 {
 }
 
 figcaption { /* Also used in index.html */
-  text-align: center;
   font-size: 1.8rem;
   font-weight: 600;
   font-family: monospace;
   background-color: whitesmoke;
   padding: 4px;
-  margin: auto;
   border-radius: 20px;
   display: flex;
+  justify-content: center;
 }
 
 img{
@@ -184,10 +183,9 @@ img:hover {
 
 .container {
   width: 100%;
-  display: flexbox;
+  display: flex;
   flex-flow: row wrap;
-  align-content: space-around;
-  padding: 10px 10px;
+  justify-content: space-evenly;
   margin: 30px 30px;
 }
 /* gallery css ends here */
@@ -215,8 +213,8 @@ img:hover {
   }
   figcaption {
     text-align: center;
-    padding: 5px 100px;
-    align-content: space-around;
+    padding: 5px 10px;
+    justify-content: center;
   }
   img {
     filter: grayscale(0%);
