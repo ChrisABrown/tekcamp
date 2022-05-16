@@ -197,6 +197,15 @@ img:hover {
   #navbar {
     position: inherit;
   }
+  .container {
+    display: grid;
+    grid-template-columns: 20px 20px 20px;
+    grid-template-rows: 1fr .5fr 1fr .5fr;
+    grid-template-areas:
+      "figure figure figure" 
+      "figcaption figcaption figcaption"
+      "figure figure figure";
+  }
   img {
     width: 300px;
     height: 300px;
