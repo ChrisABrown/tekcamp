@@ -193,7 +193,7 @@ img:hover {
 }
 /* gallery css ends here */
 
-@media screen and (min-width: 768px) and (max-width: 1000px) and (orientation: portrait) {
+@media screen and (min-width: 700px) and (max-width: 1000px) and (orientation: landscape) {
   body, html {
     max-width: 100vw;
     max-height: 100vh;
