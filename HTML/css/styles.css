@@ -194,7 +194,7 @@ img:hover {
 }
 /* gallery css ends here */
 
-@media screen and (max-width: 800px) {
+@media screen and (min-width: 768px) and (max-width: 1024px) {
   body {
     min-width: 100vw;
     height: 100%;
@@ -203,13 +203,12 @@ img:hover {
   #navbar {
     height: 5%;
     width: 5%;
-    position: absolute;
     z-index: 100;
   }
-  #gallery{
+  .container{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    grid-template-rows: auto;
+    grid-template-rows: 20px 20px;
     
   }
   
