@@ -1,9 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@200&family=Permanent+Marker&display=swap');
-*{
+/* *{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
+} */
 :root{
   --primary-color: #000000;
   --accent-color: #3D0001;
@@ -167,15 +167,15 @@ figcaption { /* Also used in index.html */
   background-color: whitesmoke;
   padding: 4px;
   margin: auto;
-  border-radius: 50px;
-  
+  border-radius: 20px;
+  display: flex;
 }
 
 img{
   margin: 2px 2px;
   border: #950101 3px solid;
   border-radius: 50px;
-  filter: grayscale(35%);
+  filter: grayscale(5%);
 }
 
 img:hover {
@@ -184,11 +184,11 @@ img:hover {
 
 .container {
   width: 100%;
-  display: flex;
+  display: flexbox;
   flex-flow: row wrap;
   align-content: space-around;
   padding: 10px 10px;
-  margin: 50px 50px;
+  margin: 30px 30px;
 }
 /* gallery css ends here */
 
@@ -199,20 +199,26 @@ img:hover {
   }
   .container {
     display: grid;
-    grid-template-columns: 20px 20px 20px;
-    grid-template-rows: 50px 50px;
-    gap: 400px;
+    grid-template-columns: 500px 500px 500px;
+    grid-template-rows: 500px 500px 500px;
+    gap: 100px;
   }
   img {
-    width: 300px;
-    height: 300px;
-    display: flex;
-    flex-flow: row wrap;
+    width: 500px;
+    height: 500px;
+    flex-flow: column nowrap;
   }
   figure {
+    display: flex;
     flex-flow: row wrap;
+    justify-content: center;
   }
   figcaption {
-    flex-direction: row;
+    text-align: center;
+    padding: 5px 100px;
+    align-content: space-around;
+  }
+  img {
+    filter: grayscale(0%);
   }
 }
