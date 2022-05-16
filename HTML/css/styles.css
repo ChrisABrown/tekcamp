@@ -196,11 +196,9 @@ img:hover {
 @media screen and (min-width: 700px) and (max-width: 1000px) and (orientation: landscape) {
   body, html {
     flex-direction: row;
-
   }
   #navbar {
     position: inherit;
-    
   }
   img {
     width: 300px;
@@ -212,5 +210,9 @@ img:hover {
   }
   figcaption {
     flex-direction: row;
+  }
+  #container {
+    width: auto;
+    height: auto;
   }
 }
