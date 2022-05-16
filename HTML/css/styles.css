@@ -193,7 +193,7 @@ img:hover {
 }
 /* gallery css ends here */
 
-@media screen and (min-width: 768px) and (max-width: 1000px) {
+@media screen and (min-width: 768px) and (max-width: 1000px) and (orientation: portrait) {
   body, html {
     max-width: 100vw;
     max-height: 100vh;
@@ -215,9 +215,12 @@ img:hover {
     
   }
   img {
-    width: 250px;
-    height: 250px;
+    width: 50px;
+    height: 50px;
     display: flex;
     flex-flow: row wrap;
+  }
+  figcaption {
+    width: 100%;
   }
 }
