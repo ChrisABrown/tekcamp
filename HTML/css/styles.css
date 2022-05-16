@@ -194,7 +194,7 @@ img:hover {
 }
 /* gallery css ends here */
 
-@media only screen and (width="device-width") {
+@media screen and (max-width: 800px) {
   body {
     min-width: 100vw;
     height: 100%;
@@ -204,48 +204,13 @@ img:hover {
     height: 5%;
     width: 5%;
     position: absolute;
-    z-index: -100;
+    z-index: 100;
   }
   #gallery{
     display: grid;
-    grid-auto-columns: auto;
-    grid-auto-rows: minmax(50px, auto);
-    gap: 20px;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    
   }
-  .one {
-    grid-column: auto;
-    grid-row: auto;
-  }
-  .two {
-    grid-column: auto;
-    grid-row: auto;
-  }
-  .three {
-    grid-column: auto;
-    grid-row: auto
-  }
-  .four {
-    grid-column: auto;
-    grid-row: auto;
-  }
-  .five {
-    grid-column: auto;
-    grid-row: auto;
-  }
-  .six {
-    grid-column: auto;
-    grid-row: auto;
-  }
-  .seven {
-    grid-column: auto;
-    grid-row: auto;
-  }
-  .eight {
-    grid-column: auto;
-    grid-row: auto;
-  }
-  .nine {
-    grid-column: auto;
-    grid-row: auto;
-  }
+  
 }
