@@ -192,7 +192,7 @@ img:hover {
 }
 /* gallery css ends here */
 
-@media screen and (min-width: 700px) and (max-width: 1000px) and (orientation: portrait) {
+@media screen and (min-width: 400px) and (max-width: 600px) and (orientation: landscape) {
   body, html {
     flex-direction: row;
   }
@@ -209,5 +209,8 @@ img:hover {
   }
   figcaption {
     flex-direction: row;
+  }
+  #container {
+    align-items: center;
   }
 }
