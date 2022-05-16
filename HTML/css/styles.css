@@ -200,11 +200,8 @@ img:hover {
   .container {
     display: grid;
     grid-template-columns: 20px 20px 20px;
-    grid-template-rows: 1fr .5fr 1fr .5fr;
-    grid-template-areas:
-      "figure figure figure" 
-      "figcaption figcaption figcaption"
-      "figure figure figure";
+    grid-template-rows: 50px 50px 50px;
+    gap: 400px;
   }
   img {
     width: 300px;
