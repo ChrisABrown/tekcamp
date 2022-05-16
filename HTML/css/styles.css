@@ -202,19 +202,15 @@ img:hover {
     position: inherit;
     
   }
-  .container{
-    display: grid;
-    grid-template-columns: 20px 20px 20px;
-    grid-template-rows: 20px 20px;
-    gap: 500px;
-    
-  }
   img {
-    width: 200px;
-    height: 250px;
+    width: 300px;
+    height: 300px;
+    flex-flow: row wrap;
+  }
+  figure {
     flex-flow: row wrap;
   }
   figcaption {
-    width: 100%;
+    flex-direction: row;
   }
 }
