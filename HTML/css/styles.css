@@ -211,7 +211,7 @@ img:hover {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 20px 20px;
-    gap: 800px;
+    gap: 400px;
     
   }
   img {
