@@ -54,7 +54,6 @@ article h2 {
 }
 #navbar {
   background: url(/HTML/images/akatsuki.jpg) repeat top left/cover;
-  background-attachment: local;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -193,7 +192,7 @@ img:hover {
 }
 /* gallery css ends here */
 
-@media screen and (min-width: 700px) and (max-width: 1000px) and (orientation: landscape) {
+@media screen and (min-width: 700px) and (max-width: 1000px) and (orientation: portrait) {
   body, html {
     flex-direction: row;
   }
@@ -210,9 +209,5 @@ img:hover {
   }
   figcaption {
     flex-direction: row;
-  }
-  #container {
-    width: auto;
-    height: auto;
   }
 }
