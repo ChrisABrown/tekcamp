@@ -193,9 +193,7 @@ img:hover {
 /* gallery css ends here */
 
 @media screen and (min-width: 400px) and (max-width: 600px) and (orientation: landscape) {
-  body, html {
-    flex-direction: row;
-  }
+
   #navbar {
     position: inherit;
   }
@@ -209,8 +207,5 @@ img:hover {
   }
   figcaption {
     flex-direction: row;
-  }
-  #container {
-    align-items: center;
   }
 }
