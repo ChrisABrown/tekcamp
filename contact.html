@@ -14,11 +14,6 @@
         margin: 0;
         padding: 0;
       }
-      html {
-        display: flex;
-        align-items: center;
-      }
-
       body {
         background: url(/HTML/images/akatsuki.jpg) 0px;
         font-family:'Fira Sans', sans-serif;
@@ -41,6 +36,7 @@
        background-color: var(--accent-color);
        padding: 50px 50px;
        margin: auto;
+       left: 200px;
        
        
       }
@@ -119,41 +115,41 @@
     </style>
   </head>
   <body>
-    <div id="container">
-      <div class="form-wrap">
+    <main id="container">
+      <section class="form-wrap">
         <h1>Q & A</h1>
         <p>Feel free to ask any questions about my website and thanks for taking a look at my work.</p>
         <form>
-          <div class="form-group">
+          <section class="form-group">
             <label for="first-name">First Name</label>
             <input type="text" name="firstName" id="first-name" />
-          </div>
-          <div class="form-group">
+          </section>
+          <section class="form-group">
             <label for="last-name">Last Name</label>
             <input type="text" name="lastName" id="last-name" />
-          </div>
-          <div class="form-group">
+          </section>
+          <section class="form-group">
             <label for="email">Email</label>
             <input type="email" name="email" id="email" />
-          </div>
+          </section>
           <!-- Learned dropdown options from freecodecamp.org responsive web design courses -->
-          <div class="form-group">
+          <section class="form-group">
             <label for="dropdown">Was the page easy to navigate?</label>
               <select id="dropdown">
                 <option value="">(select one)</option>
                 <option value="1">Yes</option>
                 <option value="2">No</select>
-          </div>
+          </section>
           <!-- Same for adding in a textarea box -->
-          <div class="form-group">
+          <section class="form-group">
             <label for="textarea">Questions?</label>
             <textarea name="questions" id="questions" cols="10" rows="10" placeholder="Did you get enough sleep today &#x263B; ?"></textarea>
 
-          </div>
+          </section>
          
           
           <button type="button" class="btn"> <a href="/index.html" target="_top">Home</a> </button>
         </form>
-      </div>
+      </main>
   </body>
 </html>

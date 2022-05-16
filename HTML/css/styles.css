@@ -12,7 +12,7 @@
   font-weight: bolder;
 
 }
-body, html {
+body {
   color: var(--font-color);
   font-family: var(--main-font);
   display: flex;
