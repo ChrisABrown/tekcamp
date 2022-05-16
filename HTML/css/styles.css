@@ -199,8 +199,8 @@ img:hover {
   }
   .container {
     display: grid;
-    grid-template-columns: 20px 20px 20px;
-    grid-template-rows: 50px 50px 50px;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 50px  50px;
     gap: 400px;
   }
   img {
