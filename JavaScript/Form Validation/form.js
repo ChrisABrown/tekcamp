@@ -6,8 +6,8 @@ document.querySelector('#btn').addEventListener('click', showErrors(e))
 
 };
 
-function showErrors(e){
-  if(e.target.parentElement.classList.contains(''))};
+// function showErrors(e){
+//   if(e.target.parentElement.classList.contains(''))
 
 
 
