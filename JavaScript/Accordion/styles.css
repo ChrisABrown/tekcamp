@@ -82,6 +82,10 @@ h1 {
   display: none;
 }
 
+.show {
+  display: ;
+}
+
 .selected-question {
   font-weight: 600;
 }
