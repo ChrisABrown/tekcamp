@@ -83,7 +83,11 @@ h1 {
 }
 
 .show {
-  display: ;
+  display: block
+}
+.btn {
+  border: none;
+  background: none;
 }
 
 .selected-question {

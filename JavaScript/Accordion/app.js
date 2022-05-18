@@ -1,18 +1,15 @@
-const arrow = document.querySelector('.arrow-icon').addEventListener('click', onClick);
+ const answers = document.querySelectorAll('p.answer.hidden');
+ answersArr = Array.from(answers);
 
-// const answer = document.querySelectorAll('p.hidden').addEventListener('click,', onClick());
+ const buttons = document.getElementsByTagName('button');
+ 
+document.body.addEventListener('click', showAnswer);
 
-function onClick(e){
-  // 
-  
-  let val;
+function showAnswer(e){
+  if(e.target.parentElement.classList.contains('btn')){
+    console.log(buttons);
+    e.target.parentElement.parentElement.nextElementSibling.classList.toggle('show');
+  }
 
-  val = e;
-
-  val = e.target.classList;
-
-//   val.className.toggle('show');
-
-  console.log(val);
-}
-
+};
+ 
