@@ -1,13 +1,14 @@
 const form = document.querySelector('#form form');
 const inputs = document.querySelectorAll('input');
-const errors = document.querySelectorAll('.error')
+const errors = document.querySelectorAll('.error');
+const origEmailError = document.querySelector('#email-error').textContent;
 
 
 
 
 form.addEventListener('submit', (e) => {
   showError();
-  showEmailError();
+  validEmailError();
   e.preventDefault();
 
 });
@@ -21,13 +22,18 @@ function showError(){
     }}
   };
 
-function showEmailError() {
+
+
+function validEmailError() {
   let email = document.getElementById('email');
   let emailError = document.getElementById('email-error');
   let regEx = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     if(regEx.test(email.value) === false){
-      emailError.textContent = ('Looks like this is not a valid email');
-    }
+      emailError.innerHTML = "Looks like this is not a valid email";
+    }else {
+      return;
     
-
-}
+      }
+  }
+// emailError.visibility = "visible";
+// console.log(emailInput);

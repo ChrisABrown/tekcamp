@@ -68,12 +68,7 @@ h2 {
   color: var(--error);
   visibility: hidden;
 }
-.error2 {
-  display: block;
-  margin-bottom: 5px;
-  color: var(--error);
-  visibility: visible;
-}
+
 
 
 
