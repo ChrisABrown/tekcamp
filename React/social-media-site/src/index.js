@@ -1,13 +1,5 @@
 import React from "react";
-import ReactDom from "react-dom";
-import Dashboard from "./Dashboard";
+import ReactDOM from "react-dom";
+import Dashboard from "./components/Dashboard";
 
-ReactDom.render(
-  <div>
-    <Dashboard></Dashboard>
-  </div>,
-
-  document.getElementById("root")
-);
-
-export default Dashboard;
+ReactDOM.render(<Dashboard />, document.getElementById("root"));

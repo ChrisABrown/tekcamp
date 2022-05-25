@@ -2,23 +2,24 @@ import React from "react";
 import ApprovalCard from "./ApprovalCard";
 import { faker } from "@faker-js/faker";
 import Comment from "./Comments";
-import Avatar from "./Avatar";
+import Post from "./Post";
 
 const Dashboard = (props) => {
   return (
     <div>
-      <Avatar />
       <div className="ui container comments">
         <ApprovalCard>
           <h4>Warning!</h4> Are you sure you want to do this?
         </ApprovalCard>
         <ApprovalCard>
-          <Comment
-            author="Billy"
-            timeAgo="2 hours ago"
-            imgSrc={faker.image.avatar()}
-            text="Such a cool idea!"
-          />
+          <Post>
+            <Comment
+              author="Billy"
+              timeAgo="2 hours ago"
+              imgSrc={faker.image.avatar()}
+              text="Such a cool idea!"
+            />
+          </Post>
         </ApprovalCard>
         <ApprovalCard>
           <Comment
