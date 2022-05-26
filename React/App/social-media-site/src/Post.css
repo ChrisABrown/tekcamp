@@ -1,0 +1,10 @@
+.ui[class*="three column"].grid > .row > .column,
+.ui[class*="three column"].grid > .column:not(.row) {
+  width: 33.33333333%;
+}
+.ui.grid > .row > [class*="five wide"].column,
+.ui.grid > .column.row > [class*="five wide"].column,
+.ui.grid > [class*="five wide"].column,
+.ui.column.grid > [class*="five wide"].column {
+  width: 31.25% !important;
+}

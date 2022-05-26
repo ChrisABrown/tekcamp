@@ -1,4 +1,5 @@
 import React from "react";
+import "./Comments.css";
 
 const Comment = (props) => {
   return (
@@ -16,7 +17,12 @@ const Comment = (props) => {
           </div>
           <div className="text">{props.text}</div>
         </div>
+        <div className="ui-two-buttons">
+          <button className="ui-button-1">Like</button>
+          <button className="ui-button-2">Dislike</button>
+        </div>
       </div>
+      <br></br>
     </div>
   );
 };

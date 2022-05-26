@@ -1,0 +1,13 @@
+.ui-container-comments {
+  border-radius: 30%;
+  background: #ccc;
+  padding: 50px 50px;
+  text-align: center;
+}
+.ui-background {
+  border-radius: 10%;
+  background: #bbb;
+  /* overflow: auto; */
+  height: 100%;
+  text-align: center;
+}
