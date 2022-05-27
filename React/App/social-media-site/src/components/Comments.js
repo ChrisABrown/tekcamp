@@ -1,5 +1,5 @@
 import React from "react";
-import "./Comments.css";
+import "../Comments.css";
 
 const Comment = (props) => {
   return (

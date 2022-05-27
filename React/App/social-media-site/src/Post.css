@@ -1,10 +1,90 @@
+/* figure.post-bg {
+  border-radius: 10px;
+  background: rgb(56, 52, 52);
+}
+.ui.medium.images .image,
+.ui.medium.images img,
+.ui.medium.images svg,
+.ui.medium.image {
+  width: 300px;
+  height: auto;
+  font-size: 1rem;
+}
+
+.ui.fluid.images,
+.ui.fluid.image,
+.ui.fluid.images img,
+.ui.fluid.images svg,
+.ui.fluid.image svg,
+.ui.fluid.image img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.ui.grid {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-align: stretch;
+  -ms-flex-align: stretch;
+  align-items: stretch;
+  padding: 0em;
+}
+
 .ui[class*="three column"].grid > .row > .column,
 .ui[class*="three column"].grid > .column:not(.row) {
   width: 33.33333333%;
 }
-.ui.grid > .row > [class*="five wide"].column,
-.ui.grid > .column.row > [class*="five wide"].column,
-.ui.grid > [class*="five wide"].column,
-.ui.column.grid > [class*="five wide"].column {
-  width: 31.25% !important;
+
+@media only screen and (max-width: 767px) {
+  .ui.page.grid {
+    width: auto;
+    padding-left: 0em;
+    padding-right: 0em;
+    margin-left: 0em;
+    margin-right: 0em;
+  }
 }
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  .ui.page.grid {
+    width: auto;
+    margin-left: 0em;
+    margin-right: 0em;
+    padding-left: 2em;
+    padding-right: 2em;
+  }
+}
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+  .ui.page.grid {
+    width: auto;
+    margin-left: 0em;
+    margin-right: 0em;
+    padding-left: 3%;
+    padding-right: 3%;
+  }
+}
+@media only screen and (min-width: 1200px) and (max-width: 1919px) {
+  .ui.page.grid {
+    width: auto;
+    margin-left: 0em;
+    margin-right: 0em;
+    padding-left: 15%;
+    padding-right: 15%;
+  }
+}
+@media only screen and (min-width: 1920px) {
+  .ui.page.grid {
+    width: auto;
+    margin-left: 0em;
+    margin-right: 0em;
+    padding-left: 23%;
+    padding-right: 23%;
+  }
+} */
