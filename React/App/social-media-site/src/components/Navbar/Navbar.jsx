@@ -1,6 +1,7 @@
 import React from "react";
+import Posts from "../PostFeed/PostFeed";
 
-function Navbar({ text }) {
+function Navbar(props) {
   const headerStyles = {
     backgroundColor: "grey",
     color: "ghostwhite",
@@ -8,14 +9,10 @@ function Navbar({ text }) {
   return (
     <header style={headerStyles}>
       <div className="container">
-        <h2>{text}</h2>
+        <h2>Welcome, {props.text}</h2>
       </div>
     </header>
   );
 }
-
-Navbar.defaultProps = {
-  text: "Username",
-};
 
 export default Navbar;
