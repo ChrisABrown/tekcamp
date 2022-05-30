@@ -1,7 +1,7 @@
 import * as React from "react";
-import Avatar from "@mui/material/Avatar";
-import Stack from "@mui/material/Stack";
+import { Avatar, Stack } from "@mui/material";
 import { useState, useEffect } from "react";
+import { getComments } from "../CommentDetail/CommentDetails";
 import APIkey from "../../API/DummyAPI";
 import CheckError from "../../API/CheckError";
 import Comment from "../CommentDetail/CommentDetails";
@@ -9,12 +9,14 @@ import Card from "../../shared/Card";
 import { Grid } from "@mui/material";
 import "./styles.css";
 
-export default function Posts() {
+export default function Posts(props) {
   const [post, setPost] = useState([]);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    getPosts();
-  }, []);
+    getPosts().then(setIsLoaded(true));
+    if (isLoaded === true) return;
+  });
 
   async function getPosts() {
     const response = await fetch(
@@ -29,8 +31,19 @@ export default function Posts() {
     const data = await CheckError(response);
     setPost(data.data);
   }
+
   const userData = post.map(({ owner }) => owner);
-  console.log(userData);
+
+  const users = userData.map(({ firstName, lastName, picture }) => {
+    if (userData.id === post.id)
+      return (
+        <Stack>
+          <Avatar key={userData.id} alt={firstName + lastName} src={picture} />
+          <p key={userData.id}>{firstName + " " + lastName}</p>
+        </Stack>
+      );
+  });
+
   return (
     <>
       <Grid>
@@ -38,25 +51,11 @@ export default function Posts() {
           {post.map(({ image, text, likes }) => {
             return (
               <figure className="ui content">
-                <Card>
-                  {userData.map(({ firstName, lastName, picture }) => {
-                    if (userData.id === post.id)
-                      return (
-                        <Stack>
-                          <Avatar
-                            key={userData.id}
-                            alt={firstName + lastName}
-                            src={picture}
-                          />
-                          <p>{firstName + " " + lastName}</p>
-                        </Stack>
-                      );
-                  })}
-                </Card>
                 <img key={post.id} src={image} alt={text} />
+                <Card key={userData.id}>{users}</Card>
                 <Card className="text card">
                   <small>Likes:{likes} </small>
-                  <figcaption></figcaption>
+                  <Comment />
                 </Card>
               </figure>
             );

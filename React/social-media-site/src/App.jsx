@@ -3,8 +3,6 @@ import { CssBaseline, Grid } from "@mui/material";
 import Navbar from "./components/Navbar/Navbar";
 import Posts from "./components/PostFeed/PostFeed";
 
-// import "./index.css";
-
 export default function App() {
   return (
     <div>

@@ -4,7 +4,10 @@ import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-import getPosts from "../../App";
+import Link from "../Link";
+import { BrowserRouter, Route } from "react-router-dom";
+import PostFeed from "../PostFeed/PostFeed";
+import Profile from "../ProfileView/Profile";
 
 function Navbar(props) {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -34,19 +37,27 @@ function Navbar(props) {
         >
           Dashboard
         </Button>
-        <Menu
-          id="basic-menu"
-          anchorEl={anchorEl}
-          open={open}
-          onClose={handleClose}
-          MenuListProps={{
-            "aria-labelledby": "basic-button",
-          }}
-        >
-          <MenuItem onClick={handleClose}>My Profile</MenuItem>
-          <MenuItem onClick={handleClose}>My Feed</MenuItem>
-          <MenuItem onClick={handleClose}>Logout</MenuItem>
-        </Menu>
+        <BrowserRouter>
+          <Menu
+            id="basic-menu"
+            anchorEl={anchorEl}
+            open={open}
+            onClose={handleClose}
+            MenuListProps={{
+              "aria-labelledby": "basic-button",
+            }}
+          >
+            <Route path="/my-feed" exact component={PostFeed}>
+              <MenuItem onClick={handleClose}>My Feed</MenuItem>
+            </Route>
+            <Route path="/my-profile" exact component={Profile}>
+              <MenuItem onClick={handleClose}>My Profile</MenuItem>
+            </Route>
+            <Route path="/logout" exact component={null}>
+              <MenuItem onClick={handleClose}>Logout</MenuItem>
+            </Route>
+          </Menu>
+        </BrowserRouter>
       </Stack>
     </div>
   );
