@@ -1,23 +1,54 @@
-import React from "react";
-import { AppBar, Toolbar, Typography, InputBase, Box } from "@mui/material";
-import useStyles from "./styles";
+import * as React from "react";
+import Avatar from "@mui/material/Avatar";
+import Stack from "@mui/material/Stack";
+import Button from "@mui/material/Button";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
+import getPosts from "../../App";
 
 function Navbar(props) {
-  const classes = useStyles();
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (e) => {
+    setAnchorEl(e.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   return (
-    <AppBar position="static">
-      <Toolbar classes={classes.toolbar}>
-        <Typography variant="h5" className={classes.title}>
-          My Dashboard
-        </Typography>
-        <Box display="flex">
-          <Typography variant="h6" className={classes.title}>
-            My Feed
-          </Typography>
-        </Box>
-      </Toolbar>
-    </AppBar>
+    <div>
+      <Stack>
+        <Avatar
+          alt="Profile picture"
+          src=""
+          sx={{ width: 90, height: 90, margin: 3 }}
+        />
+        <Button
+          id="basic-button"
+          aria-controls={open ? "basic-menu" : undefined}
+          aria-haspopup="true"
+          aria-expanded={open ? "true" : undefined}
+          onClick={handleClick}
+          sx={{ marginBottom: 0 }}
+        >
+          Dashboard
+        </Button>
+        <Menu
+          id="basic-menu"
+          anchorEl={anchorEl}
+          open={open}
+          onClose={handleClose}
+          MenuListProps={{
+            "aria-labelledby": "basic-button",
+          }}
+        >
+          <MenuItem onClick={handleClose}>My Profile</MenuItem>
+          <MenuItem onClick={handleClose}>My Feed</MenuItem>
+          <MenuItem onClick={handleClose}>Logout</MenuItem>
+        </Menu>
+      </Stack>
+    </div>
   );
 }
 

@@ -3,12 +3,12 @@ import "./styles.js";
 import ThumbUp from "@mui/icons-material/ThumbUp";
 import ThumbDown from "@mui/icons-material/ThumbDown";
 
-export default function Comment() {
+export default function Comment({ user }) {
   return (
     <div>
       <div className="comment">
         <a href="/" className="avatar">
-          <img src="" alt="avatar" />
+          <img key={user} src={user} alt="avatar" />
         </a>
         <div className="content">
           <a href="/" className="author">
@@ -26,9 +26,6 @@ export default function Comment() {
           <button>
             <ThumbDown />
           </button>
-
-          <button className="ui-button-1">Like</button>
-          <button className="ui-button-2">Dislike</button>
         </div>
       </div>
     </div>
