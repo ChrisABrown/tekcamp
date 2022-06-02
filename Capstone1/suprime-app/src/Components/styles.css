@@ -1,0 +1,51 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: Monaco;
+}
+
+.main-page {
+  background: white;
+  margin-top: 7em;
+  display: flex;
+  flex-flow: column wrap;
+  align-content: center;
+}
+.suprime-red-box {
+  background: rgb(236, 4, 4);
+  margin-bottom: 1em;
+  padding: 0.8em 1em;
+  display: flex;
+  width: 13em;
+  align-items: baseline;
+  justify-content: center;
+}
+
+.suprime-logo-font {
+  font-size: 3em;
+  font-family: Futura;
+  font-style: italic;
+  font-weight: 900;
+  color: ghostwhite;
+}
+.suprime-text-font {
+  font-family: Monaco;
+  color: black;
+  display: flex;
+  flex-flow: column wrap;
+  margin-left: 2.4em;
+}
+.flex-box {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+}
+.links {
+  text-decoration: none;
+  margin-top: 5em;
+  margin-left: 6em;
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  color: black;
+}
