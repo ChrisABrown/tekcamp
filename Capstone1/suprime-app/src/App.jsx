@@ -1,7 +1,11 @@
 import React from "react";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import FrontPage from "./Components/FrontPage";
 import Navbar from "./Components/Navbar";
+import ProductList from "./Components/Products/ProductList";
+import AboutUs from "./Components/AboutUs";
+import Contact from "./Components/Contact";
+import MailingList from "./Components/MailingList";
 
 export default function App() {
   return (

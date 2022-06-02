@@ -1,1 +1,106 @@
-[{}]
+[
+  [
+    {
+      "name": "Chain-stitch Denim Jacket",
+      "category": "jackets",
+      "colors": ["Black", "Multicolor"],
+      "SKU": 5234,
+      "price": 398,
+      "quantity": 16,
+      "sizes": ["small", "medium", "large", "X-large"]
+    },
+    {
+      "name": "Suprime®/Nibe® Arc Corduroy Hooded Jacket",
+      "colors": ["Black", "Purple", "Red Camo"],
+      "category": "jackets",
+      "SKU": 5235,
+      "price": 198,
+      "quantity": 16,
+      "sizes": ["small", "medium", "large", "X-large"]
+    }
+  ],
+  [
+    {
+      "name": "Silver Surfer S/S Shirt",
+      "category": "shirts",
+      "colors": ["Black", "Multicolor"],
+      "SKU": 4234,
+      "price": 158,
+      "quantity": 16,
+      "sizes": ["small", "medium", "large", "X-large"]
+    },
+    {
+      "name": "Suprime®/Nibe® Air Choice 1 Low",
+      "category": "shoes",
+      "colors": ["Black", "White"],
+      "SKU": 3234,
+      "price": 108,
+      "quantity": 10,
+      "sizes": [7, 7.5, 8, 8.5, 9, 9.5, 10, 11, 12, 13]
+    }
+  ],
+  [
+    {
+      "name": "Washed Seersucker Camp Cap",
+      "category": "hats",
+      "colors": ["Black", "Taupe", "Light Pink", "Blue", "Sage"],
+      "SKU": 2234,
+      "price": 48,
+      "quantity": 10
+    },
+    {
+      "name": "Suprime®/Nibe® Arc Corduroy 6-panel",
+      "category": "hats",
+      "SKU": 2235,
+      "price": 48,
+      "quantity": 10
+    }
+  ],
+  [
+    {
+      "name": "Suprime®/Nibe® Arc Corduroy Cargo Pant",
+      "category": "pants",
+      "colors": ["Black", "Purple", "Red Camo"],
+      "SKU": 1234,
+      "price": 148,
+      "quantity": 16,
+      "sizes": ["small", "medium", "large", "X-large"]
+    },
+    {
+      "name": "Suprime®/Nibe® Arc Sweatpant",
+      "category": "pants",
+      "SKU": 1235,
+      "price": 148,
+      "quantity": 16,
+      "sizes": ["small", "medium", "large", "X-large"]
+    }
+  ],
+  [
+    {
+      "name": "Flames S/S top",
+      "category": "tops/sweaters",
+      "colors": ["Black", "Olive", "Purple", "Red", "Ash Grey", "Pale Yellow"],
+      "SKU": 6234,
+      "price": 78,
+      "quantity": 16,
+      "sizes": ["small", "medium", "large", "X-large"]
+    },
+    {
+      "name": "Small Box Tee",
+      "category": "tops/sweaters",
+      "colors": [
+        "Black",
+        "Pink Leopard",
+        "White",
+        "Bright Blue",
+        "Brown",
+        "Heather Grey",
+        "Lavender",
+        "Pale Yellow"
+      ],
+      "price": 60,
+      "quantity": 16,
+      "sizes": ["small", "medium", "large", "X-large"]
+    }
+  ]
+]

@@ -1,11 +1,11 @@
 import React from "react";
+import Logo from "./Logo/Logo";
+import Navbar from "./Navbar";
 
 export default function FrontPage() {
   return (
     <div>
-      <div className="red-box">
-        <h1>Suprime</h1>
-      </div>
+      <Logo />
       <Navbar />
     </div>
   );
