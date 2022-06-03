@@ -1,7 +1,7 @@
 import React from "react";
 import Logo from "../Logo/Logo";
 import Navbar from "../Navbar";
-import Footer from "../Footer";
+
 import "../styles.css";
 
 export default function FrontPage() {
@@ -11,7 +11,6 @@ export default function FrontPage() {
         <Logo />
       </div>
       <Navbar />
-      <Footer />
     </div>
   );
 }

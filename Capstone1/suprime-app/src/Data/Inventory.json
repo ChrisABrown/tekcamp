@@ -4,14 +4,42 @@
       "name": "Chain-stitch Denim Jacket",
       "category": "jackets",
       "colors": ["Black", "Multicolor"],
+      "images": [
+        {
+          "front": "https://assets.supremenewyork.com/228547/ma/u_ABhp2VX7s.jpg",
+          "back": "https://assets.supremenewyork.com/228548/ma/mK7aQfhNRYk.jpg",
+          "detail": "https://assets.supremenewyork.com/228549/ma/EU95QjNXqn8.jpg"
+        },
+        {
+          "front-black": "https://assets.supremenewyork.com/228544/ma/mRA7FYxg2Js.jpg",
+          "back-black": "https://assets.supremenewyork.com/228545/ma/uP0tD32Z3Yo.jpg",
+          "detail-black": "https://assets.supremenewyork.com/228546/ma/ZlBhg5a5dCU.jpg"
+        }
+      ],
+      "description": "All cotton 15 oz. denim with chainstitch embroidered graphic throughout. Full zip closure with welt hand pockets at lower front. Tab adjusters at cuffs and back hem with leather logo path. Original artwork by Raul de Nieves.",
       "SKU": 5234,
       "price": 398,
       "quantity": 16,
       "sizes": ["small", "medium", "large", "X-large"]
     },
     {
-      "name": "Suprime®/Nibe® Arc Corduroy Hooded Jacket",
-      "colors": ["Black", "Purple", "Red Camo"],
+      "name": "Silver Surfer Leather Varsity Jacket",
+      "colors": ["Black", "Blue"],
+      "images": [
+        {
+          "front-blue": "https://assets.supremenewyork.com/228425/ma/I-hgcZ8HxDo.jpg",
+          "back-blue": "https://assets.supremenewyork.com/228427/ma/SEMOP5ID6QA.jpg",
+          "inside-blue": "https://assets.supremenewyork.com/228426/ma/VTedG3lgvTA.jpg",
+          "detail-blue": "https://assets.supremenewyork.com/228428/ma/aSEPi0O7yJ8.jpg"
+        },
+        {
+          "front-black": "https://assets.supremenewyork.com/228429/ma/T9w0hJuEFrg.jpg",
+          "back-black": "https://assets.supremenewyork.com/228430/ma/iC2oQjBl_hU.jpg",
+          "inside-black": "https://assets.supremenewyork.com/228431/ma/EosuYHc-HHM.jpg",
+          "detail-black": "https://assets.supremenewyork.com/228432/ma/bTOvDsY4uVA.jpg"
+        }
+      ],
+      "description": "Pearlized pebbled cowhide leather with Bemberg twill lining and full zip closure. Double welt hand pockets at lower front and interior chest pocket. Knit rib cuffs and hem. Patent leather logo applique at chest. Patent leather graphic applique and embroidered pattern at back.",
       "category": "jackets",
       "SKU": 5235,
       "price": 198,
@@ -21,36 +49,100 @@
   ],
   [
     {
-      "name": "Silver Surfer S/S Shirt",
+      "name": "Credit Cards Shirt",
       "category": "shirts",
-      "colors": ["Black", "Multicolor"],
+      "colors": ["Multicolor"],
+      "images": {
+        "front": "https://assets.supremenewyork.com/230829/ma/g5nvBWy3aUg.jpg",
+        "detail": "https://assets.supremenewyork.com/230830/ma/24Y54fe_2-U.jpg"
+      },
+      "description": "All cotton poplin with printed pattern and single chest pocket. Original artwork by Lee Kan Kyo.",
       "SKU": 4234,
-      "price": 158,
+      "price": 148,
       "quantity": 16,
       "sizes": ["small", "medium", "large", "X-large"]
     },
     {
-      "name": "Suprime®/Nibe® Air Choice 1 Low",
-      "category": "shoes",
+      "name": "Suprime®/Hines® Boxer Briefs (4 Pack)",
+      "category": "accessory",
       "colors": ["Black", "White"],
+      "images": {
+        "white": "https://assets.supremenewyork.com/231448/ma/9KrNg60eOD0.jpg",
+        "black": "https://assets.supremenewyork.com/231449/ma/e3RPZ-iV8uQ.jpg"
+      },
+      "description": "All cotton classic Hines® boxer brief.",
       "SKU": 3234,
-      "price": 108,
+      "price": 40,
       "quantity": 10,
-      "sizes": [7, 7.5, 8, 8.5, 9, 9.5, 10, 11, 12, 13]
+      "sizes": ["small", "medium", "large", "X-large"]
     }
   ],
   [
     {
-      "name": "Washed Seersucker Camp Cap",
+      "name": "URL 6-panel",
       "category": "hats",
-      "colors": ["Black", "Taupe", "Light Pink", "Blue", "Sage"],
+      "colors": [
+        "Woodland Camo",
+        "Dark Teal",
+        "White",
+        "Purple",
+        "Black",
+        "Yellow"
+      ],
+      "images": [
+        {
+          "front-camo": "https://assets.supremenewyork.com/230002/ma/_s33rdRwUbU.jpg",
+          "back-camo": "https://assets.supremenewyork.com/230003/ma/RaKSrg-plb8.jpg"
+        },
+        {
+          "front-dark teal": "https://assets.supremenewyork.com/229998/sw/oh4eXuQV-Qo.jpg",
+          "back-dark teal": "https://assets.supremenewyork.com/229999/ma/JrPL55jIbWA.jpg"
+        },
+        {
+          "front-white": "https://assets.supremenewyork.com/230000/ma/qnUmJPGGLqc.jpg",
+          "back-white": "https://assets.supremenewyork.com/230001/ma/Gx3d5hgh-x8.jpg"
+        },
+        {
+          "front-purple": "https://assets.supremenewyork.com/229996/ma/CAjJ9hOZv4s.jpg",
+          "back-purple": "https://assets.supremenewyork.com/229996/ma/CAjJ9hOZv4s.jpg"
+        },
+        {
+          "front-black": "https://assets.supremenewyork.com/229994/ma/jmhfDSdE66Q.jpg",
+          "back-black": "https://assets.supremenewyork.com/229995/ma/R7boXHCP3n0.jpg"
+        },
+        {
+          "front-yellow": "https://assets.supremenewyork.com/229992/ma/YKBODuRM9iA.jpg",
+          "back-yellow": "https://assets.supremenewyork.com/229993/ma/OpAzopv6rA0.jpg"
+        }
+      ],
+      "description": "Supplix® nylon taslan 6-panel hat with webbing strap closure. Embroidered logos on front and back.",
       "SKU": 2234,
       "price": 48,
       "quantity": 10
     },
     {
-      "name": "Suprime®/Nibe® Arc Corduroy 6-panel",
+      "name": "Now Err® Multi Arc Beanie",
       "category": "hats",
+      "colors": ["Black", "Teal", "Pink", "Pale Yellow"],
+      "images": [
+        {
+          "front-black": "https://assets.supremenewyork.com/229818/ma/dBuunjx7i8I.jpg",
+          "back-black": "https://assets.supremenewyork.com/229819/ma/TcWwVBxCy58.jpg"
+        },
+        {
+          "front-teal": "https://assets.supremenewyork.com/229820/ma/kxEu8JPiuD8.jpg",
+          "back-teal": "https://assets.supremenewyork.com/229821/ma/V5tSHJYj3i4.jpg"
+        },
+        {
+          "front-pink": "https://assets.supremenewyork.com/229816/ma/gYgJ1_QoBmY.jpg",
+          "back-pink": "https://assets.supremenewyork.com/229817/ma/SCC4jlqgezI.jpg"
+        },
+        {
+          "front-pale yellow": "https://assets.supremenewyork.com/229814/ma/xF9-txVF6n0.jpg",
+          "back-pale yellow": "https://assets.supremenewyork.com/229815/ma/qnHBBjF3A-s.jpg"
+        }
+      ],
+      "description": "Acrylic cuffed beanie with embroideries on crown and cuff.",
       "SKU": 2235,
       "price": 48,
       "quantity": 10
@@ -58,28 +150,59 @@
   ],
   [
     {
-      "name": "Suprime®/Nibe® Arc Corduroy Cargo Pant",
+      "name": "Chainstitch Regular Jean",
       "category": "pants",
-      "colors": ["Black", "Purple", "Red Camo"],
+      "colors": ["Black", "Multicolor"],
+      "images": [
+        {
+          "front": "https://assets.supremenewyork.com/230491/ma/UMLLX3GeOhc.jpg",
+          "back": "https://assets.supremenewyork.com/230492/ma/p-PmTGF-zfQ.jpg",
+          "detail": "https://assets.supremenewyork.com/230493/ma/15XwWrWChUU.jpg"
+        },
+        {
+          "front-black": "https://assets.supremenewyork.com/230488/ma/yXQ81S0o89c.jpg",
+          "back-black": "https://assets.supremenewyork.com/230489/ma/VFrsEVN_hZ4.jpg",
+          "detail-black": "https://assets.supremenewyork.com/230490/ma/8tLFTRptQzw.jpg"
+        }
+      ],
+      "description": "All cotton 15 oz. denim with chainstitch embroidered graphic throughout. Classic 5-pocket style with button fly, single coin pocket and leather logo patch on back.Original artwork by Raul de Nieves.",
       "SKU": 1234,
-      "price": 148,
+      "price": 398,
       "quantity": 16,
-      "sizes": ["small", "medium", "large", "X-large"]
+      "sizes": [30, 32, 34, 36]
     },
     {
-      "name": "Suprime®/Nibe® Arc Sweatpant",
+      "name": "East Broadway Sweatpant",
       "category": "pants",
+      "colors": "Night",
+      "images": {
+        "front": "https://assets.supremenewyork.com/230654/ma/hVy4X51vhkI.jpg",
+        "back": "https://assets.supremenewyork.com/230655/ma/RUmK7MaXX40.jpg",
+        "detail": "https://assets.supremenewyork.com/230656/ma/MJckv8SwMIs.jpg"
+      },
+      "description": "Brushed-back fleece with printed graphic. On seam hand pockets and single back patch pocket. Elastic cuffs and waistband with interior drawcord. Original artwork Ben Trogdon.",
       "SKU": 1235,
-      "price": 148,
+      "price": 168,
       "quantity": 16,
       "sizes": ["small", "medium", "large", "X-large"]
     }
   ],
   [
     {
-      "name": "Flames S/S top",
+      "name": "Hearts Jacquard S/S top",
       "category": "tops/sweaters",
-      "colors": ["Black", "Olive", "Purple", "Red", "Ash Grey", "Pale Yellow"],
+      "colors": ["White", "Black"],
+      "images": [
+        {
+          "front-white": "https://assets.supremenewyork.com/231189/ma/NqBnU354pTY.jpg",
+          "detail-white": "https://assets.supremenewyork.com/231190/ma/PcQlRzUfeCU.jpg"
+        },
+        {
+          "front-black": "https://assets.supremenewyork.com/231191/ma/yk3udK72xco.jpg",
+          "detail-black": "https://assets.supremenewyork.com/231192/ma/r5UmZA0oEcY.jpg"
+        }
+      ],
+      "description": "All cotton crewneck with jacquard pattern and embroidered logo on chest.",
       "SKU": 6234,
       "price": 78,
       "quantity": 16,
@@ -98,6 +221,33 @@
         "Lavender",
         "Pale Yellow"
       ],
+      "images": [
+        {
+          "black": "https://assets.supremenewyork.com/231055/sw/q1k6IsVfI9Q.jpg"
+        },
+        {
+          "pink leopard": "https://assets.supremenewyork.com/231051/ma/PuakHqbwGyA.jpg"
+        },
+        {
+          "white": "https://assets.supremenewyork.com/231052/ma/a-ur9QHqoO0.jpg"
+        },
+        {
+          "bright blue": "https://assets.supremenewyork.com/231057/ma/LbiyNC7jPQ8.jpg"
+        },
+        {
+          "brown": "https://assets.supremenewyork.com/231053/ma/_urw9nHPiRg.jpg"
+        },
+        {
+          "heather grey": "https://assets.supremenewyork.com/231050/ma/fa5QfYT6SH0.jpg"
+        },
+        {
+          "lavender": "https://assets.supremenewyork.com/231054/ma/k5Ha75oyo2c.jpg"
+        },
+        {
+          "pale yellow": "https://assets.supremenewyork.com/231056/ma/OWcdtbra-zs.jpg"
+        }
+      ],
+      "description": "All cotton jersey crewneck with embroidered logo path on chest.",
       "price": 60,
       "quantity": 16,
       "sizes": ["small", "medium", "large", "X-large"]
