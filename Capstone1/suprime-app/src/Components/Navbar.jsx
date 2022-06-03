@@ -12,8 +12,8 @@ export default function Navbar() {
         <Link to="/shop" className="links">
           shop
         </Link>
-        <Link to="/news" className="links">
-          news
+        <Link to="/about" className="links">
+          about
         </Link>
         <Link to="/contact" className="links">
           contact
@@ -21,6 +21,7 @@ export default function Navbar() {
         <Link to="/mailing-list" className="links">
           mailinglist
         </Link>
+        <Link to="/admin" className="links"></Link>
       </nav>
     </div>
   );
