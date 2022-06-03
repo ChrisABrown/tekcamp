@@ -48,7 +48,7 @@ export default function Contact() {
             <option value="1">general inquiries</option>
             <option value="2">press</option>
           </select>
-          <label htmlFor="textarea">message</label>
+          <label id="textarea">message</label>
           <textarea name="message" id="message" cols="40" rows="10"></textarea>
           <button id="btn" type="submit">
             send

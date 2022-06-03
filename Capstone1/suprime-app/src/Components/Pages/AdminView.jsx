@@ -1,7 +1,7 @@
 import React from "react";
 import Logo from "../Logo/Logo";
 
-export default function AdminView() {
+const AdminView = () => {
   return (
     <div className="admin">
       <div id="sign-in">
@@ -13,4 +13,6 @@ export default function AdminView() {
       </div>
     </div>
   );
-}
+};
+
+export default AdminView;

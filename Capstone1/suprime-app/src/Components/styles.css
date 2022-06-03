@@ -82,7 +82,7 @@
   justify-content: center;
 }
 
-label {
+#textarea {
   display: block;
 }
 .input-rows {
@@ -134,22 +134,24 @@ fieldset {
   border: none;
   padding: 1em;
 }
-#email-label {
-  padding: 0.8em 1em;
-  font-size: 0.8em;
-}
-#optout-label {
-  padding: 0.8em 1em;
-  font-size: 0.8em;
-}
-#english {
-  padding: 0.8em 1em;
-  font-size: 0.8em;
-}
+#email-label,
+#optout-label,
+#english,
 #japanese {
-  padding: 0.8em 1em;
+  padding: 0.8em;
+  margin: 0.4em;
   font-size: 0.8em;
 }
+fieldset {
+  font-size: 0.8em;
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  justify-content: center;
+  padding: 2em;
+  margin: 0.5em;
+}
+
 #sub-btn {
   background: rgb(236, 4, 4);
   color: white;
@@ -162,4 +164,16 @@ fieldset {
   color: white;
   text-decoration: none;
   border: none;
+}
+#notify {
+  padding: 0.8em 1em;
+  font-size: 0.8em;
+  display: flex;
+  flex-flow: row;
+  align-items: baseline;
+  justify-content: center;
+}
+#webshopnotify {
+  display: inline;
+  float: right;
 }

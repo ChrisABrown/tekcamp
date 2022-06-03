@@ -18,16 +18,14 @@ export default function MailingList() {
         <fieldset>
           <label id="english">english</label>
           <input
-            id="japanese"
+            id="eng"
             name="english-japanese"
             type="radio"
             value="english"
           />
-        </fieldset>
-        <fieldset>
           <label id="japanese">japanese</label>
           <input
-            id="english"
+            id="jap"
             name="english-japanese"
             type="radio"
             value="japanese"
@@ -38,6 +36,10 @@ export default function MailingList() {
         subscribe
       </button>
       <button id="unsub-btn">unsubscribe</button>
+      <fieldset>
+        <label>notify me when the webshop is update with new items</label>
+        <input type="checkbox" name="notify" id="webshopnotify" />
+      </fieldset>
 
       <Footer />
     </div>
