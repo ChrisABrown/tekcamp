@@ -1,9 +1,7 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import FrontPage from "./Components/Pages/FrontPage";
-import Navbar from "./Components/Navbar";
-
-import AboutUs from "./Components/Pages/Shop";
+import About from "./Components/Pages/About";
 import Contact from "./Components/Pages/Contact";
 import MailingList from "./Components/Pages/MailingList";
 import Shop from "./Components/Pages/Shop";
@@ -17,7 +15,7 @@ export default function App() {
         <Routes>
           <Route path="/" exact element={<FrontPage />} />
           <Route path="/shop" exact element={<Shop />} />
-          <Route path="/about" exact element={<AboutUs />} />
+          <Route path="/about" exact element={<About />} />
           <Route path="/contact" exact element={<Contact />} />
           <Route path="/mailing-list" exact element={<MailingList />} />
           <Route element={ProtectedRoutes}>

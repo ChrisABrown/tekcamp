@@ -11,7 +11,7 @@ import Footer from "../Footer";
 export default function Contact() {
   return (
     <div className="contact-page">
-      <Logo className="contact-page" />
+      <Logo />
 
       <section id="form">
         <form id="contact-form">
@@ -54,8 +54,8 @@ export default function Contact() {
             send
           </button>
         </form>
-        <Footer />
       </section>
+      <Footer />
     </div>
   );
 }
