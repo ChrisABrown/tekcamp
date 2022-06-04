@@ -1,6 +1,7 @@
 [
   [
     {
+      "id": "1",
       "item_name": "Chain-stitch Denim Jacket",
       "category": "jackets",
       "colors": ["Black", "Multicolor"],
@@ -11,6 +12,7 @@
       "sizes": ["small", "medium", "large", "X-large"]
     },
     {
+      "id": "2",
       "item_name": "Silver Surfer Leather Varsity Jacket",
       "colors": ["Black", "Blue"],
       "description": "Pearlized pebbled cowhide leather with Bemberg twill lining and full zip closure. Double welt hand pockets at lower front and interior chest pocket. Knit rib cuffs and hem. Patent leather logo applique at chest. Patent leather graphic applique and embroidered pattern at back.",
@@ -24,6 +26,7 @@
 
   [
     {
+      "id": "3",
       "item_name": "Credit Cards Shirt",
       "category": "shirts",
       "colors": ["Multicolor"],
@@ -34,6 +37,7 @@
       "sizes": ["small", "medium", "large", "X-large"]
     },
     {
+      "id": "4",
       "item_name": "Suprime®/Hines® Boxer Briefs (4 Pack)",
       "category": "accessory",
       "colors": ["Black", "White"],
@@ -47,6 +51,7 @@
 
   [
     {
+      "id": "5",
       "item_name": "URL 6-panel",
       "category": "hats",
       "colors": [
@@ -64,6 +69,7 @@
       "quantity": 10
     },
     {
+      "id": "6",
       "item_name": "Now Err® Multi Arc Beanie",
       "category": "hats",
       "colors": ["Black", "Teal", "Pink", "Pale Yellow"],
@@ -77,6 +83,7 @@
 
   [
     {
+      "id": "7",
       "item_name": "Chainstitch Regular Jean",
       "category": "pants",
       "colors": ["Multicolor"],
@@ -88,6 +95,7 @@
       "sizes": [30, 32, 34, 36]
     },
     {
+      "id": "8",
       "item_name": "East Broadway Sweatpant",
       "category": "pants",
       "colors": "Night",
@@ -101,6 +109,7 @@
 
   [
     {
+      "id": "9",
       "item_name": "Hearts Jacquard S/S top",
       "category": "tops/sweaters",
       "colors": ["White", "Black"],
@@ -112,6 +121,7 @@
       "sizes": ["small", "medium", "large", "X-large"]
     },
     {
+      "id": "10",
       "item_name": "Small Box Tee",
       "category": "tops/sweaters",
       "colors": [

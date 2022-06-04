@@ -2,11 +2,11 @@ import React from "react";
 import Logo from "../Logo/Logo";
 import Footer from "../Footer";
 
-export default function About() {
+export default function Lookbook() {
   return (
     <div>
       <Logo />
-      About
+      Lookbook
       <Footer />
     </div>
   );

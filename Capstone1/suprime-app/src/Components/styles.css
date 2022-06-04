@@ -19,7 +19,12 @@
     margin: 40vh 40vw;
   }
 }
-
+#search_bar {
+  margin: 0;
+  width: 50vw;
+  border: none;
+  opacity: 50%;
+}
 .main-page {
   background: white;
   margin-top: 7em;

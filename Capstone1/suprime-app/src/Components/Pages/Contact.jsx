@@ -3,9 +3,15 @@ import "../styles.css";
 import Logo from "../Logo/Logo";
 import Footer from "../Footer";
 
-// function toggleDropdown(selObj) {
-//   const value =
-
+// function showError() {
+//   for (let i = 0; i < inputs.length; i++) {
+//     let text = inputs[i].value.trim();
+//     if (text === "") {
+//       errors[i].style.visibility = "visible";
+//     } else {
+//       errors[i].style.visibility = "hidden";
+//     }
+//   }
 // }
 
 export default function Contact() {

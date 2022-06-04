@@ -10,8 +10,8 @@ export default function Footer() {
       <Link to="/shop" className="footer-links">
         shop
       </Link>
-      <Link to="/about" className="footer-links">
-        about
+      <Link to="/lookbook" className="footer-links">
+        lookbook
       </Link>
       <Link to="/contact" className="footer-links">
         contact

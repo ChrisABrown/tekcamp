@@ -1,11 +1,12 @@
 import React from "react";
 import Logo from "../Logo/Logo";
 
-export default function Cart() {
+export default function Cart(props) {
   return (
     <div>
       <Logo />
       <section>
+        <h2>your items:</h2>
         <form
           id="checkout_form"
           class="easy_form"

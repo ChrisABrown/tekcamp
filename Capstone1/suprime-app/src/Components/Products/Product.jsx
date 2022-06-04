@@ -14,17 +14,20 @@ function ProductDetail() {
       setItems(StockData);
     }, []);
   }
+
   return (
     <div id="items-grid">
-      {images.map((imageDetail, index) => {
+      {images.map((imageDetail) => {
         return (
           <div id="products-grid">
-            <img key={imageDetail.SKU} id="products" src={imageDetail.front} />
+            <a href="/productdetails">
+              <img key={imageDetail.id} id="products" src={imageDetail.front} />
+            </a>
           </div>
         );
       })}
       {items.map((itemDetail, index) => {
-        <label htmlFor="products-grid">{itemDetail.item_name}</label>;
+        <p id="products-grid">{itemDetail.item_name}</p>;
       })}
     </div>
   );
