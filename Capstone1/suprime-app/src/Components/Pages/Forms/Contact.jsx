@@ -22,7 +22,7 @@ export default function Contact() {
     lastname: "",
     email: "",
     ordernumber: "",
-    message: "",
+    // message: "",
   });
 
   const inputs = [
@@ -40,36 +40,31 @@ export default function Contact() {
       placeholder: "lastname",
       required: true,
     },
+
     {
       id: 3,
-      name: "firstname",
-      type: "text",
-      placeholder: "firstname",
-      required: true,
-    },
-    {
-      id: 4,
       name: "email",
       type: "email",
       placeholder: "email",
       required: true,
     },
     {
-      id: 5,
+      id: 4,
       name: "ordernumber",
       type: "text",
       placeholder: "ordernumber",
       required: false,
+      visibility: "hidden",
     },
-    {
-      id: 6,
-      name: "message",
-      type: "textarea",
-      cols: 10,
-      rows: 8,
-      placeholder: "firstname",
-      required: true,
-    },
+    // {
+    //   id: 6,
+    //   name: "message",
+    //   type: "textarea",
+    //   cols: 10,
+    //   rows: 8,
+    //   placeholder: "firstname",
+    //   required: true,
+    // },
   ];
 
   const handleSend = (e) => {
@@ -81,12 +76,7 @@ export default function Contact() {
       <Logo />
       <form onSubmit={handleSend}>
         {inputs.map((input) => {
-          <FormInputs
-            key={input.id}
-            {...input}
-            val={vals[input.name]}
-            setVals={setVals}
-          />;
+          <FormInputs key={input.id} {...input} val={vals[input.name]} />;
         })}
 
         <button id="sub-btn">send</button>
