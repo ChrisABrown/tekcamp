@@ -1,23 +1,56 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import FrontPage from "./Components/Pages/FrontPage";
-import Lookbook from "./Components/Pages/Lookbook";
 import Contact from "./Components/Pages/Contact";
 import MailingList from "./Components/Pages/MailingList";
-import Shop from "./Components/Pages/Shop";
+import Shop from "./Components/Pages/Shop/Shop";
+import Jackets from "./Components/Pages/Shop/Jackets";
+import Tops from "./Components/Pages/Shop/Tops";
+import Shirts from "./Components/Pages/Shop/Shirts";
+import Pants from "./Components/Pages/Shop/Pants";
+import Accessories from "./Components/Pages/Shop/Accessories";
 import AdminView from "./Components/Pages/AdminView";
+import Cart from "./Components/Pages/Cart";
 import ProtectedRoutes from "./Components/Pages/ProtectedRoutes";
-import images from "./Data/images.json";
+import inventory from "./Data/inventory";
 
 export default function App() {
-  const { items } = images;
+  const stock = inventory;
+  const items = stock.items;
+  const id = stock.items.map((id) => id);
+
   return (
     <div className="App">
       <BrowserRouter>
         <Routes>
           <Route path="/" exact element={<FrontPage />} />
-          <Route path="/shop" exact element={<Shop items={items} />} />
-          <Route path="/Lookbook" exact element={<Lookbook />} />
+          <Route path="/shop" exact element={<Shop key={id} items={items} />} />
+          <Route path="/cart" exact element={<Cart key={id} items={items} />} />
+          <Route
+            path="/shop/jackets"
+            exact
+            element={<Jackets key={id} items={items} />}
+          />
+          <Route
+            path="/shop/accessories"
+            exact
+            element={<Accessories key={id} items={items} />}
+          />
+          <Route
+            path="/shop/tops"
+            exact
+            element={<Tops key={id} items={items} />}
+          />
+          <Route
+            path="/shop/shirts"
+            exact
+            element={<Shirts key={id} items={items} />}
+          />
+          <Route
+            path="/shop/pants"
+            exact
+            element={<Pants key={id} items={items} />}
+          />
           <Route path="/contact" exact element={<Contact />} />
           <Route path="/mailing-list" exact element={<MailingList />} />
           <Route element={ProtectedRoutes}>

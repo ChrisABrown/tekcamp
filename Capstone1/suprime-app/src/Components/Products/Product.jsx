@@ -1,36 +1,35 @@
 import React from "react";
-import StockData from "../../Data/inventory.json";
-import ImageData from "../../Data/images.json";
-import { useState, createContext, useEffect } from "react";
+import Cart from "../Pages/Cart";
+import id from "../../App";
+import ProductDetail from "./ProductDetail";
 
-function ProductDetail() {
-  const [items, setItems] = useState([]);
-  const [images, setImages] = useState([]);
-  const globalCart = createContext();
+// function addToCart(cartItem) {
+//   if (x === cartItem && isCartEmpty(true){
+//     return (
+//       x.qty + 1;
+//     )
+//   })
+// }
 
-  {
-    useEffect(() => {
-      setImages(ImageData);
-      setItems(StockData);
-    }, []);
-  }
+function Product({ item }, props) {
+  const images1 = item.map(({ images1 }) => images1);
 
   return (
-    <div id="items-grid">
-      {images.map((imageDetail) => {
+    <div className="item-grid">
+      {images1.map(({ front }) => {
         return (
-          <div id="products-grid">
-            <a href="/productdetails">
-              <img key={imageDetail.id} id="products" src={imageDetail.front} />
+          <>
+            <a key={id} href={`/shop/${item.category}`}>
+              <img key={id} src={front} alt={item.item_name} />
             </a>
-          </div>
+
+            <button id="sub-btn" onClick="">
+              add to cart
+            </button>
+          </>
         );
-      })}
-      {items.map((itemDetail, index) => {
-        <p id="products-grid">{itemDetail.item_name}</p>;
       })}
     </div>
   );
 }
-
-export default ProductDetail;
+export default Product;

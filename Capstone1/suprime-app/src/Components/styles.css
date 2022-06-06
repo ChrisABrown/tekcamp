@@ -193,19 +193,24 @@ fieldset {
   justify-content: space-between;
 }
 .shop-tabs a {
-  display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
   text-decoration: none;
   color: black;
-  padding: 2em;
+  padding: 0.7em;
   margin-top: 3em;
   margin-bottom: 1em;
 }
+.shop-tabs a:active {
+  color: red;
+}
+.shop-tabs a:hover {
+  color: red;
+}
+
 .item-grid {
   display: flex;
-  grid-template-columns: auto;
-  grid-row: inherit;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: center;
 }
 #shop-logo {
   display: flex;
@@ -215,8 +220,8 @@ fieldset {
 }
 #products-grid {
   display: inline;
-  margin-left: 1em;
-  margin-right: 2em;
+
+  margin-left: 10em;
 }
 #products {
 }

@@ -1,11 +1,16 @@
 import React from "react";
+import id from "../../App";
 
-import ProductDetail from "./Product";
+import Product from "./Product";
+import ProductDetail from "./ProductDetail";
 
-export default function ProductList(props) {
+export default function ProductList({ items }, props) {
   return (
     <div>
-      <ProductDetail />
+      <Product key={id} item={items}>
+        <ProductDetail key={id} item={items} />
+        {props.children}
+      </Product>
     </div>
   );
 }
