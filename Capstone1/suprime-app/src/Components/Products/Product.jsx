@@ -1,5 +1,5 @@
 import React from "react";
-import Cart from "../Pages/Cart";
+import Cart from "../Pages/Forms/Cart";
 import id from "../../App";
 import ProductDetail from "./ProductDetail";
 
@@ -22,8 +22,9 @@ function Product({ item }, props) {
             <a key={id} href={`/shop/${item.category}`}>
               <img key={id} src={front} alt={item.item_name} />
             </a>
+            <p>hello</p>
 
-            <button id="sub-btn" onClick="">
+            <button id="sub-btn1" onClick="">
               add to cart
             </button>
           </>

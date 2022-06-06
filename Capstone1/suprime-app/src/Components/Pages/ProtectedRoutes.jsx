@@ -1,5 +1,5 @@
 import React from "react";
-import AdminView from "./AdminView";
+import AdminView from "./Forms/AdminView";
 import { Outlet } from "react-router-dom";
 
 const useAuth = () => {

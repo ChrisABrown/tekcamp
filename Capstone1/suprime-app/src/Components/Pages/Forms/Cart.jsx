@@ -1,5 +1,6 @@
 import React from "react";
-import Logo from "../Logo/Logo";
+import Logo from "../../Logo/Logo";
+import "./forms.css";
 
 export default function Cart(props) {
   return (

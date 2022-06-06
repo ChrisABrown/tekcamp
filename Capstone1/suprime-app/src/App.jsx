@@ -1,16 +1,16 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import FrontPage from "./Components/Pages/FrontPage";
-import Contact from "./Components/Pages/Contact";
-import MailingList from "./Components/Pages/MailingList";
+import Contact from "./Components/Pages/Forms/Contact";
+import MailingList from "./Components/Pages/Forms/MailingList";
 import Shop from "./Components/Pages/Shop/Shop";
 import Jackets from "./Components/Pages/Shop/Jackets";
 import Tops from "./Components/Pages/Shop/Tops";
 import Shirts from "./Components/Pages/Shop/Shirts";
 import Pants from "./Components/Pages/Shop/Pants";
 import Accessories from "./Components/Pages/Shop/Accessories";
-import AdminView from "./Components/Pages/AdminView";
-import Cart from "./Components/Pages/Cart";
+import AdminView from "./Components/Pages/Forms/AdminView";
+import Cart from "./Components/Pages/Forms/Cart";
 import ProtectedRoutes from "./Components/Pages/ProtectedRoutes";
 import inventory from "./Data/inventory";
 

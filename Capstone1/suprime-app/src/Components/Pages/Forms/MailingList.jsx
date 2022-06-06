@@ -1,6 +1,7 @@
 import React from "react";
-import Footer from "../Footer";
-import Logo from "../Logo/Logo";
+import Footer from "../../Footer";
+import Logo from "../../Logo/Logo";
+import "./forms.css";
 
 export default function MailingList() {
   return (
