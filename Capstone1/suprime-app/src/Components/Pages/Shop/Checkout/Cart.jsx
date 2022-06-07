@@ -7,7 +7,7 @@ export default function Cart({ items }) {
     <div>
       <Logo />
       <section>
-        <h4>your items:</h4>
+        <h4>your items:{cartItems}</h4>
       </section>
     </div>
   );
