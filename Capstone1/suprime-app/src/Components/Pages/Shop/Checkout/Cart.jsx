@@ -1,18 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import Logo from "../../../Logo/Logo";
 import "../../Forms/forms.css";
 import CartItem from "./CartItem";
 
 export default function Cart({ items }) {
-  const [cartItems, setCartItems] = useState([]);
-  const onAddToCart = (e) => {
-    const y = cartItem.quantity;
+  const [cartItem, setCartItems] = useState([]);
+  const onRemoveFromCart = (e) => {
+    const y = CartItem.quantity;
     {
-      y === 0 && items.id === cartItems.id ? (
-        <div>cart is empty</div>
-      ) : (
-        setCartItems(y)
-      );
+      if (y > 0 && items.id === CartItem.id) {
+        y--;
+      }
+      setCartItems(y);
       return (
         <div>
           <Logo />
@@ -20,7 +19,7 @@ export default function Cart({ items }) {
           <h6>your items:</h6>
 
           <div>
-            <CartItem thing={items} />
+            <CartItem onClick={onRemoveFromCart}></CartItem>
           </div>
         </div>
       );

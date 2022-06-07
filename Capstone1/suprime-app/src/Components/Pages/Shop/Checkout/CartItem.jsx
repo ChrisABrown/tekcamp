@@ -1,10 +1,16 @@
 import React, { useState } from "react";
 import Cart from "./Cart";
 
-const CartItem = ({ items }) => {
-  const [cartItem, setCartItems] = useState([]);
+const CartItem = ({ items, onRemoveFromCart }) => {
+  const [cartItem, setCartItems] = useState({
+    item_name: "",
+    id: "",
+    SKU: "",
+    quantity: "",
+    price: "",
+  });
 
-  return <div>you get what you pay for</div>;
+  return <div></div>;
 };
 
 export default CartItem;
