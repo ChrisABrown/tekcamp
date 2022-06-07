@@ -9,12 +9,13 @@
     margin: 40vh 40vw;
   }
 }
-#search_bar {
+#search-bar {
   margin: 0;
   width: 50vw;
-  border: none;
+  border: 0em;
   opacity: 50%;
 }
+
 .main-page {
   background: white;
   margin-top: 7em;
@@ -62,13 +63,11 @@
 }
 
 .footer {
-  width: 100vw;
-  position: relative;
-  bottom: -40%;
+  width: 90vw;
   display: flex;
   flex-flow: row;
-  align-items: flex-end;
-  justify-content: space-around;
+  align-items: center;
+  justify-content: space-between;
 }
 .footer-links {
   text-decoration: none;
@@ -116,5 +115,13 @@
 
   margin-left: 10em;
 }
-#products {
+.product-details {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+  width: 15em;
+  font-size: 0.8em;
+  margin: 2em;
+  padding: auto;
 }

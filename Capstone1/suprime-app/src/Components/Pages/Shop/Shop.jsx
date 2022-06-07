@@ -1,30 +1,44 @@
 import React from "react";
+import { useState } from "react";
 import Product from "../../Products/Product";
-import ProductList from "../../Products/ProductList";
 import Footer from "../../Footer";
 import Logo from "../../Logo/Logo";
-import id from "../../../App";
-import ShopTabs from "./ShopTabs";
+import Cart from "./Checkout/Cart";
+import "../../styles.css";
 
-export default function Shop({ items }) {
+export default function Shop({ items, setItems }) {
+  const [searchItem, setSearchItem] = useState("");
+  console.log(searchItem);
   return (
     <>
+      <input
+        id="search-bar"
+        value={searchItem}
+        placeholder="Search.."
+        onChange={(e) => setSearchItem(e.target.value)}
+      />
       <div id="shop-logo">
         <Logo />
       </div>
-      <ShopTabs />
+
       <div>
-        <ProductList key={id} items={items}>
-          {items.map((item) => (
+        {items
+          .filter((item) => {
+            if (searchItem === "") {
+              return item;
+            } else if (item.item_name.includes(searchItem)) {
+              return item;
+            }
+          })
+          .map((item) => (
             <Product
-              key={id}
-              items={item}
-              src={item.images}
+              item={item}
+              imgSrc={item.images}
+              sizes={item.sizes}
               alt={item.item_name}
-              href={`/shop/${item.category}/${item.id}`}
             />
           ))}
-        </ProductList>
+        <Cart cartItems={items} />
       </div>
       <Footer className="sticky" />
     </>

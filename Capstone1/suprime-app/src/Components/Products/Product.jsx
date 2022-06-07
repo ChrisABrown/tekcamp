@@ -1,35 +1,27 @@
 import React from "react";
-import Cart from "../Pages/Forms/Cart";
-import id from "../../App";
+import { useState } from "react";
 import ProductDetail from "./ProductDetail";
 
-// function addToCart(cartItem) {
-//   if (x === cartItem && isCartEmpty(true){
-//     return (
-//       x.qty + 1;
-//     )
-//   })
-// }
+const AddToCart = (e) => {
+  const [isCartEmpty, setCartToEmpty] = useState(true);
+  const [cartItem, setCartItem] = useState([]);
 
-function Product({ item }, props) {
-  const images1 = item.map(({ images1 }) => images1);
+  if (x.qty === cartItem && isCartEmpty === true) {
+    return setCartItem([]) + cartItem;
+  } else if (isCartEmpty === false) {
+    AddToCart(cartItem);
+  }
+};
 
+function Product({ item }) {
   return (
     <div className="item-grid">
-      {images1.map(({ front }) => {
-        return (
-          <>
-            <a key={id} href={`/shop/${item.category}`}>
-              <img key={id} src={front} alt={item.item_name} />
-            </a>
-            <p>hello</p>
+      <img src={item.images1.front} alt={item.item_name} />
 
-            <button id="sub-btn1" onClick="">
-              add to cart
-            </button>
-          </>
-        );
-      })}
+      <ProductDetail key={item.id} item={item} />
+      <button id="sub-btn1" onClick={AddToCart}>
+        add to cart
+      </button>
     </div>
   );
 }

@@ -1,12 +1,12 @@
 import React from "react";
-import id from "../../App";
 
 export default function ProductDetail({ item }) {
   return (
-    <div>
-      {item.map(({ item_name }) => {
-        return <p key={id}>{item_name}</p>;
-      })}
+    <div className="product-details">
+      <p>{item.item_name}</p>
+      <p>{item.description}</p>
+      <p>${item.price}</p>
+      <select name="sizes" id="sizeList"></select>
     </div>
   );
 }

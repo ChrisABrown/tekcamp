@@ -1,10 +1,13 @@
 #sub-btn {
+  width: 40vw;
   background: rgb(236, 4, 4);
   color: white;
   text-decoration: none;
   border: none;
-  margin: 1em;
+  padding: 0.4em;
+  justify-self: center;
 }
+
 fieldset {
   display: flex;
   border: none;
@@ -29,13 +32,11 @@ fieldset {
 }
 
 #sub-btn1 {
-  position: sticky;
   background: rgb(236, 4, 4);
   color: white;
   text-decoration: none;
   border: none;
-  margin: 0.4em;
-  padding: 0.4em;
+  padding: 1em;
 }
 #unsub-btn {
   background: rgb(133, 127, 127);
@@ -55,21 +56,17 @@ fieldset {
   display: inline;
   float: right;
 }
-.mailinglist-page {
-  position: relative;
+
+#dropdown {
   display: flex;
-  flex-flow: column;
   align-items: center;
   justify-content: center;
-  margin-top: 13em;
-}
-#dropdown {
-  padding: 0em 5.7em;
   text-align: center;
-  font-size: 0.8em;
+  font-size: 0.5em;
+  margin: 1em;
 }
 #btn {
-  display: block;
+  display: flex;
   background: rgb(236, 4, 4);
   color: white;
   text-decoration: none;
@@ -78,31 +75,76 @@ fieldset {
   top: 100%;
   transform: translateX(370%);
 }
+#btn-contnr {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#cont-btn {
+  background: rgb(236, 4, 4);
+  color: white;
+  text-decoration: none;
+  border: none;
+  padding: 0.6em;
+  cursor: pointer;
+}
 .contact-page {
   display: flex;
   flex-flow: column;
   align-items: center;
   justify-content: center;
-  margin-top: 13em;
+}
+#cont-logo {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  margin-top: 5em;
 }
 #form {
-  margin: 4em;
-  text-align: center;
   font-size: 0.8em;
-  padding: 1em;
   display: flex;
-  align-self: center;
+  align-items: center;
   justify-content: center;
+}
+form {
+  height: 55em;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+}
+#cont-footer {
+  display: flex;
+  flex-flow: column;
+  align-items: flex-end;
+  justify-content: center;
+  padding: auto;
 }
 
 #textarea {
-  display: block;
-}
-.input-rows {
-  width: 340px;
   display: flex;
-  flex-flow: row wrap;
-  justify-content: space-between;
+  align-items: center;
+  padding: 1em;
+  margin: 1em;
+}
+
+.input-rows {
+  text-align: center;
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  justify-content: center;
+  padding: 0.3em;
+}
+.cont-err {
+  font: 1em sans-serif;
+  display: none;
+  padding: 0.2em;
+  margin-bottom: auto;
+  color: firebrick;
+}
+input:invalid[focus="true"] ~ span {
+  display: block;
 }
 #userid,
 #usercode {
