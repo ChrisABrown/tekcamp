@@ -1,28 +1,17 @@
 import React from "react";
 import { useState } from "react";
 import ProductDetail from "./ProductDetail";
+import "../Pages/Forms/forms.css";
 
-const AddToCart = (e) => {
-  const [isCartEmpty, setCartToEmpty] = useState(true);
-  const [cartItem, setCartItem] = useState([]);
-
-  if (x.qty === cartItem && isCartEmpty === true) {
-    return setCartItem([]) + cartItem;
-  } else if (isCartEmpty === false) {
-    AddToCart(cartItem);
-  }
-};
-
-function Product({ item }) {
+export default function Product({ item, onAddToCart }) {
   return (
     <div className="item-grid">
       <img src={item.images1.front} alt={item.item_name} />
 
       <ProductDetail key={item.id} item={item} />
-      <button id="sub-btn1" onClick={AddToCart}>
+      <button id="sub-btn1" onClick={onAddToCart}>
         add to cart
       </button>
     </div>
   );
 }
-export default Product;

@@ -6,17 +6,6 @@ import Logo from "../../Logo/Logo";
 import Footer from "../../Footer";
 import FormInputs from "./FormInputs";
 
-// function showError() {
-//   for (let i = 0; i < inputs.length; i++) {
-//     let text = inputs[i].value.trim();
-//     if (text === "") {
-//       errors[i].style.visibility = "visible";
-//     } else {
-//       errors[i].style.visibility = "hidden";
-//     }
-//   }
-// }
-
 export default function Contact() {
   const [vals, setVals] = useState({
     firstname: "",
@@ -67,10 +56,7 @@ export default function Contact() {
   ];
 
   const handleSend = (e) => {
-    if (vals.errMessage.display === "block" && vals.trim()) {
-      e.preventDefault();
-    } else {
-    }
+    e.preventDefault();
   };
   const onChange = (e) => {
     setVals({ ...vals, [e.target.name]: e.target.value });

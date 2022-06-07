@@ -6,9 +6,10 @@ export default function Cart({ items }) {
   return (
     <div>
       <Logo />
-      <section>
-        <h4>your items:{cartItems}</h4>
-      </section>
+
+      <h6>your items:</h6>
+
+      <div></div>
     </div>
   );
 }

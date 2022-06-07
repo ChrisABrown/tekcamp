@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import FrontPage from "./Components/Pages/FrontPage";
 import Contact from "./Components/Pages/Forms/Contact";
-import MailingList from "./Components/Pages/Forms/MailingList";
 import Shop from "./Components/Pages/Shop/Shop";
 import AdminView from "./Components/Pages/Forms/AdminView";
 import Cart from "./Components/Pages/Shop/Checkout/Cart";
@@ -24,9 +23,13 @@ export default function App() {
           />
           <Route path="/cart" exact element={<Cart />} />
           <Route path="/contact" exact element={<Contact />} />
-          <Route path="/mailing-list" exact element={<MailingList />} />
+
           <Route element={ProtectedRoutes}>
-            <Route path="/admin" exact element={<AdminView />}></Route>
+            <Route
+              path="/admin"
+              exact
+              element={<AdminView stock={items} />}
+            ></Route>
           </Route>
         </Routes>
       </BrowserRouter>

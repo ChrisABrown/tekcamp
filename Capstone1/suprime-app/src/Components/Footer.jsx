@@ -16,9 +16,6 @@ export default function Footer() {
       <Link to="/contact" className="footer-links">
         contact
       </Link>
-      <Link to="/mailing-list" className="footer-links">
-        mailinglist
-      </Link>
     </nav>
   );
 }

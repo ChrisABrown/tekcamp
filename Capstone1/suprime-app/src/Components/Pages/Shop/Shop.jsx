@@ -8,7 +8,19 @@ import "../../styles.css";
 
 export default function Shop({ items, setItems }) {
   const [searchItem, setSearchItem] = useState("");
-  console.log(searchItem);
+  const [cartItems, setCartItems] = useState([]);
+  const onAddToCart = (items) => {
+    const itemIsThere = cartItems.find((y) => y.id === items.id);
+    if (itemIsThere) {
+      setCartItems(
+        cartItems.map((y) =>
+          y.id === items.id ? { ...itemIsThere, qty: itemIsThere.qty + 1 } : y
+        )
+      );
+    } else {
+      setCartItems([...cartItems, { ...items, qty: 1 }]);
+    }
+  };
   return (
     <>
       <input
@@ -36,9 +48,10 @@ export default function Shop({ items, setItems }) {
               imgSrc={item.images}
               sizes={item.sizes}
               alt={item.item_name}
+              onAddToCart={onAddToCart}
             />
           ))}
-        <Cart cartItems={items} />
+        <Cart item={items} onAddToCart={onAddToCart}></Cart>
       </div>
       <Footer className="sticky" />
     </>
