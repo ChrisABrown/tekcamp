@@ -18,9 +18,6 @@ export default function Navbar() {
         <Link to="/contact" className="links">
           contact
         </Link>
-        <Link to="/mailing-list" className="links">
-          mailinglist
-        </Link>
         <Link to="/admin" className="links"></Link>
       </nav>
     </div>
