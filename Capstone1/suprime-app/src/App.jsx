@@ -26,7 +26,7 @@ export default function App() {
             <Route
               path="/cart:`${items.id}`"
               exact
-              element={<CartItem cartItems={items} />}
+              element={<CartItem key={inventory.items.id} cartItems={items} />}
             ></Route>
           </Route>
           <Route path="/contact" exact element={<Contact />} />
@@ -34,7 +34,7 @@ export default function App() {
           <Route
             path="/admin"
             exact
-            element={<AdminView stock={items} />}
+            element={<AdminView key={inventory} stock={items} />}
           ></Route>
         </Routes>
       </BrowserRouter>

@@ -8,7 +8,31 @@ import "../../styles.css";
 
 export default function Shop({ items }) {
   const [searchItem, setSearchItem] = useState("");
-
+  const [cartItems, setCartItems] = useState([]);
+  const addToCart = (item) => {
+    const itemExist = cartItems.find((y) => y.id === item.id);
+    if (itemExist) {
+      setCartItems(
+        cartItems.map((y) =>
+          y.id === items.id ? { ...itemExist, qty: itemExist.qty + 1 } : y
+        )
+      );
+    } else {
+      setCartItems([...cartItems, { ...item, qty: 1 }]);
+    }
+  };
+  const removeFromCart = (item) => {
+    const itemExist = cartItems.find((y) => y.id === item.id);
+    if (itemExist.qty === 1) {
+      setCartItems(cartItems.filter((y) => y.id !== item.id));
+    } else {
+      setCartItems(
+        cartItems.map((y) =>
+          y.id === items.id ? { ...itemExist, qty: itemExist.qty - 1 } : y
+        )
+      );
+    }
+  };
   return (
     <>
       <input
@@ -20,25 +44,35 @@ export default function Shop({ items }) {
       <div id="shop-logo">
         <Logo />
       </div>
+      <Cart
+        key={cartItems.id}
+        addToCart={addToCart}
+        removeFromCart={removeFromCart}
+        cartItems={cartItems}
+      ></Cart>
 
       <div>
         {items
           .filter((item) => {
-            if (searchItem === "") {
-              return item;
-            } else if (item.item_name.includes(searchItem)) {
-              return item;
+            switch (searchItem === "") {
+              default:
+                if (item === searchItem);
+                return item;
+              case item.item_name.includes(searchItem):
+                return item;
             }
           })
           .map((item) => (
             <Product
+              key={item.id}
               item={item}
               imgSrc={item.images}
               sizes={item.sizes}
               alt={item.item_name}
+              addToCart={addToCart}
+              removeFromCart={removeFromCart}
             />
           ))}
-        <Cart item={items}></Cart>
       </div>
       <Footer className="sticky" />
     </>

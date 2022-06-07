@@ -5,7 +5,6 @@ import "./forms.css";
 
 function AdminView(props) {
   const { stock } = props;
-  console.log(props);
   return (
     <div id="admin">
       <div id="sign-in">
