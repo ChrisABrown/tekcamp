@@ -8,29 +8,6 @@
   justify-self: center;
 }
 
-fieldset {
-  display: flex;
-  border: none;
-  padding: 1em;
-}
-#email-label,
-#optout-label,
-#english,
-#japanese {
-  padding: 0.8em;
-  margin: 0.4em;
-  font-size: 0.8em;
-}
-fieldset {
-  font-size: 0.8em;
-  display: flex;
-  flex-flow: column wrap;
-  align-items: center;
-  justify-content: center;
-  padding: 2em;
-  margin: 0.5em;
-}
-
 #sub-btn1 {
   background: rgb(236, 4, 4);
   color: white;
@@ -44,18 +21,6 @@ fieldset {
   color: white;
   text-decoration: none;
   border: none;
-}
-#notify {
-  padding: 0.8em 1em;
-  font-size: 0.8em;
-  display: flex;
-  flex-flow: row;
-  align-items: baseline;
-  justify-content: center;
-}
-#webshopnotify {
-  display: inline;
-  float: right;
 }
 
 #dropdown {
@@ -147,13 +112,25 @@ form {
 input:invalid[focus="true"] ~ span {
   display: block;
 }
-#userid,
-#usercode {
+.admin {
   color: rgb(255, 255, 255);
 }
-.admin {
+#admin {
   background: rgb(236, 4, 4);
   height: 100vh;
   width: 100vw;
   display: flex;
+}
+#admin-list {
+  background: rgb(236, 4, 4);
+  list-style: none;
+  display: none;
+}
+.inventory {
+  background: rgb(236, 4, 4);
+  list-style: none;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
 }

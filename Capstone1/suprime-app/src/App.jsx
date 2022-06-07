@@ -31,13 +31,11 @@ export default function App() {
           </Route>
           <Route path="/contact" exact element={<Contact />} />
 
-          <Route element={ProtectedRoutes}>
-            <Route
-              path="/admin"
-              exact
-              element={<AdminView stock={items} />}
-            ></Route>
-          </Route>
+          <Route
+            path="/admin"
+            exact
+            element={<AdminView stock={items} />}
+          ></Route>
         </Routes>
       </BrowserRouter>
     </div>
