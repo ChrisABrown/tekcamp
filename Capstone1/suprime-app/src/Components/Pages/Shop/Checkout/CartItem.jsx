@@ -6,8 +6,9 @@ const CartItem = (props) => {
   const taxPrice = purchasePrice * 0.0825;
   const shipPrice = purchasePrice > 500 ? 0 : 50;
   const totalPrice = purchasePrice + taxPrice + shipPrice;
+
   return (
-    <div>
+    <div id="cart-styling">
       {purchases.length === 0 && <div>cart is empty</div>}
       {purchases.map((purchase) => (
         <div key={purchase.id} className="row">
@@ -29,7 +30,7 @@ const CartItem = (props) => {
             </button>
           </div>
           <div className="row below">
-            {purchase.qty} x ${purchase.price.toFixed(2)}
+            {purchase.qty} x ${purchasePrice.toFixed(2)}
           </div>
         </div>
       ))}
@@ -59,6 +60,15 @@ const CartItem = (props) => {
               <i>total price</i>
             </div>
             <div>${totalPrice.toFixed(2)}</div>
+          </div>
+          <hr />
+          <div className="row">
+            <button
+              onClick={() => alert("thank you for shopping with us")}
+              className="checkout"
+            >
+              checkout
+            </button>
           </div>
         </>
       )}

@@ -2,7 +2,7 @@ const inventory = {
   items: [
     {
       id: 1,
-      item_name: "Chain-stitch Denim Jacket",
+      item_name: "Chainstitch Denim Jacket",
       category: "jackets",
       colors: ["Black", "Multicolor"],
       description:

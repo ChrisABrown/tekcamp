@@ -21,6 +21,7 @@ export default function Shop({ items }) {
       setCartItems([...cartItems, { ...item, qty: 1 }]);
     }
   };
+
   const removeFromCart = (item) => {
     const itemExist = cartItems.find((y) => y.id === item.id);
     if (itemExist.qty === 1) {
@@ -50,7 +51,6 @@ export default function Shop({ items }) {
         removeFromCart={removeFromCart}
         cartItems={cartItems}
       ></Cart>
-
       <div>
         {items
           .filter((item) => {
@@ -66,10 +66,11 @@ export default function Shop({ items }) {
             <Product
               key={item.id}
               item={item}
-              imgSrc={item.images}
+              imgSrc={item.images1}
               sizes={item.sizes}
               alt={item.item_name}
               addToCart={addToCart}
+              countCartItems={cartItems.length}
               removeFromCart={removeFromCart}
             />
           ))}

@@ -1,13 +1,21 @@
 import React from "react";
 import AdminView from "./Forms/AdminView";
-import { Outlet } from "react-router-dom";
+import { Route, Navigate, Outlet } from "react-router-dom";
 
-const useAuth = () => {
-  const user = { loggedIn: true };
-  return user && user.loggedIn;
-};
-const ProtectedRoutes = () => {
-  const isAuth = useAuth();
-  return isAuth ? <Outlet /> : <AdminView />;
-};
-export default ProtectedRoutes;
+// function ProtectedRoute({ isAuth: , component: AdminView, ...rest }) {
+//   return (
+//     <Route
+//       {...rest}
+//       render={(props) => {
+//         if (isAuth) {
+//           return <AdminView />;
+//         } else {
+//           return (
+//             <Navigate to={{ pathname: "/", state: { from: props.location } }} />
+//           );
+//         }
+//       }}
+//     />
+//   );
+// }
+// export default ProtectedRoute;
