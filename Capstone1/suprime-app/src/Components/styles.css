@@ -1,0 +1,127 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: Monaco;
+}
+
+@media only screen and (min-width: 992px) {
+  #sign-in {
+    margin: 40vh 40vw;
+  }
+}
+#search-bar {
+  margin: 0;
+  width: 50vw;
+  border: 0em;
+  opacity: 50%;
+}
+
+.main-page {
+  background: white;
+  margin-top: 7em;
+  display: flex;
+  flex-flow: column wrap;
+  align-content: center;
+}
+.suprime-red-box {
+  background: rgb(236, 4, 4);
+  margin-bottom: 1em;
+  padding: 0.8em 1em;
+  display: flex;
+  width: 13em;
+  align-items: baseline;
+  justify-content: center;
+}
+
+.suprime-logo-font {
+  font-size: 3em;
+  font-family: Futura;
+  font-style: italic;
+  font-weight: 900;
+  color: ghostwhite;
+}
+.suprime-text-font {
+  font-family: Monaco;
+  color: black;
+  display: flex;
+  flex-flow: column wrap;
+  margin-left: 2.4em;
+}
+.flex-box {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+}
+.links {
+  text-decoration: none;
+  margin-top: 5em;
+  margin-left: 6em;
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  color: black;
+}
+
+.footer {
+  width: 90vw;
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.footer-links {
+  text-decoration: none;
+  color: black;
+}
+
+.shop-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.shop-tabs {
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+}
+.shop-tabs a {
+  text-decoration: none;
+  color: black;
+  padding: 0.7em;
+  margin-top: 3em;
+  margin-bottom: 1em;
+}
+.shop-tabs a:active {
+  color: red;
+}
+.shop-tabs a:hover {
+  color: red;
+}
+
+.item-grid {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: center;
+}
+#shop-logo {
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  justify-content: center;
+}
+#products-grid {
+  display: inline;
+
+  margin-left: 10em;
+}
+.product-details {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+  width: 15em;
+  font-size: 0.8em;
+  margin: 2em;
+  padding: auto;
+}
