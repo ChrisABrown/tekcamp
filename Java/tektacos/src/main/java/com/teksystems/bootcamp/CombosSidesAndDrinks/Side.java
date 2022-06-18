@@ -1,16 +1,24 @@
 package com.teksystems.bootcamp.CombosSidesAndDrinks;
 
 
-import com.teksystems.bootcamp.Order.Order;
+import com.teksystems.bootcamp.Order.SideOrder;
+import com.teksystems.bootcamp.Tacos.Taco;
 
-public class Side  {
-  private final double price = 4.99;
+public class Side extends Taco implements SideOrder {
+
   private String name;
-  public Side(String name, double price){
+  private double price;
+  public Side(String name, double price, int quantity){
+    super(name, price, quantity);
   }
 
+  @Override
+  public double getPrice(){
+    return price;
+  }
 
-  public static void chooseSide(){
-
-}
+  @Override
+  public String getName() {
+    return name;
+  }
 }

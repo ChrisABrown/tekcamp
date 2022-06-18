@@ -1,13 +1,9 @@
 package com.teksystems.bootcamp.Order;
 
-import java.lang.reflect.Array;
-
-public interface Order {
+public interface Order extends BuildTaco {
   double getPrice();
   String getName();
   void getToppings();
-
-  void setTortilla(String name);
-  Array[] setProtein();
-  void addToOrder();
+  int getQuantity();
+  String getTortilla();
 }
