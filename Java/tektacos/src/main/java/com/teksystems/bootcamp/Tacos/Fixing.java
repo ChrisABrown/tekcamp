@@ -9,10 +9,11 @@ public enum Fixing {
   CILANTRO("chopped cilantro"),
   JALAPENOS("pickled jalapenos");
 
-  private String name;
+  private final String name;
   Fixing(String name){
     this.name = name;
   }
+  public static final Fixing[] fixings = Fixing.values();
 
   public String getName() {
     return name;

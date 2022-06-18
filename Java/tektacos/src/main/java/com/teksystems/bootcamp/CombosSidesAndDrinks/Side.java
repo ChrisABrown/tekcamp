@@ -21,4 +21,9 @@ public class Side extends Taco implements SideOrder {
   public String getName() {
     return name;
   }
+
+  public static void chooseSide(){
+    System.out.println("==============SIDES================");
+    System.out.println("1: Chips and Queso\n" + "2: Chips and Salsa\n" + "3: Fries\n");
+  }
 }

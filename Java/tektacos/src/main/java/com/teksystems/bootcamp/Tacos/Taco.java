@@ -30,10 +30,6 @@ public Taco(String name, double price, int quantity){
       return name;
     }
   }
-  public static class Topping {
-    public static Fixing[] fixings = Fixing.values();
-
-  }
   public static class Protein {
     private String name;
 
@@ -48,12 +44,12 @@ public Taco(String name, double price, int quantity){
   public String getTortilla() {
     return Taco.Tortilla.name;
   }
-  public static void customizeTaco() {
-    System.out.println("==============CHOOSE UP TO 4 TOPPINGS===============");
-    for (Fixing fixing: Topping.fixings) {
-      System.out.println(fixing.getName() + "\n");
-    }
-    }
+//  public static void customizeTaco() {
+//    System.out.println("==============CHOOSE UP TO 4 TOPPINGS===============");
+//    for (Fixing fixing: Fixing.fixings) {
+//      System.out.println(fixing.getName() + "\n");
+//    }
+//    }
   @Override
   public double getPrice() {
     return price;

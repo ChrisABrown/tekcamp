@@ -5,23 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cdd11bf3-310e-4d90-8cf3-9ce6e3cddcdf" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/teksystems/bootcamp/Order/SideOrder.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/teksystems/bootcamp/CombosSidesAndDrinks/Combo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/teksystems/bootcamp/CombosSidesAndDrinks/Combo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/teksystems/bootcamp/CombosSidesAndDrinks/Side.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/teksystems/bootcamp/CombosSidesAndDrinks/Side.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/teksystems/bootcamp/Order/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/teksystems/bootcamp/Order/Order.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/teksystems/bootcamp/Tacos/Entree.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/teksystems/bootcamp/Tacos/Protein.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/teksystems/bootcamp/Menu/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/teksystems/bootcamp/Menu/Menu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/teksystems/bootcamp/Tacos/Fixing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/teksystems/bootcamp/Tacos/Fixing.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/teksystems/bootcamp/Tacos/Taco.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/teksystems/bootcamp/Tacos/Taco.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/teksystems/bootcamp/Tacos/Topping.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/teksystems/bootcamp/Tacos/Tortilla.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/teksystems/bootcamp/TekTacoApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/teksystems/bootcamp/TekTacoApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/teksystems/bootcamp/CombosSidesAndDrinks/Side.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/teksystems/bootcamp/CombosSidesAndDrinks/Side.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/teksystems/bootcamp/Order/Order.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/teksystems/bootcamp/Order/Order.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/teksystems/bootcamp/Tacos/Entree.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/teksystems/bootcamp/Tacos/Protein.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/teksystems/bootcamp/Tacos/Taco.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/teksystems/bootcamp/Tacos/Taco.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/teksystems/bootcamp/Tacos/Topping.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/teksystems/bootcamp/Tacos/Tortilla.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/teksystems/bootcamp/TekTacoApp$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/teksystems/bootcamp/TekTacoApp$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/teksystems/bootcamp/TekTacoApp.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/teksystems/bootcamp/TekTacoApp.class" afterDir="false" />
     </list>
@@ -143,5 +134,15 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.ArrayIndexOutOfBoundsException" package="java.lang" />
+          <option name="timeStamp" value="2" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
