@@ -3,18 +3,22 @@ package com.teksystems.bootcamp.Tacos;
 
 import com.teksystems.bootcamp.Order.Order;
 
-import java.util.Arrays;
 
 
-public class Taco implements Order {
+public class Taco implements Order{
   protected final String name;
   protected final double price;
   private final int quantity;
-public Taco(String name, double price, int quantity){
+public Taco(String name, double price, int quantity, Protein protein){
   this.name = name;
   this.price = quantity * price;
   this.quantity = quantity;
 }
+
+  @Override
+  public void setToppings(Fixing fixing) {
+  }
+
   public static class Tortilla {
     private static String name;
     private static int quantity;
@@ -31,10 +35,13 @@ public Taco(String name, double price, int quantity){
     }
   }
   public static class Protein {
-    private String name;
+    private String proteinName;
+    public Protein(String proteinName) {
+      this.proteinName = proteinName;
+    }
 
-    public void setChoices(String[] choices) {
-
+    public void getProteinName() {
+      System.out.println(proteinName);
     }
   }
   public int getQuantity() {
@@ -44,12 +51,6 @@ public Taco(String name, double price, int quantity){
   public String getTortilla() {
     return Taco.Tortilla.name;
   }
-//  public static void customizeTaco() {
-//    System.out.println("==============CHOOSE UP TO 4 TOPPINGS===============");
-//    for (Fixing fixing: Fixing.fixings) {
-//      System.out.println(fixing.getName() + "\n");
-//    }
-//    }
   @Override
   public double getPrice() {
     return price;
@@ -58,17 +59,12 @@ public Taco(String name, double price, int quantity){
   public String getName() {
     return this.name;
   }
-  @Override
-  public void getToppings() {
-  }
-  @Override
-  public void setTortilla() {
 
-  }
   @Override
-  public void setToppings() {
+  public void getToppings() {}
 
-  }
+
+
 }
 
 

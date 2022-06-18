@@ -1,8 +1,12 @@
 package com.teksystems.bootcamp.Order;
 
-import java.lang.reflect.Array;
+import com.teksystems.bootcamp.Tacos.Fixing;
+
+
 
 public interface BuildTaco {
-  void setTortilla();
-  void setToppings();
+   default void setToppings(Fixing fixing){
+     System.out.println(fixing.getName());
+   }
+
 }
