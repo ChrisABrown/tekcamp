@@ -5,19 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cdd11bf3-310e-4d90-8cf3-9ce6e3cddcdf" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/teksystems/bootcamp/Order/DrinkOrder.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/teksystems/bootcamp/CombosSidesAndDrinks/Drink.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/teksystems/bootcamp/CombosSidesAndDrinks/Drink.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/teksystems/bootcamp/CombosSidesAndDrinks/Side.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/teksystems/bootcamp/CombosSidesAndDrinks/Side.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/teksystems/bootcamp/Menu/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/teksystems/bootcamp/Menu/Menu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/teksystems/bootcamp/Order/BuildTaco.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/teksystems/bootcamp/Order/BuildTaco.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/teksystems/bootcamp/Order/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/teksystems/bootcamp/Order/Order.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/teksystems/bootcamp/Order/SideOrder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/teksystems/bootcamp/Order/SideOrder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/teksystems/bootcamp/Tacos/Taco.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/teksystems/bootcamp/Tacos/Taco.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/teksystems/bootcamp/TekTacoApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/teksystems/bootcamp/TekTacoApp.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/teksystems/bootcamp/CombosSidesAndDrinks/Side.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/teksystems/bootcamp/CombosSidesAndDrinks/Side.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/teksystems/bootcamp/Order/Order.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/teksystems/bootcamp/Order/Order.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/teksystems/bootcamp/Tacos/Taco.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/teksystems/bootcamp/Tacos/Taco.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/teksystems/bootcamp/TekTacoApp$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/teksystems/bootcamp/TekTacoApp.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/teksystems/bootcamp/TekTacoApp.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
