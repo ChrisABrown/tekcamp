@@ -4,16 +4,16 @@ package com.teksystems.bootcamp.Tacos;
 import com.teksystems.bootcamp.Order.Order;
 
 
-
 public class Taco implements Order{
-  protected final String name;
-  protected final double price;
+  private final String name;
+  private final double price;
   private final int quantity;
-public Taco(String name, double price, int quantity, Protein protein){
+public Taco(String name, double price, int quantity){
   this.name = name;
   this.price = quantity * price;
   this.quantity = quantity;
-}
+  }
+
 
   @Override
   public void setToppings(Fixing fixing) {
@@ -34,16 +34,9 @@ public Taco(String name, double price, int quantity, Protein protein){
       return name;
     }
   }
-  public static class Protein {
-    private String proteinName;
-    public Protein(String proteinName) {
-      this.proteinName = proteinName;
-    }
 
-    public void getProteinName() {
-      System.out.println(proteinName);
-    }
-  }
+
+
   public int getQuantity() {
     return quantity;
   }
@@ -59,10 +52,6 @@ public Taco(String name, double price, int quantity, Protein protein){
   public String getName() {
     return this.name;
   }
-
-  @Override
-  public void getToppings() {}
-
 
 
 }
