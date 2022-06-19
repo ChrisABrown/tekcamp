@@ -4,4 +4,6 @@
     <li>insight into getting user input from Alexander Lake</li>
 <li>Daily Lecture day 5 of Java really helped with dealing with some of the classes and properties</li>
 <li>no specific sources were pulled from in terms of code but went to w3schools and stackoverflow to answer questions as usual</li>
+    <li>https://mkyong.com/java/java-display-double-in-2-decimal-points/ formatting the decimal places for the price for drinks</li>
+    
   </ul>
