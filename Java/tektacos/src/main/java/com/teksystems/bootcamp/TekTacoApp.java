@@ -19,7 +19,7 @@ public class TekTacoApp {
 	static Taco deluxeTaco = new Taco("deluxe taco", 7.99, 2);
 	static Taco.Tortilla flourTortilla = new Taco.Tortilla( "flour tortilla", 2);
 	static Side chipsAndQueso = new Side("chips and queso", 4.99, 2);
-	Drink soda = new Drink("coke", 2.50, 2);
+	static Drink soda = new Drink("coke", 2.50, 2);
 
 	static Order newOrder = new Order() {
 
@@ -41,8 +41,6 @@ public class TekTacoApp {
 		public String getTortilla() {
 			return flourTortilla.getName();
 		}
-
-
 	};
 
 	static void setOrder(){
@@ -64,7 +62,8 @@ public class TekTacoApp {
 		System.out.print(newLine);
 		System.out.println("Sides total: $" + chipsAndQueso.getSidePrice());
 		System.out.println("===============MY DRINKS============");
-//    System.out.println(soda.);
+		soda.getDrink("coke", 2);
+		soda.getDrinkPrice(2.55, 2);
 		System.out.println("=========================================\n");
 	}
 	public static void main(String[] args) {

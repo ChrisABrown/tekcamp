@@ -10,7 +10,7 @@ public class Taco implements Order{
   private final int quantity;
 public Taco(String name, double price, int quantity){
   this.name = name;
-  this.price = quantity * price;
+  this.price = quantity * price ;
   this.quantity = quantity;
   }
 

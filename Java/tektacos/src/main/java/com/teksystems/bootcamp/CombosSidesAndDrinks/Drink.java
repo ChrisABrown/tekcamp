@@ -1,14 +1,18 @@
 package com.teksystems.bootcamp.CombosSidesAndDrinks;
 
-public class Drink {
-  private final String drinkName;
-  private final double drinkPrice;
-  private final int drinkQuantity;
+import com.teksystems.bootcamp.Order.DrinkOrder;
 
+public class Drink implements DrinkOrder {
 
   public Drink(String drinkName, double drinkPrice, int drinkQuantity) {
-    this.drinkName = drinkName;
-    this.drinkPrice = drinkPrice;
-    this.drinkQuantity = drinkQuantity;
   }
+  public void getDrink(String drinkName, int drinkQuantity) {
+    DrinkOrder.super.getDrink(drinkName, drinkQuantity);
+    System.out.println(drinkQuantity + " x " + drinkName + "\n" );
+  }
+   public double getDrinkPrice(double drinkPrice, int drinkQuantity) {
+  double drinkTotal = drinkPrice * drinkQuantity;
+  System.out.println("Drinks total: $" + String.format("%.2f", drinkTotal));
+  return drinkTotal;
+ }
 }
