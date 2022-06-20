@@ -6,6 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="cdd11bf3-310e-4d90-8cf3-9ce6e3cddcdf" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/teksystems/bootcamp/Order/BuildTaco.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/teksystems/bootcamp/Order/BuildTaco.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/teksystems/bootcamp/Tacos/Fixing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/teksystems/bootcamp/Tacos/Fixing.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/teksystems/bootcamp/Tacos/Taco.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/teksystems/bootcamp/Tacos/Taco.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/teksystems/bootcamp/TekTacoApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/teksystems/bootcamp/TekTacoApp.java" afterDir="false" />
     </list>
