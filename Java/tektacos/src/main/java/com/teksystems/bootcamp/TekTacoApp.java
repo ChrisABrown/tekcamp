@@ -16,7 +16,7 @@ public class TekTacoApp {
 
 	static String newLine = System.lineSeparator();
 
-	static Taco deluxeTaco = new Taco("deluxe taco", 7.99, 2);
+	static Taco deluxeTaco = new Taco("deluxe taco", 7.99, 2, Filling.STEAK);
 	static Taco.Tortilla flourTortilla = new Taco.Tortilla( "flour tortilla", 2);
 	static Side chipsAndQueso = new Side("chips and queso", 4.99, 2);
 	static Drink soda = new Drink("coke", 2.50, 2);
