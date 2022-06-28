@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.text.Text?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.teksystems.bootcamp.thefinalfight.GameController">
    <children>
@@ -13,19 +14,22 @@
             <Image url="@../../../../valleyoftheend.jpeg" />
          </image>
       </ImageView>
-      <ImageView fx:id="narutoSprite" fitHeight="142.0" fitWidth="97.0" layoutX="67.0" layoutY="129.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="playerSprite" fitHeight="142.0" fitWidth="97.0" layoutX="55.0" layoutY="69.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../Naruto.png" />
          </image></ImageView>
-      <ImageView fx:id="sasukeSprite" fitHeight="234.0" fitWidth="176.0" layoutX="410.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="cpuSprite" fitHeight="234.0" fitWidth="176.0" layoutX="433.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../Sasuke.png" />
          </image></ImageView>
-      <Text fx:id="narutoHealth" fill="#4dff00" layoutX="31.0" layoutY="27.0" stroke="#111010" strokeType="INSIDE" text="playerHealth" />
-      <Text fx:id="sasukeHealth" fill="#6fff00" layoutX="501.0" layoutY="27.0" stroke="#141414" strokeType="INSIDE" text="cpuHealth" />
-      <Button layoutX="30.0" layoutY="282.0" mnemonicParsing="false" onAction="#Rasengan" text="Rasengan" />
-      <Button layoutX="485.0" layoutY="282.0" mnemonicParsing="false" onAction="#Chidori" text="Chidori" />
-      <Button layoutX="30.0" layoutY="325.0" mnemonicParsing="false" onAction="#Rasenshuriken" text="Rasenshuriken" />
-      <Button layoutX="485.0" layoutY="325.0" mnemonicParsing="false" onAction="#Amaterasu" text="Amaterasu" />
+      <Button layoutX="19.0" layoutY="226.0" mnemonicParsing="false" onAction="#Rasengan" text="Rasengan" />
+      <Button layoutX="385.0" layoutY="226.0" mnemonicParsing="false" onAction="#Chidori" text="Chidori" />
+      <Button layoutX="114.0" layoutY="226.0" mnemonicParsing="false" onAction="#Rasenshuriken" text="Rasenshuriken" />
+      <Button layoutX="464.0" layoutY="226.0" mnemonicParsing="false" onAction="#Amaterasu" text="Amaterasu" />
+      <ProgressBar fx:id="narutoHealthPoints" depthTest="DISABLE" layoutX="14.0" layoutY="13.0" nodeOrientation="RIGHT_TO_LEFT" prefWidth="200.0" progress="1.0">
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor></ProgressBar>
+      <ProgressBar fx:id="sasukeHealthPoints" layoutX="385.0" layoutY="13.0" prefWidth="200.0" progress="1.0" />
    </children>
 </Pane>
