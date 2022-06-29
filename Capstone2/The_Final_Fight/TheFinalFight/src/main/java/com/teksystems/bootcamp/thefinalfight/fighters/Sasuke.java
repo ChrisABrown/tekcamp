@@ -3,6 +3,7 @@ package com.teksystems.bootcamp.thefinalfight.fighters;
 import javafx.scene.image.ImageView;
 
 public class Sasuke extends Fighter {
+  private final int speed = 8;
   private int chidoriHitPoints = 30;
   private int amaterasuHitPoints = 10;
 

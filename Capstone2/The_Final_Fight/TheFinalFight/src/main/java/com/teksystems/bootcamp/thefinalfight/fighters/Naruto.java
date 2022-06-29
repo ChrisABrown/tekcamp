@@ -3,6 +3,8 @@ package com.teksystems.bootcamp.thefinalfight.fighters;
 import javafx.scene.image.ImageView;
 
 public class Naruto extends Fighter {
+
+  private final int speed = 10;
   private int rasenganHitPoints = 25 ;
   private int rasenshurikenHitPoints = 50;
 

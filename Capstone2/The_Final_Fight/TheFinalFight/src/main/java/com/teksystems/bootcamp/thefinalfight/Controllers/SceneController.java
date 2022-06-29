@@ -16,6 +16,23 @@ public class SceneController {
 
   public void switchToCharacterSelect(ActionEvent event) throws IOException {
     root = FXMLLoader.load(getClass().getResource("start-screen-view.fxml"));
-    stage = ((Node)event.getSource());
+    stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+    scene = new Scene(root);
+    stage.setScene(scene);
+    stage.show();
+  }
+  public void switchToMainView(ActionEvent event) throws IOException {
+    root = FXMLLoader.load(getClass().getResource("main-view.fxml"));
+    stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+    scene = new Scene(root);
+    stage.setScene(scene);
+    stage.show();
+  }
+  public void switchToExitScene(ActionEvent event) throws IOException {
+    root = FXMLLoader.load(getClass().getResource("thanks-for-playing.fxml"));
+    stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+    scene = new Scene(root);
+    stage.setScene(scene);
+    stage.show();
   }
 }
