@@ -15,6 +15,7 @@ public class GameApplication extends Application {
     stage.setTitle("FIGHT!");
     stage.setScene(scene);
     stage.show();
+//    TODO build scene for start screen and connect to main view, build out tests for app, and add animations and modifiers to methods
   }
 
   public static void main(String[] args) {
