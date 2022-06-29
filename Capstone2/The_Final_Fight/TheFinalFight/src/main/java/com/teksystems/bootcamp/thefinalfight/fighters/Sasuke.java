@@ -26,7 +26,4 @@ public class Sasuke extends Fighter {
       naruto.setHealthPoints(naruto.getHealthPoints() - amaterasuHitPoints);
     }
   }
-  public void die(){
-    setHealthPoints(0);
-  }
 }

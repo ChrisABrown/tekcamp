@@ -70,4 +70,8 @@ public abstract class Fighter {
   public void setHealthPoints(int healthPoints) {
     this.healthPoints = healthPoints;
   }
+  public void die(){
+    setHealthPoints(0);
+  }
+
 }

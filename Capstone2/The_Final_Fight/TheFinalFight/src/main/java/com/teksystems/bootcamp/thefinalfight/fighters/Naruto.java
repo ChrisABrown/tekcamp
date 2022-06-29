@@ -1,9 +1,10 @@
 package com.teksystems.bootcamp.thefinalfight.fighters;
 
+import com.teksystems.bootcamp.thefinalfight.Skills;
 import javafx.scene.image.ImageView;
 
 public class Naruto extends Fighter {
-  private int rasenganHitPoints = 25;
+  private int rasenganHitPoints = 25 ;
   private int rasenshurikenHitPoints = 50;
 
   public Naruto(ImageView sprite) {
@@ -27,8 +28,4 @@ public class Naruto extends Fighter {
     }
   }
 
-
-  public void die(){
-    setHealthPoints(0);
-  }
 }
