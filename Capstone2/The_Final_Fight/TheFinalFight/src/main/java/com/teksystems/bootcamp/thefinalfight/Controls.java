@@ -1,7 +1,5 @@
 package com.teksystems.bootcamp.thefinalfight;
 
-import com.teksystems.bootcamp.thefinalfight.fighters.Naruto;
-import com.teksystems.bootcamp.thefinalfight.fighters.Sasuke;
 
 public class Controls {
   private void startGame(){}
