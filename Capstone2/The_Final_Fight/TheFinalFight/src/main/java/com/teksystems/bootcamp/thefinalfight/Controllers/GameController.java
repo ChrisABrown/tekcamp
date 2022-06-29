@@ -1,6 +1,7 @@
-package com.teksystems.bootcamp.thefinalfight;
+package com.teksystems.bootcamp.thefinalfight.Controllers;
 
-import com.teksystems.bootcamp.thefinalfight.fighters.Fighter;
+import com.teksystems.bootcamp.thefinalfight.CPU;
+import com.teksystems.bootcamp.thefinalfight.Player;
 import com.teksystems.bootcamp.thefinalfight.fighters.Naruto;
 import com.teksystems.bootcamp.thefinalfight.fighters.Sasuke;
 import javafx.event.ActionEvent;

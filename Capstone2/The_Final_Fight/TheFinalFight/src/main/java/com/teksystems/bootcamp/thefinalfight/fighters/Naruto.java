@@ -1,6 +1,5 @@
 package com.teksystems.bootcamp.thefinalfight.fighters;
 
-import com.teksystems.bootcamp.thefinalfight.Skills;
 import javafx.scene.image.ImageView;
 
 public class Naruto extends Fighter {
@@ -16,7 +15,7 @@ public class Naruto extends Fighter {
     if(rasenganHitPoints >= sasuke.getHealthPoints() ){
       sasuke.die();
     } else {
-      sasuke.setHealthPoints(sasuke.getHealthPoints() - rasenganHitPoints);
+      sasuke.setHealthPoints(sasuke.getHealthPoints() - rasenganHitPoints );
     }
   }
 

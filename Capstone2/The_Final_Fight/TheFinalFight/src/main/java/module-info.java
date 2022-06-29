@@ -9,4 +9,6 @@ module com.teksystems.bootcamp.thefinalfight {
   exports com.teksystems.bootcamp.thefinalfight;
   exports com.teksystems.bootcamp.thefinalfight.fighters;
   opens com.teksystems.bootcamp.thefinalfight.fighters to javafx.fxml;
+  exports com.teksystems.bootcamp.thefinalfight.Controllers;
+  opens com.teksystems.bootcamp.thefinalfight.Controllers to javafx.fxml;
 }
