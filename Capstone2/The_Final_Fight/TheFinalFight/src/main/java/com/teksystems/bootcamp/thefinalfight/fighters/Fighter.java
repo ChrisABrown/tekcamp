@@ -41,21 +41,19 @@ public abstract class Fighter {
     this.sprite = sprite;
   }
 
-  public int getPrimaryAttackPower(int primaryAttackPower) {
+  public int getPrimaryAttackPower() {
     return primaryAttackPower;
   }
 
   public int setPrimaryAttackPower(int primaryAttackPower) {
-    this.primaryAttackPower = primaryAttackPower;
     return primaryAttackPower;
   }
 
-  public int getSecondaryAttackPower(int secondaryAttackPower) {
+  public int getSecondaryAttackPower() {
     return secondaryAttackPower;
   }
 
   public int setSecondaryAttackPower(int secondaryAttackPower) {
-    this.secondaryAttackPower = secondaryAttackPower;
     return this.secondaryAttackPower;
   }
 

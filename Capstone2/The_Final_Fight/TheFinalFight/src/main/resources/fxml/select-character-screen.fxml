@@ -7,26 +7,26 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="477.0" prefWidth="618.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.teksystems.bootcamp.thefinalfight.Controllers.SelectCharacterScreenController">
+<AnchorPane prefHeight="477.0" prefWidth="618.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.teksystems.bootcamp.thefinalfight.Controllers.SceneController">
    <children>
-      <Button fx:id="narutoButton" layoutX="46.0" layoutY="391.0" mnemonicParsing="false" onAction="#selectNaruto" prefHeight="65.0" prefWidth="210.0" style="-fx-background-color: black;" text="Naruto Uzumaki" textFill="#f89447">
+      <Button fx:id="narutoButton" layoutX="46.0" layoutY="391.0" mnemonicParsing="false" onAction="#switchToMainView" prefHeight="65.0" prefWidth="210.0" style="-fx-background-color: black;" text="Naruto Uzumaki" textFill="#f89447">
          <font>
             <Font name="Ninja Naruto" size="20.0" />
          </font>
       </Button>
-      <Button fx:id="sasukeButton" layoutX="368.0" layoutY="404.0" mnemonicParsing="false" onAction="#selectSasuke" style="-fx-background-color: black;" text="Sasuke Uchiha" textFill="#9740cd">
+      <Button fx:id="sasukeButton" layoutX="368.0" layoutY="404.0" mnemonicParsing="false" onAction="#switchToMainView" style="-fx-background-color: black;" text="Sasuke Uchiha" textFill="#9740cd">
          <font>
             <Font name="Ninja Naruto" size="20.0" />
          </font>
       </Button>
       <ImageView fitHeight="312.0" fitWidth="227.0" layoutX="29.0" layoutY="83.0">
          <image>
-            <Image url="@../../../../naruto-select.png" />
+            <Image url="@../images/naruto-select.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="345.0" fitWidth="293.0" layoutX="311.0" layoutY="63.0">
          <image>
-            <Image url="@../../../../sasuke-select.png" />
+            <Image url="@../images/sasuke-select.png" />
          </image>
       </ImageView>
       <Label layoutX="118.0" layoutY="14.0" text="Choose Your Fighter!!" textFill="#da7115">
