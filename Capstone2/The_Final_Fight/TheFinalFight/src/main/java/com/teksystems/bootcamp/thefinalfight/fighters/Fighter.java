@@ -5,12 +5,24 @@ import javafx.scene.image.ImageView;
 public abstract class Fighter {
   private final ImageView sprite;
   private int healthPoints = 100;
+
+  public Fighter(ImageView sprite, int healthPoints, int defense, int speed, int chakraPower, int primaryAttackPower, int secondaryAttackPower) {
+    this.sprite = sprite;
+    this.healthPoints = healthPoints;
+    this.defense = defense;
+    this.speed = speed;
+    this.chakraPower = chakraPower;
+    this.primaryAttackPower = primaryAttackPower;
+    this.secondaryAttackPower = secondaryAttackPower;
+  }
+
   private int defense;
   private int speed;
   private int chakraPower;
 
   private int primaryAttackPower;
   private int secondaryAttackPower;
+
 
 
   public int getDefense() {
@@ -37,9 +49,8 @@ public abstract class Fighter {
     this.chakraPower = chakraPower;
   }
 
-  public Fighter(ImageView sprite) {
-    this.sprite = sprite;
-  }
+
+
 
   public int getPrimaryAttackPower() {
     return primaryAttackPower;

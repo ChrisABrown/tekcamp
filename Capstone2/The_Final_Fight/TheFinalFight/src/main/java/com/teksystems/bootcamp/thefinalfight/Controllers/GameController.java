@@ -1,7 +1,5 @@
 package com.teksystems.bootcamp.thefinalfight.Controllers;
 
-import com.teksystems.bootcamp.thefinalfight.CPU;
-import com.teksystems.bootcamp.thefinalfight.Player;
 import com.teksystems.bootcamp.thefinalfight.fighters.Naruto;
 import com.teksystems.bootcamp.thefinalfight.fighters.Sasuke;
 import javafx.event.ActionEvent;
@@ -22,8 +20,7 @@ import java.util.ResourceBundle;
 public class GameController implements Initializable {
 
 
-  private Player player;
-  private CPU cpu;
+
   private Naruto naruto;
   private Sasuke sasuke;
   private Stage stage;
@@ -51,6 +48,8 @@ public class GameController implements Initializable {
   double sasukeLifeLoss = 1;
   double narutoChakraLoss = 1;
   double sasukeChakraLoss = 1;
+
+
 
 
   @Override
