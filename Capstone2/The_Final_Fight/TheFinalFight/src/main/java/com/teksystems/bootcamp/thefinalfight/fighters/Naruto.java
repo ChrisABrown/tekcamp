@@ -1,7 +1,9 @@
 package com.teksystems.bootcamp.thefinalfight.fighters;
 
 import com.teksystems.bootcamp.thefinalfight.Skills;
+import javafx.animation.TranslateTransition;
 import javafx.scene.image.ImageView;
+import javafx.util.Duration;
 
 public class Naruto extends Fighter {
 
@@ -14,6 +16,7 @@ public class Naruto extends Fighter {
 
 
   public void rasengan(Sasuke sasuke){
+    animateRasengan();
     if(getRasenganHitPoints() >= sasuke.getHealthPoints() * sasuke.getDefense() ){
       sasuke.die();
     } else {
@@ -22,6 +25,14 @@ public class Naruto extends Fighter {
     setChakraPower(this.getPrimaryAttackPower() - this.getChakraPower());
   }
 
+
+  private void animateRasengan() {
+    TranslateTransition rasenganAnimation = new TranslateTransition(Duration.millis(100), this.getSprite());
+    rasenganAnimation.setByX(80);
+    rasenganAnimation.setCycleCount(2);
+    rasenganAnimation.setAutoReverse(true);
+    rasenganAnimation.play();
+  }
   public void setRasenganHitPoints() {
     this.rasenganHitPoints = this.getPrimaryAttackPower();
   }

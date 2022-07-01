@@ -1,7 +1,10 @@
 package com.teksystems.bootcamp.thefinalfight.fighters;
 
 import com.teksystems.bootcamp.thefinalfight.Skills;
+import javafx.animation.RotateTransition;
+import javafx.animation.TranslateTransition;
 import javafx.scene.image.ImageView;
+import javafx.util.Duration;
 
 public class Sasuke extends Fighter {
   private int chidoriHitPoints;
@@ -30,6 +33,7 @@ public class Sasuke extends Fighter {
 
 
   public void chidori(Naruto naruto){
+    animateChidori();
     if(chidoriHitPoints >= naruto.getHealthPoints() * naruto.getDefense()){
       naruto.die();
     } else {
@@ -46,6 +50,18 @@ public class Sasuke extends Fighter {
     }
     setChakraPower(this.getSecondaryAttackPower() - this.getChakraPower());
   }
+
+  private void animateChidori() {
+    TranslateTransition chidoriAnimation = new TranslateTransition(Duration.millis(100), this.getSprite());
+    chidoriAnimation.setByX(-80);
+    chidoriAnimation.setCycleCount(2);
+    chidoriAnimation.setAutoReverse(true);
+    chidoriAnimation.play();
+  }
+
+
+
+
   @Override
   public void setDefense(int defense) {
     super.setDefense(50);

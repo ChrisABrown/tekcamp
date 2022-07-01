@@ -12,7 +12,6 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ProgressBar;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
@@ -27,26 +26,27 @@ public class GameController implements Initializable {
   private CPU cpu;
   private Naruto naruto;
   private Sasuke sasuke;
+  private Stage stage;
+  private Scene scene;
+  private  Parent root;
   @FXML
   private ProgressBar narutoHealthPoints;
 
   @FXML
-  private ImageView cpuSprite;
+  private ImageView rightSprite;
 
   @FXML
   private ProgressBar sasukeHealthPoints;
 
   @FXML
-  private ImageView playerSprite;
+  private ImageView leftSprite;
 
   @FXML
   private ProgressBar narutoChakraBar;
 
   @FXML
   private ProgressBar sasukeChakraBar;
-  private Stage stage;
-  private Scene scene;
-  private Parent root;
+
   double narutoLifeLoss = 1;
   double sasukeLifeLoss = 1;
   double narutoChakraLoss = 1;
@@ -59,11 +59,9 @@ public class GameController implements Initializable {
    sasukeHealthPoints.setStyle("-fx-accent: #00FF00;");
    narutoChakraBar.setStyle("-fx-accent: #2782ff");
    sasukeChakraBar.setStyle("-fx-accent: #2782ff");
+   naruto = new Naruto(leftSprite);
+   sasuke = new Sasuke(rightSprite);
 
-   ImageView playerView = new ImageView();
-   ImageView cpuView = new ImageView();
-   playerView.setImage(new Image("src/main/resources/Naruto.png"));
-   cpuView.setImage(new Image("src/main/resources/Sasuke.png"));
   }
 
   @FXML
@@ -76,12 +74,13 @@ public class GameController implements Initializable {
   }
 
   @FXML
-  void Chidori() {
+  void Chidori(ActionEvent event)  {
     narutoLifeLoss -= 0.25;
     sasukeChakraLoss -= .1;
     sasuke.chidori(naruto);
     narutoHealthPoints.setProgress(narutoLifeLoss);
     sasukeChakraBar.setProgress(sasukeChakraLoss);
+
   }
 
   @FXML
@@ -102,8 +101,10 @@ public class GameController implements Initializable {
     narutoChakraBar.setProgress(narutoChakraLoss);
   }
 
+  @FXML
   public void switchToExitScene(ActionEvent event) throws IOException {
-    Parent root = FXMLLoader.load(getClass().getResource("/fxml/thanks-for-playing.fxml"));
+    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/thanks-for-playing.fxml"));
+    root = loader.load();
     stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
     scene = new Scene(root);
     stage.setScene(scene);

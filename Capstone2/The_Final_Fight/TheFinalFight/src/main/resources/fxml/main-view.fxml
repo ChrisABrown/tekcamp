@@ -38,7 +38,20 @@
       <ProgressBar fx:id="sasukeHealthPoints" layoutX="385.0" layoutY="13.0" prefWidth="200.0" progress="1.0" />
       <ProgressBar fx:id="narutoChakraBar" layoutX="19.0" layoutY="371.0" prefWidth="200.0" progress="1.0" />
       <ProgressBar fx:id="sasukeChakraBar" layoutX="385.0" layoutY="371.0" prefWidth="200.0" progress="1.0" />
-      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="25.0" layoutY="140.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="cpuSprite" fitHeight="150.0" fitWidth="200.0" layoutX="385.0" layoutY="131.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="leftSprite" fitHeight="205.0" fitWidth="137.0" layoutX="46.0" layoutY="70.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/Naruto.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="rightSprite" fitHeight="309.0" fitWidth="243.0" layoutX="375.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/Sasuke.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="endButton" layoutX="282.0" layoutY="368.0" mnemonicParsing="false" onAction="#switchToExitScene" prefHeight="12.0" prefWidth="37.0" style="-fx-background-color: transparent;" text="End">
+         <font>
+            <Font name="Ninja Naruto" size="11.0" />
+         </font>
+      </Button>
    </children>
 </Pane>

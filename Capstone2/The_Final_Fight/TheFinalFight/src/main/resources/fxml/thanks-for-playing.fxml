@@ -5,20 +5,19 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="445.0" prefWidth="594.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.teksystems.bootcamp.thefinalfight.Controllers.ExitScreenController">
+<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="445.0" prefWidth="594.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.teksystems.bootcamp.thefinalfight.Controllers.SceneController">
    <children>
-      <Label fx:id="ScreenTitle" layoutX="133.0" layoutY="22.0" text="Thanks  For  Playing!" textFill="WHITE">
+      <Label fx:id="ScreenTitle" layoutX="120.0" layoutY="179.0" text="Thanks  For  Playing!" textFill="WHITE">
          <font>
             <Font name="Ninja Naruto" size="33.0" />
          </font>
       </Label>
-      <Button fx:id="restartGame" layoutX="23.0" layoutY="372.0" mnemonicParsing="false" onAction="#resetTheGame" style="-fx-background-color: black;" text="Restart Game" textFill="WHITE">
+      <Button fx:id="restartGame" layoutX="23.0" layoutY="372.0" mnemonicParsing="false" onAction="#switchToTitleScene" style="-fx-background-color: black;" text="Restart Game" textFill="WHITE">
          <font>
             <Font name="Ninja Naruto" size="24.0" />
          </font>
       </Button>
-      <Button fx:id="exitGame" layoutX="427.0" layoutY="372.0" mnemonicParsing="false" onAction="#exitOutOfGame" style="-fx-background-color: black;" text="Exit Game" textFill="WHITE">
+      <Button fx:id="exitGame" layoutX="427.0" layoutY="372.0" mnemonicParsing="false" onAction="#exitGame" style="-fx-background-color: black;" text="Exit Game" textFill="WHITE">
          <font>
             <Font name="Ninja Naruto" size="24.0" />
          </font>

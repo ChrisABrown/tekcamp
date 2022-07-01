@@ -1,6 +1,5 @@
 package com.teksystems.bootcamp.thefinalfight.Controllers;
 
-import com.teksystems.bootcamp.thefinalfight.fighters.Naruto;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -43,4 +42,13 @@ public class SceneController {
     stage.setScene(scene);
     stage.show();
   }
+  public void switchToTitleScene(ActionEvent event) throws IOException {
+     Parent root = FXMLLoader.load(getClass().getResource("/fxml/start-screen-view.fxml"));
+    stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+    scene = new Scene(root);
+    stage.setScene(scene);
+    stage.show();
+  }
+
+
 }
