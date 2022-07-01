@@ -58,7 +58,12 @@ public class Naruto extends Fighter {
   }
 
   public void setRasenganHitPoints(int rasenganHitPoints) {
-    this.rasenganHitPoints = this.getPrimaryAttackPower();
+    if(rasenganHitPoints > 0 && rasenganHitPoints < 100) {
+      this.rasenganHitPoints = this.getPrimaryAttackPower();
+    }
+    else{
+      throw new IllegalArgumentException("Hit Points for rasengan cannot be negative or greater than 100");
+    }
   }
 
   public int getRasenganHitPoints() {
@@ -74,23 +79,36 @@ public class Naruto extends Fighter {
       this.rasenshurikenHitPoints = this.getSecondaryAttackPower();
     }
     else{
-      throw new IllegalArgumentException("Hit Points for rasengan cannot be negative or greater than 100");
+      throw new IllegalArgumentException("Hit Points for Rasenshuriken cannot be negative or greater than 100");
     }
   }
 
   @Override
   public void setDefense(int defense) {
-    super.setDefense(50);
+    if(defense < 100 && defense > 0){
+      this.setDefense(50);
+    }
+    else{
+      throw new IllegalArgumentException("Defense cannot be more than 100 or negative");
+    }
   }
 
   @Override
   public void setSpeed(int speed) {
-    super.setSpeed(10);
+    if(speed <= 10 && speed > 0){
+    this.setSpeed(10);}
+    else {
+      throw new IllegalArgumentException("speed cannot be more than 10 or negative");
+    }
   }
 
   @Override
   public void setChakraPower(int chakraPower) {
-    super.setChakraPower(100);
+    if(chakraPower <= 101 && chakraPower > 0){
+    this.setChakraPower(100);
+    }else{
+      throw new IllegalArgumentException("chakraPower cannot be more than 100 or negative");
+    }
   }
 
   @Override

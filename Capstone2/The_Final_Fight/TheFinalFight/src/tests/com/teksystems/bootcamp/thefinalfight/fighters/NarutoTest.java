@@ -61,21 +61,9 @@ class NarutoTest {
 
   @Test
   void setDefense() {
+    naruto.setDefense(-55);
+    int expResult = -55;
+    assertEquals(expResult, naruto.getDefense());
   }
 
-  @Test
-  void setSpeed() {
-  }
-
-  @Test
-  void setChakraPower() {
-  }
-
-  @Test
-  void setPrimaryAttackPower() {
-  }
-
-  @Test
-  void setSecondaryAttackPower() {
-  }
 }
