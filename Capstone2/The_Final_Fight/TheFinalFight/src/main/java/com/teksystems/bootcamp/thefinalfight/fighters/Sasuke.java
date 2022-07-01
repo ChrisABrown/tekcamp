@@ -15,18 +15,15 @@ public class Sasuke extends Fighter {
                 int speed,
                 int chakraPower,
                 int primaryAttackPower,
-                int secondaryAttackPower,
-                int chidoriHitPoints,
-                int amaterasuHitPoints) {
+                int secondaryAttackPower
+                ) {
     super(sprite,
-            healthPoints,
-            defense,
-            speed,
-            chakraPower,
-            primaryAttackPower,
-            secondaryAttackPower);
-    this.chidoriHitPoints = chidoriHitPoints;
-    this.amaterasuHitPoints = amaterasuHitPoints;
+            100,
+            50,
+            8,
+            100,
+            28,
+            58);
   }
 
   public int getChidoriHitPoints() {
@@ -34,7 +31,12 @@ public class Sasuke extends Fighter {
   }
 
   public void setChidoriHitPoints() {
-    this.chidoriHitPoints = this.getPrimaryAttackPower();
+    if(chidoriHitPoints > 0 && chidoriHitPoints < 100) {
+      this.chidoriHitPoints = this.getPrimaryAttackPower();
+    }
+    else{
+      throw new IllegalArgumentException("Hit Points for chidori cannot be negative or greater than 100");
+    }
   }
 
   public int getAmaterasuHitPoints() {
@@ -42,28 +44,32 @@ public class Sasuke extends Fighter {
   }
 
   public void setAmaterasuHitPoints() {
-    this.amaterasuHitPoints = this.getSecondaryAttackPower();
+    if(amaterasuHitPoints > 0 && amaterasuHitPoints < 100) {
+      this.amaterasuHitPoints = this.getPrimaryAttackPower();
+    }
+    else{
+      throw new IllegalArgumentException("Hit Points for amaterasu cannot be negative or greater than 100");
+    }
   }
 
 
 
   public void chidori(Naruto naruto){
     animateChidori();
-    if(chidoriHitPoints >= naruto.getHealthPoints() * naruto.getDefense()){
+    if(getChidoriHitPoints() >= naruto.getHealthPoints() * naruto.getDefense()){
       naruto.die();
     } else {
-      naruto.setHealthPoints(naruto.getHealthPoints() - chidoriHitPoints);
+      naruto.setHealthPoints(naruto.getHealthPoints() - getChidoriHitPoints());
     }
-    setChakraPower(this.getPrimaryAttackPower() - this.getChakraPower());
   }
 
   public void amaterasu(Naruto naruto){
-    if(amaterasuHitPoints >= naruto.getHealthPoints()){
+    animateAmaterasu();
+    if(getAmaterasuHitPoints() >= naruto.getHealthPoints()){
       naruto.die();
     } else {
-      naruto.setHealthPoints(naruto.getHealthPoints() - amaterasuHitPoints);
+      naruto.setHealthPoints(naruto.getHealthPoints() - getAmaterasuHitPoints());
     }
-    setChakraPower(this.getSecondaryAttackPower() - this.getChakraPower());
   }
 
   private void animateChidori() {
@@ -73,33 +79,52 @@ public class Sasuke extends Fighter {
     chidoriAnimation.setAutoReverse(true);
     chidoriAnimation.play();
   }
-
-
+  private void animateAmaterasu() {
+    TranslateTransition amaterasuAnimation = new TranslateTransition(Duration.millis(100), this.getSprite());
+    amaterasuAnimation.setByX(-80);
+    amaterasuAnimation.setCycleCount(2);
+    amaterasuAnimation.setAutoReverse(true);
+    amaterasuAnimation.play();
+  }
 
 
   @Override
   public void setDefense(int defense) {
-    super.setDefense(50);
+    if(defense < 100 && defense > 0){
+      this.setDefense(this.getDefense());
+    }
+    else{
+      throw new IllegalArgumentException("Defense cannot be more than 100 or negative");
+    }
   }
 
   @Override
   public void setSpeed(int speed) {
-    super.setSpeed(8);
+    if(speed <= 10 && speed > 0){
+      this.setSpeed(this.getSpeed());
+    }
+    else {
+      throw new IllegalArgumentException("speed cannot be more than 10 or negative");
+    }
   }
 
   @Override
   public void setChakraPower(int chakraPower) {
-    super.setChakraPower(100);
+    if(chakraPower <= 101 && chakraPower > 0){
+      this.setChakraPower(this.getChakraPower());
+    }else{
+      throw new IllegalArgumentException("chakraPower cannot be more than 100 or negative");
+    }
   }
 
   @Override
   public int setPrimaryAttackPower(int primaryAttackPower) {
-    return super.setPrimaryAttackPower((int) (this.getSpeed() * Skills.STUN.getDamageMultiplier() - this.getChakraPower()));
+    return super.setPrimaryAttackPower((int) (this.getChakraPower() * Skills.STUN.getDamageMultiplier() + this.getSpeed()));
   }
 
   @Override
   public int setSecondaryAttackPower(int secondaryAttackPower) {
-    return super.setSecondaryAttackPower((int) (this.getSpeed() * Skills.FLAME.getDamageMultiplier() - this.getChakraPower()));
+    return super.setSecondaryAttackPower((int) (this.getChakraPower() * Skills.FLAME.getDamageMultiplier() + this.getSpeed()));
   }
 
   @Override

@@ -19,14 +19,12 @@ public class Naruto extends Fighter {
                 int secondaryAttackPower
                 ) {
     super(sprite,
-            healthPoints,
-            defense,
-            speed,
-            chakraPower,
-            primaryAttackPower,
-            secondaryAttackPower);
-    this.rasenganHitPoints = rasenganHitPoints;
-    this.rasenshurikenHitPoints = rasenshurikenHitPoints;
+            100,
+            50,
+            10,
+            100,
+            30,
+            40);
   }
 
   public void rasengan(Sasuke sasuke){
@@ -36,17 +34,15 @@ public class Naruto extends Fighter {
     } else {
       sasuke.setHealthPoints(sasuke.getHealthPoints() * sasuke.getDefense() - rasenganHitPoints );
     }
-    setChakraPower(this.getPrimaryAttackPower() - this.getChakraPower());
   }
 
   public void rasenshuriken(Sasuke sasuke){
+    animateRasenshuriken();
     if(rasenshurikenHitPoints >= sasuke.getHealthPoints() * sasuke.getDefense()){
       sasuke.die();
     } else {
       sasuke.setHealthPoints(sasuke.getHealthPoints() - rasenshurikenHitPoints);
     }
-    setChakraPower(this.getSecondaryAttackPower() - this.getChakraPower());
-
   }
 
   private void animateRasengan() {
@@ -56,6 +52,15 @@ public class Naruto extends Fighter {
     rasenganAnimation.setAutoReverse(true);
     rasenganAnimation.play();
   }
+  private void animateRasenshuriken() {
+    TranslateTransition rasenshurikenAnimation = new TranslateTransition(Duration.millis(100), this.getSprite());
+    rasenshurikenAnimation.setByX(80);
+    rasenshurikenAnimation.setCycleCount(2);
+    rasenshurikenAnimation.setAutoReverse(true);
+    rasenshurikenAnimation.play();
+  }
+
+
 
   public void setRasenganHitPoints(int rasenganHitPoints) {
     if(rasenganHitPoints > 0 && rasenganHitPoints < 100) {
@@ -86,7 +91,7 @@ public class Naruto extends Fighter {
   @Override
   public void setDefense(int defense) {
     if(defense < 100 && defense > 0){
-      this.setDefense(50);
+      this.setDefense(getDefense());
     }
     else{
       throw new IllegalArgumentException("Defense cannot be more than 100 or negative");
@@ -96,7 +101,8 @@ public class Naruto extends Fighter {
   @Override
   public void setSpeed(int speed) {
     if(speed <= 10 && speed > 0){
-    this.setSpeed(10);}
+    this.setSpeed(getSpeed());
+    }
     else {
       throw new IllegalArgumentException("speed cannot be more than 10 or negative");
     }
@@ -105,7 +111,7 @@ public class Naruto extends Fighter {
   @Override
   public void setChakraPower(int chakraPower) {
     if(chakraPower <= 101 && chakraPower > 0){
-    this.setChakraPower(100);
+    this.setChakraPower(getChakraPower());
     }else{
       throw new IllegalArgumentException("chakraPower cannot be more than 100 or negative");
     }
@@ -113,11 +119,11 @@ public class Naruto extends Fighter {
 
   @Override
   public int setPrimaryAttackPower(int primaryAttackPower) {
-    return super.setPrimaryAttackPower((int) (this.getSpeed() * Skills.CUT.getDamageMultiplier() - this.getChakraPower()));
+    return super.setPrimaryAttackPower((int) (this.getChakraPower() * Skills.CUT.getDamageMultiplier() + this.getSpeed()));
   }
 
   @Override
   public int setSecondaryAttackPower(int secondaryAttackPower) {
-    return super.setSecondaryAttackPower((int) (this.getSpeed() * Skills.SLASH.getDamageMultiplier() - this.getChakraPower()));
+    return super.setSecondaryAttackPower((int) (this.getChakraPower() * Skills.SLASH.getDamageMultiplier() + this.getSpeed()));
   }
 }

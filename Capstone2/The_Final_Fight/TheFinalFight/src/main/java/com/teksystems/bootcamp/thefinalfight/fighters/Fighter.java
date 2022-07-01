@@ -1,6 +1,8 @@
 package com.teksystems.bootcamp.thefinalfight.fighters;
 
+import javafx.animation.TranslateTransition;
 import javafx.scene.image.ImageView;
+import javafx.util.Duration;
 
 public abstract class Fighter {
   private final ImageView sprite;
@@ -74,7 +76,7 @@ public abstract class Fighter {
   }
 
   public int getHealthPoints() {
-     return this.healthPoints;
+     return healthPoints;
   }
 
   public void setHealthPoints(int healthPoints) {
@@ -82,6 +84,7 @@ public abstract class Fighter {
   }
   public void die(){
     setHealthPoints(0);
+
   }
 
 }
