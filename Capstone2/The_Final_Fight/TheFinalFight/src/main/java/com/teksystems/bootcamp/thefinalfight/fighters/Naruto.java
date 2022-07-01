@@ -10,21 +10,44 @@ public class Naruto extends Fighter {
   private int rasenganHitPoints;
   private int rasenshurikenHitPoints;
 
-  public Naruto(ImageView sprite) {
-    super(sprite);
+  public Naruto(ImageView sprite,
+                int healthPoints,
+                int defense,
+                int speed,
+                int chakraPower,
+                int primaryAttackPower,
+                int secondaryAttackPower
+                ) {
+    super(sprite,
+            healthPoints,
+            defense,
+            speed,
+            chakraPower,
+            primaryAttackPower,
+            secondaryAttackPower);
+    this.rasenganHitPoints = rasenganHitPoints;
+    this.rasenshurikenHitPoints = rasenshurikenHitPoints;
   }
-
 
   public void rasengan(Sasuke sasuke){
     animateRasengan();
-    if(getRasenganHitPoints() >= sasuke.getHealthPoints() * sasuke.getDefense() ){
+    if(rasenganHitPoints >= sasuke.getHealthPoints() * sasuke.getDefense() ){
       sasuke.die();
     } else {
-      sasuke.setHealthPoints(sasuke.getHealthPoints() * sasuke.getDefense() - getRasenganHitPoints() );
+      sasuke.setHealthPoints(sasuke.getHealthPoints() * sasuke.getDefense() - rasenganHitPoints );
     }
     setChakraPower(this.getPrimaryAttackPower() - this.getChakraPower());
   }
 
+  public void rasenshuriken(Sasuke sasuke){
+    if(rasenshurikenHitPoints >= sasuke.getHealthPoints() * sasuke.getDefense()){
+      sasuke.die();
+    } else {
+      sasuke.setHealthPoints(sasuke.getHealthPoints() - rasenshurikenHitPoints);
+    }
+    setChakraPower(this.getSecondaryAttackPower() - this.getChakraPower());
+
+  }
 
   private void animateRasengan() {
     TranslateTransition rasenganAnimation = new TranslateTransition(Duration.millis(100), this.getSprite());
@@ -33,7 +56,8 @@ public class Naruto extends Fighter {
     rasenganAnimation.setAutoReverse(true);
     rasenganAnimation.play();
   }
-  public void setRasenganHitPoints() {
+
+  public void setRasenganHitPoints(int rasenganHitPoints) {
     this.rasenganHitPoints = this.getPrimaryAttackPower();
   }
 
@@ -45,18 +69,13 @@ public class Naruto extends Fighter {
     return this.getSecondaryAttackPower();
   }
 
-  public void setRasenshurikenHitPoints() {
-    this.rasenshurikenHitPoints = this.getSecondaryAttackPower();
-  }
-
-  public void rasenshuriken(Sasuke sasuke){
-    if(rasenshurikenHitPoints >= sasuke.getHealthPoints() * sasuke.getDefense()){
-      sasuke.die();
-    } else {
-      sasuke.setHealthPoints(sasuke.getHealthPoints() - rasenshurikenHitPoints);
+  public void setRasenshurikenHitPoints(int rasenshurikenHitPoints) {
+    if(rasenshurikenHitPoints > 0 && rasenshurikenHitPoints < 100) {
+      this.rasenshurikenHitPoints = this.getSecondaryAttackPower();
     }
-    setChakraPower(this.getSecondaryAttackPower() - this.getChakraPower());
-
+    else{
+      throw new IllegalArgumentException("Hit Points for rasengan cannot be negative or greater than 100");
+    }
   }
 
   @Override

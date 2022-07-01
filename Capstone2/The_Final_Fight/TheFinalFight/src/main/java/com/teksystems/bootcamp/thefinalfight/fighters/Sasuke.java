@@ -1,7 +1,6 @@
 package com.teksystems.bootcamp.thefinalfight.fighters;
 
 import com.teksystems.bootcamp.thefinalfight.Skills;
-import javafx.animation.RotateTransition;
 import javafx.animation.TranslateTransition;
 import javafx.scene.image.ImageView;
 import javafx.util.Duration;
@@ -10,6 +9,25 @@ public class Sasuke extends Fighter {
   private int chidoriHitPoints;
   private int amaterasuHitPoints;
 
+  public Sasuke(ImageView sprite,
+                int healthPoints,
+                int defense,
+                int speed,
+                int chakraPower,
+                int primaryAttackPower,
+                int secondaryAttackPower,
+                int chidoriHitPoints,
+                int amaterasuHitPoints) {
+    super(sprite,
+            healthPoints,
+            defense,
+            speed,
+            chakraPower,
+            primaryAttackPower,
+            secondaryAttackPower);
+    this.chidoriHitPoints = chidoriHitPoints;
+    this.amaterasuHitPoints = amaterasuHitPoints;
+  }
 
   public int getChidoriHitPoints() {
     return this.getPrimaryAttackPower();
@@ -27,9 +45,6 @@ public class Sasuke extends Fighter {
     this.amaterasuHitPoints = this.getSecondaryAttackPower();
   }
 
-  public Sasuke(ImageView sprite) {
-    super(sprite);
-  }
 
 
   public void chidori(Naruto naruto){

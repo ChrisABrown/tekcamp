@@ -58,8 +58,23 @@ public class GameController implements Initializable {
    sasukeHealthPoints.setStyle("-fx-accent: #00FF00;");
    narutoChakraBar.setStyle("-fx-accent: #2782ff");
    sasukeChakraBar.setStyle("-fx-accent: #2782ff");
-   naruto = new Naruto(leftSprite);
-   sasuke = new Sasuke(rightSprite);
+   naruto = new Naruto(leftSprite,
+           naruto.getHealthPoints(),
+           naruto.getDefense(),
+           naruto.getSpeed(),
+           naruto.getChakraPower(),
+           naruto.getPrimaryAttackPower(),
+           naruto.getSecondaryAttackPower()
+           );
+   sasuke = new Sasuke(rightSprite,
+           sasuke.getHealthPoints(),
+           sasuke.getDefense(),
+           sasuke.getSpeed(),
+           sasuke.getChakraPower(),
+           sasuke.getPrimaryAttackPower(),
+           sasuke.getSecondaryAttackPower(),
+           sasuke.getChidoriHitPoints(),
+           sasuke.getAmaterasuHitPoints());
 
   }
 

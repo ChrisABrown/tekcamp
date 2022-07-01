@@ -25,6 +25,7 @@ public abstract class Fighter {
 
 
 
+
   public int getDefense() {
     return defense;
   }
