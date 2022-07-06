@@ -1,22 +1,25 @@
 package com.teksystems.bootcamp.factories;
 
-import java.util.ArrayList;
 
 public enum NiceNaughtyList {
   LUCAS(true),
   CHRIS(false),
   BILLY(true),
   MICHELLE(false),
-  JOHHNNY(true),
+  JOHNNY(true),
   MICHAEL(false),
   SUZIE(true),
   BETH(true),
   TRISHA(true)
   ;
+  public static final NiceNaughtyList[] santasList = NiceNaughtyList.values();
+  private final boolean isNice;
 
   NiceNaughtyList(boolean isNice) {
-    new ArrayList() {
-      NiceNaughtyList niceNaughtyList;
-    };
+    this.isNice = isNice;
+  }
+
+  public boolean isNice() {
+    return isNice;
   }
 }

@@ -1,15 +1,19 @@
 package com.teksystems.bootcamp.factories;
 
-public class Coal extends Gift {
-  private String coal;
-  private NiceNaughtyList niceNaughtyList;
 
+import static com.teksystems.bootcamp.factories.NiceNaughtyList.santasList;
+
+public class Coal extends Gift {
+  private String coal = " got a lump of coal.";
+  private String toy = " got a toy.";
 
   @Override
-  public String getGift(Gift gift) {
-    if(niceNaughtyList.equals(NiceNaughtyList.valueOf(toString()))){
-
+  public String getGift() {
+    for (NiceNaughtyList niceNaughtyList : santasList) {
+      if (!niceNaughtyList.isNice()) {
+        return niceNaughtyList.name() + coal;
+      }
     }
-    return coal;
+    return toy;
   }
 }
