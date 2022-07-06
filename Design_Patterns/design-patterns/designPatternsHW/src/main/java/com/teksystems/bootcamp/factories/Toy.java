@@ -1,14 +1,12 @@
 package com.teksystems.bootcamp.factories;
 
-public class Toy implements Gift{
+public class Toy extends Gift {
+
+
 
   @Override
-  public String toString() {
-    return super.toString();
-  }
+  public String getGift(Gift gift) {
 
-  @Override
-  public void getGift() {
-
+    return null;
   }
 }

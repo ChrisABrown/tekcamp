@@ -1,14 +1,15 @@
 package com.teksystems.bootcamp.factories;
 
-public class Coal implements Gift{
-  private NaughtyOffense naughtyOffense;
+public class Coal extends Gift {
+  private String coal;
+  private NiceNaughtyList niceNaughtyList;
+
+
   @Override
-  public void getGift() {
+  public String getGift(Gift gift) {
+    if(niceNaughtyList.equals(NiceNaughtyList.valueOf(toString()))){
+
+    }
+    return coal;
   }
-
-  public NaughtyOffense getNaughtyOffense() {
-    return naughtyOffense;
-  }
-
-
 }
