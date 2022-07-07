@@ -2,8 +2,8 @@ package com.teksystems.bootcamp.factories;
 
 
 public enum NiceNaughtyList {
-//  LUCAS(true),
-//  CHRIS(false),
+  LUCAS(true),
+  CHRIS(false),
   BILLY(true),
   MICHELLE(false),
   JOHNNY(true),
@@ -12,14 +12,15 @@ public enum NiceNaughtyList {
   BETH(true),
   TRISHA(true)
   ;
-  public static final NiceNaughtyList[] santasList = NiceNaughtyList.values();
-  private final boolean isNice;
+  private boolean isNice;
 
   NiceNaughtyList(boolean isNice) {
     this.isNice = isNice;
   }
 
-  public boolean isNice() {
-    return isNice;
+
+
+  public boolean getIsNice() {
+    return this.isNice;
   }
 }

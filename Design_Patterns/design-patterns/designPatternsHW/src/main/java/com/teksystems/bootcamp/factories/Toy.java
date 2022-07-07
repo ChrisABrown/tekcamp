@@ -2,14 +2,13 @@ package com.teksystems.bootcamp.factories;
 
 
 
-public class Toy extends Gift {
-  private NiceNaughtyList niceNaughtyList;
+public class Toy implements Gift {
 
   private String toy = " got a toy.";
 
 
   @Override
   public String getGift() {
-   return niceNaughtyList.name() + toy;
+   return toy;
   }
 }

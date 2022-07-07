@@ -1,11 +1,7 @@
 package com.teksystems.bootcamp.factories;
 
-public abstract class Gift {
-  private Gift gift;
+public interface Gift {
 
-  public abstract String getGift();
-
-
-
+  String getGift();
 
 }
