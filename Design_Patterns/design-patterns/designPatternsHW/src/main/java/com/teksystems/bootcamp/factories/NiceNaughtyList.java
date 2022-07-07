@@ -2,8 +2,8 @@ package com.teksystems.bootcamp.factories;
 
 
 public enum NiceNaughtyList {
-  LUCAS(true),
-  CHRIS(false),
+//  LUCAS(true),
+//  CHRIS(false),
   BILLY(true),
   MICHELLE(false),
   JOHNNY(true),

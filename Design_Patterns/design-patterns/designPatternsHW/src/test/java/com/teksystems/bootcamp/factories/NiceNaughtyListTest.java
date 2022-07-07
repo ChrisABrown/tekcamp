@@ -7,8 +7,14 @@ import static org.junit.Assert.*;
 
 public class NiceNaughtyListTest {
 
+  private NiceNaughtyList niceNaughtyList;
+  public static final NiceNaughtyList[] santasList = NiceNaughtyList.values();
+
+
   @Before
   public void setUp() throws Exception {
+
+
   }
 
   @Test

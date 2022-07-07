@@ -11,6 +11,8 @@ public class App
     public static void main( String[] args )
     {
         showGift(new ElvesWorkshop());
+        showGift(new ElvesWorkshop());
+        showGift(new PileOfCoal());
         showGift(new PileOfCoal());
 
     }

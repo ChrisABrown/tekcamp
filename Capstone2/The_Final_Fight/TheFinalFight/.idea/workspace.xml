@@ -4,7 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="60cd2c84-2322-43d9-a47e-1b3f0aea4722" name="Changes" comment="" />
+    <list default="true" id="60cd2c84-2322-43d9-a47e-1b3f0aea4722" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Design_Patterns/design-patterns/designPatternsHW/src/main/java/com/teksystems/bootcamp/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Design_Patterns/design-patterns/designPatternsHW/src/main/java/com/teksystems/bootcamp/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Design_Patterns/design-patterns/designPatternsHW/src/main/java/com/teksystems/bootcamp/factories/NiceNaughtyList.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Design_Patterns/design-patterns/designPatternsHW/src/main/java/com/teksystems/bootcamp/factories/NiceNaughtyList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Design_Patterns/design-patterns/designPatternsHW/src/test/java/com/teksystems/bootcamp/factories/NiceNaughtyListTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Design_Patterns/design-patterns/designPatternsHW/src/test/java/com/teksystems/bootcamp/factories/NiceNaughtyListTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Design_Patterns/design-patterns/designPatternsHW/target/classes/com/teksystems/bootcamp/App.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Design_Patterns/design-patterns/designPatternsHW/target/classes/com/teksystems/bootcamp/App.class" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
