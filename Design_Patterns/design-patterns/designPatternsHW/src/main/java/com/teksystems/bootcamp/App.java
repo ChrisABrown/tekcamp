@@ -1,23 +1,20 @@
 package com.teksystems.bootcamp;
 
 
-import com.teksystems.bootcamp.factories.ElvesWorkshop;
-import com.teksystems.bootcamp.factories.Gift;
-import com.teksystems.bootcamp.factories.PileOfCoal;
-import com.teksystems.bootcamp.factories.SantasFactory;
+import com.teksystems.bootcamp.factories.*;
+
+
 
 public class App
 {
     public static void main( String[] args )
     {
-        showGift(new ElvesWorkshop());
-        showGift(new ElvesWorkshop());
         showGift(new PileOfCoal());
-        showGift(new PileOfCoal());
+        showGift(new ElvesWorkshop());
 
     }
     public static void showGift (SantasFactory workshop){
-        Gift gft = workshop.createGift();
+        Gift gft = workshop.buildGift();
         System.out.println(gft.getGift());
     }
 }

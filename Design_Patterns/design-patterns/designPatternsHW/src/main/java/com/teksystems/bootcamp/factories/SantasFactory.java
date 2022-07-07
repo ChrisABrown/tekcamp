@@ -2,15 +2,13 @@ package com.teksystems.bootcamp.factories;
 
 
 public abstract class SantasFactory {
+  private Gift gift;
+  private NiceNaughtyList niceNaughtyList;
 
 
-  public Gift createGift(){
-    Gift gft = giveGift();
+  public void checkIfNiceOrNaughty(){}
 
-    gft.getGift();
 
-    return gft;
-  }
 
-  protected abstract Gift giveGift();
+  public abstract Gift buildGift();
 }
