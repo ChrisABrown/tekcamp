@@ -73,13 +73,7 @@ public class User {
     this.fullName = firstName + lastName;
   }
 
-  public void setAddress(Address address) {
-    this.address = new Address(this.address.getHouseNumber(),
-            this.address.getStreetName(),
-            this.address.getCity(),
-            this.address.getState(),
-            this.address.getZipCode());
-  }
+
 
 protected static class payPalWallet{
   protected String ccNumber = "2233855609782384";
