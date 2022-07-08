@@ -2,16 +2,17 @@ package com.teksystems.bootcamp.facade;
 
 public class Shipping {
   private String name;
-  private Address address;
+  private Address shippingAddress;
+  private int shipppingTime;
 
-  public class Address{
+  public static class Address{
     private int houseNumber;
     private String streetName;
     private int aptNumber;
     private String state;
-    private int zipCode;
+    private String zipCode;
 
-    public Address(int houseNumber, String streetName, int aptNumber, String state, int zipCode) {
+    public Address(int houseNumber, String streetName, int aptNumber, String state, String zipCode) {
       this.houseNumber = houseNumber;
       this.streetName = streetName;
       this.aptNumber = aptNumber;

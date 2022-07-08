@@ -7,4 +7,5 @@ public class Payment {
   public void receivePayment(){}
   public void requestPayment(){}
   public void paymentDenied(){}
+  public void paymentAccepted(){}
 }

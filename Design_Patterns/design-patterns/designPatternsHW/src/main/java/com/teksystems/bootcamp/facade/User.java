@@ -10,14 +10,18 @@ public class User {
   protected int ccCode;
   protected Date expDate;
 
-  public static class Address{
-    int houseNumber;
-    String streetName;
-    String city;
-    String state;
-    int zipCode;
+  public User(String fullName) {
+    this.fullName = fullName;
+  }
 
-    public Address(int houseNumber, String streetName, String city, String state, int zipCode) {
+  public static class Address{
+    private int houseNumber;
+    private String streetName;
+    private String city;
+    private String state;
+    private String zipCode;
+
+    public Address(int houseNumber, String streetName, String city, String state, String zipCode) {
       this.houseNumber = houseNumber;
       this.streetName = streetName;
       this.city = city;
@@ -57,11 +61,11 @@ public class User {
       this.state = state;
     }
 
-    public int getZipCode() {
+    public String getZipCode() {
       return zipCode;
     }
 
-    public void setZipCode(int zipCode) {
+    public void setZipCode(String zipCode) {
       this.zipCode = zipCode;
     }
   }
