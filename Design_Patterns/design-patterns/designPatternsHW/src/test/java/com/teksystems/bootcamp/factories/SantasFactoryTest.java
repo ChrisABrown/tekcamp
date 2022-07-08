@@ -9,13 +9,10 @@ public class SantasFactoryTest {
 
   @Before
   public void setUp() throws Exception {
+
   }
 
   @Test
-  public void getGift() {
-  }
-
-  @Test
-  public void giveGift() {
+  public void buildGift() {
   }
 }

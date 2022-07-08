@@ -1,31 +1,30 @@
 package com.teksystems.bootcamp.factories;
 
-import org.junit.Before;
 import org.junit.Test;
+
+import java.util.Arrays;
 
 import static org.junit.Assert.*;
 
 public class NiceNaughtyListTest {
 
-  private NiceNaughtyList niceNaughtyList;
-  public static final NiceNaughtyList[] santasList = NiceNaughtyList.values();
-
-
-  @Before
-  public void setUp() throws Exception {
-
-
-  }
+  NiceNaughtyList[] santasList = NiceNaughtyList.values();
 
   @Test
-  public void isNice() {
+  public void getIsNice() {
+    for (NiceNaughtyList kid: santasList) {
+      assertNotNull(santasList);
+      System.out.println(kid.name() + " " +  kid.getIsNice());
+    }
+
   }
 
   @Test
   public void values() {
+    if(Arrays.equals(santasList, NiceNaughtyList.values())){
+      assertNotNull(santasList);
+    }
   }
 
-  @Test
-  public void valueOf() {
-  }
+
 }

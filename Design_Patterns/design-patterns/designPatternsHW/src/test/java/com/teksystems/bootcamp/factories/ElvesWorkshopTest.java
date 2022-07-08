@@ -5,13 +5,13 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class ElvesWorkshopTest {
+public class ElvesWorkshopTest extends SantasFactoryTest{
 
   @Before
   public void setUp() throws Exception {
   }
 
   @Test
-  public void giveGift() {
+  public void buildGift() {
   }
 }

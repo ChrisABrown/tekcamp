@@ -4,9 +4,9 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class GiftTest {
+public class SantasSleighTest {
 
   @Test
-  public void getGift() {
+  public void main() {
   }
 }
