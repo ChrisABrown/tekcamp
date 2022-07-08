@@ -1,14 +1,12 @@
 package com.teksystems.bootcamp.facade;
 
-import java.util.Date;
+
 
 public class User {
   private String fullName;
 
   private Address address;
-  protected long ccNumber;
-  protected int ccCode;
-  protected Date expDate;
+
 
   public User(String fullName) {
     this.fullName = fullName;
@@ -83,15 +81,21 @@ public class User {
             this.address.getZipCode());
   }
 
-  public void setCcNumber(long ccNumber) {
-    this.ccNumber = ccNumber;
+protected static class payPalWallet{
+  protected String ccNumber = "2233855609782384";
+  protected int ccCode = 789;
+  protected int expDate = 1025;
+
+  protected String getCcNumber() {
+    return ccNumber;
   }
 
-  public void setCcCode(int ccCode) {
-    this.ccCode = ccCode;
+  protected int getCcCode() {
+    return ccCode;
   }
 
-  public void setExpDate(Date expDate) {
-    this.expDate = expDate;
+  protected int getExpDate() {
+    return expDate;
   }
+}
 }
