@@ -4,7 +4,7 @@ package com.teksystems.bootcamp.facade;
 
 public class User {
   private static User user;
-  private static String name;
+  static String name;
   private static final Address address = new Address(
           187,
           "Pitt Street",

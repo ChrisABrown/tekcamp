@@ -3,42 +3,46 @@ package com.teksystems.bootcamp.facade;
 public class Shipping {
 
   private User name;
-  private Address shippingAddress;
-  private Address shippingForm = new Address(
-          getShippingAddress().getHouseNumber(),
-          getShippingAddress().getStreetName(),
-          getShippingAddress().getAptNumber(),
-          getShippingAddress().getCity(),
-          getShippingAddress().getState(),
-          getShippingAddress().getZipCode());
 
+  @Override
+  public String toString() {
+    return "To: " + name +
+            "Address: " + User.address;
+  }
+
+  private final Address shippingForm = new Address(
+          User.getAddress().getHouseNumber(),
+          User.getAddress().getStreetName(),
+          User.getAddress().getAptNumber(),
+          User.getAddress().getCity(),
+          User.getAddress().getState(),
+          User.getAddress().getZipCode()
+  );
   public Address getShippingAddress() {
-    return User.getAddress();
+    return shippingForm;
   }
 
-  public void setShippingAddress(Address shippingAddress) {
-    this.shippingAddress = shippingForm;
-  }
+
 
 
 
   public void getStandardShipping(){
     int shippingTime = 10;
     System.out.println("Standard shipping has been chosen, your product will arrive in approximately" +
-            "\n" + shippingTime + "days, to"
-            + shippingAddress);
+            "\n" + shippingTime + " days, to "
+            + this);
   }
   public void getPriorityShipping(){
     int shippingTime = 5;
     System.out.println("Priority shipping has been chosen, your product will arrive in approximately" +
-            "\n" + shippingTime + "days, to"
-            + shippingAddress);
+            "\n" + shippingTime + " days, to"
+            + getShippingAddress());
   }
   public void getExpressShipping(){
     int shippingTime = 3;
     System.out.println("Express shipping has been chosen, your product will arrive in approximately" +
-            "\n" + shippingTime + "days, to"
-            + shippingAddress);
+            "\n" + shippingTime + " days, to"
+            + getShippingAddress());
   }
 
 

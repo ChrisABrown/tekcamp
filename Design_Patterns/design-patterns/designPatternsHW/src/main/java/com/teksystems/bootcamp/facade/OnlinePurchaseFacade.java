@@ -15,7 +15,6 @@ public class OnlinePurchaseFacade {
     cart.viewCart();
     cart.checkInventory();
     shipping.getStandardShipping();
-    shipping.setShippingAddress(User.getAddress());
     shipping.getShippingAddress();
     payment.requestPayment();
     payment.receivePayment();
