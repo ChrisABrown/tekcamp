@@ -3,8 +3,11 @@ package com.teksystems.bootcamp.facade;
 
 
 public class User {
+  private static final String name = "Chris Brown";
   private static User user;
-  static String name;
+  public static String getName() {
+    return name;
+  }
   private static final Address address = new Address(
           187,
           "Pitt Street",
@@ -14,11 +17,10 @@ public class User {
           "06606");
 
 
-  public User(String name) {
-    User.name = name;
+  public User() {
   }
 
-  public static Address getAddress() {
+  public Address getAddress() {
     return address;
   }
 
@@ -28,7 +30,13 @@ public class User {
 
   @Override
   public String toString() {
-    return name + "\n" + getAddress();
+    return "\n" + name + " at " + "\n" +
+            getAddress().getHouseNumber() + " " +
+            getAddress().getStreetName() + " Apt# " +
+            getAddress().getAptNumber() + ", " + "\n" +
+            getAddress().getCity() + ", " +
+            getAddress().getState() + "\n" +
+            getAddress().getZipCode();
   }
 
   protected static class payPalWallet{

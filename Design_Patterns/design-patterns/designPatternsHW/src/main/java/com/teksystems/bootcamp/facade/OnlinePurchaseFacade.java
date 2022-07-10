@@ -1,21 +1,23 @@
 package com.teksystems.bootcamp.facade;
 
 public class OnlinePurchaseFacade {
-  private User user = new User("Chris Brown");
+  User user = new User();
 
 
   private Cart cart = new Cart();
   private Billing billing;
+  private Product product;
+
   private Payment payment = new Payment();
   private Shipping shipping = new Shipping();
 
-  public void buyProduct(Product product){
+  public void buyProduct(){
+    cart.setInventory();
+    cart.getInventory();
     cart.checkInventory();
     cart.addToCart();
-    cart.viewCart();
-    cart.checkInventory();
-    shipping.getStandardShipping();
-    shipping.getShippingAddress();
+    cart.getInventory();
+//    shipping.getStandardShipping();
     payment.requestPayment();
     payment.receivePayment();
     payment.paymentAccepted();

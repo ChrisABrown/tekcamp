@@ -1,14 +1,31 @@
 package com.teksystems.bootcamp.facade;
 
-import java.util.ArrayList;
+public class Product implements Inventory{
+  private static Product product;
+  private String productName;
 
-public class Product {
-  private String product;
   private final double priceOf;
+
   private int stock;
 
-  public String getProduct() {
+  public static Product getProduct() {
     return product;
+  }
+
+  public static void setProduct(Product product) {
+    Product.product = product;
+  }
+
+  public void setProductName(String productName) {
+    this.productName = productName;
+  }
+
+  public void setStock(int stock) {
+    this.stock = stock;
+  }
+
+  public String getProductName() {
+    return productName;
   }
 
   public double getPriceOf() {
@@ -16,50 +33,28 @@ public class Product {
   }
 
   public int getStock() {
-    return stock;
+    return this.stock;
   }
 
   public boolean isOutOfStock() {
     return isOutOfStock;
   }
 
-  private final boolean isOutOfStock;
+  public void setOutOfStock(boolean outOfStock) {
+    isOutOfStock = outOfStock;
+  }
 
-  public Product(String product, double priceOf, int stock, boolean isOutOfStock) {
-    this.product = product;
+  private boolean isOutOfStock;
+
+  public Product(String productName, double priceOf, int stock, boolean isOutOfStock) {
+    this.productName = productName;
     this.priceOf = priceOf;
-    this.stock = 10;
+    this.stock = stock;
     this.isOutOfStock = isOutOfStock;
-  }
-  private static final ArrayList<Product> inventory = new ArrayList<Product>();
-
-  public void setInventory(ArrayList<Product> inventory) {
-      inventory.add(new Product("Shoes",
-              54.99,
-              stock--,
-              this.isOutOfStock));
-      inventory.add(new Product("Hoodie",
-              104.99,
-              stock--,
-              this.isOutOfStock));
-
-    }
-
-
-  public void selectProduct(){
-    System.out.println("selected" + product);
-  }
-
-  public static String getInventory() {
-    return inventory.toString();
-  }
-
-  public void setProduct(String product) {
-    this.product = "product";
   }
 
   @Override
-  public String toString() {
-    return "Our current inventory holds " + inventory;
+  public void checkInventory() {
+
   }
 }
