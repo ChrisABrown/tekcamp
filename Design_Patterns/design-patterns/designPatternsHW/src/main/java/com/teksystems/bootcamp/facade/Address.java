@@ -42,13 +42,9 @@ public class Address {
     this.zipCode = zipCode;
   }
 
-  public void setAddress() {
-    this.address = new Address(this.getHouseNumber(),
-            this.getStreetName(),
-            this.getAptNumber(),
-            this.getCity(),
-            this.getState(),
-            this.getZipCode());
+
+  public void setAddress(Address address) {
+    this.address = address;
   }
 
   public Address getAddress() {

@@ -9,11 +9,6 @@ public class OnlineStore {
             10,
             false);
 
-    purchaseFacade.buyProduct(new Product(
-            product.getProduct(),
-            product.getPriceOf(),
-            product.getStock(),
-            product.isOutOfStock()
-    ));
+    purchaseFacade.buyProduct(product);
   }
 }
