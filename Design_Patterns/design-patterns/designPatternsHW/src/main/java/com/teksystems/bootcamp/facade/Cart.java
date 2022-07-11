@@ -9,15 +9,12 @@ public class Cart implements Inventory {
 
   public void addToCart(){
     Scanner selection = new Scanner(System.in);
-    System.out.println("Enter product name or number to add to cart: ");
+    System.out.println("Enter product name to add to cart: ");
 
     String products = selection.nextLine();
-    int numbers = selection.nextInt();
-
-    switch(products, numbers){
+    switch(products){
       case "shoes":
       case "Shoes":
-      case 1:
         cart.add(inventory.get(0));
         inventory.get(0).setStock(inventory.get(0).getStock() - 1);
         System.out.println("added " + inventory.get(0).getProductName() + " to your cart");
@@ -39,6 +36,8 @@ public class Cart implements Inventory {
         break;
       default:
         System.out.println("Please check your spelling here is our list of items available");
+        System.out.println("Enter PRODUCT NAME to add to cart: ");
+
         getInventory();
     }
   }
