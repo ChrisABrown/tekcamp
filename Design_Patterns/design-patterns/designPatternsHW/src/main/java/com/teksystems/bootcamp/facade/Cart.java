@@ -6,7 +6,6 @@ import java.util.Scanner;
 
 public class Cart  {
   static ArrayList<Product> cart = new ArrayList<Product>();
-
   protected void addToCart(){
     Scanner selection = new Scanner(System.in);
     System.out.println("Enter product name to add to cart: ");
@@ -60,8 +59,6 @@ public class Cart  {
         addToCart();
     }
   }
-
-
   protected static void viewCart(){
     for (Product product : cart) {
       System.out.println("----------------------------------");
@@ -70,9 +67,6 @@ public class Cart  {
     }
 
   }
-
-
-
   static ArrayList<Product> inventory = new ArrayList<Product>();
   void setInventory() {
     System.out.println("----------------------------------");
@@ -83,7 +77,6 @@ public class Cart  {
     System.out.println("---------to our OnlineShop--------");
     System.out.println("----------------------------------");
   }
-
   void getInventory() {
     System.out.println("Items we have in stock include: ");
     for(Product item : inventory){
@@ -91,6 +84,4 @@ public class Cart  {
     }
     System.out.println("----------------------------------");
   }
-
-
 }

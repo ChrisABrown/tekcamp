@@ -1,7 +1,5 @@
 package com.teksystems.bootcamp.facade;
 
-
-
  class User {
    final String name = "Chris Brown";
   protected static final Address address = new Address(

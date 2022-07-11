@@ -9,15 +9,20 @@ import java.util.Random;
   protected void receivePayment(){
     System.out.println("Payment has been received for order " + orderNumber);
   }
-  protected void requestPayment(String cCNumber) throws Exception{
-    if(cCNumber.length() < 16){
+  protected void requestPayment(String creditCardNumber) throws Exception{
+    if(creditCardNumber.length() < 16){
       this.paymentDenied();
-    }else if(cCNumber.length() > 16){
+      throw new Exception("credit card number must be 16 characters long");
+    }
+    if(creditCardNumber.length() > 16){
+        this.paymentDenied();
         throw new Exception("cannot exceed 16 numbers");
-    }else {
+    }
+    if (creditCardNumber.length() == 16) {
       this.paymentAccepted();
       System.out.println("Thanks for Shopping with us");
     }
+
   }
    void paymentDenied(){
     System.out.println("Payment denied");

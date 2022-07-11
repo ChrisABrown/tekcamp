@@ -7,7 +7,6 @@ package com.teksystems.bootcamp.facade;
   protected final Payment payment = new Payment();
   protected final Shipping shipping = new Shipping();
   void buyProduct() throws Exception {
-
     cart.setInventory();
     cart.getInventory();
     cart.addToCart();
@@ -21,6 +20,7 @@ package com.teksystems.bootcamp.facade;
     shipping.getStandardShipping();
     billing.setBillingAddress();
     billing.matchBillingAddressToShippingAddress(billing.getBillingAddress(), billing.getShippingAddress());
+//    commented to show pass path un-comment for failure path
 //    payment.requestPayment(payPalWallet.failureCCNumber);
     payment.requestPayment(payPalWallet.ccNumber);
     payment.receivePayment();
