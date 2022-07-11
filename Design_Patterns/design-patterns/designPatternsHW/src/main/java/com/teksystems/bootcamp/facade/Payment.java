@@ -1,16 +1,24 @@
 package com.teksystems.bootcamp.facade;
 
+import java.util.Random;
+
 public class Payment {
-  private double orderNumber =  Math.random();
-  private User.payPalWallet paymentForm = new User.payPalWallet();
+  Random r = new Random();
+  private double orderNumber = r.nextLong() ;
+  private final User.payPalWallet paymentForm = new User.payPalWallet();
 
   public void receivePayment(){
     System.out.println("Payment has been received for order" + orderNumber);
   }
   public void requestPayment(){
-    paymentForm.getCcNumber();
-    paymentForm.getCcCode();
-    paymentForm.getExpDate();
+    if(paymentForm.getCcNumber().length() < 16){
+      this.paymentDenied();
+    }else if(paymentForm.getCcNumber().length() > 16){
+
+    }
+//    paymentForm.getCcNumber();
+//    paymentForm.getCcCode();
+//    paymentForm.getExpDate();
     System.out.println("Please confirm payment details");
   }
   public void paymentDenied(){
