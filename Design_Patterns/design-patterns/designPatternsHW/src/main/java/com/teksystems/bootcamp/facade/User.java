@@ -2,13 +2,9 @@ package com.teksystems.bootcamp.facade;
 
 
 
-public class User {
-  private static final String name = "Chris Brown";
-  private static User user;
-  public static String getName() {
-    return name;
-  }
-  private static final Address address = new Address(
+ class User {
+   final String name = "Chris Brown";
+  protected static final Address address = new Address(
           187,
           "Pitt Street",
           456,
@@ -16,16 +12,9 @@ public class User {
           "CT",
           "06606");
 
-
-  public User() {
-  }
-
-  public static Address getAddress() {
+  protected static Address getAddress() {
     return address;
   }
-
-
-
   @Override
   public String toString() {
     return "\n" + name + " at " + "\n" +

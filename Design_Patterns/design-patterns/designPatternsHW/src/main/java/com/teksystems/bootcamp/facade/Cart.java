@@ -76,9 +76,9 @@ public class Cart  {
   static ArrayList<Product> inventory = new ArrayList<Product>();
   void setInventory() {
     System.out.println("----------------------------------");
-    inventory.add(0, new Product("shoes", 49.99, 2, false));
-    inventory.add(1, new Product("clothes", 19.99, 2, false));
-    inventory.add(2, new Product("hats", 9.99, 2, false));
+    inventory.add(0, new Product("shoes", 49.99, 2));
+    inventory.add(1, new Product("clothes", 19.99, 2));
+    inventory.add(2, new Product("hats", 9.99, 2));
     System.out.println("--------------Welcome-------------");
     System.out.println("---------to our OnlineShop--------");
     System.out.println("----------------------------------");

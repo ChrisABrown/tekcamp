@@ -2,9 +2,9 @@ package com.teksystems.bootcamp.facade;
 
 import java.util.Random;
 
-public class Payment {
-  Random r = new Random();
-  private final long orderNumber = r.nextLong() ;
+ class Payment {
+  private final Random r = new Random();
+  protected final long orderNumber = r.nextLong() ;
 
   protected void receivePayment(){
     System.out.println("Payment has been received for order " + orderNumber);
@@ -19,10 +19,10 @@ public class Payment {
       System.out.println("Thanks for Shopping with us");
     }
   }
-  public void paymentDenied(){
+   void paymentDenied(){
     System.out.println("Payment denied");
   }
-  public void paymentAccepted(){
+   void paymentAccepted(){
     System.out.println("Payment has been accepted");
   }
 }

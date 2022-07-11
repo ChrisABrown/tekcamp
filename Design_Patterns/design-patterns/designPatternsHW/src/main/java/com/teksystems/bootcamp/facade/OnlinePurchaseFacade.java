@@ -1,11 +1,11 @@
 package com.teksystems.bootcamp.facade;
 
  class OnlinePurchaseFacade {
-  User.payPalWallet payPalWallet = new User.payPalWallet();
-  private Cart cart = new Cart();
-  private Billing billing= new Billing();
-  private Payment payment = new Payment();
-  private Shipping shipping = new Shipping();
+  protected final User.payPalWallet payPalWallet = new User.payPalWallet();
+  protected final Cart cart = new Cart();
+  protected final Billing billing = new Billing();
+  protected final Payment payment = new Payment();
+  protected final Shipping shipping = new Shipping();
   void buyProduct() throws Exception {
 
     cart.setInventory();
