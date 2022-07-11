@@ -11,7 +11,7 @@ public class NiceNaughtyListTest {
   NiceNaughtyList[] santasList = NiceNaughtyList.values();
 
   @Test
-  public void getIsNice() {
+  public void niceNaughtyListIsNotNull() {
     for (NiceNaughtyList kid: santasList) {
       assertNotNull(santasList);
       System.out.println(kid.name() + " " +  kid.getIsNice());

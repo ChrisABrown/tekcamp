@@ -1,7 +1,7 @@
 package com.teksystems.bootcamp.factories;
 
 
-public enum NiceNaughtyList {
+ enum NiceNaughtyList {
   LUCAS(true),
   CHRIS(false),
   BILLY(true),

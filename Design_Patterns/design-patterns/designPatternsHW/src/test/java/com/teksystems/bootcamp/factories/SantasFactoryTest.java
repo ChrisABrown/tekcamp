@@ -7,12 +7,18 @@ import static org.junit.Assert.*;
 
 public class SantasFactoryTest {
 
-  @Before
-  public void setUp() throws Exception {
 
-  }
 
   @Test
-  public void buildGift() {
+  public void niceKidsGetAToyNaughtyKidsGetCoal() {
+    NiceNaughtyList[] santasList = NiceNaughtyList.values();
+    for (NiceNaughtyList kid: santasList){
+      if (kid.getIsNice()){
+        assertTrue("kid gets a toy", true);
+      }else{
+        assertFalse("kid gets coal", false);
+      }
+
+    }
   }
 }
