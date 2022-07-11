@@ -4,12 +4,12 @@ import java.util.Random;
 
 public class Payment {
   Random r = new Random();
-  private final double orderNumber = r.nextLong() ;
+  private final long orderNumber = r.nextLong() ;
 
-  public void receivePayment(){
-    System.out.println("Payment has been received for order" + orderNumber);
+  protected void receivePayment(){
+    System.out.println("Payment has been received for order " + orderNumber);
   }
-  public void requestPayment(String cCNumber) throws Exception{
+  protected void requestPayment(String cCNumber) throws Exception{
     if(cCNumber.length() < 16){
       this.paymentDenied();
     }else if(cCNumber.length() > 16){

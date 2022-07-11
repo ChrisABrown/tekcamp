@@ -5,8 +5,7 @@ public class Billing {
   private Address billingAddress;
   private Address shippingAddress;
   private final Payment denial = new Payment();
-  private final Shipping shipment = new Shipping();
-
+  private final Cart order = new Cart();
   public Address getShippingAddress() {
     return shippingAddress;
   }
@@ -31,6 +30,11 @@ public class Billing {
         denial.paymentDenied();
         System.out.println("The address is incorrect");
       }
+  }
+
+  public void printOrderSummary(){
+    System.out.println("Here is your order summary: " );
+    Cart.viewCart();
   }
 
 

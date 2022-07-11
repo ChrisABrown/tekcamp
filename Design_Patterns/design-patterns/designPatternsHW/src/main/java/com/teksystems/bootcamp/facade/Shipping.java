@@ -11,16 +11,14 @@ public class Shipping {
   }
 
   private final Address shippingForm = new Address(
-          user.getAddress().getHouseNumber(),
-          user.getAddress().getStreetName(),
-          user.getAddress().getAptNumber(),
-          user.getAddress().getCity(),
-          user.getAddress().getState(),
-          user.getAddress().getZipCode()
+          User.getAddress().getHouseNumber(),
+          User.getAddress().getStreetName(),
+          User.getAddress().getAptNumber(),
+          User.getAddress().getCity(),
+          User.getAddress().getState(),
+          User.getAddress().getZipCode()
   );
-  public void getShippingAddress() {
-    System.out.println(this);
-  }
+
 
   public void getStandardShipping(){
     double shippingCost = 1.99;
@@ -29,20 +27,20 @@ public class Shipping {
             "\n" + shippingTime + " days, for"
             + this);
   }
-  public void getPriorityShipping(){
-    double shippingCost = 5.99;
-    int shippingTime = 5;
-    System.out.println("Priority shipping has been chosen $ " + shippingCost + " dollars, " + "\n" + "your product will arrive in approximately" +
-            "\n" + shippingTime + " days, for"
-            + this);
-  }
-  public void getExpressShipping(){
-    double shippingCost = 10.99;
-    int shippingTime = 3;
-    System.out.println("Express shipping has been chosen $ " + shippingCost + " dollars, " + "\n" + "your product will arrive in approximately" +
-            "\n" + shippingTime + " days, for"
-            + this);
-  }
+//  public void getPriorityShipping(){
+//    double shippingCost = 5.99;
+//    int shippingTime = 5;
+//    System.out.println("Priority shipping has been chosen $ " + shippingCost + " dollars, " + "\n" + "your product will arrive in approximately" +
+//            "\n" + shippingTime + " days, for"
+//            + this);
+//  }
+//  public void getExpressShipping(){
+//    double shippingCost = 10.99;
+//    int shippingTime = 3;
+//    System.out.println("Express shipping has been chosen $ " + shippingCost + " dollars, " + "\n" + "your product will arrive in approximately" +
+//            "\n" + shippingTime + " days, for"
+//            + this);
+//  }
 
 
 }

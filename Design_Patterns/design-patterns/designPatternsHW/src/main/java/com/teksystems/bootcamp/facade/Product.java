@@ -1,24 +1,12 @@
 package com.teksystems.bootcamp.facade;
 
-public class Product implements Inventory{
+public class Product {
   private static Product product;
   private String productName;
 
   private final double priceOf;
 
   private int stock;
-
-  public static Product getProduct() {
-    return product;
-  }
-
-  public static void setProduct(Product product) {
-    Product.product = product;
-  }
-
-  public void setProductName(String productName) {
-    this.productName = productName;
-  }
 
   public void setStock(int stock) {
     this.stock = stock;
@@ -53,8 +41,5 @@ public class Product implements Inventory{
     this.isOutOfStock = isOutOfStock;
   }
 
-  @Override
-  public void checkInventory() {
 
-  }
 }
