@@ -24,10 +24,6 @@ public class User {
     return address;
   }
 
-  public static User getInstance() {
-    return user;
-  }
-
   @Override
   public String toString() {
     return "\n" + name + " at " + "\n" +
@@ -41,19 +37,9 @@ public class User {
 
   protected static class payPalWallet{
   protected String ccNumber = "2233855609782384";
-  protected int ccCode = 789;
-  protected int expDate = 1025;
+  protected String failureCCNumber ="234";
 
-  protected String getCcNumber() {
-    return ccNumber;
-  }
 
-  protected int getCcCode() {
-    return ccCode;
-  }
 
-  protected int getExpDate() {
-    return expDate;
-  }
 }
 }

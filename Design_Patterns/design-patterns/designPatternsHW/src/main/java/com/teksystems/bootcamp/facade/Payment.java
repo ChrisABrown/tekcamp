@@ -4,27 +4,25 @@ import java.util.Random;
 
 public class Payment {
   Random r = new Random();
-  private double orderNumber = r.nextLong() ;
-  private final User.payPalWallet paymentForm = new User.payPalWallet();
+  private final double orderNumber = r.nextLong() ;
 
   public void receivePayment(){
     System.out.println("Payment has been received for order" + orderNumber);
   }
-  public void requestPayment(){
-    if(paymentForm.getCcNumber().length() < 16){
+  public void requestPayment(String cCNumber) throws Exception{
+    if(cCNumber.length() < 16){
       this.paymentDenied();
-    }else if(paymentForm.getCcNumber().length() > 16){
-
+    }else if(cCNumber.length() > 16){
+        throw new Exception("cannot exceed 16 numbers");
+    }else {
+      this.paymentAccepted();
     }
-//    paymentForm.getCcNumber();
-//    paymentForm.getCcCode();
-//    paymentForm.getExpDate();
-    System.out.println("Please confirm payment details");
+    System.out.println("Thanks for Shopping with us");
   }
   public void paymentDenied(){
     System.out.println("Payment denied");
   }
   public void paymentAccepted(){
-    System.out.println("Thanks for shopping with us");
+    System.out.println("Payment has been accepted");
   }
 }
