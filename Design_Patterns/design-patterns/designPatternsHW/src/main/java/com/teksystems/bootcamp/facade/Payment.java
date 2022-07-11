@@ -16,8 +16,8 @@ public class Payment {
         throw new Exception("cannot exceed 16 numbers");
     }else {
       this.paymentAccepted();
+      System.out.println("Thanks for Shopping with us");
     }
-    System.out.println("Thanks for Shopping with us");
   }
   public void paymentDenied(){
     System.out.println("Payment denied");

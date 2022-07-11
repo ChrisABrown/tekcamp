@@ -19,6 +19,7 @@ public class Shipping {
           user.getAddress().getZipCode()
   );
   public void getShippingAddress() {
+    System.out.println(this);
   }
 
   public void getStandardShipping(){

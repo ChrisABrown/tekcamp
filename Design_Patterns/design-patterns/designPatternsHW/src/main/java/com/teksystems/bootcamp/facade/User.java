@@ -20,9 +20,11 @@ public class User {
   public User() {
   }
 
-  public Address getAddress() {
+  public static Address getAddress() {
     return address;
   }
+
+
 
   @Override
   public String toString() {

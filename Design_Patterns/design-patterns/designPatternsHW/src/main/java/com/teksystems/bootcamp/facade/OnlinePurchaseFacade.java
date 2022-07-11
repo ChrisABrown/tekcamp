@@ -7,7 +7,7 @@ public class OnlinePurchaseFacade {
 
 
   private Cart cart = new Cart();
-  private Billing billing;
+  private Billing billing= new Billing();
   private Product product;
 
   private Payment payment = new Payment();
@@ -19,8 +19,13 @@ public class OnlinePurchaseFacade {
     cart.getInventory();
     cart.checkInventory();
     cart.addToCart();
+    cart.viewCart();
     cart.getInventory();
-//    shipping.getStandardShipping();
+    billing.setShippingAddress();
+    shipping.getStandardShipping();
+    billing.setBillingAddress();
+    billing.matchBillingAddressToShippingAddress(billing.getBillingAddress(), billing.getShippingAddress());
+//    payment.requestPayment(payPalWallet.failureCCNumber);
     payment.requestPayment(payPalWallet.ccNumber);
   }
 }

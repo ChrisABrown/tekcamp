@@ -1,31 +1,34 @@
 package com.teksystems.bootcamp.facade;
 
 public class Billing {
-  private User orderOwner;
+
   private Address billingAddress;
   private Address shippingAddress;
+  private final Payment denial = new Payment();
+  private final Shipping shipment = new Shipping();
 
   public Address getShippingAddress() {
     return shippingAddress;
   }
 
   public void setShippingAddress() {
-    this.shippingAddress = orderOwner.getAddress();
+    this.shippingAddress = User.getAddress();
   }
 
   public Address getBillingAddress() {
     return billingAddress;
   }
   public void setBillingAddress() {
-    this.billingAddress = orderOwner.getAddress();
+    this.billingAddress = User.getAddress();
   }
 
 
 
   public void matchBillingAddressToShippingAddress(Address billingAddress, Address shippingAddress){
-      if (billingAddress == shippingAddress){
+      if (this.billingAddress == this.shippingAddress){
         System.out.println("The address is correct");
       }else{
+        denial.paymentDenied();
         System.out.println("The address is incorrect");
       }
   }

@@ -42,6 +42,10 @@ public class Cart implements Inventory {
     }
   }
 
+  public void viewCart(){
+    cart.toString();
+  }
+
   @Override
   public String toString() {
     return "Your cart contains " + cart.toString();
