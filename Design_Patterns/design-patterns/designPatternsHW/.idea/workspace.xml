@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="373ae1e7-0d1e-4f72-9030-2c4342740f5a" name="Changes" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Enum" />
+        <option value="Interface" />
+        <option value="Class" />
+        <option value="JUnit4 Test Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+  </component>
+  <component name="HierarchyBrowserManager">
+    <option name="SCOPE" value="All" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2BWy3fQvRbI38sKaU415Dk6jtpK" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="autoscrollToSource" value="true" />
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit4&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4&quot;: &quot;&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.teksystems.bootcamp.facade" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/java/com/teksystems/bootcamp/factories" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.teksystems.bootcamp.factories" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="com.teksystems.bootcamp.facade" />
+      <recent name="com.teksystems.bootcamp.template" />
+      <recent name="com.teksystems.bootcamp.factories" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.EnchantedForest">
+    <configuration name="EnchantedForest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.teksystems.bootcamp.template.EnchantedForest" />
+      <module name="designPatternsHW" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.teksystems.bootcamp.template.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="OnlineStore" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.teksystems.bootcamp.facade.OnlineStore" />
+      <module name="designPatternsHW" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.teksystems.bootcamp.facade.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SantasSleigh" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.teksystems.bootcamp.factories.SantasSleigh" />
+      <module name="designPatternsHW" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.teksystems.bootcamp.factories.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PaymentTest.creditCardNumberCannotBeLessThan16Characters" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="designPatternsHW" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.teksystems.bootcamp.facade.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.teksystems.bootcamp.facade" />
+      <option name="MAIN_CLASS_NAME" value="com.teksystems.bootcamp.facade.PaymentTest" />
+      <option name="METHOD_NAME" value="creditCardNumberCannotBeLessThan16Characters" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SantasFactoryTest.niceKidsGetAToyNaughtyKidsGetCoal" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="designPatternsHW" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.teksystems.bootcamp.factories.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.teksystems.bootcamp.factories" />
+      <option name="MAIN_CLASS_NAME" value="com.teksystems.bootcamp.factories.SantasFactoryTest" />
+      <option name="METHOD_NAME" value="niceKidsGetAToyNaughtyKidsGetCoal" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.EnchantedForest" />
+        <item itemvalue="JUnit.SantasFactoryTest.niceKidsGetAToyNaughtyKidsGetCoal" />
+        <item itemvalue="Application.SantasSleigh" />
+        <item itemvalue="Application.OnlineStore" />
+        <item itemvalue="JUnit.PaymentTest.creditCardNumberCannotBeLessThan16Characters" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="373ae1e7-0d1e-4f72-9030-2c4342740f5a" name="Changes" comment="" />
+      <created>1657035940134</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1657035940134</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/designPatternsHW$EnchantedForest.ic" NAME="EnchantedForest Coverage Results" MODIFIED="1657523029034" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.teksystems.bootcamp.template.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/designPatternsHW$PaymentTest_creditCardNumberCannotBeLessThan16Characters.ic" NAME="PaymentTest.creditCardNumberCannotBeLessThan16Characters Coverage Results" MODIFIED="1657581465487" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.teksystems.bootcamp.facade.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/designPatternsHW$MadlibTest.ic" NAME="MadlibTest Coverage Results" MODIFIED="1657562615917" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.teksystems.bootcamp.template.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/designPatternsHW$MadlibSwitchTest_getAdjectiveReturnsARandomAdjective.ic" NAME="MadlibSwitchTest.getAdjectiveReturnsARandomAdjective Coverage Results" MODIFIED="1657562055039" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.teksystems.bootcamp.template.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/designPatternsHW$SantasSleigh.ic" NAME="SantasSleigh Coverage Results" MODIFIED="1657582200943" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.teksystems.bootcamp.factories.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/designPatternsHW$OnlineStore.ic" NAME="OnlineStore Coverage Results" MODIFIED="1657581909338" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.teksystems.bootcamp.facade.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/designPatternsHW$EnchantedForestTest.ic" NAME="EnchantedForestTest Coverage Results" MODIFIED="1657562998866" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.teksystems.bootcamp.template.*</FILTER>
+    </SUITE>
+  </component>
+</project>
