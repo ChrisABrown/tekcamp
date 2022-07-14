@@ -2,9 +2,9 @@ USE sakila;
 DROP TABLE IF EXISTS ratings;
 SHOW TABLES;
 CREATE TABLE ratings (
-    rating_id INT PRIMARY KEY AUTO_INCREMENT,
-    num_of_stars INT UNIQUE,
-    rating_comment VARCHAR(40)
+    rating_id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    num_of_stars INT UNIQUE NOT NULL,
+    rating_comment VARCHAR(40) NOT NULL
 );
     
 INSERT INTO 
