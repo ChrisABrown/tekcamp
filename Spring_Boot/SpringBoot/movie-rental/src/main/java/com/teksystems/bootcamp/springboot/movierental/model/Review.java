@@ -9,7 +9,7 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "reviews")
+@Table(name = "review")
 @AllArgsConstructor
 @NoArgsConstructor
 public class Review {
@@ -20,13 +20,13 @@ public class Review {
   private Long reviewId;
 
   @Column(name = "description")
-  private String reviewDescription;
+  private String reviewDetails;
 
-  @Column(name = "rating ID")
+  @Column(name = "rating_ID")
   @Getter @Setter
   private int ratingId;
 
-  @Column(name = "film ID")
+  @Column(name = "film_ID")
   @Getter @Setter
   private int filmId;
 }

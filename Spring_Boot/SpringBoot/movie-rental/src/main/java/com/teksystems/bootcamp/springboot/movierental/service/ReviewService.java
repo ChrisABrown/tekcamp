@@ -23,12 +23,12 @@ public class ReviewService {
   }
 
   public Review updateReview (Long reviewId, Review reviewDetails){
-    Review review = reviewRepository.getById(reviewId);
+    Review review = reviewRepository.getReferenceById(reviewId);
     //methods for updating review comments
     return reviewRepository.save(review);
   }
 
-  public void deletReview(Long reviewId){
+  public void deleteReview(Long reviewId){
     reviewRepository.deleteById(reviewId);
   }
 }

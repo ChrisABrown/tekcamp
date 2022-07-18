@@ -16,7 +16,7 @@ public class ReviewController {
   private ReviewService reviewService;
 
   @GetMapping("/")
-  public List<Review> getAllUsers(){
+  public List<Review> getAllReviews(){
     return reviewService.getAllReviews();
   }
 
@@ -33,6 +33,6 @@ public class ReviewController {
 
   @DeleteMapping("/reviewId")
   public void deleteReview(@PathVariable Long reviewId){
-    reviewService.deletReview(reviewId);
+    reviewService.deleteReview(reviewId);
   }
 }
