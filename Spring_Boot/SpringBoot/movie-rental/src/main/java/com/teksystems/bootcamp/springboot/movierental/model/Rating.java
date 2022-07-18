@@ -25,5 +25,5 @@ public class Rating {
 
   @Column(name = "rating")
   @Getter @Setter
-  private int ratingComment;
+  private String ratingComment;
 }

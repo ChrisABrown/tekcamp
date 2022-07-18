@@ -6,12 +6,18 @@ import com.teksystems.bootcamp.springboot.movierental.service.RatingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
-@RequestMapping("/move-rental/films/reviews/ratings")
+@RequestMapping("/movie-rental/films/reviews/ratings")
 public class RatingController {
 
   @Autowired
   private RatingService ratingService;
+  @GetMapping("/")
+  public List<Rating> getAllRatings(){
+    return ratingService.getAllRatings();
+  }
 
   @PostMapping("/")
   public Rating createRating(@RequestBody Rating rating){

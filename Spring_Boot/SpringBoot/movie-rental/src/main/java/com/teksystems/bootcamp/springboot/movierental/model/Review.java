@@ -20,13 +20,14 @@ public class Review {
   private Long reviewId;
 
   @Column(name = "description")
+  @Getter @Setter
   private String reviewDetails;
 
   @Column(name = "rating_ID")
   @Getter @Setter
-  private int ratingId;
+  private Integer ratingId;
 
   @Column(name = "film_ID")
   @Getter @Setter
-  private int filmId;
+  private Integer filmId;
 }
