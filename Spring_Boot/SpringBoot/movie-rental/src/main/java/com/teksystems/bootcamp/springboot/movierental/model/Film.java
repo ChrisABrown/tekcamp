@@ -18,6 +18,10 @@ public class Film {
   @Getter
   private String title;
 
-  @OneToMany
+  @Column(name = "description")
+  @Getter
+  private String description;
+
+  @OneToMany(mappedBy = "film")
   private List<Review> reviews;
 }

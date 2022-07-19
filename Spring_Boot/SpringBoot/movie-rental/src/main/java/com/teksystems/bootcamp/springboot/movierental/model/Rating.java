@@ -7,19 +7,21 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
+@Table(name = "ratings")
 @AllArgsConstructor
 @NoArgsConstructor
 public class Rating {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "id")
+  @Column(name = "id", columnDefinition = "SMALLINT UNSIGNED NOT NULL")
   @Getter @Setter
-  private Integer ratingId;
+  private Short ratingId;
 
-  @Column(name = "number_of_stars")
+  @Column(name = "number_of_stars", columnDefinition = "SMALLINT UNSIGNED NOT NULL")
   @Getter @Setter
   private int numberOfStars;
 
@@ -27,6 +29,6 @@ public class Rating {
   @Getter @Setter
   private String ratingComment;
 
-  @ManyToMany
-  private Review review;
+  @OneToMany(mappedBy = "rating")
+  private List<Review> reviews;
 }

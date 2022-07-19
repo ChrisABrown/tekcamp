@@ -22,6 +22,6 @@ public class Customer {
   @Getter
   private String lastName;
 
-  @OneToMany(mappedBy = "reviews")
+  @OneToMany(mappedBy = "customer")
   private List<Review> reviews;
 }
