@@ -26,4 +26,7 @@ public class Rating {
   @Column(name = "rating")
   @Getter @Setter
   private String ratingComment;
+
+  @ManyToMany
+  private Review review;
 }

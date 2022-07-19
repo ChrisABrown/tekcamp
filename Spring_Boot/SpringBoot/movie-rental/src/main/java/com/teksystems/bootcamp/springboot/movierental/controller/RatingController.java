@@ -5,6 +5,7 @@ import com.teksystems.bootcamp.springboot.movierental.model.Rating;
 import com.teksystems.bootcamp.springboot.movierental.service.RatingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.webjars.NotFoundException;
 
 import java.util.List;
 
@@ -25,7 +26,7 @@ public class RatingController {
   }
 
   @PutMapping("/{id}")
-  public Rating updateRating(@PathVariable(name = "id") Integer ratingId,
+  public Rating updateRating(@PathVariable(value = "id") Integer ratingId,
                              @RequestBody Rating numberOfStars){
     return ratingService.updateRating(ratingId, numberOfStars);
   }

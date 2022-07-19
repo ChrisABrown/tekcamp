@@ -16,7 +16,7 @@ public class Review {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "id")
-  @Getter @Setter
+  @Getter
   private Long reviewId;
 
   @Column(name = "description")
@@ -24,10 +24,20 @@ public class Review {
   private String reviewDetails;
 
   @Column(name = "rating_ID")
-  @Getter @Setter
+  @Getter
   private Integer ratingId;
 
   @Column(name = "film_ID")
-  @Getter @Setter
+  @Getter
   private Integer filmId;
+
+  @Column(name = "customer_id")
+  @Getter
+  private String customerId;
+
+  @ManyToOne
+  private Film film;
+
+  @ManyToOne
+  private Customer customer;
 }
