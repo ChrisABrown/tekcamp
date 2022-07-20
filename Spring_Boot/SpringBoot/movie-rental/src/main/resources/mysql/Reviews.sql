@@ -1,0 +1,1 @@
+INSERT INTO reviews (film.film_id, customer.customer )

@@ -3,8 +3,6 @@ package com.teksystems.bootcamp.springboot.movierental.model;
 
 import lombok.*;
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.PositiveOrZero;
 
 @Entity
 @Table(name = "reviews")
@@ -35,7 +33,7 @@ public class Review {
   private Short customerId;
 
   @ManyToOne
-  @JoinColumn(name = "film_id", columnDefinition = "SMALLINT UNSIGNED NOT NULL")
+  @JoinColumn(name = "film_id" , columnDefinition = "SMALLINT UNSIGNED NOT NULL")
   private Film film;
 
   @ManyToOne
