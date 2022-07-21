@@ -29,8 +29,8 @@ public class RatingController {
     return ratingService.createRating(rating);
   }
 
-  @PutMapping("/{id}")
-  public Rating updateRating(@PathVariable(value = "id") Short ratingId,
+  @PutMapping("/{ratingId}")
+  public Rating updateRating(@PathVariable Short ratingId,
                              @RequestBody Rating numberOfStars){
     return ratingService.updateRating(ratingId, numberOfStars);
   }
