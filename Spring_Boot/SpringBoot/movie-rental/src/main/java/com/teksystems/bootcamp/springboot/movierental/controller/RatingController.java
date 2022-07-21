@@ -25,8 +25,8 @@ public class RatingController {
   }
 
   @PostMapping("/")
-  public Rating createRating(@RequestBody Rating rating){
-    return ratingService.createRating(rating);
+  public List<Rating> createRatings(@RequestBody List<Rating> ratings){
+    return ratingService.createRatings(ratings);
   }
 
   @PutMapping("/{id}")

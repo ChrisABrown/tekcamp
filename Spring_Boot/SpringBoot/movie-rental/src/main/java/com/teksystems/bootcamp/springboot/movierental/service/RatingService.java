@@ -31,8 +31,8 @@ public class RatingService {
     return ratingRepository.findAll();
   }
 
-  public Rating createRating(Rating rating){
-    return ratingRepository.save(rating);
+  public List<Rating> createRatings(List<Rating> ratings){
+    return ratingRepository.saveAll(ratings);
   }
 
   public Rating updateRating(Short ratingId, Rating ratingDetails){
