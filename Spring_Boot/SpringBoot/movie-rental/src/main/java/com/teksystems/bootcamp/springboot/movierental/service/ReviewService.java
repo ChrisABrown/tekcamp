@@ -1,9 +1,6 @@
 package com.teksystems.bootcamp.springboot.movierental.service;
 
 import com.teksystems.bootcamp.springboot.movierental.model.Review;
-import com.teksystems.bootcamp.springboot.movierental.repository.CustomerRepository;
-import com.teksystems.bootcamp.springboot.movierental.repository.FilmRepository;
-import com.teksystems.bootcamp.springboot.movierental.repository.RatingRepository;
 import com.teksystems.bootcamp.springboot.movierental.repository.ReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -22,12 +19,7 @@ public class ReviewService {
 
   @Autowired
   private ReviewRepository reviewRepository;
-  @Autowired
-  private FilmRepository filmRepository;
-  @Autowired
-  private RatingRepository ratingRepository;
-  @Autowired
-  private CustomerRepository customerRepository;
+
 
 
   public List<Review> getAllReviews(){
@@ -57,8 +49,9 @@ public class ReviewService {
     Optional<Review> review = reviewRepository.findById(reviewId);
     try{
       Review newReview = review.get();
-//      newReview.setFilm(filmRepository.findById(reviewDetails.getFilm().shortValue()));
-//      newReview.setCustomer(customerRepository.findById(reviewDetails.getCustomer()));
+//      Suggestion from Office hours to pull just the id instead of the whole object
+//      newReview.setFilm(filmRepository.findById(reviewDetails.getFilm()));
+//      newReview.setCustomer(customerRepository.findById(newReview.getCustomer().getId()));
 //      newReview.setRating(ratingRepository.findById(reviewDetails.getRating()));
       newReview.setFilm(reviewDetails.getFilm());
       newReview.setRating(reviewDetails.getRating());
