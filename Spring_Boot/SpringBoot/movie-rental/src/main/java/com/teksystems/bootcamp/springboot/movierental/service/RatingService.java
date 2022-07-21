@@ -39,7 +39,6 @@ public class RatingService {
     //methods for updating how many stars
     if (rating.isPresent()){
       Rating newRating = rating.get();
-      newRating.setRatingId(ratingDetails.getRatingId());
       newRating.setNumberOfStars(ratingDetails.getNumberOfStars());
       newRating.setRatingComment(ratingDetails.getRatingComment());
     return ratingRepository.save(newRating);

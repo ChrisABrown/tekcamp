@@ -13,7 +13,7 @@ public class Review {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "id")
-  @Getter @Setter
+  @Getter
   private Long reviewId;
 
 //  @Column(name = "ratingId", columnDefinition = "SMALLINT UNSIGNED NOT NULL", insertable = false )
@@ -32,49 +32,28 @@ public class Review {
 //  private Short customerId;
 
   @ManyToOne
-  @JoinColumn(name = "film_id" , columnDefinition = "SMALLINT UNSIGNED NOT NULL",insertable = false, updatable = false)
+  @Getter @Setter
+  @JoinColumn(name = "film_id" , columnDefinition = "SMALLINT UNSIGNED NOT NULL",insertable = false, updatable = true)
   private Film film;
 
   @ManyToOne
-  @JoinColumn(name = "customer_id", columnDefinition = "SMALLINT UNSIGNED NOT NULL",insertable = false, updatable = false)
+  @Getter @Setter
+  @JoinColumn(name = "customer_id", columnDefinition = "SMALLINT UNSIGNED NOT NULL",insertable = false, updatable = true)
   private Customer customer;
 
-  public void setFilm(Short film) {
-    if(film == null){
-      throw new NullPointerException();
-    }else{
-      getFilm();
-    }
-  }
-
-  public void setCustomer(Short customer) {
-    if(customer == null){
-      throw new NullPointerException();
-    }else{
-      getCustomer();
-    }
-  }
-
-  public void setRating(Short rating) {
-    if(rating == null){
-      throw new NullPointerException();
-    }else{
-      getRating();
-    }
-  }
-
   @ManyToOne
+  @Getter @Setter
   private Rating rating;
 
-  public Short getRating() {
-    return rating.getRatingId();
-  }
-
-  public Short getFilm() {
-    return film.getId();
-  }
-
-  public Short getCustomer() {
-    return customer.getId();
-  }
+//  public Short getRating() {
+//    return rating.getRatingId();
+//  }
+//
+//  public Short getFilm() {
+//    return film.getId();
+//  }
+//
+//  public Short getCustomer() {
+//    return customer.getId();
+//  }
 }

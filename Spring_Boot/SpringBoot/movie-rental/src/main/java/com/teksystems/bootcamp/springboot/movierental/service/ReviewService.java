@@ -54,8 +54,9 @@ public class ReviewService {
 
   public Review updateReview (Long reviewId, Review reviewDetails){
     //method for updating review description and ids for film, customer, etc
-    Review newReview = reviewRepository.findById(reviewId).get();
+    Optional<Review> review = reviewRepository.findById(reviewId);
     try{
+      Review newReview = review.get();
 //      newReview.setFilm(filmRepository.findById(reviewDetails.getFilm().shortValue()));
 //      newReview.setCustomer(customerRepository.findById(reviewDetails.getCustomer()));
 //      newReview.setRating(ratingRepository.findById(reviewDetails.getRating()));

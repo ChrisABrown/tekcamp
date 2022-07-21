@@ -15,12 +15,14 @@ import java.util.List;
 @NoArgsConstructor
 public class Rating {
 
-
+  public Rating(Short ratingId){
+    this.ratingId = ratingId;
+  }
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "id", columnDefinition = "SMALLINT UNSIGNED NOT NULL")
-  @Getter @Setter
+  @Getter
   private Short ratingId;
 
   @Column(name = "number_of_stars", columnDefinition = "SMALLINT UNSIGNED NOT NULL")
