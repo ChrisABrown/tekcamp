@@ -19,8 +19,8 @@ public class RatingController {
   public List<Rating> getAllRatings(){
     return ratingService.getAllRatings();
   }
-  @GetMapping("/{id}")
-  public Optional<Rating> getRatingById(@PathVariable(name = "id") Short ratingId){
+  @GetMapping("/{ratingId}")
+  public Optional<Rating> getRatingById(@PathVariable Short ratingId){
    return ratingService.getRatingById(ratingId);
   }
 
@@ -29,14 +29,14 @@ public class RatingController {
     return ratingService.createRating(rating);
   }
 
-  @PutMapping("/{id}")
-  public Rating updateRating(@PathVariable(name = "id") Short ratingId,
+  @PutMapping("/{ratingId}")
+  public Rating updateRating(@PathVariable Short ratingId,
                              @RequestBody Rating numberOfStars){
     return ratingService.updateRating(ratingId, numberOfStars);
   }
 
-  @DeleteMapping("/{id}")
-  public void deleteRating(@PathVariable(name = "id") Short ratingId){
+  @DeleteMapping("/{ratingId}")
+  public void deleteRating(@PathVariable Short ratingId){
     ratingService.deleteRating(ratingId);
   }
 }
