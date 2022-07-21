@@ -9,4 +9,4 @@
 <li>https://www.baeldung.com/jpa-one-to-one</li>
 <li>Office hours</li>
 <li>AGILE HW study sessions</li>
-</ul>
+</u
