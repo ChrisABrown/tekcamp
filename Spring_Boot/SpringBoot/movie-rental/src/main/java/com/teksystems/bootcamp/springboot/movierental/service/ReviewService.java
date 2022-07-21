@@ -20,11 +20,6 @@ public class ReviewService {
   @Autowired
   private ReviewRepository reviewRepository;
 
-
-
-  public List<Review> getAllReviews(){
-    return reviewRepository.findAll();
-  }
   public Optional<Review> getReviewById(Long reviewId){
     Optional<Review> review = reviewRepository.findById(reviewId);
     if(review.isPresent()){
@@ -34,7 +29,7 @@ public class ReviewService {
               "No review found for the id " + reviewId);
     }
   }
-  public List<Review> getPaginatedReviews(int page, int limit){
+  public List<Review> getAllReviews(int page, int limit){
     Pageable paging = PageRequest.of(page, limit);
     Page<Review> pagedResults = reviewRepository.findAll(paging);
     return pagedResults.toList();
@@ -49,7 +44,7 @@ public class ReviewService {
     Optional<Review> review = reviewRepository.findById(reviewId);
     try{
       Review newReview = review.get();
-//      Suggestion from Office hours to pull just the id instead of the whole object
+//   Suggestion from Office hours to pull just the id instead of the whole object
 //      newReview.setFilm(filmRepository.findById(reviewDetails.getFilm()));
 //      newReview.setCustomer(customerRepository.findById(newReview.getCustomer().getId()));
 //      newReview.setRating(ratingRepository.findById(reviewDetails.getRating()));

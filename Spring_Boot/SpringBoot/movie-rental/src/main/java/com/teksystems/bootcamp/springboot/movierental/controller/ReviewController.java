@@ -17,20 +17,15 @@ public class ReviewController {
   @Autowired
   private ReviewService reviewService;
 
-  @GetMapping("/")
-  public List<Review> getAllReviews(){
-    return reviewService.getAllReviews();
+  @GetMapping("/{page}/{limit}")
+  public List<Review> getAllReviews(@RequestParam int page,
+                                    @RequestParam int limit){
+    return reviewService.getAllReviews(page, limit);
   }
 
   @GetMapping("/{reviewId}")
   public Optional<Review> getReviewById(@PathVariable Long reviewId){
     return reviewService.getReviewById(reviewId);
-  }
-
-  @GetMapping("/{page}/{limit}")
-  public List<Review> getPaginatedReviews( @RequestParam int page,
-                                           @RequestParam int limit){
-    return reviewService.getPaginatedReviews(page, limit);
   }
 
   @PostMapping("/")
