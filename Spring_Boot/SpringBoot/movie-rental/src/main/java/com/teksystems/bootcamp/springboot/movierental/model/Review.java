@@ -16,6 +16,21 @@ public class Review {
   @Getter
   private Long reviewId;
 
+//  @Column(name = "ratingId", columnDefinition = "SMALLINT UNSIGNED NOT NULL", insertable = false )
+//  @Setter
+//  @JsonIgnore
+//  private Short ratingId;
+//
+//  @Column(name = "film_id", columnDefinition = "SMALLINT UNSIGNED NOT NULL", insertable = false)
+//  @Setter
+//  @JsonIgnore
+//  private Short filmId;
+//
+//  @Column(name = "customer_id", columnDefinition = "SMALLINT UNSIGNED NOT NULL", insertable = false)
+//  @Setter
+//  @JsonIgnore
+//  private Short customerId;
+
   @ManyToOne
   @Getter @Setter
   @JoinColumn(name = "film_id" , columnDefinition = "SMALLINT UNSIGNED NOT NULL",insertable = false, updatable = true)
@@ -30,4 +45,15 @@ public class Review {
   @Getter @Setter
   private Rating rating;
 
+//  public Short getRating() {
+//    return rating.getRatingId();
+//  }
+//
+//  public Short getFilm() {
+//    return film.getId();
+//  }
+//
+//  public Short getCustomer() {
+//    return customer.getId();
+//  }
 }
