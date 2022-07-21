@@ -1,6 +1,7 @@
 package com.teksystems.bootcamp.springboot.movierental.model;
 
 import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.List;
@@ -8,18 +9,20 @@ import java.util.List;
 @Entity
 @Table(name = "film")
 public class Film {
+
+
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "film_id")
-  @Getter
+  @Getter @Setter
   private Short id;
 
   @Column(name = "title")
-  @Getter
+  @Getter @Setter
   private String title;
 
   @Column(name = "description")
-  @Getter
+  @Getter @Setter
   private String description;
 
   @OneToMany(mappedBy = "film")

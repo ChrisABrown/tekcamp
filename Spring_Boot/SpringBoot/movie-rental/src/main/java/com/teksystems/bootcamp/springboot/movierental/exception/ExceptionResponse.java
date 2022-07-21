@@ -1,4 +1,4 @@
-package com.teksystems.bootcamp.springboot.movierental;
+package com.teksystems.bootcamp.springboot.movierental.exception;
 
 
 import lombok.AllArgsConstructor;
@@ -17,6 +17,5 @@ public class ExceptionResponse {
 
   @Getter
   private String details;
-
 
 }

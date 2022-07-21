@@ -15,6 +15,8 @@ import java.util.List;
 @NoArgsConstructor
 public class Rating {
 
+
+
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "id", columnDefinition = "SMALLINT UNSIGNED NOT NULL")

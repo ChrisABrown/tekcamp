@@ -1,6 +1,6 @@
-INSERT INTO reviews (film.film_id,
-                    customer.customer_id, 
-                    ratings.rating_id )    VALUES            
+INSERT INTO reviews (film_id,
+                    customer_id, 
+                    rating_id )    VALUES            
   (113, 2, 10),                  
   (34, 8, 9),                  
   (13, 1, 3),                  

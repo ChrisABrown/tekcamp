@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/movie-rental/films/reviews")
@@ -21,18 +22,29 @@ public class ReviewController {
     return reviewService.getAllReviews();
   }
 
-  @PostMapping("/")
-  public Review createReview(@RequestBody Review review){
-    return reviewService.createReview(review);
+  @GetMapping("/{reviewId}")
+  public Optional<Review> getReviewById(@PathVariable Long reviewId){
+    return reviewService.getReviewById(reviewId);
   }
 
-  @PutMapping("/{id}")
-  public Review updateReview(@PathVariable(name = "id") Long reviewId,
+  @GetMapping("/{page}/{limit}")
+  public List<Review> getPaginatedReviews( @RequestParam int page,
+                                           @RequestParam int limit){
+    return reviewService.getPaginatedReviews(page, limit);
+  }
+
+  @PostMapping("/")
+  public List<Review> createReviews(@Valid @RequestBody List<Review> reviews){
+    return reviewService.createReview(reviews);
+  }
+
+  @PutMapping("/{reviewId}")
+  public Review updateReview(@PathVariable Long reviewId,
                              @RequestBody Review reviewDetails){
     return reviewService.updateReview(reviewId, reviewDetails);
   }
 
-  @DeleteMapping("/reviewId")
+  @DeleteMapping("/{reviewId}")
   public void deleteReview(@PathVariable Long reviewId){
     reviewService.deleteReview(reviewId);
   }

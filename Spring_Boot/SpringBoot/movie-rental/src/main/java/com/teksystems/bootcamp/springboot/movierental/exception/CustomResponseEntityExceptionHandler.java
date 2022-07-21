@@ -1,4 +1,4 @@
-package com.teksystems.bootcamp.springboot.movierental;
+package com.teksystems.bootcamp.springboot.movierental.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,14 +19,14 @@ extends ResponseEntityExceptionHandler {
   @ExceptionHandler(Exception.class)
   public final ResponseEntity<Object> handleAllExceptions
           (Exception ex, WebRequest request) throws Exception{
-    ExceptionResponse response = new  ExceptionResponse(new Date(),
+    ExceptionResponse response = new ExceptionResponse(new Date(),
             ex.getMessage(),
             request.getDescription(false));
-    return new ResponseEntity(response, HttpStatus.INTERNAL_SERVER_ERROR);
+    return new ResponseEntity(response, HttpStatus.BAD_REQUEST);
   }
 
   @ExceptionHandler(NotFoundException.class)
-  public final ResponseEntity<Object> handleNotFoundExceptions
+  public final ResponseEntity handleNotFoundExceptions
           (NotFoundException ex, WebRequest request) throws Exception{
     ExceptionResponse response = new  ExceptionResponse(new Date(),
             ex.getMessage(),
