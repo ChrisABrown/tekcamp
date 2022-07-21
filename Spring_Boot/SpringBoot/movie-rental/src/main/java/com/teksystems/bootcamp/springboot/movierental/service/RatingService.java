@@ -26,6 +26,7 @@ public class RatingService {
               "No rating found for the id " + ratingId);
     }
   }
+//  No pagination for ratings, did not think there was enough for pagination
   public List<Rating> getAllRatings(){
     return ratingRepository.findAll();
   }
