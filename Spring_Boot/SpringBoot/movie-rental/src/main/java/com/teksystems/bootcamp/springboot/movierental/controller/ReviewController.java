@@ -22,8 +22,8 @@ public class ReviewController {
     return reviewService.getAllReviews();
   }
 
-  @GetMapping("/{reviewId}")
-  public Optional<Review> getReviewById(@PathVariable Long reviewId){
+  @GetMapping("/{id}")
+  public Optional<Review> getReviewById(@PathVariable(name = "id") Long reviewId){
     return reviewService.getReviewById(reviewId);
   }
 
@@ -38,14 +38,14 @@ public class ReviewController {
     return reviewService.createReview(reviews);
   }
 
-  @PutMapping("/{reviewId}")
-  public Review updateReview(@PathVariable Long reviewId,
+  @PutMapping("/{id}")
+  public Review updateReview(@PathVariable(name = "id") Long reviewId,
                              @RequestBody Review reviewDetails){
     return reviewService.updateReview(reviewId, reviewDetails);
   }
 
-  @DeleteMapping("/{reviewId}")
-  public void deleteReview(@PathVariable Long reviewId){
+  @DeleteMapping("/{id}")
+  public void deleteReview(@PathVariable(name = "id") Long reviewId){
     reviewService.deleteReview(reviewId);
   }
 }
