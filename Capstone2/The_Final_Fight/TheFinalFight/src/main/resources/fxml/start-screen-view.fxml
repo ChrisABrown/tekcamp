@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: orange;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.teksystems.bootcamp.thefinalfight.Controllers.SceneController">
+   <children>
+      <ImageView fitHeight="313.0" fitWidth="576.0" layoutX="12.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/Sasuke-Narutos-Final-Fight.jpg" />
+         </image></ImageView>
+      <Button fx:id="exitGame" layoutX="443.0" layoutY="353.0" mnemonicParsing="false" onAction="#switchToExitScene" style="-fx-background-color: orange;" text="Exit Game" textFill="#070606">
+         <font>
+            <Font name="Ninja Naruto" size="13.0" />
+         </font></Button>
+      <Button fx:id="startGame" layoutX="59.0" layoutY="353.0" mnemonicParsing="false" onAction="#switchToCharacterSelect" style="-fx-background-color: orange;" text="Start Game" textFill="#070606">
+         <font>
+            <Font name="Ninja Naruto" size="13.0" />
+         </font></Button>
+      <Text layoutX="204.0" layoutY="347.0" smooth="false" strokeType="OUTSIDE" strokeWidth="0.0" text="The Final Fight">
+         <font>
+            <Font name="Ninja Naruto" size="24.0" />
+         </font></Text>
+   </children>
+</AnchorPane>

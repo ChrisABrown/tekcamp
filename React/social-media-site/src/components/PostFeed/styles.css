@@ -1,0 +1,15 @@
+.card {
+  border-radius: 5em;
+  text-align: center;
+  margin: 6em 22em;
+}
+.ui .content {
+  border-radius: 5em;
+}
+#posts {
+  border-radius: 5em;
+  padding-top: 2em;
+}
+.text.card {
+  margin-left: 0.2em;
+}
