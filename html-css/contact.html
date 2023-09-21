@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Q & A</title>
+    <link rel="stylesheet" media="screen" href="./HTML/css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300&display=swap" rel="stylesheet">
+    <style>
+      * {
+        /* Udemy courses Section 3: videos 32 and 33 used to prevent padding from adding width to the box*/
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: url("HTML/images/akatsuki.jpg") 0px;
+        font-family:'Fira Sans', sans-serif;
+        color: antiquewhite;
+    
+      }
+
+      a {
+        text-decoration: none;
+
+      }
+
+      #container {
+       display: block;
+       margin: auto;
+       padding: auto;
+      }
+
+      .form-wrap {
+       background-color: var(--accent-color);
+       padding: 50px 50px;
+       margin: auto;
+      }
+
+      .form-wrap h1,
+      .form-wrap p {
+        text-align: center;
+        padding: 10px 10px;
+      }
+
+      .form-wrap .form-group {
+        display: block;
+        margin: 10px 30px;
+        padding: 0;
+        text-align: center;
+      }
+
+      .form-wrap .form-group label {
+        display: block;
+        color: whitesmoke;
+      }
+
+      .form-wrap .form-group input {
+       width: 70%;
+       border-radius: 3em;
+       border: var(--font-color) 2px solid;
+      }
+      #questions {
+        width: 70%;
+      }
+
+      .form-wrap .btn button {
+        display: block;
+        width: 100%;
+        padding: 20px;
+        margin-top: 40px;
+        background: #ffff;
+        cursor: pointer;
+      }
+
+      button a:hover {
+        background: darkred;
+        text-transform: uppercase;
+        color: #ffff;
+        font-size: larger;
+
+      }
+      button a:link {
+        font-size: 2em;
+        color: var(--font-color);
+      }
+      button a:visited {
+        font-size: 2em;
+        color: var(--accent-color);
+      }
+
+      .form-wrap .bottom-text {
+        font-size: 10px;
+        margin-top: auto;
+
+      }
+
+      .btn {
+        width: 100%;
+        padding: 25px;
+
+      }
+
+      footer {
+        text-align: center;
+      }
+
+      footer a {
+        color: var(--accent-color);
+      }
+    </style>
+  </head>
+  <body>
+    <main id="container">
+      <section class="form-wrap">
+        <h1>Q & A</h1>
+        <p>Feel free to ask any questions about my website and thanks for taking a look at my work.</p>
+        <form>
+          <section class="form-group">
+            <label for="first-name">First Name</label>
+            <input type="text" name="firstName" id="first-name" />
+          </section>
+          <section class="form-group">
+            <label for="last-name">Last Name</label>
+            <input type="text" name="lastName" id="last-name" />
+          </section>
+          <section class="form-group">
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" />
+          </section>
+          <!-- Learned dropdown options from freecodecamp.org responsive web design courses -->
+          <section class="form-group">
+            <label for="dropdown">Was the page easy to navigate?</label>
+              <select id="dropdown">
+                <option value="">(select one)</option>
+                <option value="1">Yes</option>
+                <option value="2">No</select>
+          </section>
+          <!-- Same for adding in a textarea box -->
+          <section class="form-group">
+            <label for="textarea">Questions?</label>
+            <textarea name="questions" id="questions" cols="10" rows="10" placeholder="Did you get enough sleep today &#x263B; ?"></textarea>
+
+          </section>
+         
+          
+          <button type="button" class="btn"> <a href="./index.html" target="_top">Home</a> </button>
+        </form>
+      </main>
+  </body>
+</html>

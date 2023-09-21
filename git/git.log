@@ -1,0 +1,42 @@
+commit 28da80bc6ebe7a6912e09b27e36b8d84c7d58ad4
+Author: Chris Brown <102696425+ChrisABrown@users.noreply.github.com>
+Date:   Wed May 11 16:39:38 2022 -0500
+
+    step # 32, Added Resources after rebasing git branch off of develop branch
+
+commit 0db1c231e1d3eec74867bea1c836241792d53f9c
+Merge: 5c8677a 0c4c3f3
+Author: Chris Brown <102696425+ChrisABrown@users.noreply.github.com>
+Date:   Wed May 11 16:19:01 2022 -0500
+
+    step # 28, Merge conflict accepted both the italicized text and the line of code as changes
+
+commit 5c8677a1c10d03977d9d64fd35e80b34cba367ac
+Author: Chris Brown <102696425+ChrisABrown@users.noreply.github.com>
+Date:   Wed May 11 16:11:28 2022 -0500
+
+    step 25, Changed bold text to line of code
+
+commit 0c4c3f328525997bcf04b62260756e4306b6f480
+Author: Chris Brown <102696425+ChrisABrown@users.noreply.github.com>
+Date:   Wed May 11 16:07:51 2022 -0500
+
+    Step #22, Replaced bold text with italicized text
+
+commit 83511affe02de9bbf69000f108078b783c2d420f
+Author: Chris Brown <102696425+ChrisABrown@users.noreply.github.com>
+Date:   Wed May 11 16:01:13 2022 -0500
+
+    Step #19, Added one line of bold text after undoing previous changes
+
+commit 8a1f5ea8d56ab99f24cd625b9069b0c68bccab6c
+Author: Chris Brown <102696425+ChrisABrown@users.noreply.github.com>
+Date:   Wed May 11 15:57:06 2022 -0500
+
+    step # 14, Added a heading and a subheading to th README file
+
+commit 5ab0fa0da20a9eda993d9e1df9cc2eff41192ac8
+Author: Chris Brown <102696425+ChrisABrown@users.noreply.github.com>
+Date:   Wed May 11 15:29:03 2022 -0500
+
+    Initial commit

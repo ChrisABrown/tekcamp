@@ -1,0 +1,222 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@200&family=Permanent+Marker&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+:root{
+  --primary-color: #000000;
+  --accent-color: #3D0001;
+  --main-font: "Josefin Sans", sans-serif;
+  --font-color: #950101;
+  font-weight: bolder;
+
+}
+body {
+  color: var(--font-color);
+  font-family: var(--main-font);
+  display: flex;
+  margin: 20px 20px;
+  padding: 10px 10px;
+
+}
+h1 {
+  font-size: 4em;
+  color: whitesmoke; 
+}
+#hobbies {
+  margin-top: 10px;
+  text-align: center;
+}
+#hobbies ul {
+  list-style: none;
+}
+article {
+  margin-top: 10px;
+  color: ghostwhite;
+  line-height: 300%;
+  padding: 0% 5% 0% 3%;
+}
+article p {
+  margin-top: 20px;
+  padding-left: 3%;
+  font-style: var(--primary-color);
+}
+article h2 {
+  padding-right: 3%;
+}
+.money-shot {
+  display: inline-block;
+}
+#money_shot{
+  text-align: center;
+  border-radius: 50px; 
+}
+#navbar {
+  background: url("../images/akatsuki.jpg") repeat top left/cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  font-family: "Permanent Marker";
+  font-size: x-large;
+  height: 70vh;
+  margin: 0px 30px 0px 0px;
+  width: 300px;
+}
+
+#navbar a {
+  color: var(--font-color);
+  background: var(--primary-color);
+  border-radius: .9em;
+}
+#navbar a:link {
+  text-decoration: line-through;
+}
+#navbar a:visited {
+  text-decoration: line-through;
+}
+#navbar a:hover {
+  color: var(--font-color);
+  animation: disappear 20s forwards 100;
+}
+#navbar a:active {
+  text-decoration: line-through;
+}
+/* From my understanding calc() allows for math to be used in properties, I used it here to have the text completely disappear */
+@keyframes disappear {
+  10%{
+    opacity: calc(15% - 100%);
+  }
+  20% {
+    opacity: calc(35% - 100%);   
+  }
+  30% {
+    opacity: calc(40% - 100%);   
+  }
+  50% {
+    opacity: calc(60% - 100%);   
+  }
+  75% {
+    opacity: calc(95% - 100%);   
+  }
+  100% {
+    opacity: calc(100% - 100%);   
+  }
+}
+
+.primary-box {
+  background-color: var(--primary-color);
+}
+.accent-box {
+  display: flexbox;
+  border-radius: .6em;
+  background-color: var(--accent-color);
+}
+.accent2-box {
+  display: flex;
+  align-items: center;
+  border-radius: .6em;
+  background-color: var(--font-color) ;
+}
+.accent2-box p {
+  border-left: 2px var(--accent-color) solid;
+  margin-top: 5px;
+  margin-bottom: 5px;
+
+}
+/* gallery css starts here */
+#nav-bar {
+  display: flex;
+  justify-content: space-between;
+  font-family: "Permanent Marker";
+  margin: 50px;
+  padding: 10px; 
+  overflow: auto;
+  list-style: none;
+}
+#nav-bar li a {
+  color: var(--font-color);
+  list-style: none;
+  text-decoration: none;
+  padding: 10px;
+  background: #000000;
+  border-radius: 50px;
+  font-size: 1.5rem;
+}
+
+#nav-bar a:link {
+  text-decoration: line-through;
+}
+#nav-bar a:visited {
+  text-decoration: line-through;
+}
+#nav-bar a:hover {
+  color: var(--font-color);
+  animation: disappear 20s forwards 100;
+}
+#nav-bar a:active {
+  text-decoration: line-through;
+}
+
+figcaption { /* Also used in index.html */
+  font-size: 1.8rem;
+  font-weight: 600;
+  font-family: monospace;
+  background-color: whitesmoke;
+  padding: 4px;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+img{
+  margin: 2px 2px;
+  border: #950101 3px solid;
+  border-radius: 50px;
+  filter: grayscale(5%);
+}
+
+img:hover {
+  filter: grayscale(100%);
+}
+
+.container {
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+  margin: 30px 30px;
+}
+/* gallery css ends here */
+
+@media screen and (min-width: 400px) and (max-width: 600px) and (orientation: landscape) {
+
+  #navbar {
+    position: inherit;
+  }
+  .container {
+    display: grid;
+    grid-template-columns: 500px 500px 500px;
+    grid-template-rows: 500px 500px 500px;
+    gap: 100px;
+  }
+  img {
+    width: 500px;
+    height: 500px;
+    flex-flow: column nowrap;
+  }
+  figure {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+  }
+  figcaption {
+    text-align: center;
+    padding: 5px 10px;
+    justify-content: center;
+  }
+  img {
+    filter: grayscale(0%);
+  }
+}
