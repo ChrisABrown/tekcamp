@@ -2,7 +2,7 @@
   {
     "itemId": "Boxer Briefs 3-pack",
     "category": "Accessories",
-    "colors": ["black", "white"],
+    "colors": ["Black", "White"],
     "description": "All cotton classic boxer brief.",
     "price": 12,
     "images": {
@@ -21,9 +21,9 @@
   {
     "itemId": "Tagless Tees 3-pack",
     "category": "Accessories",
-    "colors": ["black", "white"],
+    "colors": ["Black", "White"],
     "description": "All cotton classic crewneck tee with stamped logo on lower front.",
-    "price": 0,
+    "price": 12,
     "images": {
       "black": "https://i.postimg.cc/SKxztXjV/Tagless-tees-black.webp",
       "white": "https://i.postimg.cc/kgcbcNMB/Tagless-tees-white.webp"
@@ -40,9 +40,9 @@
   {
     "itemId": "MoleSkin Work Jacket",
     "category": "Jackets",
-    "colors": ["camo", "black"],
+    "colors": ["Camo", "Black"],
     "description": "Kindermann cotton moleskin with full zip closure. Patch pockets at lower front and chest with interior zip pocket. Tab adjusters at hem.",
-    "price": 0,
+    "price": 398,
     "images": {
       "black": {
         "front": "https://i.postimg.cc/1txTLQkR/Mole-Skin-black-front.webp",
@@ -65,12 +65,25 @@
     }
   },
   {
-    "itemId": "Plaid Flannel Long Sleeve Shirt",
+    "itemId": "Plaid Flannel Shirt",
     "category": "Shirts",
-    "colors": ["blue", "black", "yellow"],
-    "description": "",
-    "price": 0,
-    "images": {},
+    "colors": ["Blue", "Black", "Yellow"],
+    "description": "All cotton flannel with button down collar. Embroidered logo on single chest pocket.",
+    "price": 158,
+    "images": {
+      "black": {
+        "front": "https://i.postimg.cc/zBxRMJQ4/Plaid-black-front.webp",
+        "detail": "https://i.postimg.cc/ryYrNwxr/Plaid-black-detail.jpg"
+      },
+      "blue": {
+        "front": "https://i.postimg.cc/XqhBjs48/Plaid-blue-front.webp",
+        "detail": "https://i.postimg.cc/vHJxC2P8/Plaid-blue-detail.webp"
+      },
+      "yellow": {
+        "front": "https://i.postimg.cc/mkhFWvfk/Plaid-yellow-front.webp",
+        "detail": "https://i.postimg.cc/dVGZFRX2/Plaid-yellow-detail.webp"
+      }
+    },
     "quantity": 0,
     "sizes": {
       "S": "small",
@@ -81,12 +94,16 @@
     }
   },
   {
-    "itemId": "",
+    "itemId": "Hardcore Printed Corduroy Shirt",
     "category": "Shirts",
-    "colors": [],
-    "description": "",
-    "price": 0,
-    "images": {},
+    "color": ["Multicolor"],
+    "description": "All cotton corduroy with printed pattern. Button down collar and embroidered logo on single chest pocket. Original artwork by Mark Leckey.",
+    "price": 158,
+    "images": {
+      "front": "https://i.postimg.cc/JhqyDrRt/Printed-Shirt-front.webp",
+      "back": "https://i.postimg.cc/Qx9W4ZJn/Printed-Shirt-back.webp",
+      "detail": "https://i.postimg.cc/CKYBxBTW/Printed-Shirt-detail.webp"
+    },
     "quantity": 0,
     "sizes": {
       "S": "small",
@@ -97,12 +114,21 @@
     }
   },
   {
-    "itemId": "",
+    "itemId": "Dyed Stripe S/S Top",
     "category": "T-Shirts",
-    "colors": [],
-    "description": "",
-    "price": 0,
-    "images": {},
+    "colors": ["Multicolor", "Black"],
+    "description": "All cotton jersey crewneck with embroidered logo on chest.",
+    "price": 78,
+    "images": {
+      "multicolor": {
+        "front": "https://i.postimg.cc/gJmPj7pK/Dyed-front.webp",
+        "detail": "https://i.postimg.cc/MHG2bjvM/Dyed-detail.webp"
+      },
+      "black": {
+        "front": "https://i.postimg.cc/yNFHVHMd/Dyed-blue-front.webp",
+        "detail": "https://i.postimg.cc/SsdbMGNb/Dyed-blue-detail.jpg"
+      }
+    },
     "quantity": 0,
     "sizes": {
       "S": "small",

@@ -1,6 +1,5 @@
 import React from 'react'
 import { useState } from 'react'
-import Product from '../../Products/Product'
 import Footer from '../Components/Footer'
 import Logo from '../Components/Logo'
 import Cart from './Cart'
