@@ -63,15 +63,7 @@ export default function Shop({ items }) {
             }
           })
           .map((item) => (
-            <Product
-              key={item.SKU}
-              item={item}
-              imgSrc={item.images}
-              alt={item.itemId}
-              addToCart={addToCart}
-              countCartItems={cartItems.length}
-              removeFromCart={removeFromCart}
-            />
+            
           ))}
       </div>
       <Footer className='sticky' />
