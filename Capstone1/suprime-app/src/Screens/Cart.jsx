@@ -1,15 +1,15 @@
-import React from "react";
-import "../../Forms/forms.css";
-import CartItem from "./CartItem";
+import React from 'react'
+import '../../Forms/forms.css'
+import CartItem from '../Components/CartItem'
 
 export default function Cart(props) {
-  const { cartItems, addToCart, removeFromCart } = props;
+  const { cartItems, addToCart, removeFromCart } = props
 
   return (
-    <div id="cart">
-      <aside id="cart-contr">
+    <div id='cart'>
+      <aside id='cart-contr'>
         <h6>your items:</h6>
-        <div id="cart-list">
+        <div id='cart-list'>
           <CartItem
             key={cartItems}
             purchases={cartItems}
@@ -19,5 +19,5 @@ export default function Cart(props) {
         </div>
       </aside>
     </div>
-  );
+  )
 }

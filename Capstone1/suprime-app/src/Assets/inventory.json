@@ -1,0 +1,101 @@
+[
+  {
+    "itemId": "Boxer Briefs",
+    "category": "Accessories",
+    "colors": ["black", "white"],
+    "description": "",
+    "price": 12,
+    "images": {
+      "black": "../../../Assets/Accessories/Boxer_briefs_black.webp",
+      "white": "../../../Assets/Accessories/Boxer_briefs_white.jpeg"
+    },
+    "quantity": 0,
+    "sizes": {
+      "S": "small",
+      "M": "medium",
+      "L": "large",
+      "XL": "extra-large",
+      "XXL": "extra-extra-large"
+    }
+  },
+  {
+    "itemId": "",
+    "category": "Accessories",
+    "colors": [],
+    "description": "",
+    "price": 0,
+    "images": {},
+    "quantity": 0,
+    "sizes": {
+      "S": "small",
+      "M": "medium",
+      "L": "large",
+      "XL": "extra-large",
+      "XXL": "extra-extra-large"
+    }
+  },
+  {
+    "itemId": "",
+    "category": "Jackets",
+    "colors": [],
+    "description": "",
+    "price": 0,
+    "images": {},
+    "quantity": 0,
+    "sizes": {
+      "S": "small",
+      "M": "medium",
+      "L": "large",
+      "XL": "extra-large",
+      "XXL": "extra-extra-large"
+    }
+  },
+  {
+    "itemId": "",
+    "category": "Shirts",
+    "colors": [],
+    "description": "",
+    "price": 0,
+    "images": {},
+    "quantity": 0,
+    "sizes": {
+      "S": "small",
+      "M": "medium",
+      "L": "large",
+      "XL": "extra-large",
+      "XXL": "extra-extra-large"
+    }
+  },
+  {
+    "itemId": "",
+    "category": "Shirts",
+    "colors": [],
+    "description": "",
+    "price": 0,
+    "images": {},
+    "quantity": 0,
+    "sizes": {
+      "S": "small",
+      "M": "medium",
+      "L": "large",
+      "XL": "extra-large",
+      "XXL": "extra-extra-large"
+    }
+  },
+  {
+    "itemId": "",
+    "category": "T-Shirts",
+    "colors": [],
+    "description": "",
+    "price": 0,
+    "images": {},
+    "quantity": 0,
+    "sizes": {
+      "S": "small",
+      "M": "medium",
+      "L": "large",
+      "XL": "extra-large",
+      "XXL": "extra-extra-large"
+    }
+  }
+]
