@@ -1,13 +1,13 @@
 [
   {
-    "itemId": "Boxer Briefs",
+    "itemId": "Boxer Briefs 3-pack",
     "category": "Accessories",
     "colors": ["black", "white"],
-    "description": "",
+    "description": "All cotton classic boxer brief.",
     "price": 12,
     "images": {
-      "black": "../../../Assets/Accessories/Boxer_briefs_black.webp",
-      "white": "../../../Assets/Accessories/Boxer_briefs_white.jpeg"
+      "black": "https://i.postimg.cc/YqQg4KJN/Boxer-briefs-black.webp",
+      "white": "https://i.postimg.cc/RZ9tKpBk/Boxer-briefs-white-jpeg.webp"
     },
     "quantity": 0,
     "sizes": {
@@ -19,12 +19,15 @@
     }
   },
   {
-    "itemId": "",
+    "itemId": "Tagless Tees 3-pack",
     "category": "Accessories",
-    "colors": [],
-    "description": "",
+    "colors": ["black", "white"],
+    "description": "All cotton classic crewneck tee with stamped logo on lower front.",
     "price": 0,
-    "images": {},
+    "images": {
+      "black": "https://i.postimg.cc/SKxztXjV/Tagless-tees-black.webp",
+      "white": "https://i.postimg.cc/kgcbcNMB/Tagless-tees-white.webp"
+    },
     "quantity": 0,
     "sizes": {
       "S": "small",
@@ -35,12 +38,23 @@
     }
   },
   {
-    "itemId": "",
+    "itemId": "MoleSkin Work Jacket",
     "category": "Jackets",
-    "colors": [],
-    "description": "",
+    "colors": ["camo", "black"],
+    "description": "Kindermann cotton moleskin with full zip closure. Patch pockets at lower front and chest with interior zip pocket. Tab adjusters at hem.",
     "price": 0,
-    "images": {},
+    "images": {
+      "black": {
+        "front": "https://i.postimg.cc/1txTLQkR/Mole-Skin-black-front.webp",
+        "back": "https://i.postimg.cc/GpTV72SS/Mole-Skin-black-back.webp",
+        "detail": "https://i.postimg.cc/9MGS2k2d/Mole-Skin-black-detail.jpg"
+      },
+      "camo": {
+        "front": "https://i.postimg.cc/Y2zVyTbk/Mole-Skin-front.webp",
+        "back": "https://i.postimg.cc/QChzdqNR/Mole-Skin-back.webp",
+        "detail": "https://i.postimg.cc/j2cFwJLC/Mole-Skin-detail.jpg"
+      }
+    },
     "quantity": 0,
     "sizes": {
       "S": "small",
@@ -51,9 +65,9 @@
     }
   },
   {
-    "itemId": "",
+    "itemId": "Plaid Flannel Long Sleeve Shirt",
     "category": "Shirts",
-    "colors": [],
+    "colors": ["blue", "black", "yellow"],
     "description": "",
     "price": 0,
     "images": {},

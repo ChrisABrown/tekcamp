@@ -8,7 +8,6 @@ import '../../styles.css'
 
 export default function Shop({ items }) {
   const [searchItem, setSearchItem] = useState('')
- 
 
   return (
     <>
@@ -21,21 +20,17 @@ export default function Shop({ items }) {
       <div id='shop-logo'>
         <Logo />
       </div>
-      
+
       <div>
-        {items
-          .filter((item) => {
-            switch (searchItem === '') {
-              default:
-                if (item === searchItem);
-                return item
-              case item.itemId.includes(searchItem):
-                return item
-            }
-          })
-          .map((item) => (
-            
-          ))}
+        {items.filter((item) => {
+          switch (searchItem === '') {
+            default:
+              if (item === searchItem);
+              return item
+            case item.itemId.includes(searchItem):
+              return item
+          }
+        })}
       </div>
       <Footer className='sticky' />
     </>

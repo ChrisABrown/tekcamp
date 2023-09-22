@@ -6,7 +6,7 @@ import {
   createRoutesFromElements,
   RouterProvider,
 } from 'react-router-dom'
-import App from './App.js'
+import App from './index.js'
 import './index.css'
 import { Provider } from 'react-redux'
 import store from './store.js'
