@@ -15,11 +15,12 @@ import FrontPage from './Components/Pages/FrontPage'
 import Contact from './Components/Pages/Forms/Contact'
 import Shop from './Components/Pages/Shop/Shop'
 import AdminView from './Components/Pages/Forms/AdminView'
-import Cart from './Components/Pages/Shop/Checkout/Cart'
-import inventory from './Data/inventory'
+import Cart from './Components/Pages/Checkout/Cart'
+import Inventory from './Data/InventoryService'
+import About from './Components/Pages/About'
 
 export default function App() {
-  const [items, setItems] = useState(inventory.items)
+  const [items, setItems] = useState(Inventory.assets)
 
   return (
     <Router>
@@ -30,7 +31,7 @@ export default function App() {
           path='/admin'
           element={
             // <RequireAuth>
-            <AdminView key={inventory} stock={items} />
+            <AdminView key={Inventory} stock={items} />
           }
         />
 
@@ -38,8 +39,9 @@ export default function App() {
           path='/shop'
           exact
           element={<Shop key={items.id} items={items} setItems={setItems} />}
-        ></Route>
+        />
         <Route path='/shop/cart' exact element={<Cart />} />
+        <Route path='/about' exact element={<About />} />
 
         <Route path='/contact' exact element={<Contact />} />
 

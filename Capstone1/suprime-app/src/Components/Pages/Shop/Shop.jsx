@@ -1,48 +1,48 @@
-import React from "react";
-import { useState } from "react";
-import Product from "../../Products/Product";
-import Footer from "../../Footer";
-import Logo from "../../Logo/Logo";
-import Cart from "./Checkout/Cart";
-import "../../styles.css";
+import React from 'react'
+import { useState } from 'react'
+import Product from '../../Products/Product'
+import Footer from '../../Footer'
+import Logo from '../../Logo/Logo'
+import Cart from '../Checkout/Cart'
+import '../../styles.css'
 
 export default function Shop({ items }) {
-  const [searchItem, setSearchItem] = useState("");
-  const [cartItems, setCartItems] = useState([]);
+  const [searchItem, setSearchItem] = useState('')
+  const [cartItems, setCartItems] = useState([])
   const addToCart = (item) => {
-    const itemExist = cartItems.find((y) => y.id === item.id);
+    const itemExist = cartItems.find((y) => y.id === item.id)
     if (itemExist) {
       setCartItems(
         cartItems.map((y) =>
           y.id === items.id ? { ...itemExist, qty: itemExist.qty + 1 } : y
         )
-      );
+      )
     } else {
-      setCartItems([...cartItems, { ...item, qty: 1 }]);
+      setCartItems([...cartItems, { ...item, qty: 1 }])
     }
-  };
+  }
 
   const removeFromCart = (item) => {
-    const itemExist = cartItems.find((y) => y.id === item.id);
+    const itemExist = cartItems.find((y) => y.id === item.id)
     if (itemExist.qty === 1) {
-      setCartItems(cartItems.filter((y) => y.id !== item.id));
+      setCartItems(cartItems.filter((y) => y.id !== item.id))
     } else {
       setCartItems(
         cartItems.map((y) =>
           y.id === items.id ? { ...itemExist, qty: itemExist.qty - 1 } : y
         )
-      );
+      )
     }
-  };
+  }
   return (
     <>
       <input
-        id="search-bar"
+        id='search-bar'
         value={searchItem}
-        placeholder="Search.."
+        placeholder='Search..'
         onChange={(e) => setSearchItem(e.target.value)}
       />
-      <div id="shop-logo">
+      <div id='shop-logo'>
         <Logo />
       </div>
       <Cart
@@ -54,28 +54,27 @@ export default function Shop({ items }) {
       <div>
         {items
           .filter((item) => {
-            switch (searchItem === "") {
+            switch (searchItem === '') {
               default:
                 if (item === searchItem);
-                return item;
-              case item.item_name.includes(searchItem):
-                return item;
+                return item
+              case item.itemId.includes(searchItem):
+                return item
             }
           })
           .map((item) => (
             <Product
-              key={item.id}
+              key={item.SKU}
               item={item}
-              imgSrc={item.images1}
-              sizes={item.sizes}
-              alt={item.item_name}
+              imgSrc={item.images}
+              alt={item.itemId}
               addToCart={addToCart}
               countCartItems={cartItems.length}
               removeFromCart={removeFromCart}
             />
           ))}
       </div>
-      <Footer className="sticky" />
+      <Footer className='sticky' />
     </>
-  );
+  )
 }
