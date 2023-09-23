@@ -1,37 +1,12 @@
-import axios from 'axios'
+const { default: mongoose } = require('mongoose')
 
-export const URL = ''
+const db = require('../config/keys').mongodbURI
 
-const axiosInstance = axios.create({
-  baseURL: URL,
-  headers: {
-    'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin': 'proxy',
-  },
-})
+mongoose
+  .connect(db, { useNewUrlParser: true })
+  .then(() => console.log('DB connected'))
+  .catch((err) => console.log('DBerror', err))
 
-const itemAxios = axios.create({
-  baseURL: URL,
-  withCredentials: true,
-  credentials: 'same-origin',
-  headers: {
-    'Content-Type': 'application/json',
-    'Access-Control-Allow-Credentials': true,
-  },
-})
+const port = process.env.PORT || 3030
 
-const fetchItems = async () => {
-  try {
-    return await axiosInstance.get('items').then((res) => {
-      return res.data.data
-    })
-  } catch (error) {
-    return Promise.reject(error)
-  }
-}
-
-const DataService = {
-  fetchItems,
-}
-
-export default DataService
+app.listen()
