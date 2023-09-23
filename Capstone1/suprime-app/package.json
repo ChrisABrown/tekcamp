@@ -9,7 +9,11 @@
     "@testing-library/react": "^14.0.0",
     "@testing-library/user-event": "^14.5.1",
     "axios": "^1.5.0",
+    "body-parser": "^1.20.2",
+    "concurrently": "^8.2.1",
+    "express": "^4.18.2",
     "moment": "^2.29.4",
+    "mongoose": "^7.5.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-redux": "^8.1.2",
@@ -40,5 +44,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
   }
 }
