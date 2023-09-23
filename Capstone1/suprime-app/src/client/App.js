@@ -9,9 +9,9 @@ import {
   useParams,
   useSearchParams,
 } from 'react-router-dom'
-import Home from './Screens/Home'
-import About from './Screens/About'
-import Shop from './Screens/Shop'
+import Home from './views/Home.js'
+import About from './views/About.js'
+import Shop from './views/Shop.js'
 
 export default function App() {
   const location = useLocation()

@@ -1,9 +1,8 @@
 import React from 'react'
 import { useState } from 'react'
-import Footer from '../Components/Footer'
-import Logo from '../Components/Logo'
-import Cart from './Cart'
-import '../../styles.css'
+import Footer from '../components/Footer.js'
+import Logo from '../components/Logo.js'
+import '../css/styles.css'
 
 export default function Shop({ items }) {
   const [searchItem, setSearchItem] = useState('')

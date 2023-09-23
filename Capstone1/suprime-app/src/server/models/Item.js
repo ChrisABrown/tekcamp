@@ -16,7 +16,6 @@ const ItemSchema = new Schema({
     required: true,
   },
   description: String,
-  SKU: this._id,
   price: {
     type: Number,
     required: true,

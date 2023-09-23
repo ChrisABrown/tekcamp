@@ -6,11 +6,11 @@ import {
   createRoutesFromElements,
   RouterProvider,
 } from 'react-router-dom'
-import App from './index.js'
-import './index.css'
+import App from './client/App.js'
+import '../src/client/css/styles.css'
 import { Provider } from 'react-redux'
-import store from './store.js'
-import Error from './Screens/Error.js'
+import store from './client/store.js'
+import Error from './client/views/Error.js'
 
 const router = createBrowserRouter(
   createRoutesFromElements(

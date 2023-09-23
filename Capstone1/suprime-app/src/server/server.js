@@ -3,12 +3,14 @@ const { default: mongoose } = require('mongoose')
 const db = require('../config/keys').mongodbURI
 const express = require('express')
 const cors = require('cors')
+const itemsRouter = require('../routes/api/items')
 
 const app = express()
 const port = process.env.PORT || 3000
 
 app.use(cors())
 app.use(express.json())
+app.use('/items', itemsRouter)
 
 mongoose.connect(db, {
   useNewUrlParser: true,
@@ -31,5 +33,3 @@ if (process.env.NODE_ENV === 'production') {
     else res.redirect(`https://'${req.headers.host}${req.url}`)
   })
 }
-
-const items = require('../routes/api/items')

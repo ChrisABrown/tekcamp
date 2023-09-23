@@ -1,0 +1,14 @@
+#error {
+  display: grid;
+  grid-template-columns: fr(3);
+  grid-template-areas: 'head head head', '. logo .', 'footer footer footer';
+}
+body {
+  background-color: red;
+}
+
+div {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+}
