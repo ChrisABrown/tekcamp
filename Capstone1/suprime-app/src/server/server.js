@@ -31,3 +31,5 @@ if (process.env.NODE_ENV === 'production') {
     else res.redirect(`https://'${req.headers.host}${req.url}`)
   })
 }
+
+const items = require('../routes/api/items')
