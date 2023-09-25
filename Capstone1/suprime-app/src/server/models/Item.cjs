@@ -16,13 +16,14 @@ const ItemSchema = new Schema(
       type: Array,
       required: true,
     },
+    SKU: Number,
     description: String,
     price: {
       type: Number,
       required: true,
     },
     images: {
-      type: Array,
+      type: Object,
       required: true,
     },
     quantity: {
@@ -35,4 +36,4 @@ const ItemSchema = new Schema(
 )
 const Item = mongoose.model('Item', ItemSchema)
 
-module.exports = { Item }
+module.exports = Item

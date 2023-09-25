@@ -18,49 +18,32 @@ router.get('/', async (req, res) => {
   }
 })
 
-router.post('/add', async (req, res) => {
-  const itemId = req.body.itemId
-  const qty = req.body.quantity
-  const category = req.body.category
-  const price = req.body.price
-  const sizes = req.body.sizes
-  const description = req.body.description
-  const imgs = req.body.images
-
+router.post('/', async (req, res) => {
   const newItem = new Item({
-    itemId: itemId,
-    SKU: req.params.id,
-    qty: qty,
-    category: category,
-    price: price,
-    sizes: sizes,
-    description: description,
-    imgs: imgs,
+    itemId: req.body.itemId,
+    quantity: req.body.qty,
+    colors: req.body.colors,
+    SKU: req.body.SKU,
+    category: req.body.category,
+    price: req.body.price,
+    sizes: req.body.sizes,
+    description: req.body.description,
+    images: req.body.images,
   })
-  const query = {
-    itemId: newItem.itemId,
-  }
-  const filter = { _id: req.params.id }
-  const options = { upsert: true }
 
   try {
-    if (db.findOne(query) === null) db.insertOne(newItem)
-    await db.updateOne(filter, newItem, options)
+    const result = await newItem.save()
+    console.log(`_id: ${result.id}`)
+    res.status(200).json(result)
   } catch (err) {
-    res.status(400).json('Error: ' + err)
+    res.status(400).json('Error: ' + err.message)
   }
 })
 
 router.put('/:id', async (req, res) => {
-  const itemId = req.body.itemId
-  const qty = req.body.quantity
-  const category = req.body.category
-  const price = req.body.price
-  const sizes = req.body.sizes
-  const description = req.body.description
-  const imgs = req.body.images
+  const { itemId, qty, category, price, sizes, description, imgs } = req.body
 
-  const filter = { _id: req.params.id }
+  const filter = { _id: req.params._id }
   const options = { upsert: true }
   const updateDoc = {
     $set: {
@@ -81,7 +64,7 @@ router.put('/:id', async (req, res) => {
 })
 
 router.delete('/:id', async (req, res) => {
-  const query = { _id: req.params.id }
+  const query = { _id: req.params._id }
   const result = await db.deleteOne(query)
 
   try {
