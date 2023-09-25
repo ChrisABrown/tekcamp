@@ -5,7 +5,9 @@ import { items as db } from '../../server.js'
 const router = expressRouter()
 
 router.get('/', async (req, res, next) => {
-  await db.find()
+  const cursor = db.find({})
+  const allValues = await cursor.toArray()
+  res.send(allValues).status(200)
 })
 
 // router.post('/add', (req, res) => {
