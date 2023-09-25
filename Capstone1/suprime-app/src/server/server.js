@@ -1,21 +1,20 @@
-const { default: mongoose } = require('mongoose')
+import { default as mongoose } from 'mongoose'
 
-const db = require('../config/keys').mongodbURI
-const express = require('express')
-const cors = require('cors')
-const itemsRouter = require('../routes/api/items')
+import { mongodbURI as db } from '../config/keys.js'
+import express, { json } from 'express'
+import cors from 'cors'
+import itemsRouter from './routes/api/items.js'
 
 const app = express()
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 4000
 
 app.use(cors())
-app.use(express.json())
-app.use('/items', itemsRouter)
+app.use(json())
+app.use('/api/items', itemsRouter)
 
 mongoose.connect(db, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
   tlsCertificateKeyFile: 'CA.pem',
+  dbName: 'Suprime_Site',
 })
 const connection = mongoose.connection
 connection.once('open', () => {
@@ -33,3 +32,5 @@ if (process.env.NODE_ENV === 'production') {
     else res.redirect(`https://'${req.headers.host}${req.url}`)
   })
 }
+
+export const items = connection.collection('Stock')

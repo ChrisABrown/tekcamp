@@ -7,5 +7,5 @@ import {
   ITEM_LIST_SUCCESS,
 } from '../constants/itemsConstants'
 
-export const listItems = () => {}
+export const listItems = async () => {}
 export const listItemsDetails = () => {}
