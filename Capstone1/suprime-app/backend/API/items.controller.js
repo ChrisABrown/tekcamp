@@ -1,4 +1,4 @@
-import ItemsDAO from '../DAO/itemsDAO'
+import ItemsDAO from '../DAO/itemsDAO.js'
 
 export default class ItemsController {
   static async apiGetItems(req, res, next) {

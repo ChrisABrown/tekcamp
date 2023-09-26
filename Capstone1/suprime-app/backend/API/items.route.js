@@ -1,5 +1,5 @@
 import { Router as expressRouter } from 'express'
-import ItemsController from './items.controller'
+import ItemsController from './items.controller.js'
 // import Item from '../../src/server/models/Item.cjs'
 // import { items as db } from '../../src/server/server.js'
 

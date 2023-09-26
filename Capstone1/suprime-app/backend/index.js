@@ -17,9 +17,9 @@ async function main() {
   try {
     await client.connect()
     await ItemsDAO.injectDB(client)
+    // await UsersDAO.injectDB(client)
     // await OrdersDAO.injectDB(client)
     // await MessagesDAO.injectDB(client)
-    // await UsersDAO.injectDB(client)
 
     app.listen(port, () => {
       console.log(`Server is running on port: ${port}`)
