@@ -18,18 +18,16 @@ router.get('/', async (req, res) => {
   }
 })
 
-router.get('/', async (req, res) => {
-  const filter = {
-    id: `${req.params.id}`,
-  }
-  const cursor = await db.findOne(filter)
-
-  let result = {
-    success: res.status === 200 ? false : true,
-    data: cursor,
-  }
+router.get('/:id', async (req, res, next) => {
   try {
-    res.send(result).status(200)
+    let id = req.params.id || {}
+    const cursor = await db.findOne({ _id: id })
+
+    let found = {
+      success: res.status === 200 ? false : true,
+      data: cursor,
+    }
+    res.send(found).status(200)
   } catch (error) {
     res.send(error).status(400)
   }
