@@ -7,7 +7,7 @@ import {
   RouterProvider,
 } from 'react-router-dom'
 import App from './client/App.js'
-import '../src/client/css/styles.css'
+import './client/css/styles.css'
 import { Provider } from 'react-redux'
 import store from './client/store.js'
 import Error from './client/views/Error.js'

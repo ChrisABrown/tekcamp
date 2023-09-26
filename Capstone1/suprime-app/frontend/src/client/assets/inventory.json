@@ -2,48 +2,68 @@
   {
     "itemId": "Boxer Briefs 3-pack",
     "category": "Accessories",
-    "colors": ["Black", "White"],
+    "color": ["Black", "White"],
     "description": "All cotton classic boxer brief.",
     "price": 12,
-    "images": {
+    "image": {
       "black": "https://i.postimg.cc/YqQg4KJN/Boxer-briefs-black.webp",
       "white": "https://i.postimg.cc/RZ9tKpBk/Boxer-briefs-white-jpeg.webp"
     },
-    "quantity": 0,
-    "sizes": {
-      "S": "small",
-      "M": "medium",
-      "L": "large",
-      "XL": "extra-large",
-      "XXL": "extra-extra-large"
+    "quantity": 20,
+    "size": {
+      "S": {
+        "count": 5
+      },
+      "M": {
+        "count": 5
+      },
+      "L": {
+        "count": 5
+      },
+      "XL": {
+        "count": 5
+      },
+      "XXL": {
+        "count": 5
+      }
     }
   },
   {
     "itemId": "Tagless Tees 3-pack",
     "category": "Accessories",
-    "colors": ["Black", "White"],
+    "color": ["Black", "White"],
     "description": "All cotton classic crewneck tee with stamped logo on lower front.",
     "price": 12,
-    "images": {
+    "image": {
       "black": "https://i.postimg.cc/SKxztXjV/Tagless-tees-black.webp",
       "white": "https://i.postimg.cc/kgcbcNMB/Tagless-tees-white.webp"
     },
-    "quantity": 0,
-    "sizes": {
-      "S": "small",
-      "M": "medium",
-      "L": "large",
-      "XL": "extra-large",
-      "XXL": "extra-extra-large"
+    "quantity": 20,
+    "size": {
+      "S": {
+        "count": 5
+      },
+      "M": {
+        "count": 5
+      },
+      "L": {
+        "count": 5
+      },
+      "XL": {
+        "count": 5
+      },
+      "XXL": {
+        "count": 5
+      }
     }
   },
   {
     "itemId": "MoleSkin Work Jacket",
     "category": "Jackets",
-    "colors": ["Camo", "Black"],
+    "color": ["Camo", "Black"],
     "description": "Kindermann cotton moleskin with full zip closure. Patch pockets at lower front and chest with interior zip pocket. Tab adjusters at hem.",
     "price": 398,
-    "images": {
+    "image": {
       "black": {
         "front": "https://i.postimg.cc/1txTLQkR/Mole-Skin-black-front.webp",
         "back": "https://i.postimg.cc/GpTV72SS/Mole-Skin-black-back.webp",
@@ -55,22 +75,32 @@
         "detail": "https://i.postimg.cc/j2cFwJLC/Mole-Skin-detail.jpg"
       }
     },
-    "quantity": 0,
-    "sizes": {
-      "S": "small",
-      "M": "medium",
-      "L": "large",
-      "XL": "extra-large",
-      "XXL": "extra-extra-large"
+    "quantity": 20,
+    "size": {
+      "S": {
+        "count": 5
+      },
+      "M": {
+        "count": 5
+      },
+      "L": {
+        "count": 5
+      },
+      "XL": {
+        "count": 5
+      },
+      "XXL": {
+        "count": 5
+      }
     }
   },
   {
     "itemId": "Plaid Flannel Shirt",
     "category": "Shirts",
-    "colors": ["Blue", "Black", "Yellow"],
+    "color": ["Blue", "Black", "Yellow"],
     "description": "All cotton flannel with button down collar. Embroidered logo on single chest pocket.",
     "price": 158,
-    "images": {
+    "image": {
       "black": {
         "front": "https://i.postimg.cc/zBxRMJQ4/Plaid-black-front.webp",
         "detail": "https://i.postimg.cc/ryYrNwxr/Plaid-black-detail.jpg"
@@ -84,13 +114,23 @@
         "detail": "https://i.postimg.cc/dVGZFRX2/Plaid-yellow-detail.webp"
       }
     },
-    "quantity": 0,
-    "sizes": {
-      "S": "small",
-      "M": "medium",
-      "L": "large",
-      "XL": "extra-large",
-      "XXL": "extra-extra-large"
+    "quantity": 20,
+    "size": {
+      "S": {
+        "count": 5
+      },
+      "M": {
+        "count": 5
+      },
+      "L": {
+        "count": 5
+      },
+      "XL": {
+        "count": 5
+      },
+      "XXL": {
+        "count": 5
+      }
     }
   },
   {
@@ -99,27 +139,37 @@
     "color": ["Multicolor"],
     "description": "All cotton corduroy with printed pattern. Button down collar and embroidered logo on single chest pocket. Original artwork by Mark Leckey.",
     "price": 158,
-    "images": {
+    "image": {
       "front": "https://i.postimg.cc/JhqyDrRt/Printed-Shirt-front.webp",
       "back": "https://i.postimg.cc/Qx9W4ZJn/Printed-Shirt-back.webp",
       "detail": "https://i.postimg.cc/CKYBxBTW/Printed-Shirt-detail.webp"
     },
-    "quantity": 0,
-    "sizes": {
-      "S": "small",
-      "M": "medium",
-      "L": "large",
-      "XL": "extra-large",
-      "XXL": "extra-extra-large"
+    "quantity": 20,
+    "size": {
+      "S": {
+        "count": 5
+      },
+      "M": {
+        "count": 5
+      },
+      "L": {
+        "count": 5
+      },
+      "XL": {
+        "count": 5
+      },
+      "XXL": {
+        "count": 5
+      }
     }
   },
   {
     "itemId": "Dyed Stripe S/S Top",
     "category": "T-Shirts",
-    "colors": ["Multicolor", "Black"],
+    "color": ["Multicolor", "Black"],
     "description": "All cotton jersey crewneck with embroidered logo on chest.",
     "price": 78,
-    "images": {
+    "image": {
       "multicolor": {
         "front": "https://i.postimg.cc/gJmPj7pK/Dyed-front.webp",
         "detail": "https://i.postimg.cc/MHG2bjvM/Dyed-detail.webp"
@@ -129,13 +179,23 @@
         "detail": "https://i.postimg.cc/SsdbMGNb/Dyed-blue-detail.jpg"
       }
     },
-    "quantity": 0,
-    "sizes": {
-      "S": "small",
-      "M": "medium",
-      "L": "large",
-      "XL": "extra-large",
-      "XXL": "extra-extra-large"
+    "quantity": 20,
+    "size": {
+      "S": {
+        "count": 5
+      },
+      "M": {
+        "count": 5
+      },
+      "L": {
+        "count": 5
+      },
+      "XL": {
+        "count": 5
+      },
+      "XXL": {
+        "count": 5
+      }
     }
   }
 ]
