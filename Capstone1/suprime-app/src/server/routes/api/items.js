@@ -18,6 +18,23 @@ router.get('/', async (req, res) => {
   }
 })
 
+router.get('/', async (req, res) => {
+  const filter = {
+    id: `${req.params.id}`,
+  }
+  const cursor = await db.findOne(filter)
+
+  let result = {
+    success: res.status === 200 ? false : true,
+    data: cursor,
+  }
+  try {
+    res.send(result).status(200)
+  } catch (error) {
+    res.send(error).status(400)
+  }
+})
+
 router.post('/', async (req, res) => {
   const newItem = new Item({
     itemId: req.body.itemId,
@@ -30,11 +47,14 @@ router.post('/', async (req, res) => {
     description: req.body.description,
     images: req.body.images,
   })
+  const item = await newItem.save()
+  let result = {
+    success: res.status === 200 ? false : true,
+    data: item,
+  }
 
   try {
-    const result = await newItem.save()
-    console.log(`_id: ${result.id}`)
-    res.status(200).json(result)
+    res.status(200).json(result.data)
   } catch (err) {
     res.status(400).json('Error: ' + err.message)
   }
