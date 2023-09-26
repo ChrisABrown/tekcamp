@@ -1,7 +1,7 @@
 import app from './server.js'
 import mongodb from 'mongodb'
 import dotenv from 'dotenv'
-// import ItemsDAO from './dao/itemsDAO.js'
+import ItemsDAO from './DAO/itemsDAO.js'
 // import OrdersDAO from './dao/ordersDAO'
 // import UsersDAO from './dao/usersDAO'
 // import MessagesDAO from './dao/messagesDAO'
@@ -16,7 +16,7 @@ async function main() {
 
   try {
     await client.connect()
-    // await ItemsDAO.injectDB(client)
+    await ItemsDAO.injectDB(client)
     // await OrdersDAO.injectDB(client)
     // await MessagesDAO.injectDB(client)
     // await UsersDAO.injectDB(client)

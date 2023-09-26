@@ -1,12 +1,11 @@
 import { Router as expressRouter } from 'express'
+import ItemsController from './items.controller'
 // import Item from '../../src/server/models/Item.cjs'
 // import { items as db } from '../../src/server/server.js'
 
 const router = expressRouter()
 
-router.get('/', (req, res) => {
-  res.send('hello world')
-})
+router.route('/').get(ItemsController.apiGetItems)
 
 // router.get('/', async (req, res) => {
 //   const cursor = db.find({})
