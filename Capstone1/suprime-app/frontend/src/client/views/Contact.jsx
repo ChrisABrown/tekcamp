@@ -16,6 +16,7 @@ export default function Contact() {
   })
 
   const inputs = [
+    /*Join these into one: name*/
     {
       id: 1,
       name: 'firstname',

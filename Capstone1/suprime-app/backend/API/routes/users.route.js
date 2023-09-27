@@ -8,8 +8,8 @@ router.route('/').get(UsersController.apiGetUsers)
 
 router
   .route('/message')
+  .get(MessagesController.apiGetMessages)
   .post(MessagesController.apiPostMessage)
-  .put(MessagesController.apiUpdateMessage)
   .delete(MessagesController.apiDeleteMessage)
 
 export default router
