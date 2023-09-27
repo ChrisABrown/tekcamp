@@ -1,57 +1,34 @@
 {
   "name": "suprime-app",
-  "type": "module",
+  "version": "1.0.0",
+  "description": "In order to run site at root:",
   "main": "index.js",
-  "version": "0.1.0",
-  "private": true,
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
   "dependencies": {
     "@redux-devtools/extension": "^3.2.5",
     "@reduxjs/toolkit": "^1.9.6",
-    "@testing-library/jest-dom": "^6.1.3",
-    "@testing-library/react": "^14.0.0",
-    "@testing-library/user-event": "^14.5.1",
     "axios": "^1.5.1",
-    "body-parser": "^1.20.2",
-    "concurrently": "^8.2.1",
-    "cors": "^2.8.5",
-    "express": "^4.18.2",
     "moment": "^2.29.4",
-    "mongodb": "^6.1.0",
     "mongoose": "^7.5.3",
+    "nodemon": "^3.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-redux": "^8.1.2",
     "react-router-dom": "^6.16.0",
-    "react-scripts": "^5.0.1",
     "redux": "^4.2.1"
   },
   "scripts": {
-    "start": "NODE_ENV=production node ./src/index.js --trace warnings",
-    "server": "NODE_ENV=development node ./src/server/server.js",
+    "start": "NODE_ENV=production node ./frontend/src/index.js",
+    "server": "NODE_ENV=development nodemon ./backend/index.js",
     "live": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
   "devDependencies": {
-    "nodemon": "^3.0.1"
+    "nodemon": "^3.0.1",
+    "react-scripts": "^5.0.1"
   }
 }
