@@ -5,9 +5,8 @@ const SKU = crypto.randomBytes(6).toString('hex')
 
 export default class ItemsDAO {
   static async injectDB(conn) {
-    if (items) {
-      return
-    }
+    if (items) return
+
     try {
       items = await conn.db(process.env.SUPRIME_DB_NS).collection('Stock')
     } catch (e) {

@@ -1,9 +1,9 @@
 import MessagesDAO from '../../DAO/messagesDAO.js'
-import Message from '../../DAO/models/Message.cjs'
-
 export default class MessagesController {
   static async apiPostMessage(req, res, next) {
     try {
+      const orderNum = req.body.orderNum
+      const date = new Date()
       const messType = req.body.messageType
       const userInfo = {
         name: req.body.name,
@@ -12,19 +12,13 @@ export default class MessagesController {
       }
       const messageBody = req.body.messageBody
 
-      const orderNumber = await Message.findOne({ _id: req.body._id })
-        .populate('order')
-        .exec()
-
-      const MessageResponse = await MessagesDAO.addMessage(
-        new Message({
-          order: orderNumber,
-          messageType: messType,
-          messageBody: messageBody,
-          user: userInfo,
-          createdOn: new Date(),
-        })
-      )
+      const MessageResponse = await MessagesDAO.addMessage({
+        orderNum,
+        messType,
+        messageBody,
+        date,
+        userInfo,
+      })
 
       req.json({ status: 'success' })
     } catch (e) {
@@ -32,7 +26,30 @@ export default class MessagesController {
     }
   }
 
-  static async apiGetMessage(req, res, next) {}
+  static async apiGetMessage(req, res, next) {
+    const messagesPerPage = req.query.messagesPerPage
+      ? parseInt(req.query.messagesPerPage)
+      : 10
+    const page = req.query.pge ? parseInt(req.query.page) : 0
+
+    let filters = {}
+    if (req.query.messageType) {
+      filters.messageType = req.query.messageType
+    }
+    const { messagesList, totalNumMessages } =
+      await MessagesDAO.apiGetMessagesByType({ filters, page, messagesPerPage })
+
+    let response = {
+      messages: messagesList,
+      page: page,
+      filters: filters,
+      messagesPerPage: messagesPerPage,
+      totalNumMessages: totalNumMessages,
+    }
+
+    res.json(response)
+  }
+
   static async apiDeleteMessage(req, res, next) {
     try {
       const messageId = req.body.message_id
