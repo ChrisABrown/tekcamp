@@ -1,4 +1,6 @@
 import Message from './models/Message.cjs'
+import mongodb from 'mongodb'
+const ObjectId = mongodb.ObjectId
 
 let messages
 
@@ -9,7 +11,9 @@ export default class MessagesDAO {
     try {
       messages = await conn.db(process.env.SUPRIME_DB_NS).collection('Messages')
     } catch (e) {
-      console.error(`unable to connect in MessagesDAO: ${e}`)
+      console.error(
+        `unable to establish connection handle in MessagesDAO: ${e}`
+      )
     }
   }
   static async apiGetMessagesByType({
@@ -62,14 +66,33 @@ export default class MessagesDAO {
     } catch (error) {}
   }
 
-  static async addMessage(message = {}) {
-    message = new Message()
+  static async addMessage(order, messType, messageBody, date, userInfo) {
+    const message = new Message({
+      messageType: messType,
+      order: order._id,
+      user: userInfo._id,
+      messageBody: messageBody,
+      createdOn: date,
+    })
     try {
-      const result = await Message.create(message)
-      return { result }
+      return await Message.create(message)
     } catch (e) {
       console.error(`Unable to issue create command, ${e}`)
-      return { result: {} }
+      return { error: e }
+    }
+  }
+
+  static async deleteMessage(messageId, userId) {
+    try {
+      const deleteResponse = await Message.deleteOne({
+        _id: ObjectId(messageId),
+        user: ObjectId(userId),
+      })
+
+      return deleteResponse
+    } catch (e) {
+      console.error(`unable to delete review: ${e}`)
+      return { error: e }
     }
   }
 }

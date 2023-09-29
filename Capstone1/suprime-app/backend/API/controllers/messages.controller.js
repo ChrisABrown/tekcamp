@@ -1,8 +1,9 @@
 import MessagesDAO from '../../DAO/messagesDAO.js'
+
 export default class MessagesController {
   static async apiPostMessage(req, res, next) {
     try {
-      const orderNum = req.body.orderNum
+      const order = req.body.order
       const date = new Date()
       const messType = req.body.messageType
       const userInfo = {
@@ -12,14 +13,13 @@ export default class MessagesController {
       }
       const messageBody = req.body.messageBody
 
-      const MessageResponse = await MessagesDAO.addMessage({
-        orderNum,
+      const MessageResponse = await MessagesDAO.addMessage(
+        order,
         messType,
         messageBody,
         date,
-        userInfo,
-      })
-
+        userInfo
+      )
       req.json({ status: 'success' })
     } catch (e) {
       res.status(500).json({ error: e.message })
@@ -55,10 +55,7 @@ export default class MessagesController {
       const messageId = req.body.message_id
       const userId = req.body.user_id
 
-      const MessageResponse = await MessagesDAO.apiDeleteMessage(
-        messageId,
-        userId
-      )
+      const MessageResponse = await MessagesDAO.deleteMessage(messageId, userId)
 
       res.json({ status: 'success' })
     } catch (e) {

@@ -1,4 +1,5 @@
 import crypto from 'crypto'
+import Item from './models/Item.cjs'
 
 let items
 const SKU = crypto.randomBytes(6).toString('hex')
@@ -62,6 +63,26 @@ export default class ItemsDAO {
     } catch (e) {
       console.error(`Unable to find item with the SKU: ${sku}`)
       throw e
+    }
+  }
+
+  static async postItem({ item }) {
+    try {
+      item = new Item({
+        category: item.category,
+        itemId: item.itemId,
+        SKU: SKU,
+        colors: item.colors,
+        images: item.images,
+        quantity: item.quantity,
+        price: item.price,
+        description: item.description,
+        sizes: item.sizes,
+      })
+      return await Item.create(item)
+    } catch (e) {
+      console.error(`unable to post item: ${e}`)
+      return { error: e }
     }
   }
 }
