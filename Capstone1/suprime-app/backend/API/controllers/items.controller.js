@@ -64,10 +64,9 @@ export default class ItemsController {
         description: req.body.description,
         sizes: req.body.sizes,
       }
-      const itemId = await item._id
       const userId = req.body.user_id
 
-      const ItemResponse = await ItemsDAO.updateItem(itemId, item, userId)
+      const ItemResponse = await ItemsDAO.updateItem(item, userId)
 
       let { error } = ItemResponse
       if (error) res.status.json({ error })

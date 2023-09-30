@@ -66,6 +66,14 @@ export default class ItemsDAO {
     }
   }
 
+  static async updateItem(item, userId) {
+    try {
+      item = await Item.findOne(item)
+      if(userId)
+      const updatedItem = await Item.findByIdAndUpdate(item._id)
+    } catch (error) {}
+  }
+
   static async postItem({ item }) {
     try {
       item = new Item({
@@ -83,6 +91,16 @@ export default class ItemsDAO {
     } catch (e) {
       console.error(`unable to post item: ${e}`)
       return { error: e }
+    }
+  }
+
+  static async deleteItem(itemId, userId) {
+    try {
+      const item = await Item.findById(itemId)
+      const user = await User.findById(userId)
+      if (user.isAdmin) return `Successfully deleted item: ${item}`.next()
+    } catch (e) {
+      console.error(`unable to delete item. User must be an admin to delete`)
     }
   }
 }
