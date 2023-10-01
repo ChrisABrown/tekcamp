@@ -4,13 +4,13 @@ import dotenv from 'dotenv'
 import ItemsDAO from './DAO/itemsDAO.js'
 // import OrdersDAO from './dao/ordersDAO'
 // import UsersDAO from './dao/usersDAO'
-import MessagesDAO from './DAO/messagesDAO'
+import MessagesDAO from './DAO/messagesDAO.js'
 
 async function main() {
   dotenv.config()
 
   const client = new mongodb.MongoClient(process.env.SUPRIME_DB_URI, {
-    tlsCertificateKeyFile: '../CA.pem',
+    tlsCertificateKeyFile: 'CA.pem',
   })
   const port = process.env.PORT || 4040
 

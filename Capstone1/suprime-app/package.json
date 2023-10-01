@@ -26,8 +26,8 @@
     "redux": "^4.2.1"
   },
   "scripts": {
-    "start": "NODE_ENV=production node ./src/index.js --trace warnings",
-    "server": "NODE_ENV=development node ./src/server/server.js",
+    "start": "NODE_ENV=production node ./frontend/src/index.js --trace warnings",
+    "server": "NODE_ENV=development node ./backend/index.js",
     "live": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
