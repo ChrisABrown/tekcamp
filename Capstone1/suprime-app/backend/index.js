@@ -10,7 +10,7 @@ async function main() {
   dotenv.config()
 
   const client = new mongodb.MongoClient(process.env.SUPRIME_DB_URI, {
-    tlsCertificateKeyFile: 'CA.pem',
+    tlsCertificateKeyFile: '../CA.pem',
   })
   const port = process.env.PORT || 4040
 
