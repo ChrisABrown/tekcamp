@@ -23,7 +23,7 @@ export default function App() {
   const { loading, error, items } = itemList
 
   useEffect(() => {
-    dispatch(listItems())
+    dispatch(listItems)
   }, [dispatch])
 
   // const { sku } = useParams()
@@ -59,6 +59,7 @@ export default function App() {
         <Route />
         <Route />
       </Routes>
+      <Outlet />
     </>
   )
 }

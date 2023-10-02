@@ -9,8 +9,8 @@ import {
 import DataService from '../services/data.service.js'
 import { tryCatchWrapper as wrapFn } from '../../wrapperFn.js'
 
-export const listItems = () =>
-  wrapFn(async (dispatch, res, next) => {
+export const listItems = (dispatch) =>
+  wrapFn(async (res, next) => {
     dispatch({ type: ITEM_LIST_REQUEST })
     res = await DataService.fetchItems()
     console.log(res)

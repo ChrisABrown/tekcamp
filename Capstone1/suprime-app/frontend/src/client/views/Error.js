@@ -1,6 +1,5 @@
 import React from 'react'
 import Logo from '../components/Logo.js'
-import '../css/error.css'
 
 export default function Error() {
   return (

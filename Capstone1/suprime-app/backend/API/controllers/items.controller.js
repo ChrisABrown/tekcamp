@@ -1,6 +1,6 @@
 import ItemsDAO from '../../DAO/itemsDAO.js'
 import AppError from '../../appError.js'
-import { tryCatchWrapper as wrapperFn } from '../../../wrapperFn.js'
+import { tryCatchWrapper as wrapperFn } from '../../wrapperFn.js'
 
 export default class ItemsController {
   static async apiGetItems(req, res, next) {
