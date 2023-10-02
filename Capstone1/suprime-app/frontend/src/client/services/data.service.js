@@ -11,15 +11,16 @@ const axiosInstance = axios.create({
   },
 })
 
-const fetchItems = () =>
-  wrapFn(async (res, next) => {
-    let items
-    if (items) return
-    items = await axiosInstance.get(itemsEndpoint)
-    res = items
-    next()
-    return res
-  })
+const fetchItems = async () => {
+  // wrapFn(async (res, next) => {
+  try {
+    return await axiosInstance.get(`${URL}${itemsEndpoint}`).then((res) => {
+      return res.data.items
+    })
+  } catch (error) {
+    Promise.reject(error)
+  }
+}
 
 const fetchItemBySku = (sku) =>
   wrapFn(async (res, next) => {

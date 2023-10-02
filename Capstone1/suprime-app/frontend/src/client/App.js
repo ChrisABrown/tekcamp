@@ -23,7 +23,7 @@ export default function App() {
   const { loading, error, items } = itemList
 
   useEffect(() => {
-    dispatch(listItems)
+    dispatch(listItems())
   }, [dispatch])
 
   // const { sku } = useParams()
@@ -33,28 +33,12 @@ export default function App() {
       <Routes>
         <Route
           path='/'
-          element={
-            <Home
-              key={items._id}
-              items={items}
-              loading={loading}
-              error={error}
-              exact
-            />
-          }
+          element={<Home items={items} loading={loading} error={error} exact />}
         />
         <Route path='/about' element={<About navigate={navigate} />} />
         <Route
           path='/shop'
-          element={
-            <Shop
-              key={items._id}
-              items={items}
-              loading={loading}
-              error={error}
-              exact
-            />
-          }
+          element={<Shop items={items} loading={loading} error={error} exact />}
         />
         <Route />
         <Route />
