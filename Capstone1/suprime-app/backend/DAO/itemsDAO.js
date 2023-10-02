@@ -66,13 +66,13 @@ export default class ItemsDAO {
     }
   }
 
-  static async updateItem(item, userId) {
-    try {
-      item = await Item.findOne(item)
-      // if(userId)
-      // const updatedItem = await Item.findByIdAndUpdate(item._id)
-    } catch (error) {}
-  }
+  // static async updateItem(item, userId) {
+  //   try {
+  //     item = await Item.findOne(item)
+  //     // if(userId)
+  //     // const updatedItem = await Item.findByIdAndUpdate(item._id)
+  //   } catch (error) {}
+  // }
 
   static async postItem({ item }) {
     try {

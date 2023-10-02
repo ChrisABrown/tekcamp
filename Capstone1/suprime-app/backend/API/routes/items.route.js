@@ -1,11 +1,15 @@
 import { Router as expressRouter } from 'express'
 import ItemsController from '../controllers/items.controller.js'
-// import Item from '../../src/server/models/Item.cjs'
-// import { items as db } from '../../src/server/server.js'
 
 const router = expressRouter()
+const base = '/'
 
-router.route('/').get(ItemsController.apiGetItems)
+router
+  .get(base, ItemsController.apiGetItems)
+  .get(base + '/sku', ItemsController.apiGetItemBySku)
+  .post(base, ItemsController.apiPostItem)
+  // .put(base)
+  .delete(base, ItemsController.apiDeleteItem)
 
 // router.get('/', async (req, res) => {
 //   const cursor = db.find({})

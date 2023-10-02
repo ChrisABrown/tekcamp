@@ -11,20 +11,22 @@ const axiosInstance = axios.create({
   },
 })
 
-const fetchItems = wrapFn(async (next) => {
-  let items
-  if (items) return
-  items = await axiosInstance.get(itemsEndpoint)
-  next()
-  return items
-})
+const fetchItems = () =>
+  wrapFn(async (next) => {
+    let items
+    if (items) return
+    items = await axiosInstance.get(itemsEndpoint)
+    next()
+    return items
+  })
 
-const fetchItemBySku = wrapFn(async (sku, next) => {
-  let item
-  item = await axiosInstance.get(itemsEndpoint + `/${sku}`)
-  next()
-  return item
-})
+const fetchItemBySku = (sku) =>
+  wrapFn(async (next) => {
+    let item
+    item = await axiosInstance.get(itemsEndpoint + `/${sku}`)
+    next()
+    return item
+  })
 
 const DataService = {
   fetchItems,
