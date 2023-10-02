@@ -5,9 +5,9 @@ import {
   ITEM_LIST_FAIL,
   ITEM_LIST_REQUEST,
   ITEM_LIST_SUCCESS,
-} from '../constants/itemsConstants'
+} from '../constants/itemsConstants.js'
 
-export const itemListReducer = (state = { items: [] }, action) => {
+export const itemsListReducer = (state = { items: [] }, action) => {
   switch (action.type) {
     case ITEM_LIST_REQUEST:
       return { loading: true, items: [] }
@@ -20,7 +20,7 @@ export const itemListReducer = (state = { items: [] }, action) => {
   }
 }
 
-export const itemDetailsReducer = (state = { items: {} }, action) => {
+export const itemDetailsReducer = (state = { item: {} }, action) => {
   switch (action.type) {
     case ITEM_DETAILS_REQUEST:
       return { loading: true, ...state }
@@ -29,5 +29,6 @@ export const itemDetailsReducer = (state = { items: {} }, action) => {
     case ITEM_DETAILS_FAIL:
       return { loading: false, error: action.payload }
     default:
+      return state
   }
 }

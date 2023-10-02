@@ -9,7 +9,7 @@ import {
   useParams,
   useSearchParams,
 } from 'react-router-dom'
-import { listItems } from './actions/itemActions'
+import { listItems } from './actions/itemActions.js'
 import Home from './views/Home.js'
 import About from './views/About.js'
 import Shop from './views/Shop.js'

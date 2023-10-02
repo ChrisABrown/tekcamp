@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { tryCatchWrapper as wrapFn } from '../../../../wrapperFn'
+import { tryCatchWrapper as wrapFn } from '../../wrapperFn'
 
 export const URL = 'http://localhost:4000/'
 const itemsEndpoint = 'api/v1/items'
