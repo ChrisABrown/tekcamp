@@ -15,6 +15,16 @@ app.use('/api/v1/users', usersRouter)
 app.use('*', (req, res) => {
   res.status(404).json({ error: 'not found' })
 })
+app.use((err, req, res, next) => {
+  err.status = err.status || 'fail'
+  err.statusCode = err.statusCode || 500
+
+  res.status(err.statusCode).json({
+    status: err.status,
+    message: transformMessage(err.message),
+    stack: process.env.NODE_ENV === 'development' ? err.stack : undefined,
+  })
+})
 
 const config = {
   authRequired: false,

@@ -6,6 +6,10 @@ import {
   ITEM_LIST_REQUEST,
   ITEM_LIST_SUCCESS,
 } from '../constants/itemsConstants'
+import DataService from './services/data.service.js'
+import {tryCatchWrapper as wrapFn} from '../../../../wrapperFn'
 
-export const listItems = async () => {}
+export const listItems = async wrapFn((dispatch) => {
+  
+})
 export const listItemsDetails = () => {}

@@ -1,4 +1,6 @@
 import ItemsDAO from '../../DAO/itemsDAO.js'
+import AppError from '../../appError.js'
+import { tryCatchWrapper as wrapperFn } from '../../../wrapperFn.js'
 
 export default class ItemsController {
   static async apiGetItems(req, res, next) {
@@ -27,30 +29,36 @@ export default class ItemsController {
     }
     res.json(response)
   }
+  static apiGetItemBySku = wrapperFn(async (req, res, next) => {
+    let item
+    let sku = req.body.sku
+    item = await ItemsDAO.getItemBySKU(sku)
+    next(new AppError(`Unable to find item with the sku: ${sku}`, 404))
 
-  static async apiPostItem(req, res, next) {
-    try {
-      const item = {
-        category: req.body.category,
-        itemId: req.body.itemId,
-        SKU: req.body.SKU,
-        colors: req.body.colors,
-        images: req.body.images,
-        quantity: req.body.quantity,
-        price: req.body.price,
-        description: req.body.description,
-        sizes: req.body.sizes,
-      }
-      const userInfo = {
-        name: req.body.name,
-        userId: req.body.user_id,
-      }
-      const ItemResponse = await ItemsDAO.postItem(item, userInfo)
-      res.json({ status: 'success' })
-    } catch (e) {
-      res.status(500).json({ error: e.message })
+    res.json(item)
+  })
+  //Backend: test posting to see if functionality remains
+  static apiPostItem = wrapperFn(async (req, res, next) => {
+    const item = {
+      category: req.body.category,
+      itemId: req.body.itemId,
+      SKU: req.body.SKU,
+      colors: req.body.colors,
+      images: req.body.images,
+      quantity: req.body.quantity,
+      price: req.body.price,
+      description: req.body.description,
+      sizes: req.body.sizes,
     }
-  }
+    const userInfo = {
+      name: req.body.name,
+      userId: req.body.user_id,
+    }
+    const ItemResponse = await ItemsDAO.postItem(item, userInfo)
+    res.json({ status: 'success' })
+
+    next(new AppError('Unable to post item', 404))
+  })
 
   static async apiUpdateItem(req, res, next) {
     try {
