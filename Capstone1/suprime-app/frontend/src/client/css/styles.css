@@ -1,5 +1,6 @@
 @import 'error.css';
 @import 'forms.css';
+@import 'shop.css';
 
 * {
   margin: 0;
@@ -78,57 +79,6 @@
   color: black;
 }
 
-.shop-page {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.shop-tabs {
-  display: flex;
-  flex-flow: row;
-  justify-content: space-between;
-}
-.shop-tabs a {
-  text-decoration: none;
-  color: black;
-  padding: 0.7em;
-  margin-top: 3em;
-  margin-bottom: 1em;
-}
-.shop-tabs a:active {
-  color: red;
-}
-.shop-tabs a:hover {
-  color: red;
-}
-
-.item-grid {
-  display: flex;
-  flex-flow: row wrap;
-  align-items: center;
-  justify-content: center;
-}
-#shop-logo {
-  display: flex;
-  flex-flow: row;
-  align-items: center;
-  justify-content: center;
-}
-#products-grid {
-  display: inline;
-
-  margin-left: 10em;
-}
-.product-details {
-  display: flex;
-  flex-flow: column;
-  align-items: center;
-  justify-content: center;
-  width: 15em;
-  font-size: 0.8em;
-  margin: 2em;
-  padding: auto;
-}
 #no-show {
   display: none;
 }

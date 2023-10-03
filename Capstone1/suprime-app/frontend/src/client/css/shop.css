@@ -1,0 +1,35 @@
+.shop-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.shop-grid {
+  display: grid;
+  grid-template-areas:
+    'hd hd hd hd hd'
+    'nav main main main main'
+    'main main main main main'
+    'main main main main main';
+}
+.shop-tabs {
+  grid-area: hd;
+}
+.shop-tabs a {
+  text-decoration: none;
+  color: black;
+  padding: 0.7em;
+  margin-top: 3em;
+  margin-bottom: 1em;
+}
+.shop-tabs a:active {
+  color: red;
+}
+.shop-tabs a:hover {
+  color: red;
+}
+#shop-logo {
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  justify-content: center;
+}

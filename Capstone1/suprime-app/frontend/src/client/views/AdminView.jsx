@@ -1,6 +1,5 @@
 import React from "react";
 import Logo from "../../Logo/Logo";
-import { Login } from "./Login";
 import FormInputs from "./FormInputs";
 import "./forms.css";
 
@@ -14,7 +13,6 @@ function AdminView(props) {
         <FormInputs />
         <label className="admin-userpassword">userpassword</label>
         <FormInputs />
-        <Login />
       </div>
     </div>
   );
