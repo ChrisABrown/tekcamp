@@ -2,7 +2,7 @@ import express from 'express'
 import cors from 'cors'
 import router from './API/routes/items.route.js'
 import router2 from './API/routes/users.route.js'
-import auth from 'express-openid-connect'
+// import auth from 'express-openid-connect'
 
 const app = express()
 const itemsRouter = router

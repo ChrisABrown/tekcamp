@@ -20,7 +20,7 @@ export default function Shop({ items }) {
         <Logo />
       </div>
 
-      <div>
+      <div className='shop-grid'>
         {items
           .filter((item) => {
             switch (searchItem === '') {

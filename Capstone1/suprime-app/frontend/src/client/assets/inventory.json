@@ -64,16 +64,12 @@
     "description": "Kindermann cotton moleskin with full zip closure. Patch pockets at lower front and chest with interior zip pocket. Tab adjusters at hem.",
     "price": 398,
     "image": {
-      "black": {
-        "front": "https://i.postimg.cc/1txTLQkR/Mole-Skin-black-front.webp",
-        "back": "https://i.postimg.cc/GpTV72SS/Mole-Skin-black-back.webp",
-        "detail": "https://i.postimg.cc/9MGS2k2d/Mole-Skin-black-detail.jpg"
-      },
-      "camo": {
-        "front": "https://i.postimg.cc/Y2zVyTbk/Mole-Skin-front.webp",
-        "back": "https://i.postimg.cc/QChzdqNR/Mole-Skin-back.webp",
-        "detail": "https://i.postimg.cc/j2cFwJLC/Mole-Skin-detail.jpg"
-      }
+      "black-front": "https://i.postimg.cc/1txTLQkR/Mole-Skin-black-front.webp",
+      "black-back": "https://i.postimg.cc/GpTV72SS/Mole-Skin-black-back.webp",
+      "black-detail": "https://i.postimg.cc/9MGS2k2d/Mole-Skin-black-detail.jpg",
+      "camo-front": "https://i.postimg.cc/Y2zVyTbk/Mole-Skin-front.webp",
+      "camo-back": "https://i.postimg.cc/QChzdqNR/Mole-Skin-back.webp",
+      "camo-detail": "https://i.postimg.cc/j2cFwJLC/Mole-Skin-detail.jpg"
     },
     "quantity": 20,
     "size": {
@@ -101,18 +97,12 @@
     "description": "All cotton flannel with button down collar. Embroidered logo on single chest pocket.",
     "price": 158,
     "image": {
-      "black": {
-        "front": "https://i.postimg.cc/zBxRMJQ4/Plaid-black-front.webp",
-        "detail": "https://i.postimg.cc/ryYrNwxr/Plaid-black-detail.jpg"
-      },
-      "blue": {
-        "front": "https://i.postimg.cc/XqhBjs48/Plaid-blue-front.webp",
-        "detail": "https://i.postimg.cc/vHJxC2P8/Plaid-blue-detail.webp"
-      },
-      "yellow": {
-        "front": "https://i.postimg.cc/mkhFWvfk/Plaid-yellow-front.webp",
-        "detail": "https://i.postimg.cc/dVGZFRX2/Plaid-yellow-detail.webp"
-      }
+      "black-front": "https://i.postimg.cc/zBxRMJQ4/Plaid-black-front.webp",
+      "black-detail": "https://i.postimg.cc/ryYrNwxr/Plaid-black-detail.jpg",
+      "blue-front": "https://i.postimg.cc/XqhBjs48/Plaid-blue-front.webp",
+      "blue-detail": "https://i.postimg.cc/vHJxC2P8/Plaid-blue-detail.webp",
+      "yellow-front": "https://i.postimg.cc/mkhFWvfk/Plaid-yellow-front.webp",
+      "yellow-detail": "https://i.postimg.cc/dVGZFRX2/Plaid-yellow-detail.webp"
     },
     "quantity": 20,
     "size": {
@@ -170,14 +160,10 @@
     "description": "All cotton jersey crewneck with embroidered logo on chest.",
     "price": 78,
     "image": {
-      "multicolor": {
-        "front": "https://i.postimg.cc/gJmPj7pK/Dyed-front.webp",
-        "detail": "https://i.postimg.cc/MHG2bjvM/Dyed-detail.webp"
-      },
-      "black": {
-        "front": "https://i.postimg.cc/yNFHVHMd/Dyed-blue-front.webp",
-        "detail": "https://i.postimg.cc/SsdbMGNb/Dyed-blue-detail.jpg"
-      }
+      "multicolor-front": "https://i.postimg.cc/gJmPj7pK/Dyed-front.webp",
+      "multicolor-detail": "https://i.postimg.cc/MHG2bjvM/Dyed-detail.webp",
+      "black-front": "https://i.postimg.cc/yNFHVHMd/Dyed-blue-front.webp",
+      "black-detail": "https://i.postimg.cc/SsdbMGNb/Dyed-blue-detail.jpg"
     },
     "quantity": 20,
     "size": {
