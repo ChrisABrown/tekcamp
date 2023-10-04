@@ -1,4 +1,7 @@
-export default function Product({ item, imgSrc, size, alt }) {
+import { Link } from 'react-router-dom'
+import Home from '../views/Home'
+
+export default function Product({ item, imgSrc, size, alt, navigate }) {
   const itemURL = `/${item.sku}`
 
   function handleClick(e) {
@@ -7,12 +10,20 @@ export default function Product({ item, imgSrc, size, alt }) {
   }
 
   let sources = Object.keys(imgSrc)
+  function renderImages() {
+    for (let i = 0; i <= sources.length; i++) {
+      console.log(imgSrc[sources[i]])
+      return imgSrc[sources[i]]
+    }
+  }
 
   return (
     <>
       <figure className='product-box'>
-        <img src={imgSrc[sources[0]]} alt={alt} />
-        <p>${item.price}</p>
+        <Link to=''>
+          <img src={renderImages()} alt={alt} />
+        </Link>
+        <p className='shop-price'>${item.price}</p>
       </figure>
     </>
   )

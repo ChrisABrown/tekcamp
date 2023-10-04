@@ -38,7 +38,15 @@ export default function App() {
         <Route path='/about' element={<About navigate={navigate} />} />
         <Route
           path='/shop'
-          element={<Shop items={items} loading={loading} error={error} exact />}
+          element={
+            <Shop
+              items={items}
+              loading={loading}
+              error={error}
+              navigate={navigate}
+              exact
+            />
+          }
         />
         <Route />
         <Route />

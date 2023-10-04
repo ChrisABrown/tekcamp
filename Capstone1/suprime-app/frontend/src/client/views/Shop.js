@@ -5,7 +5,7 @@ import Footer from '../components/Footer.js'
 import Logo from '../components/Logo.js'
 import '../css/styles.css'
 
-export default function Shop({ items }) {
+export default function Shop({ loading, error, navigate, items }) {
   const [searchItem, setSearchItem] = useState('')
 
   return (
@@ -38,6 +38,7 @@ export default function Shop({ items }) {
               imgSrc={item.image}
               sizes={item.size}
               alt={item.description}
+              navigate={navigate}
             />
           ))}
       </div>
