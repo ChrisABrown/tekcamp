@@ -15,7 +15,7 @@ export default function Cart(props) {
             purchases={cartItems}
             addToCart={addToCart}
             removeFromCart={removeFromCart}
-          ></CartItem>
+          />
         </div>
       </aside>
     </div>

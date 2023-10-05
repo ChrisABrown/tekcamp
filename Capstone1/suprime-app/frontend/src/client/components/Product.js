@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom'
 import Home from '../views/Home'
 
-export default function Product({ item, imgSrc, size, alt, navigate }) {
+export default function Product(props) {
+  const { item, imgSrc, size, price, alt, navigate } = props
   const itemURL = `/${item.sku}`
 
   function handleClick(e) {
