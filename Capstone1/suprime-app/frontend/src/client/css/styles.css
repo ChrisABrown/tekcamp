@@ -1,7 +1,6 @@
 @import 'error.css';
 @import 'forms.css';
 @import 'shop.css';
-
 * {
   margin: 0;
   padding: 0;
@@ -67,12 +66,11 @@
   color: black;
 }
 
-.footer {
-  width: 90vw;
+footer {
   display: flex;
   flex-flow: row;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 .footer-links {
   text-decoration: none;

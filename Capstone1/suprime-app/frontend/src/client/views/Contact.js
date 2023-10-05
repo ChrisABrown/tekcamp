@@ -1,10 +1,9 @@
 import React from 'react'
 import { useState } from 'react'
-import './forms.css'
-// import "../../styles.css";
-import Logo from '../Logo/Logo'
-import Footer from '../Footer'
-import FormInputs from '../Components/FormInputs'
+import '../css/styles.css'
+import Logo from '../components/Logo'
+import Footer from '../components/Footer'
+import FormInputs from '../components/FormInputs.js'
 
 export default function Contact() {
   const [vals, setVals] = useState({
@@ -49,7 +48,7 @@ export default function Contact() {
       id: 4,
       name: 'ordernumber',
       type: 'text',
-      placeholder: 'ordernumber',
+      placeholder: 'order#',
       required: false,
       pattern: '^[A-Za-z]{2}[0-9]+US$',
       errMessage: 'Order number incorrect',
@@ -64,12 +63,12 @@ export default function Contact() {
   }
 
   return (
-    <div className='contact-page'>
+    <>
       <div id='cont-logo'>
         <Logo />
-        <h4>contact form</h4>
+        <h4>contact us</h4>
       </div>
-      <div id='form'>
+      <div className='contact-page'>
         <form onSubmit={handleSend}>
           {inputs.map((input) => (
             <FormInputs
@@ -93,7 +92,7 @@ export default function Contact() {
             cols='41'
             rows='10'
             placeholder='message...'
-          ></textarea>
+          />
           <div id='btn-contnr'>
             <button id='cont-btn' onClick={handleSend}>
               send
@@ -101,9 +100,7 @@ export default function Contact() {
           </div>
         </form>
       </div>
-      <div id='cont-ftr'>
-        <Footer />
-      </div>
-    </div>
+      <Footer />
+    </>
   )
 }

@@ -13,6 +13,9 @@ import { listItems } from './actions/itemActions.js'
 import Home from './views/Home.js'
 import About from './views/About.js'
 import Shop from './views/Shop.js'
+import Contact from './views/Contact.js'
+import ProductDetails from './views/ProductDetails.js'
+import Cart from './views/Cart.js'
 
 export default function App() {
   const location = useLocation()
@@ -48,8 +51,10 @@ export default function App() {
             />
           }
         />
-        <Route />
-        <Route />
+
+        <Route path='/shop/:sku' element={<ProductDetails />} />
+        <Route path='/cart' element={<Cart />} />
+        <Route path='/contact' element={<Contact />} />
       </Routes>
       <Outlet />
     </>

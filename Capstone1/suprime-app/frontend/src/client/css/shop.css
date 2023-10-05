@@ -4,12 +4,10 @@
   justify-content: center;
 }
 .shop-grid {
-  display: grid;
-  grid-template-areas:
-    'hd hd hd hd hd'
-    'nav main main main main'
-    'main main main main main'
-    'main main main main main';
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-flow: row wrap;
 }
 .shop-tabs {
   grid-area: hd;
@@ -32,4 +30,22 @@
   flex-flow: row;
   align-items: center;
   justify-content: center;
+}
+.product-box {
+  display: grid;
+  padding: 30px;
+  grid-template-columns: repeat(2, 40vh);
+  grid-template-areas:
+    '. . prod prod . .'
+    '. . prod prod info .';
+}
+img {
+  height: 40vh;
+  grid-area: prod;
+}
+.product-price {
+  grid-area: info;
+}
+.product-description {
+  grid-area: info;
 }

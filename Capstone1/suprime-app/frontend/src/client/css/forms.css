@@ -73,18 +73,11 @@
   justify-content: center;
 }
 form {
-  height: 55em;
+  height: 30em;
   display: flex;
   flex-flow: column;
   align-items: center;
   justify-content: center;
-}
-#cont-footer {
-  display: flex;
-  flex-flow: column;
-  align-items: flex-end;
-  justify-content: center;
-  padding: auto;
 }
 
 #textarea {
@@ -109,7 +102,7 @@ form {
   margin-bottom: auto;
   color: firebrick;
 }
-input:invalid[focus="true"] ~ span {
+input:invalid[focus='true'] ~ span {
   display: block;
 }
 .admin {

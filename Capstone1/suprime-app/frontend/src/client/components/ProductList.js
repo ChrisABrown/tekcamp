@@ -3,6 +3,7 @@ import Product from './Product'
 
 export default function ProductList(props) {
   const { items, navigate } = props
+
   return (
     <>
       {items.map((item) => {
@@ -12,7 +13,6 @@ export default function ProductList(props) {
             item={item}
             imgSrc={item.image}
             color={item.color}
-            ssssssssssss2wqwq2w2rjnbhglk
             size={item.size}
             price={item.price}
             alt={item.description}

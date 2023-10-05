@@ -1,12 +1,13 @@
-import React from "react";
+import React from 'react'
+import FormInputs from '../components/FormInputs'
 
-export const Admin = ({ items }) => {
+export const AdminDashboard = (props) => {
   return (
     <div>
       {props.stock.map(({ item_name, quantity, price, SKU }) => {
         return (
-          <div className="inventory">
-            <ul id="admin_list">
+          <div className='inventory'>
+            <ul id='admin_list'>
               <li>
                 {item_name}
                 <FormInputs />
@@ -21,8 +22,8 @@ export const Admin = ({ items }) => {
               </li>
             </ul>
           </div>
-        );
+        )
       })}
     </div>
-  );
-};
+  )
+}
