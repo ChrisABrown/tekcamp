@@ -48,6 +48,7 @@
   text-decoration: none;
   border: none;
   padding: 0.6em;
+  margin-bottom: 4em;
   cursor: pointer;
 }
 .contact-page {
@@ -64,6 +65,7 @@
 }
 
 form {
+  min-height: 100vh;
   font-size: 0.8em;
   display: flex;
   flex-flow: column;
@@ -72,23 +74,28 @@ form {
 }
 
 textarea {
+  opacity: 50%;
   display: flex;
   align-items: center;
-  padding: 1em;
-  margin: 1em;
+  /* padding: 1em; */
+  /* margin: 1em; */
 }
 
 input {
+  opacity: 50%;
   text-align: center;
   border-left: 0;
   border-right: 0;
   border-top: 0;
 }
+select {
+  opacity: 50%;
+}
 
 .input-rows {
   display: flex;
   align-items: center;
-  padding: 3em;
+  padding: 1.8em;
 }
 .cont-err {
   font: 0.6em sans-serif;

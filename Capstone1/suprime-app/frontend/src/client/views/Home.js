@@ -4,13 +4,15 @@ import Logo from '../components/Logo.js'
 import Navbar from '../components/Navbar.js'
 import '../css/styles.css'
 
-export default function FrontPage() {
+export default function Home() {
   return (
-    <div>
-      <div className='main-page'>
-        <Logo />
+    <>
+      <div id='home-page'>
+        <div className='logo'>
+          <Logo />
+        </div>
         <Navbar />
       </div>
-    </div>
+    </>
   )
 }

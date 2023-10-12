@@ -2,21 +2,25 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
 export default function Footer() {
-  const [fixed, setFixed] = useState(false)
+  const [fixed, setFixed] = useState(true)
 
   function stickyNavBar() {
-    let nav = document.querySelector('footer')
-    let sticky = nav.offsetTop
-    if (window.scrollY >= sticky) {
-      setFixed(true)
-    } else {
+    if (window.scrollY > 0) {
       setFixed(false)
+    } else {
+      setFixed(true)
     }
   }
-  window.addEventListener('scroll', stickyNavBar)
+  useEffect(() => {
+    window.addEventListener('scroll', stickyNavBar)
+
+    return () => {
+      window.removeEventListener('scroll', stickyNavBar)
+    }
+  }, [])
 
   return (
-    <footer>
+    <footer className={fixed ? ' ' : 'sticky'}>
       <Link to='/' className='footer-links'>
         home
       </Link>

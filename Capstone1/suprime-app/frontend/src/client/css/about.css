@@ -1,11 +1,18 @@
 #about-us {
-  width: 50vw;
+  width: 20vw;
   display: flex;
+  flex-flow: column;
+  align-items: center;
+}
+#about-us > p {
+  margin-top: 3em;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  text-indent: 2em;
 }
 
 .about-us-page {
   display: flex;
-  flex-flow: column;
   align-items: center;
-  justify-content: center;
 }
