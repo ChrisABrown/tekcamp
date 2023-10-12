@@ -25,12 +25,7 @@
 .shop-tabs a:hover {
   color: red;
 }
-#shop-logo {
-  display: flex;
-  flex-flow: row;
-  align-items: center;
-  justify-content: center;
-}
+
 .product-box {
   display: grid;
   padding: 30px;

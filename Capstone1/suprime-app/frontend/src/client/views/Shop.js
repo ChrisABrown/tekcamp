@@ -17,7 +17,7 @@ export default function Shop({ loading, error, navigate, items }) {
         placeholder='Search..'
         onChange={(e) => setSearchItem(e.target.value)}
       /> */}
-      <div id='shop-logo'>
+      <div className='logo'>
         <Logo />
       </div>
 
@@ -38,7 +38,7 @@ export default function Shop({ loading, error, navigate, items }) {
           error={error}
         />
       </div>
-      <Footer className='sticky' />
+      <Footer />
     </>
   )
 }

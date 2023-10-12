@@ -23,7 +23,7 @@
   border: none;
 }
 
-#dropdown {
+.dropdown {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -41,12 +41,8 @@
   top: 100%;
   transform: translateX(370%);
 }
-#btn-contnr {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-#cont-btn {
+
+.cont-btn {
   background: rgb(236, 4, 4);
   color: white;
   text-decoration: none;
@@ -58,7 +54,7 @@
   display: flex;
   flex-flow: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-evenly;
 }
 #cont-logo {
   display: flex;
@@ -66,41 +62,40 @@
   align-items: center;
   margin-top: 5em;
 }
-#form {
-  font-size: 0.8em;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+
 form {
-  height: 30em;
+  font-size: 0.8em;
   display: flex;
   flex-flow: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-evenly;
 }
 
-#textarea {
+textarea {
   display: flex;
   align-items: center;
   padding: 1em;
   margin: 1em;
 }
 
-.input-rows {
+input {
   text-align: center;
+  border-left: 0;
+  border-right: 0;
+  border-top: 0;
+}
+
+.input-rows {
   display: flex;
-  flex-flow: column wrap;
   align-items: center;
-  justify-content: center;
-  padding: 0.3em;
+  padding: 3em;
 }
 .cont-err {
-  font: 1em sans-serif;
+  font: 0.6em sans-serif;
   display: none;
   padding: 0.2em;
   margin-bottom: auto;
-  color: firebrick;
+  color: rgb(236, 4, 4);
 }
 input:invalid[focus='true'] ~ span {
   display: block;

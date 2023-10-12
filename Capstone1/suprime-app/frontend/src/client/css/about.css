@@ -1,0 +1,11 @@
+#about-us {
+  width: 50vw;
+  display: flex;
+}
+
+.about-us-page {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+}

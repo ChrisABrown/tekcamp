@@ -1,15 +1,18 @@
 @import 'error.css';
 @import 'forms.css';
 @import 'shop.css';
-* {
+@import 'about.css';
+
+body {
   margin: 0;
   padding: 0;
   font-family: Monaco;
+  font-size: 0.8em;
 }
 
 @media only screen and (min-width: 992px) {
   #sign-in {
-    margin: 40vh 40vw;
+    margin: 10vh 1em 10vh;
   }
 }
 #search-bar {
@@ -21,58 +24,64 @@
 
 .main-page {
   background: white;
-  margin-top: 7em;
   display: flex;
   flex-flow: column wrap;
   align-content: center;
 }
 .suprime-red-box {
   background: rgb(236, 4, 4);
-  margin-bottom: 1em;
-  padding: 0.8em 1em;
+  padding: 0.8em;
   display: flex;
-  width: 13em;
-  align-items: baseline;
-  justify-content: center;
+  align-items: center;
 }
 
 .suprime-logo-font {
   font-size: 3em;
-  font-family: Futura;
   font-style: italic;
-  font-weight: 900;
+  font-family: Futura;
   color: ghostwhite;
-  align-self: center;
+  margin: 4px -5px;
 }
 .suprime-text-font {
   font-family: Monaco;
-  color: black;
-  display: flex;
-  flex-flow: column wrap;
-  margin-left: 2.4em;
+  color: #fff;
 }
-.flex-box {
+.logo {
   display: flex;
-  flex-flow: column wrap;
+  flex-flow: row;
+  align-items: center;
   justify-content: center;
 }
+
 .links {
   text-decoration: none;
   margin-top: 5em;
-  margin-left: 6em;
   display: flex;
   flex-flow: column wrap;
-  justify-content: center;
+  align-items: center;
   color: black;
 }
 
 footer {
+  overflow: hidden;
+  background-color: #fff;
+  display: flex;
+  justify-content: space-around;
+  padding: 1em;
+  margin: 2em;
+}
+.sticky {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+.sticky + body {
+  padding-bottom: 60px;
+}
+
+.footer-links {
   display: flex;
   flex-flow: row;
-  align-items: center;
-  justify-content: space-around;
-}
-.footer-links {
   text-decoration: none;
   color: black;
 }
