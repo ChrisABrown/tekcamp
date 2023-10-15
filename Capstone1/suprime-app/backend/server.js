@@ -1,5 +1,6 @@
 import express from 'express'
 import cors from 'cors'
+import './config/passport'
 import router from './API/routes/items.route.js'
 import router2 from './API/routes/users.route.js'
 import pkg from 'express-openid-connect'
