@@ -8,8 +8,8 @@
   "license": "ISC",
   "description": "",
   "scripts": {
-    "start:backend": "node ./index.js",
-    "dev": "nodemon ./index.js"
+    "start:backend": "node --env-file=.env.config ./index.js",
+    "dev": "nodemon --env-file=.env.config ./index.js"
   },
   "dependencies": {
     "cors": "^2.8.5",

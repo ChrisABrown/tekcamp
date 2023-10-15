@@ -2,12 +2,8 @@ import express from 'express'
 import cors from 'cors'
 import router from './API/routes/items.route.js'
 import router2 from './API/routes/users.route.js'
-import { auth } from 'express-openid-connect'
-const { requiresAuth } = require('express-openid-connect')
-
-app.get('/profile', requiresAuth(), (req, res) => {
-  res.send(JSON.stringify(req.oidc.user))
-})
+import pkg from 'express-openid-connect'
+const { auth, requiresAuth } = pkg
 
 const app = express()
 const itemsRouter = router
@@ -46,6 +42,10 @@ app.use(auth(config))
 // req.isAuthenticated is provided from the auth router
 app.get('/', (req, res) => {
   res.send(req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out')
+})
+
+app.get('/profile', requiresAuth(), (req, res) => {
+  res.send(JSON.stringify(req.oidc.user))
 })
 
 export default app

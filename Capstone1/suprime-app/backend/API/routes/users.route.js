@@ -4,7 +4,7 @@ import MessagesController from '../controllers/messages.controller.js'
 
 const router = express.Router()
 
-// router.route('/').get(UsersController.apiGetUsers)
+// router.route('/login').get(UsersController.apiGetUsers)
 
 router
   .route('/message')

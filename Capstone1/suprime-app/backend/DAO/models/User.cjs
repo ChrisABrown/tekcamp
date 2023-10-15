@@ -1,13 +1,18 @@
-const mongoose = require('mongoose'),
-  Schema = mongoose.Schema,
-  uniqueValidator = require('mongoose-unique-validator'),
-  bcrypt = require('bcrypt'),
-  SALT_WORK_FACTOR = 10
+import { ObjectId } from 'mongodb'
+import crypto from 'crypto'
+import Message from './Message.cjs'
+
+const secret = require('../../config').secret
+const uniqueValidator = require('mongoose-unique-validator')
+const jwt = require('jsonwebtoken')
+const mongoose = require('mongoose')
+const Schema = mongoose.Schema
 
 const Email = new Schema({
   address: {
     type: String,
     lowercase: true,
+    unique: true,
     required: [true, 'cannot be blank'],
     match: [/\S+A\S+\.\S+/, 'is invalid'],
     index: true,
@@ -18,7 +23,7 @@ const Email = new Schema({
   },
 })
 
-const UserSchema = new Schema(
+const userSchema = new Schema(
   {
     username: {
       type: String,
@@ -28,7 +33,11 @@ const UserSchema = new Schema(
       match: [/^[a-zA-Z0-9]+$/, 'is invalid'],
       index: true,
     },
-    role: {},
+    role: {
+      type: [String],
+      required: true,
+      default: ['User'],
+    },
     password: {
       type: String,
       required: true,
@@ -55,23 +64,63 @@ const UserSchema = new Schema(
       type: Boolean,
       default: true,
     },
+    messages: {
+      type: [
+        {
+          type: ObjectId,
+          ref: 'Message',
+        },
+      ],
+      required: true,
+    },
+    hash: String,
+    salt: String,
   },
   {
     timestamps: true,
   }
 )
 
-UserSchema.plugin(uniqueValidator, { message: 'is already taken.' })
+userSchema.plugin(uniqueValidator, { message: 'is already taken.' })
 
-UserSchema.pre('save', (next) => {
-  !this.isModified('password')
-    ? next()
-    : (this.password = bcrypt.hashSync(this.password, 10))
-  next()
-})
+userSchema.methods.setPassword = function (password) {
+  this.salt = crypto.randomBytes(16).toString('hex')
+  this.hash = crypto
+    .pbkdf2Sync(password, this.salt, 10000, 512, 'sha512')
+    .toString('hex')
+}
+userSchema.methods.generateJWT = function () {
+  let today = new Date()
+  let exp = new Date(today)
+  exp.setDate(today.getDate() + 60)
 
-UserSchema.methods.comparePassword = (plaintext, callback) => {
-  return callback(null, bcrypt.compareSync(plaintext, this.password))
+  return jwt.sign(
+    {
+      id: this._id,
+      username: this.username,
+      exp: parseInt(exp.getTime() / 1000),
+    },
+    secret
+  )
 }
 
-module.exports = mongoose.model('User', UserSchema)
+userSchema.methods.validPassword = function (password) {
+  let hash = crypto
+    .pbkdf2Sync(password, this.salt, 10000, 512, 'sha512')
+    .toString('hex')
+
+  return this.hash === hash
+}
+userSchema.methods.toAuthJSON = function () {
+  return {
+    username: this.username,
+    email: this.email,
+    token: this.generateJWT(),
+    bio: this.bio,
+    image: this.image,
+  }
+}
+
+const User = mongoose.model('User', userSchema)
+
+module.exports = User
