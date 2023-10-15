@@ -26,6 +26,16 @@ app.use((err, req, res, next) => {
     message: transformMessage(err.message),
     stack: process.env.NODE_ENV === 'development' ? err.stack : undefined,
   })
+
+  err.name === 'ValidationError'
+    ? res.status(422).json({
+        errors: Object.keys(err.errors).reduce((errors, key) => {
+          errors[key] = err.errors[key].message
+
+          return errors
+        }, {}),
+      })
+    : next(err)
 })
 
 const config = {
