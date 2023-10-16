@@ -1,27 +1,12 @@
-import { ObjectId } from 'mongodb'
+// import Message from './Message.cjs'
+
 import crypto from 'crypto'
-import Message from './Message.cjs'
-
-const secret = require('../../config').secret
-const uniqueValidator = require('mongoose-unique-validator')
-const jwt = require('jsonwebtoken')
-const mongoose = require('mongoose')
+import { ObjectId } from 'mongodb'
+import '../../config/index.js'
+import uniqueValidator from 'mongoose-unique-validator'
+import jwt from 'jsonwebtoken'
+import mongoose from 'mongoose'
 const Schema = mongoose.Schema
-
-const Email = new Schema({
-  address: {
-    type: String,
-    lowercase: true,
-    unique: true,
-    required: [true, 'cannot be blank'],
-    match: [/\S+A\S+\.\S+/, 'is invalid'],
-    index: true,
-  },
-  validated: {
-    type: Boolean,
-    default: true,
-  },
-})
 
 const userSchema = new Schema(
   {
@@ -43,7 +28,7 @@ const userSchema = new Schema(
       required: true,
     },
     email: {
-      type: Email,
+      type: String,
       required: true,
     },
     profile: {
@@ -71,7 +56,6 @@ const userSchema = new Schema(
           ref: 'Message',
         },
       ],
-      required: true,
     },
     hash: String,
     salt: String,
@@ -123,4 +107,4 @@ userSchema.methods.toAuthJSON = function () {
 
 const User = mongoose.model('User', userSchema)
 
-module.exports = User
+export default User

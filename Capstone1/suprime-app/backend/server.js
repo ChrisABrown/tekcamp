@@ -1,6 +1,6 @@
 import express from 'express'
 import cors from 'cors'
-import './config/passport'
+import './config/passport.js'
 import router from './API/routes/items.route.js'
 import router2 from './API/routes/users.route.js'
 import pkg from 'express-openid-connect'
@@ -20,12 +20,6 @@ app.use('*', (req, res) => {
 app.use((err, req, res, next) => {
   err.status = err.status || 'fail'
   err.statusCode = err.statusCode || 500
-
-  res.status(err.statusCode).json({
-    status: err.status,
-    message: transformMessage(err.message),
-    stack: process.env.NODE_ENV === 'development' ? err.stack : undefined,
-  })
 
   err.name === 'ValidationError'
     ? res.status(422).json({
