@@ -2,7 +2,9 @@ import { MongoClient } from 'mongodb'
 
 const connectionString = process.env.SUPRIME_DB_URI || ''
 
-const client = new MongoClient(connectionString)
+const client = new MongoClient(connectionString, {
+  monitorCommands: true,
+})
 
 let conn
 try {

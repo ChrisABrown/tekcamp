@@ -7,10 +7,11 @@ import ItemsController from '../controllers/items.controller.js'
 const router = expressRouter()
 const base = '/'
 
-router.get(base, ItemsController.apiGetItems)
+router
+  .get(base, ItemsController.apiGetItems)
 
-//   .get(base + '/sku', ItemsController.apiGetItemBySku)
-//   .post(base, ItemsController.apiPostItem)
+  //   .get(base + '/sku', ItemsController.apiGetItemBySku)
+  .post(base, ItemsController.apiPostItem)
 // .put(base)
 // .delete(base, ItemsController.apiDeleteItem)
 
@@ -31,28 +32,28 @@ router.get('/:id', async (req, res) => {
   }
 })
 
-router.post('/', async (req, res) => {
-  try {
-    let collection = db.collection('Stock')
+// router.post('/', async (req, res) => {
+//   try {
+//     let collection = db.collection('Stock')
 
-    const newItem = new Item({
-      itemId: req.body.itemId,
-      quantity: req.body.qty,
-      colors: req.body.colors,
-      SKU: req.body.SKU,
-      category: req.body.category,
-      price: req.body.price,
-      sizes: req.body.sizes,
-      description: req.body.description,
-      images: req.body.images,
-    })
-    let result = await collection.insertOne(newItem)
+//     const newItem = new Item({
+//       itemId: req.body.itemId,
+//       quantity: req.body.qty,
+//       color: req.body.color,
+//       SKU: req.body.SKU,
+//       category: req.body.category,
+//       price: req.body.price,
+//       size: req.body.size,
+//       description: req.body.description,
+//       image: req.body.image,
+//     })
+//     let result = await collection.insertOne(newItem)
 
-    res.send(result).status(204)
-  } catch (err) {
-    res.status(400).json('Error: ' + err.message)
-  }
-})
+//     res.send(result).status(204)
+//   } catch (err) {
+//     res.status(400).json('Error: ' + err.message)
+//   }
+// })
 
 // router.put('/:id', async (req, res) => {
 //   const { itemId, qty, category, price, sizes, description, imgs } = req.body

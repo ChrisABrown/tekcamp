@@ -83,7 +83,7 @@ export default class ItemsDAO {
         description: item.description,
         size: item.size,
       })
-      return Item.create(item)
+      return items.insertOne(item)
     } catch (e) {
       console.log(item)
       console.error(`unable to post item: ${e}`)
