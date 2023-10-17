@@ -10,9 +10,7 @@ export default class ItemsController {
     const page = req.query.page ? parseInt(req.query.page) : 0
 
     let filters = {}
-    if (req.query.size) {
-      filters.size = req.query.size
-    } else if (req.query.category) {
+    if (req.query.category) {
       filters.category = req.query.category
     }
     const { itemsList, totalNumItems } = await ItemsDAO.getItems({
@@ -39,34 +37,32 @@ export default class ItemsController {
       res.json(item)
     })
   //Backend: test posting to see if functionality remains
-  static apiPostItem = () =>
-    wrapperFn(async (req, res, next) => {
+
+  static async apiPostItem(req, res, next) {
+    try {
       const item = {
         category: req.body.category,
         itemId: req.body.itemId,
         SKU: req.body.SKU,
-        colors: req.body.colors,
-        images: req.body.images,
+        color: req.body.color,
+        image: req.body.image,
         quantity: req.body.quantity,
         price: req.body.price,
         description: req.body.description,
-        sizes: req.body.sizes,
+        size: req.body.size,
       }
-      const userInfo = {
-        name: req.body.name,
-        userId: req.body.user_id,
-      }
-      const ItemResponse = await ItemsDAO.postItem(item, userInfo)
+
+      const ItemResponse = await ItemsDAO.postItem({ item })
       res.json({
         status: 'success',
         data: ItemResponse,
-        message: ` Successfully posted the Item : ${item}`,
       })
+    } catch (e) {
+      res.status(500).json({ error: e.message })
+    }
+  }
 
-      next(new AppError('Unable to post item', 404))
-    })
-
-  static async apiUpdateItem(req, res, next) {
+  static async apiUpdateItem(req, res) {
     try {
       const item = {
         category: req.body.category,

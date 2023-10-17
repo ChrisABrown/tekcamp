@@ -1,30 +1,26 @@
 import crypto from 'crypto'
-import Item from './models/Item.cjs'
+import Item from './models/Item.js'
+import db from '../db/conn.js'
 
 let items
 const SKU = crypto.randomBytes(6).toString('hex')
 
-export default class ItemsDAO {
-  static async injectDB(conn) {
-    if (items) return
+;(async function injectDB() {
+  if (items) return
 
-    try {
-      items = await conn.db(process.env.SUPRIME_DB_NS).collection('Stock')
-    } catch (e) {
-      console.error(`unable to connect in ItemsDAO: ${e}`)
-    }
+  try {
+    items = db.collection('Stock')
+    console.log('Connected to Stock Collection')
+  } catch (e) {
+    console.error(`unable to connect in ItemsDAO: ${e}`)
   }
+})()
 
+export default class ItemsDAO {
   static async getItems({ filters = null, page = 0, itemsPerPage = 10 } = {}) {
     let query
     if (filters) {
-      if ('size' in filters) {
-        query = {
-          $text: {
-            $search: filters['size'],
-          },
-        }
-      } else if ('category' in filters) {
+      if ('category' in filters) {
         query = {
           category: {
             $eq: filters['category'],
@@ -80,15 +76,16 @@ export default class ItemsDAO {
         category: item.category,
         itemId: item.itemId,
         SKU: SKU,
-        colors: item.colors,
-        images: item.images,
+        color: item.color,
+        image: item.image,
         quantity: item.quantity,
         price: item.price,
         description: item.description,
-        sizes: item.sizes,
+        size: item.size,
       })
-      return await Item.create(item)
+      return Item.create(item)
     } catch (e) {
+      console.log(item)
       console.error(`unable to post item: ${e}`)
       return { error: e }
     }

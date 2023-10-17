@@ -1,7 +1,9 @@
 import axios from 'axios'
 import { tryCatchWrapper as wrapFn } from '../../wrapperFn'
 
-export const URL = 'http://localhost:4000/'
+let port = process.env.SERVER_PORT || 4100
+
+export const URL = `http://localhost:${port}/`
 const itemsEndpoint = 'api/v1/items'
 
 const axiosInstance = axios.create({

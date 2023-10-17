@@ -1,12 +1,12 @@
 import express, { json } from 'express'
 import mongoose from 'mongoose'
 import { auth } from './auth.js'
-
-// import UsersController from '../controllers/users.controller.js'
+import passport from 'passport'
 import MessagesController from '../controllers/messages.controller.js'
 
+// import UsersController from '../controllers/users.controller.js'
+
 const router = express.Router()
-import passport from 'passport'
 const User = mongoose.model('User')
 
 // router.route('/login').get(UsersController.apiGetUsers)

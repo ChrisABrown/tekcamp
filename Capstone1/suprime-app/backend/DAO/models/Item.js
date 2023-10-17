@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+import mongoose from 'mongoose'
 
 const Schema = mongoose.Schema
 
@@ -12,17 +12,17 @@ const ItemSchema = new Schema(
       type: String,
       required: true,
     },
-    colors: {
+    color: {
       type: Array,
       required: true,
     },
-    SKU: Number,
+    SKU: String,
     description: String,
     price: {
       type: Number,
       required: true,
     },
-    images: {
+    image: {
       type: Object,
       required: true,
     },
@@ -30,10 +30,11 @@ const ItemSchema = new Schema(
       type: Number,
       required: true,
     },
-    sizes: Object,
+    size: Object,
   },
   { collection: 'Stock' }
 )
+
 const Item = mongoose.model('Item', ItemSchema)
 
-module.exports = Item
+export default Item

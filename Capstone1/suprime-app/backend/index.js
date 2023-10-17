@@ -1,30 +1,38 @@
-import { MongoClient } from 'mongodb'
-import app from './server.js'
-import ItemsDAO from './DAO/itemsDAO.js'
-// import OrdersDAO from './dao/ordersDAO'
-// import UsersDAO from './dao/usersDAO'
-// import MessagesDAO from './DAO/messagesDAO.js'
+import express from 'express'
+import cors from 'cors'
+import './config/passport.js'
+import router from './API/routes/items.route.js'
+import router2 from './API/routes/users.route.js'
+import pkg from 'express-openid-connect'
+const { auth, requiresAuth } = pkg
 
-async function main() {
-  const client = new MongoClient(process.env.SUPRIME_DB_URI, {
-    tlsCertificateKeyFile: '../CA.pem',
-  })
-  const port = process.env.PORT || 4040
+const port = process.env.PORT || 4040
+const app = express()
+const itemsRouter = router
+const usersRouter = router2
 
-  try {
-    await client.connect()
-    await ItemsDAO.injectDB(client)
-    // await UsersDAO.injectDB(client)
-    // await OrdersDAO.injectDB(client)
-    // await MessagesDAO.injectDB(client)
+app.use(cors())
+app.use(express.json())
+app.use('/api/v1/items', itemsRouter)
+app.use('/api/v1/users', usersRouter)
+app.use('*', (req, res) => {
+  res.status(404).json({ error: 'not found' })
+})
+app.use((err, _req, res, next) => {
+  err.status = err.status || 'fail'
+  err.statusCode = err.statusCode || 500
 
-    app.listen(port, () => {
-      console.log(`Server is running on port: ${port}`)
-    })
-  } catch (e) {
-    console.log(e)
-    process.exit(1)
-  }
-}
+  err.name === 'ValidatorError'
+    ? res.status(422).json({
+        errors: Object.keys(err.errors).reduce((errors, key) => {
+          errors[key] = err.errors[key].message
 
-main().catch(console.error)
+          return errors
+        }, {}),
+      })
+    : next(err)
+})
+
+app.listen(port, () => {
+  console.log(`Server is running on port: ${port}`)
+})

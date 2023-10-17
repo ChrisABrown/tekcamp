@@ -6,7 +6,7 @@ import '../../config/index.js'
 import uniqueValidator from 'mongoose-unique-validator'
 import jwt from 'jsonwebtoken'
 import mongoose from 'mongoose'
-const Schema = mongoose.Schema
+const { Schema } = mongoose
 
 const userSchema = new Schema(
   {
@@ -19,9 +19,9 @@ const userSchema = new Schema(
       index: true,
     },
     role: {
-      type: [String],
-      required: true,
-      default: ['User'],
+      type: String,
+      enum: ['user', 'worker', 'admin'],
+      required: [true, 'Please specify user role'],
     },
     password: {
       type: String,
@@ -29,7 +29,16 @@ const userSchema = new Schema(
     },
     email: {
       type: String,
-      required: true,
+      unique: [true, 'email already exists in database'],
+      lowercase: true,
+      trim: true,
+      required: [true, 'email not provided'],
+      validate: {
+        validator: function (v) {
+          return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)
+        },
+        message: '{VALUE} is not a valid email',
+      },
     },
     profile: {
       firstName: String,
@@ -44,10 +53,6 @@ const userSchema = new Schema(
         country: String,
         zip: String,
       },
-    },
-    active: {
-      type: Boolean,
-      default: true,
     },
     messages: {
       type: [
@@ -73,6 +78,7 @@ userSchema.methods.setPassword = function (password) {
     .pbkdf2Sync(password, this.salt, 10000, 512, 'sha512')
     .toString('hex')
 }
+
 userSchema.methods.generateJWT = function () {
   let today = new Date()
   let exp = new Date(today)
