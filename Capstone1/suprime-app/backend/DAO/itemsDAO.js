@@ -4,11 +4,8 @@ import Item from './models/Item.js'
 let items
 ;(async function injectDB() {
   if (items) return
-
   try {
-    const coll = mongoose.connection.collection('items')
-    const list = await coll.find({})
-    items = await list.toArray()
+    mongoose.connection.collection('items')
     console.log('Connected to Items Collection')
   } catch (e) {
     console.error(`unable to connect in ItemsDAO: ${e}`)
@@ -16,8 +13,9 @@ let items
 })()
 
 export default class ItemsDAO {
-  static async getItems({ filters = null, page = 0, itemsPerPage = 10 } = {}) {
+  static async getItems({ filters = null, page = 0, itemsPerPage = 6 } = {}) {
     let query
+
     if (filters) {
       if ('category' in filters) {
         query = {
@@ -27,13 +25,11 @@ export default class ItemsDAO {
         }
       }
     }
-    let cursor
+    let itemsList
     try {
-      cursor = await items.find(query).limit(itemsPerPage)
-
-      const itemsList = await cursor.toArray()
-      const totalNumItems = await items.countDocuments(query)
-      return { itemsList, totalNumItems }
+      itemsList = await Item.find(query).limit(itemsPerPage)
+      const totalNumItems = await Item.countDocuments(query)
+      return { totalNumItems, itemsList }
     } catch (e) {
       console.error(`Unable to issue find command, ${e}`)
       return { itemsList: [], totalNumItems: 0 }
@@ -42,56 +38,71 @@ export default class ItemsDAO {
 
   static async getItemBySKU(sku) {
     try {
-      return await items
-        .aggregate([
-          {
-            $match: {
-              SKU: sku,
-            },
+      return await Item.aggregate([
+        {
+          $match: {
+            SKU: sku,
           },
-        ])
-        .next()
+        },
+      ]).exec()
     } catch (e) {
-      console.error(`Unable to find item with the SKU: ${sku}`)
-      throw e
+      console.error(`Something went wrong in getItemBySKU, ${e}`)
+      return { foundItem: {} }
     }
   }
 
-  // static async updateItem(item, userId) {
-  //   try {
-  //     item = await Item.findOne(item)
-  //     // if(userId)
-  //     // const updatedItem = await Item.findByIdAndUpdate(item._id)
-  //   } catch (error) {}
-  // }
-
-  static async postItem({ item }) {
+  static async postNewItem({ item }) {
     try {
       item = new Item({
         category: item.category,
         itemId: item.itemId,
-        SKU: SKU,
+        SKU: item.SKU,
         color: item.color,
         image: item.image,
         price: item.price,
         description: item.description,
         size: item.size,
       })
-      return items.insertOne(item)
+      return await Item.insertOne(item)
     } catch (e) {
-      console.log(item)
-      console.error(`unable to post item: ${e}`)
-      return { error: e }
+      return { error: e, message: `unable to post item: ${e}` }
     }
   }
 
-  static async deleteItem(itemId, userId) {
+  static async updateItemBySKU(sku, item = {}) {
     try {
-      const item = await Item.findById(itemId)
-      // const user = await User.findById(userId)
-      // if (user.isAdmin) return `Successfully deleted item: ${item}`.next()
+      const updateResponse = await Item.updateOne(
+        {
+          SKU: sku,
+        },
+        {
+          $set: {
+            category: item.category,
+            itemId: item.itemId,
+            SKU: item.SKU,
+            color: item.color,
+            image: item.image,
+            price: item.price,
+            description: item.description,
+            size: item.size,
+          },
+        }
+      )
+      return updateResponse
     } catch (e) {
-      console.error(`unable to delete item. User must be an admin to delete`)
+      return { error: e, message: `unable to update item: ${e}` }
+    }
+  }
+
+  static async deleteItem(sku) {
+    try {
+      const deleteResponse = await Item.deleteOne({ SKU: sku })
+      return deleteResponse
+    } catch (e) {
+      return {
+        error: e,
+        message: `unable to delete item. User must be an admin to delete`,
+      }
     }
   }
 }
