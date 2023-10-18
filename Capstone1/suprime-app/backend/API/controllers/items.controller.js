@@ -36,9 +36,8 @@ export default class ItemsController {
 
       res.json(item)
     })
-  //Backend: test posting to see if functionality remains
 
-  static async apiPostItem(req, res, next) {
+  static async apiPostItem(req, res) {
     try {
       const item = {
         category: req.body.category,
@@ -46,7 +45,6 @@ export default class ItemsController {
         SKU: req.body.SKU,
         color: req.body.color,
         image: req.body.image,
-        quantity: req.body.quantity,
         price: req.body.price,
         description: req.body.description,
         size: req.body.size,
@@ -69,7 +67,6 @@ export default class ItemsController {
         itemId: req.body.itemId,
         colors: req.body.colors,
         images: req.body.images,
-        quantity: req.body.quantity,
         price: req.body.price,
         description: req.body.description,
         sizes: req.body.sizes,

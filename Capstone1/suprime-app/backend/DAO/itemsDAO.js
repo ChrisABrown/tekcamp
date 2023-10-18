@@ -1,16 +1,15 @@
-import crypto from 'crypto'
+import mongoose from 'mongoose'
 import Item from './models/Item.js'
-import db from '../db/conn.js'
 
 let items
-const SKU = crypto.randomBytes(6).toString('hex')
-
 ;(async function injectDB() {
   if (items) return
 
   try {
-    items = db.collection('Stock')
-    console.log('Connected to Stock Collection')
+    const coll = mongoose.connection.collection('items')
+    const list = await coll.find({})
+    items = await list.toArray()
+    console.log('Connected to Items Collection')
   } catch (e) {
     console.error(`unable to connect in ItemsDAO: ${e}`)
   }
@@ -31,6 +30,7 @@ export default class ItemsDAO {
     let cursor
     try {
       cursor = await items.find(query).limit(itemsPerPage)
+
       const itemsList = await cursor.toArray()
       const totalNumItems = await items.countDocuments(query)
       return { itemsList, totalNumItems }
@@ -45,11 +45,6 @@ export default class ItemsDAO {
       return await items
         .aggregate([
           {
-            $set: {
-              SKU: {
-                SKU: `${SKU}`,
-              },
-            },
             $match: {
               SKU: sku,
             },
@@ -78,7 +73,6 @@ export default class ItemsDAO {
         SKU: SKU,
         color: item.color,
         image: item.image,
-        quantity: item.quantity,
         price: item.price,
         description: item.description,
         size: item.size,

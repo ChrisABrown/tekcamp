@@ -8,6 +8,8 @@
   "license": "ISC",
   "description": "",
   "scripts": {
+    "initDB": "node --env-file=.env.config ./db/init.js",
+    "drop": "node --env-file=.env.config ./db/cleanup.js",
     "start:backend": "node --env-file=.env.config ./index.js",
     "dev": "nodemon --env-file=.env.config ./index.js"
   },
@@ -19,6 +21,7 @@
     "mongodb": "^6.1.0",
     "mongoose": "^7.6.2",
     "mongoose-unique-validator": "^4.0.0",
+    "nanoid": "^5.0.2",
     "passport": "^0.6.0",
     "passport-local": "^1.0.0"
   },

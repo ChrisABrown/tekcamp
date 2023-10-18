@@ -1,18 +1,14 @@
-import { MongoClient } from 'mongodb'
-
+import mongoose from 'mongoose'
 const connectionString = process.env.SUPRIME_DB_URI || ''
 
-const client = new MongoClient(connectionString, {
-  monitorCommands: true,
-})
-
-let conn
-try {
-  conn = await client.connect()
-} catch (e) {
-  console.error(e)
+const conn = async () => {
+  try {
+    const connectDB = await mongoose.connect(connectionString)
+    console.log(`MongDB connected: ${connectDB.connection.host}`)
+  } catch (e) {
+    console.error(e)
+    process.exit(1)
+  }
 }
 
-let db = conn.db(process.env.SUPRIME_DB_NS)
-
-export default db
+export default conn

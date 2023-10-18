@@ -4,6 +4,7 @@ import './config/passport.js'
 import router from './API/routes/items.route.js'
 import router2 from './API/routes/users.route.js'
 import pkg from 'express-openid-connect'
+import conn from './db/conn.js'
 const { auth, requiresAuth } = pkg
 
 const port = process.env.PORT || 4040
@@ -32,6 +33,8 @@ app.use((err, _req, res, next) => {
       })
     : next(err)
 })
+
+conn()
 
 app.listen(port, () => {
   console.log(`Server is running on port: ${port}`)
