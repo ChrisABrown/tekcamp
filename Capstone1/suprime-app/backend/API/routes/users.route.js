@@ -1,16 +1,16 @@
-import express, { json } from 'express'
-import mongoose from 'mongoose'
-import { auth } from './auth.js'
+import { Router as expressRouter } from 'express'
+// import mongoose from 'mongoose'
+// import auth from './auth.js'
 import passport from 'passport'
+import User from '../../DAO/models/User.js'
 import MessagesController from '../controllers/messages.controller.js'
 
 // import UsersController from '../controllers/users.controller.js'
 
-const router = express.Router()
-const User = mongoose.model('User')
+const usersRouter = expressRouter()
 
 // router.route('/login').get(UsersController.apiGetUsers)
-router.get('/', auth.required, (req, res, next) => {
+usersRouter.get('/', auth.required, (req, res, next) => {
   User.findById(req.payload.id)
     .then((user) => {
       !user ? res.sendStatus(401) : res.json({ user: user.toAuthJSON() })
@@ -18,7 +18,7 @@ router.get('/', auth.required, (req, res, next) => {
     .catch(next)
 })
 
-router.put('/', auth.required, (req, res, next) => {
+usersRouter.put('/', auth.required, (req, res, next) => {
   User.findById(req.payload.id)
     .then((user) => {
       let updatedUser = req.body.user
@@ -42,11 +42,13 @@ router.put('/', auth.required, (req, res, next) => {
     .catch(next)
 })
 
-router.post('/', (req, res, next) => {
-  let user = new User()
-  user.username = req.body.user.username
-  user.email = req.body.user.email
-  user.setPassword(req.body.user.password)
+usersRouter.post('/register', (req, res, next) => {
+  let user = new User({
+    email: req.body.user.email,
+    role: req.body.user.role,
+    username: req.body.user.username,
+    password: req.body.user.password,
+  })
 
   user
     .save()
@@ -55,8 +57,7 @@ router.post('/', (req, res, next) => {
     })
     .catch(next)
 })
-
-router.post('/login', (req, res, next) => {
+usersRouter.post('/login', (req, res, next) => {
   if (!req.body.user.email) {
     res.status(422).json({ errors: { email: 'cannot be blank' } })
   }
@@ -73,10 +74,10 @@ router.post('/login', (req, res, next) => {
   })(req, res, next)
 })
 
-router
+expressRouter
   .route('/message')
   .get(MessagesController.apiGetMessage)
   .post(MessagesController.apiPostMessage)
   .delete(MessagesController.apiDeleteMessage)
 
-export default router
+export default usersRouter

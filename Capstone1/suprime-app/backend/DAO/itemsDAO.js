@@ -1,16 +1,4 @@
-import mongoose from 'mongoose'
 import Item from './models/Item.js'
-
-let items
-;(async function injectDB() {
-  if (items) return
-  try {
-    mongoose.connection.collection('items')
-    console.log('Connected to Items Collection')
-  } catch (e) {
-    console.error(`unable to connect in ItemsDAO: ${e}`)
-  }
-})()
 
 export default class ItemsDAO {
   static async getItems({ filters = null, page = 0, itemsPerPage = 6 } = {}) {
