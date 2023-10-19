@@ -10,7 +10,7 @@ import MessagesController from '../controllers/messages.controller.js'
 const usersRouter = expressRouter()
 
 // router.route('/login').get(UsersController.apiGetUsers)
-usersRouter.get('/', auth.required, (req, res, next) => {
+usersRouter.get('/', (req, res, next) => {
   User.findById(req.payload.id)
     .then((user) => {
       !user ? res.sendStatus(401) : res.json({ user: user.toAuthJSON() })
@@ -18,7 +18,7 @@ usersRouter.get('/', auth.required, (req, res, next) => {
     .catch(next)
 })
 
-usersRouter.put('/', auth.required, (req, res, next) => {
+usersRouter.put('/', (req, res, next) => {
   User.findById(req.payload.id)
     .then((user) => {
       let updatedUser = req.body.user
@@ -74,10 +74,10 @@ usersRouter.post('/login', (req, res, next) => {
   })(req, res, next)
 })
 
-expressRouter
-  .route('/message')
-  .get(MessagesController.apiGetMessage)
-  .post(MessagesController.apiPostMessage)
-  .delete(MessagesController.apiDeleteMessage)
+// expressRouter
+//   .route('/message')
+//   .get(MessagesController.apiGetMessage)
+//   .post(MessagesController.apiPostMessage)
+//   .delete(MessagesController.apiDeleteMessage)
 
 export default usersRouter
