@@ -1,8 +1,6 @@
 import express from 'express'
 import cors from 'cors'
-import expressSession from 'express-session'
-import Auth0Strategy from 'passport-auth0'
-import passport from 'passport'
+import { auth } from 'express-oauth2-jwt-bearer'
 import authRouter from './API/routes/auth.js'
 import itemsRouter from './API/routes/items.route.js'
 import usersRouter from './API/routes/users.route.js'
@@ -11,52 +9,24 @@ import conn from './db/conn.js'
 const app = express()
 const port = process.env.PORT || 4040
 
-const session = {
-  secret: process.env.SESSION_SECRET,
-  cookie: {},
-  resave: false,
-  saveUninitialized: false,
-}
+const jwtCheck = auth({
+  audience: 'https://suprime-api/api/v1',
+  issuerBaseURL: 'https://dev-xxofmt70.us.auth0.com/',
+  tokenSigningAlg: 'RS256',
+})
 
-if (app.get('env') === 'production') {
-  session.cookie.secure = true
-}
+// enforce on all endpoints
+app.use(jwtCheck)
 
-const strategy = new Auth0Strategy(
-  {
-    domain: process.env.AUTH0_DOMAIN,
-    clientID: process.env.AUTH0_CLIENT_ID,
-    clientSecret: process.env.AUTH0_CLIENT_SECRET,
-    callbackURL: process.env.AUTH0_CALLBACK_URL,
-  },
-
-  function (accessToken, refreshToken, extraParams, profile, done) {
-    return done(null, profile)
-  }
-)
+app.get('/authorized', function (req, res) {
+  res.send('Secured Resource')
+})
 
 app.use(cors())
 app.use(express.json())
 
 app.use(expressSession(session))
 
-passport.use(strategy)
-app.use(passport.initialize())
-app.use(passport.session())
-
-passport.serializeUser((user, done) => {
-  done(null, user)
-})
-
-passport.deserializeUser((user, done) => {
-  done(null, user)
-})
-
-app.use((req, res, next) => {
-  res.locals.isAuthenticated = req.isAuthenticated()
-  next()
-})
-app.use('/', authRouter)
 app.use('/api/v1/items', itemsRouter)
 app.use('/api/v1/users', usersRouter)
 app.use('*', (req, res) => {

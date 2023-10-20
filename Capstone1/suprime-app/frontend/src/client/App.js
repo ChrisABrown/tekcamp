@@ -36,7 +36,15 @@ export default function App() {
       <Routes>
         <Route
           path='/'
-          element={<Home items={items} loading={loading} error={error} exact />}
+          element={
+            <Home
+              items={items}
+              loading={loading}
+              error={error}
+              navigate={navigate}
+              exact
+            />
+          }
         />
         <Route path='/about' element={<About navigate={navigate} />} />
         <Route
