@@ -1,9 +1,6 @@
 import axios from 'axios'
-import { tryCatchWrapper as wrapFn } from '../../wrapperFn'
 
-let port = process.env.SERVER_PORT || 4100
-
-export const URL = `http://localhost:${port}/`
+export const URL = `${process.env.REACT_APP_API_SERVER_URL}`
 const itemsEndpoint = 'api/v1/items'
 
 const axiosInstance = axios.create({
@@ -14,24 +11,26 @@ const axiosInstance = axios.create({
 })
 
 const fetchItems = async () => {
-  // wrapFn(async (res, next) => {
   try {
     return await axiosInstance.get(`${URL}${itemsEndpoint}`).then((res) => {
       return res.data.items
     })
-  } catch (error) {
-    Promise.reject(error)
+  } catch (e) {
+    Promise.reject(e)
   }
 }
 
-const fetchItemBySku = (sku) =>
-  wrapFn(async (res, next) => {
-    let item
-    item = await axiosInstance.get(itemsEndpoint + `/${sku}`)
-    res = item
-    next()
-    return item
-  })
+const fetchItemBySku = async (sku) => {
+  try {
+    return await axiosInstance
+      .get(`${URL}${itemsEndpoint}/sku/:${sku}`)
+      .then((res) => {
+        return res.data.item
+      })
+  } catch (e) {
+    Promise.reject(e)
+  }
+}
 
 const DataService = {
   fetchItems,

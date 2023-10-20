@@ -1,7 +1,6 @@
 import { Router as expressRouter } from 'express'
 // import mongoose from 'mongoose'
 // import auth from './auth.js'
-import passport from 'passport'
 import User from '../../DAO/models/User.js'
 import MessagesController from '../controllers/messages.controller.js'
 
