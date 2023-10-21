@@ -1,21 +1,15 @@
-import mongoose from 'mongoose'
 import fs from 'fs'
+import db from './conn'
 
 const data = JSON.parse(fs.readFileSync('./db/inventory.json', 'utf-8'))
-const connectionString = process.env.SUPRIME_DB_URI || ''
 
-let items
-async function importData() {
-  mongoose.connect(connectionString)
+;(async function importData() {
+  let dbo = db.connect(process.env.SUPRIME_DB_URI)
   try {
-    await mongoose.connection.model('Item').insertMany(data)
+    await dbo.connection.model('Item').insertMany(data)
     console.log('Data successfully imported')
     process.exit()
   } catch (error) {
     console.log('error:', error)
   }
-}
-
-importData()
-
-export default items
+})()
