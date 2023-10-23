@@ -2,12 +2,7 @@ import express from 'express'
 import cors from 'cors'
 import authRouter from './API/routes/auth.js'
 import itemsRouter from './API/routes/items.route.js'
-<<<<<<< Updated upstream
-import usersRouter from './API/routes/users.route.js'
 import db from './db/conn.js'
-=======
-import conn from './db/conn.js'
->>>>>>> Stashed changes
 
 if (!process.env.ISSUER_BASE_URL || !process.env.AUTH0_AUDIENCE) {
   throw 'Missing required environment variables. Check docs for more info.'
