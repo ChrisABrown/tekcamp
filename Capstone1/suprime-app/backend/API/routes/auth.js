@@ -6,14 +6,13 @@ const authRouter = expressRouter()
 
 // enforce on all endpoints
 
-authRouter.get('/authorized', validateAccessToken, function (req, res) {
+authRouter.get('/authorized', function (req, res) {
   res.send('Secured Resource')
 })
 
 authRouter.get(
   '/users',
-  validateAccessToken,
-  requiredScopes('read: user'),
+
   function (req, res, next) {
     User.find({})
       .then((users) => {
@@ -24,7 +23,7 @@ authRouter.get(
 )
 
 authRouter
-  .get('/user', validateAccessToken, (req, res, next) => {
+  .get('/user', (req, res, next) => {
     User.findById(req.payload.id)
       .then((user) => {
         res.send({ user: user })
@@ -33,8 +32,7 @@ authRouter
   })
   .put(
     '/user',
-    validateAccessToken,
-    requiredScopes('update:user'),
+
     (req, res, next) => {
       User.findById(req.payload.id)
         .then((user) => {
@@ -60,15 +58,9 @@ authRouter
     }
   )
 
-authRouter.post('/register', AuthController.signUp)
-authRouter.post('/login', (req, res, next) => {
-  if (!req.body.user.email) {
-    res.status(422).json({ errors: { email: 'cannot be blank' } })
-  }
-  if (!req.body.user.password) {
-    res.status(422).json({ errors: { password: 'cannot be blank' } })
-  }
-})
+authRouter
+  .post('/register', AuthController.signUp)
+  .post('/login', AuthController.logIn)
 
 // expressRouter
 //   .route('/message')
