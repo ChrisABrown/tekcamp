@@ -2,8 +2,12 @@ import express from 'express'
 import cors from 'cors'
 import authRouter from './API/routes/auth.js'
 import itemsRouter from './API/routes/items.route.js'
+<<<<<<< Updated upstream
 import usersRouter from './API/routes/users.route.js'
 import db from './db/conn.js'
+=======
+import conn from './db/conn.js'
+>>>>>>> Stashed changes
 
 if (!process.env.ISSUER_BASE_URL || !process.env.AUTH0_AUDIENCE) {
   throw 'Missing required environment variables. Check docs for more info.'
@@ -17,7 +21,7 @@ app.use(express.json())
 
 app.use('/api/v1/items', itemsRouter)
 app.use('/api/v1/auth', authRouter)
-app.use('/api/v1/users', usersRouter)
+
 app.use('*', (req, res) => {
   res.status(404).json({ error: 'not found' })
 })

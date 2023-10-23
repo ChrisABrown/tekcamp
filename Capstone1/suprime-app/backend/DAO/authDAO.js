@@ -1,6 +1,6 @@
 import User from './models/User'
 
-export default class UsersDAO {
+export default class AuthDAO {
   static async signUp(user = {}) {
     try {
       user = new User({

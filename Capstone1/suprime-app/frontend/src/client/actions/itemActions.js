@@ -20,24 +20,24 @@ export const listItems = () => async (dispatch) => {
     })
   }
 }
-// export const listItemDetails = (sku) =>
-//   wrapFn(async (dispatch, e, req, err, next) => {
-//     dispatch({
-//       type: ITEM_DETAILS_REQUEST,
-//     })
-//     sku = req.query.sku
-//     e = await DataService.fetchItemBySku(sku)
-//     dispatch({
-//       type: ITEM_DETAILS_SUCCESS,
-//       payload: e,
-//     })
-//     next(
-//       dispatch({
-//         type: ITEM_DETAILS_FAIL,
-//         payload:
-//           err.response && err.response.message
-//             ? err.response.data.message
-//             : err.message,
-//       })
-//     )
-//   })
+
+export const listItemDetails = (sku) => async (dispatch) => {
+  try {
+    dispatch({
+      type: ITEM_DETAILS_REQUEST,
+    })
+    let itemDetails = await DataService.fetchItemBySku(sku)
+    dispatch({
+      type: ITEM_DETAILS_SUCCESS,
+      payload: itemDetails,
+    })
+  } catch (err) {
+    dispatch({
+      type: ITEM_DETAILS_FAIL,
+      payload:
+        err.response && err.response.message
+          ? err.response.data.message
+          : err.message,
+    })
+  }
+}

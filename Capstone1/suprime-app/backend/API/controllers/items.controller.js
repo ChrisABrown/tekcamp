@@ -3,7 +3,7 @@ import AppError from '../../appError.js'
 import Item from '../../DAO/models/Item.js'
 
 export default class ItemsController {
-  static async apiGetItems(req, res) {
+  static async apiGetItems(req, res, next) {
     const itemsPerPage = req.query.itemsPerPage
       ? parseInt(req.query.itemsPerPage)
       : 6
@@ -27,7 +27,7 @@ export default class ItemsController {
       total_results: totalNumItems,
     }
     !response
-      ? res.json(new AppError('NotFound', 404))
+      ? next(new AppError()) && res.json(new AppError('NotFound', 404))
       : res.send(response).status(200)
   }
 
@@ -48,6 +48,8 @@ export default class ItemsController {
       }
       res.json(response)
     } catch (e) {
+      let err = new AppError(e.message, res.status)
+      next(err)
       res.json((response = { data: {}, error: e, message: `api: ${e}` }))
     }
   }
@@ -74,6 +76,8 @@ export default class ItemsController {
         itemSku: postedItem.SKU,
       })
     } catch (e) {
+      let err = new AppError(e.message, res.status)
+      next(err)
       res.json({ data: {}, error: e, message: `api: ${e}` })
     }
   }
@@ -105,6 +109,8 @@ export default class ItemsController {
             : `No matches for itemSku: ${sku}`,
       })
     } catch (e) {
+      let err = new AppError(e.message, res.status)
+      next(err)
       res.json({ data: {}, error: e, message: `api: ${e}` })
     }
   }
@@ -125,7 +131,9 @@ export default class ItemsController {
             : `No matches for itemSku: ${sku}`,
       })
     } catch (e) {
-      res.status(500).json({ error: e.message })
+      let err = new AppError(e.message, res.status)
+      next(err)
+      res.json({ data: {}, error: e, message: `api: ${e}` })
     }
   }
 }
