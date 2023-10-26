@@ -78,17 +78,18 @@ const userSchema = new Schema(
   }
 )
 
-User.set('toJSON', {
+userSchema.method('toJSON', {
   transform: function (doc, ret, options) {
     delete ret.refreshToken
     return ret
   },
 })
 
-User.plugin(passportLocalMongoose)
+userSchema.plugin(passportLocalMongoose)
 
-User.plugin(uniqueValidator, { message: 'is already taken.' })
+userSchema.plugin(uniqueValidator, { message: 'is already taken.' })
 
+const User = mongoose.model('User', userSchema)
 // userSchema.method({
 //   setPassword: function (password) {
 //     this.salt = crypto.randomBytes(16).toString('hex')
@@ -128,7 +129,5 @@ User.plugin(uniqueValidator, { message: 'is already taken.' })
 //     }
 //   },
 // })
-
-const User = mongoose.model('User', userSchema)
 
 export default User

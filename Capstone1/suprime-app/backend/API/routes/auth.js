@@ -2,29 +2,12 @@ import { Router as expressRouter } from 'express'
 import User from '../../DAO/models/User.js'
 import AuthController from '../controllers/auth.controller.js'
 import passport from 'passport'
-import OpenIDConnectStrategy from 'passport-openidconnect'
-
-passport.use(
-  new OpenIDConnectStrategy(
-    {
-      issuer: `https://${process.env.AUTH0_DOMAIN}/`,
-      authorizationURL: `https://${process.env.AUTH0_DOMAIN}/authorize`,
-      tokenURL: `https://${process.env.AUTH0_DOMAIN}/oauth/token`,
-      userInfoURL: `https://${process.env.AUTH0_DOMAIN}/userinfo`,
-      clientID: `https://${process.env.AUTH0_CLIENT_ID}/`,
-      clientSecret: `https://${process.env.AUTH0_CLIENT_SECRET}/`,
-      callbackURL: '/oauth2/redirect',
-      scope: ['profile'],
-    },
-    function verify(issuer, profile, cb) {
-      return cb(null, profile)
-    }
-  )
-)
 
 const authRouter = expressRouter()
 
 // enforce on all endpoints
+
+authRouter.post('/login', passport.authenticate('local'), AuthController.logIn)
 
 authRouter.get('/authorized', function (req, res) {
   res.send('Secured Resource')

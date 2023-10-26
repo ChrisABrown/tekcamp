@@ -3,25 +3,38 @@ import cors from 'cors'
 import authRouter from './API/routes/auth.js'
 import itemsRouter from './API/routes/items.route.js'
 import db from './db/conn.js'
+import bodyParser from 'body-parser'
+import cookieParser from 'cookie-parser'
 
 const app = express()
 const PORT = process.env.PORT
 const baseURL = `http://localhost:${PORT}`
 
-if (!process.env.ISSUER_BASE_URL || !process.env.AUTH0_AUDIENCE) {
-  throw 'Missing required environment variables. Check docs for more info.'
+const whitelist = process.env.WHITELISTED_DOMAINS
+  ? process.env.WHITELISTED_DOMAINS.split(',')
+  : []
+
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (!origin || whitelist.indexOf(origin) !== -1) {
+      callback(null, true)
+    } else {
+      callback(new Error('Not allowed by CORS'))
+    }
+  },
+
+  credentials: true,
 }
 
-app.use(cors())
+app.use(cors(corsOptions))
 app.use(express.json())
+app.use(bodyParser.json())
+app.use(cookieParser(process.env.COOKIE_SECRET))
 
 app.use('/api/v1/items', itemsRouter)
 app.use('/api/v1/auth', authRouter)
 
-app.use('*', (req, res) => {
-  res.status(404).json({ error: 'not found' })
-})
-app.use((err, _req, res, next) => {
+app.use('*', (err, _req, res, next) => {
   err.status = err.status || 'fail'
   err.statusCode = err.statusCode || 500
 

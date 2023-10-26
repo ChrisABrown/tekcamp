@@ -1,13 +1,35 @@
 import bcrypt from 'crypto'
-import { auth, requiredScopes } from 'express-oauth2-jwt-bearer'
 import AuthDAO from '../../DAO/authDAO.js'
-
-const validateAccessToken = auth({
-  issuerBaseURL: `https://${process.env.AUTH0_DOMAIN}`,
-  audience: process.env.AUTH0_AUDIENCE,
-})
+import Authentication from '../../authenticate.js'
 
 export default class AuthController {
+  static async logIn(req, res, next) {
+    const token = Authentication.getToken({ _id: req.user._id })
+
+    const refreshToken = Authentication.getRefreshToken({ _id: req.user._id })
+
+    const user = () => AuthDAO.logIn(req.user)
+    user().then(
+      (user) => {
+        user.refreshToken.push({ refreshToken })
+        user.save((err, user) => {
+          if (err) {
+            res.statusCode = 500
+            res.send(err)
+          } else {
+            res.cookie(
+              'refreshToken',
+              refreshToken,
+              Authentication.COOKIE_OPTIONS
+            )
+            res.send({ success: true, token })
+          }
+        })
+      },
+      (err) => next(err)
+    )
+  }
+
   static async signUp(req, res, next) {
     const user = {
       username: req.body.username,
