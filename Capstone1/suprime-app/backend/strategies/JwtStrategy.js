@@ -5,7 +5,7 @@ import User from '../DAO/models/User'
 const options = {}
 
 options.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken()
-options.secret = process.env.SECRET
+options.secret = process.env.JWT_SECRET
 
 passport.use(
   new JwtStrategy(options, function (jwt_payload, done) {

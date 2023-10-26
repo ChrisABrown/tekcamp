@@ -70,8 +70,6 @@ const userSchema = new Schema(
     refreshToken: {
       type: [Session],
     },
-    hash: String,
-    salt: String,
   },
   {
     timestamps: true,

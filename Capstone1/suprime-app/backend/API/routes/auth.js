@@ -7,7 +7,9 @@ const authRouter = expressRouter()
 
 // enforce on all endpoints
 
-authRouter.post('/login', passport.authenticate('local'), AuthController.logIn)
+authRouter
+  .post('/login', passport.authenticate('local'), AuthController.logIn)
+  .post('/signup', AuthController.signUp)
 
 authRouter.get('/authorized', function (req, res) {
   res.send('Secured Resource')
