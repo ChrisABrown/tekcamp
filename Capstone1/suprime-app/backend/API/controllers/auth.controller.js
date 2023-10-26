@@ -35,31 +35,14 @@ export default class AuthController {
       email: req.body.email,
       profile: req.body.profile,
     }
-    const callback = (err, obj) => {
-      if (err) {
-        res.json({
-          success: false,
-          message: `Your account could not be saved. Error: ${err}`,
-        })
-      } else {
-        obj = user
-        req.login(obj, function (err) {
-          if (err) {
-            next(err)
-            res.json({ success: false, message: err })
-          } else {
-            res.json({ success: true, message: 'Account has been saved' })
-          }
-        })
-      }
-    }
 
-    const newUser = await AuthDAO.signUp(user, req, callback)
+    const newUser = await AuthDAO.signUp(user, req)
 
     let response = {
-      status: res.status,
-      data: newUser,
-      message: `New User created: ${newUser}`,
+      status: 'error' in newUser ? 'Fail' : 'Success',
+      data: 'error' in newUser ? newUser.error.name : newUser._doc,
+      message:
+        'error' in newUser ? newUser.error.message : 'Thanks for signing up',
     }
 
     !response

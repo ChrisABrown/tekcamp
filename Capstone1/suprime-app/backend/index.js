@@ -3,8 +3,8 @@ import cors from 'cors'
 import authRouter from './API/routes/auth.js'
 import itemsRouter from './API/routes/items.route.js'
 import db from './db/conn.js'
-import bodyParser from 'body-parser'
 import cookieParser from 'cookie-parser'
+import passport from 'passport'
 
 const app = express()
 const PORT = process.env.PORT
@@ -26,13 +26,12 @@ const corsOptions = {
   credentials: true,
 }
 
-app.use(cors(corsOptions))
 app.use(express.json())
-app.use(bodyParser.json())
 app.use(cookieParser(process.env.COOKIE_SECRET))
 
+app.use(cors(corsOptions))
 app.use('/api/v1/items', itemsRouter)
-app.use('/api/v1/auth', authRouter)
+app.use('/api/v1/users', authRouter)
 
 app.use('*', (err, _req, res, next) => {
   err.status = err.status || 'fail'

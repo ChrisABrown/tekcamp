@@ -9,19 +9,20 @@ export default class AuthDAO {
       return { error: e }
     }
   }
-  static async signUp(user = {}, req, callback) {
+  static async signUp(user = {}, req) {
     const { username, email, profile } = user
 
     try {
-      return User.register(
+      let regUser = await User.register(
         new User({
           username: username,
           email: email,
           profile: profile,
         }),
-        req.body.password,
-        callback(err, obj)
+        req.body.password
       )
+
+      return regUser
     } catch (e) {
       console.error(`unable to register user: ${e}`)
       return { error: e }
