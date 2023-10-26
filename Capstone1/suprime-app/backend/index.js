@@ -4,12 +4,13 @@ import authRouter from './API/routes/auth.js'
 import itemsRouter from './API/routes/items.route.js'
 import db from './db/conn.js'
 
+const app = express()
+const PORT = process.env.PORT
+const baseURL = `http://localhost:${PORT}`
+
 if (!process.env.ISSUER_BASE_URL || !process.env.AUTH0_AUDIENCE) {
   throw 'Missing required environment variables. Check docs for more info.'
 }
-
-const app = express()
-const PORT = process.env.PORT
 
 app.use(cors())
 app.use(express.json())
@@ -37,5 +38,5 @@ app.use((err, _req, res, next) => {
 db.connect(process.env.SUPRIME_DB_URI)
 
 app.listen(PORT, () => {
-  console.log(`Server is running on port: ${PORT}`)
+  console.log(`listening on ${baseURL}`)
 })

@@ -16,6 +16,7 @@ import Shop from './views/Shop.js'
 import Contact from './views/Contact.js'
 import ProductDetails from './views/ProductDetails.js'
 import Cart from './views/Cart.js'
+import Profile from './components/Profile.js'
 
 export default function App() {
   const location = useLocation()
@@ -63,6 +64,7 @@ export default function App() {
         <Route path='/shop/:sku' element={<ProductDetails />} />
         <Route path='/cart' element={<Cart />} />
         <Route path='/contact' element={<Contact />} />
+        <Route path='/profile' element={<Profile />} />
       </Routes>
       <Outlet />
     </>

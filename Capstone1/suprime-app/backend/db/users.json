@@ -1,0 +1,82 @@
+[
+  {
+    "username": "CB234",
+    "role": "user",
+    "email": "buble@yahoo.com",
+    "password": "@jureli0",
+    "profile": {
+      "firstName": "Chris",
+      "lastName": "Buble",
+      "avatar": "",
+      "bio": "",
+      "address": {
+        "street1": "187 Sweater Street",
+        "street2": "Apt #2912",
+        "city": "Springfield",
+        "state": "Maryland",
+        "country": "USA",
+        "zip": "04598"
+      }
+    }
+  },
+  {
+    "username": "Tdub879",
+    "role": "user",
+    "email": "dubber@yahoo.com",
+    "password": "$makE3uN",
+    "profile": {
+      "firstName": "Travis",
+      "lastName": "Dub",
+      "avatar": "",
+      "bio": "",
+      "address": {
+        "street1": "3402 Main Street",
+        "street2": "",
+        "city": "Bridgeport",
+        "state": "Connecticut",
+        "country": "USA",
+        "zip": "06606"
+      }
+    }
+  },
+  {
+    "username": "Dblz",
+    "role": "admin",
+    "email": "lawler@yahoo.com",
+    "password": "b00bie$$",
+    "profile": {
+      "firstName": "David",
+      "lastName": "Blaze",
+      "avatar": "",
+      "bio": "",
+      "address": {
+        "street1": "",
+        "street2": "",
+        "city": "",
+        "state": "",
+        "country": "",
+        "zip": ""
+      }
+    }
+  },
+  {
+    "username": "Jwhite",
+    "role": "employee",
+    "email": "lmao@yahoo.com",
+    "password": "6etM0n3Y$",
+    "profile": {
+      "firstName": "John",
+      "lastName": "White",
+      "avatar": "",
+      "bio": "",
+      "address": {
+        "street1": "",
+        "street2": "",
+        "city": "",
+        "state": "",
+        "country": "",
+        "zip": ""
+      }
+    }
+  }
+]

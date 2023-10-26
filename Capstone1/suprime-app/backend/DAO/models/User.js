@@ -3,8 +3,15 @@
 import crypto from 'crypto'
 import { ObjectId } from 'mongodb'
 import uniqueValidator from 'mongoose-unique-validator'
-import mongoose from 'mongoose'
-const { Schema } = mongoose
+import mongoose, { Schema } from 'mongoose'
+import passportLocalMongoose from 'passport-local-mongoose'
+
+const Session = new Schema({
+  refreshToken: {
+    type: String,
+    default: '',
+  },
+})
 
 const userSchema = new Schema(
   {
@@ -18,7 +25,7 @@ const userSchema = new Schema(
     },
     role: {
       type: String,
-      enum: ['user', 'worker', 'admin'],
+      enum: ['user', 'employee', 'admin'],
       required: [true, 'Please specify user role'],
     },
     email: {
@@ -56,6 +63,13 @@ const userSchema = new Schema(
         },
       ],
     },
+    authStrategy: {
+      type: String,
+      default: 'local',
+    },
+    refreshToken: {
+      type: [Session],
+    },
     hash: String,
     salt: String,
   },
@@ -64,7 +78,16 @@ const userSchema = new Schema(
   }
 )
 
-userSchema.plugin(uniqueValidator, { message: 'is already taken.' })
+User.set('toJSON', {
+  transform: function (doc, ret, options) {
+    delete ret.refreshToken
+    return ret
+  },
+})
+
+User.plugin(passportLocalMongoose)
+
+User.plugin(uniqueValidator, { message: 'is already taken.' })
 
 // userSchema.method({
 //   setPassword: function (password) {
