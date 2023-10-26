@@ -1,4 +1,5 @@
 import User from './models/User.js'
+import Auth from '../authenticate.js'
 
 export default class AuthDAO {
   static async logIn(user = {}) {
@@ -9,6 +10,7 @@ export default class AuthDAO {
       return { error: e }
     }
   }
+
   static async signUp(user = {}, req) {
     const { username, email, profile } = user
 

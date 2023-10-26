@@ -8,7 +8,13 @@ const authRouter = expressRouter()
 // enforce on all endpoints
 
 authRouter
-  .post('/login', passport.authenticate('local'), AuthController.logIn)
+  .get(
+    '/protected',
+    passport.authenticate('local', { session: false }, (req, res, next) => {
+      res.status(200).json({ success: true, msg: 'Authorized' })
+    })
+  )
+  .post('/login', AuthController.logIn)
   .post('/signup', AuthController.signUp)
 
 authRouter.get('/authorized', function (req, res) {

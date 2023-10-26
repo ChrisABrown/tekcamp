@@ -2,7 +2,6 @@ import passport from 'passport'
 import jwt from 'jsonwebtoken'
 
 const dev = process.env.NODE_ENV !== 'production'
-
 const COOKIE_OPTIONS = {
   httpOnly: true,
   secure: !dev,
@@ -11,26 +10,26 @@ const COOKIE_OPTIONS = {
   sameSite: 'none',
 }
 
+const verifyUser = passport.authenticate('jwt', { session: false })
+
 function getToken(user) {
-  return jwt.sign(user, process.env.JWT_SECRET, {
+  return jwt.sign(user, `${process.env.JWT_SECRET}`, {
     expiresIn: eval(process.env.SESSION_EXPIRY),
   })
 }
 
 function getRefreshToken(user) {
-  const refreshToken = jwt.sign(user, process.env.REFRESH_TOKEN_SECRET, {
+  const refreshToken = jwt.sign(user, `${process.env.REFRESH_TOKEN_SECRET}`, {
     expiresIn: eval(process.env.REFRESH_TOKEN_EXPIRY),
   })
   return refreshToken
 }
 
-const verifyUser = passport.authenticate('jwt', { session: false })
-
-const Authentication = {
-  verifyUser,
+const Auth = {
   getRefreshToken,
   getToken,
+  verifyUser,
   COOKIE_OPTIONS,
 }
 
-export default Authentication
+export default Auth

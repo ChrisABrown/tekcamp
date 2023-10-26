@@ -2,7 +2,7 @@ import express from 'express'
 import cors from 'cors'
 import authRouter from './API/routes/auth.js'
 import itemsRouter from './API/routes/items.route.js'
-import db from './db/conn.js'
+import db from './db/db.js'
 import cookieParser from 'cookie-parser'
 import passport from 'passport'
 
