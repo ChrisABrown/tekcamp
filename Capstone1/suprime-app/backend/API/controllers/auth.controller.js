@@ -3,29 +3,32 @@ import Auth from '../../authenticate.js'
 
 export default class AuthController {
   static async logIn(req, res, next) {
-    const user = () => AuthDAO.logIn(req.user)
-
     const token = Auth.getToken({ _id: req.user._id })
-
     const refreshToken = Auth.getRefreshToken({ _id: req.user._id })
 
-    await user().then(
-      (user) => {
-        user.refreshToken.push({ refreshToken })
-        user.save((err, user) => {
-          if (err) {
-            res.statusCode = 500
-            res.send(err)
-          } else {
-            res.cookie('refreshToken', refreshToken, Auth.COOKIE_OPTIONS)
-            res.send({ success: true, token })
-          }
-        })
-      },
-      (err) => next(err)
-    )
+    const user = await AuthDAO.logIn(req.user)
 
-    console.log(user)
+    user.save().then((user) => {
+      user.refreshToken.push({ refreshToken })
+      user.save().then((err) => {
+        if (err) {
+          response.status = 500
+          response.message = err
+        }
+      })
+    })
+
+    let response = {
+      status: 'error' in user ? 'Fail' : 'Success',
+      message:
+        'error' in user ? user.error.message : `Welcome ${req.user.username}`,
+      token: token,
+    }
+
+    !response
+      ? next(new AppError()) && res.json(new AppError('NotFound', 404))
+      : res.cookie('refreshToken', user.refreshToken, Auth.COOKIE_OPTIONS) &&
+        res.send(response).status(200)
   }
 
   static async signUp(req, res, next) {
@@ -39,7 +42,7 @@ export default class AuthController {
     const refreshToken = Auth.getRefreshToken({ _id: newUser._id })
 
     newUser.refreshToken.push({ refreshToken })
-    newUser.save().then((err, user) => {
+    newUser.save().then((err) => {
       if (err) {
         ;(response.status = 500), (response.message = err)
       }
@@ -56,6 +59,6 @@ export default class AuthController {
     !response
       ? next(new AppError()) && res.json(new AppError('NotFound', 404))
       : res.send(response).status(200) &&
-        res.cookie('refreshToken', newUser.refreshToken, COOKIE_OPTIONS)
+        res.cookie('refreshToken', newUser.refreshToken, Auth.COOKIE_OPTIONS)
   }
 }

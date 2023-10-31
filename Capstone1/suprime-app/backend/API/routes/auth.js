@@ -10,7 +10,7 @@ const authRouter = expressRouter()
 authRouter
   .get(
     '/protected',
-    passport.authenticate('jwt', {
+    passport.authenticate('local', {
       successRedirect: '/',
       failureRedirect: '/login',
       failureMessage: true,

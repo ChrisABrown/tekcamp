@@ -8,10 +8,21 @@ import passport from 'passport'
 import './strategies/JwtStrategy.js'
 import './strategies/LocalStrategy.js'
 import './authenticate.js'
+import session from 'express-session'
 
 const app = express()
 const PORT = process.env.PORT
 const baseURL = `http://localhost:${PORT}`
+
+app.use(express.json())
+app.use(cookieParser(process.env.COOKIE_SECRET))
+app.use(
+  session({
+    secret: process.env.COOKIE_SECRET,
+    resave: false,
+    saveUninitialized: false,
+  })
+)
 
 const whitelist = process.env.WHITELISTED_DOMAINS
   ? process.env.WHITELISTED_DOMAINS.split(',')
@@ -28,9 +39,6 @@ const corsOptions = {
 
   credentials: true,
 }
-
-app.use(express.json())
-app.use(cookieParser(process.env.COOKIE_SECRET))
 
 app.use(cors(corsOptions))
 app.use(passport.initialize())
