@@ -9,23 +9,16 @@ const authRouter = expressRouter()
 
 authRouter
   .get(
-    '/protected',
-    passport.authenticate('local', {
-      successRedirect: '/',
-      failureRedirect: '/login',
-      failureMessage: true,
-      session: false,
-    }),
+    '/authorized',
+    passport.authenticate('local'),
+    //TODO
     function (req, res) {
-      res.redirect('/' + req.user.username)
+      res.send('Secured Resource')
     }
   )
   .post('/login', passport.authenticate('local'), AuthController.logIn)
   .post('/signup', AuthController.signUp)
-
-authRouter.get('/authorized', function (req, res) {
-  res.send('Secured Resource')
-})
+  .post('/refreshToken', AuthController.refreshToken)
 
 authRouter.get(
   '/users',

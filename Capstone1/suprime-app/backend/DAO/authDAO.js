@@ -29,4 +29,13 @@ export default class AuthDAO {
       return { error: e }
     }
   }
+
+  static async refreshToken(userId) {
+    try {
+      return await User.findOne({ _id: userId })
+    } catch (e) {
+      console.error(`Unauthorized Access`)
+      return { error: e }
+    }
+  }
 }

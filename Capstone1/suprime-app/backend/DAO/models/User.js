@@ -76,7 +76,7 @@ const userSchema = new Schema(
   }
 )
 
-userSchema.method('toJSON', {
+userSchema.set('toJSON', {
   transform: function (doc, ret, options) {
     delete ret.refreshToken
     return ret
