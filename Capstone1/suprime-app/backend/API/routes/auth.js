@@ -10,11 +10,17 @@ const authRouter = expressRouter()
 authRouter
   .get(
     '/protected',
-    passport.authenticate('local', { session: false }, (req, res, next) => {
-      res.status(200).json({ success: true, msg: 'Authorized' })
-    })
+    passport.authenticate('jwt', {
+      successRedirect: '/',
+      failureRedirect: '/login',
+      failureMessage: true,
+      session: false,
+    }),
+    function (req, res) {
+      res.redirect('/' + req.user.username)
+    }
   )
-  .post('/login', AuthController.logIn)
+  .post('/login', passport.authenticate('local'), AuthController.logIn)
   .post('/signup', AuthController.signUp)
 
 authRouter.get('/authorized', function (req, res) {

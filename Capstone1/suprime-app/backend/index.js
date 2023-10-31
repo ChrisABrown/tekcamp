@@ -5,6 +5,9 @@ import itemsRouter from './API/routes/items.route.js'
 import db from './db/db.js'
 import cookieParser from 'cookie-parser'
 import passport from 'passport'
+import './strategies/JwtStrategy.js'
+import './strategies/LocalStrategy.js'
+import './authenticate.js'
 
 const app = express()
 const PORT = process.env.PORT
@@ -30,6 +33,7 @@ app.use(express.json())
 app.use(cookieParser(process.env.COOKIE_SECRET))
 
 app.use(cors(corsOptions))
+app.use(passport.initialize())
 app.use('/api/v1/items', itemsRouter)
 app.use('/api/v1/users', authRouter)
 

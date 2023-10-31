@@ -1,15 +1,15 @@
 import passport from 'passport'
-import { JwtStrategy, ExtractJwt } from 'passport-jwt'
-import User from '../DAO/models/User'
+import { Strategy as JwtStrategy, ExtractJwt } from 'passport-jwt'
+import User from '../DAO/models/User.js'
 
-const options = {}
-
-options.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken()
-options.secret = process.env.JWT_SECRET
-
+const options = {
+  jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+  secretOrKey: process.env.JWT_SECRET,
+}
 passport.use(
-  User.createStrategy(
-    new JwtStrategy(options, function (jwt_payload, done) {
+  new JwtStrategy(
+    options,
+    function (jwt_payload, done) {
       User.findOne({ _id: jwt_payload._id }, function (err, user) {
         if (err) {
           return done(err, false)
@@ -20,6 +20,7 @@ passport.use(
           return done(null, false)
         }
       })
-    })
+    },
+    'jwt'
   )
 )

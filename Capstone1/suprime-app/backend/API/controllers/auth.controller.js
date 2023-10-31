@@ -17,11 +17,7 @@ export default class AuthController {
             res.statusCode = 500
             res.send(err)
           } else {
-            res.cookie(
-              'refreshToken',
-              refreshToken,
-              Authentication.COOKIE_OPTIONS
-            )
+            res.cookie('refreshToken', refreshToken, Auth.COOKIE_OPTIONS)
             res.send({ success: true, token })
           }
         })

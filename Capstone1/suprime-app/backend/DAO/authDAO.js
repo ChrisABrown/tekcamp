@@ -1,5 +1,4 @@
 import User from './models/User.js'
-import Auth from '../authenticate.js'
 
 export default class AuthDAO {
   static async logIn(user = {}) {
