@@ -21,12 +21,15 @@ authRouter
   .post('/signup', AuthController.signUp)
   .post('/refreshToken', (req, res, next) => {
     const { signedCookies = {} } = req
-    const { refreshToken } = signedCookies
+    const { refreshTokens } = signedCookies
+    let payload
 
-    if (refreshToken) {
+    if (refreshTokens) {
       try {
-        console.log(req)
-        const payload = jwt.verify(process.env.REFRESH_TOKEN_SECRET)
+        refreshTokens.forEach((refreshToken) => {
+          console.log(refreshToken)
+          // payload = jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET)
+        })
         const userId = payload._id
         // const findUser = await AuthDAO.refreshToken(userId)
 
@@ -40,7 +43,7 @@ authRouter
               )
               if (tokenIndex === -1) {
                 res.statusCode = 401
-                res.send('Unauthrized')
+                res.send('Unauthorized')
               } else {
                 const token = Auth.getToken({ _id: userId })
                 const newRefreshToken = Auth.getRefreshToken({ _id: userId })
