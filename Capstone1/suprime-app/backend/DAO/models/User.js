@@ -2,9 +2,10 @@
 
 import { ObjectId } from 'mongodb'
 import uniqueValidator from 'mongoose-unique-validator'
-import mongoose, { Schema } from 'mongoose'
+import mongoose from 'mongoose'
 import passportLocalMongoose from 'passport-local-mongoose'
 
+const Schema = mongoose.Schema
 const Session = new Schema({
   refreshToken: {
     type: String,

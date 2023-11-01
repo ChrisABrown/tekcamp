@@ -14,7 +14,7 @@ class Database {
   async connect(connectionString) {
     try {
       this.connection = await mongoose.connect(connectionString)
-      console.log(`MongDB connected: ${this.connection.connection.host}`)
+      console.log(`MongoDB connected: ${this.connection.connection.host}`)
     } catch (e) {
       console.error(e)
       process.exit(1)

@@ -1,7 +1,7 @@
 import AuthDAO from '../../DAO/authDAO.js'
+import User from '../../DAO/models/User.js'
 import Auth from '../../authenticate.js'
 import jwt from 'jsonwebtoken'
-
 export default class AuthController {
   static async logIn(req, res, next) {
     const token = Auth.getToken({ _id: req.user._id })
@@ -38,7 +38,8 @@ export default class AuthController {
       email: req.body.email,
       profile: req.body.profile,
     }
-    const newUser = await AuthDAO.signUp(user, req)
+    const pw = req.body.password
+    const newUser = await AuthDAO.signUp(user, pw)
     const token = Auth.getToken({ _id: newUser._id })
     const refreshToken = Auth.getRefreshToken({ _id: newUser._id })
 
@@ -54,7 +55,7 @@ export default class AuthController {
       // data: 'error' in newUser ? newUser.error.name : newUser._doc,
       message:
         'error' in newUser ? newUser.error.message : 'Thanks for signing up',
-      token: token,
+      token,
     }
 
     !response
@@ -63,64 +64,5 @@ export default class AuthController {
         res.send(response).status(200)
   }
 
-  static async refreshToken(req, res, next) {
-    const { signedCookies = {} } = req
-    const { refreshToken } = signedCookies
-    let findUser
-    console.log(refreshToken._id)
-
-    if (refreshToken) {
-      try {
-        const payload = jwt.verify(
-          refreshToken,
-          process.env.REFRESH_TOKEN_SECRET
-        )
-        const userId = payload._id
-        findUser = async () => await AuthDAO.refreshToken(userId)
-
-        findUser().then(
-          (user) => {
-            if (user) {
-              const tokenIndex = user.refreshToken.findIndex(
-                (item) => item.refreshToken === refreshToken
-              )
-              if (tokenIndex === -1) {
-                res.statusCode = 401
-                res.send('Unauthorized')
-              } else {
-                const token = Auth.getToken({ _id: userId })
-                const newRefreshToken = Auth.getRefreshToken({ _id: userId })
-                user.refreshToken[tokenIndex] = {
-                  refreshToken: newRefreshToken,
-                }
-                user.save().then((err, user) => {
-                  if (err) {
-                    res.status = 500
-                    res.send(err)
-                  } else {
-                    res.cookie(
-                      'refreshToken',
-                      newRefreshToken,
-                      Auth.COOKIE_OPTIONS
-                    )
-                    res.send({ success: true, token })
-                  }
-                })
-              }
-            } else {
-              res.statusCode = 401
-              res.send('Unauthorized')
-            }
-          },
-          (err) => next(err)
-        )
-      } catch (err) {
-        res.statusCode = 401
-        res.send(`Error: ${err}`)
-      }
-    } else {
-      res.statusCode = 401
-      res.send('Unauthorized')
-    }
-  }
+  static async refreshToken(req, res, next) {}
 }

@@ -2,6 +2,7 @@ import { Router as expressRouter } from 'express'
 import User from '../../DAO/models/User.js'
 import AuthController from '../controllers/auth.controller.js'
 import passport from 'passport'
+import jwt from 'jsonwebtoken'
 
 const authRouter = expressRouter()
 
@@ -18,7 +19,64 @@ authRouter
   )
   .post('/login', passport.authenticate('local'), AuthController.logIn)
   .post('/signup', AuthController.signUp)
-  .post('/refreshToken', AuthController.refreshToken)
+  .post('/refreshToken', (req, res, next) => {
+    const { signedCookies = {} } = req
+    const { refreshToken } = signedCookies
+
+    if (refreshToken) {
+      try {
+        console.log(req)
+        const payload = jwt.verify(process.env.REFRESH_TOKEN_SECRET)
+        const userId = payload._id
+        // const findUser = await AuthDAO.refreshToken(userId)
+
+        // findUser()
+
+        User.findOne({ _id: userId }).then(
+          (user) => {
+            if (user) {
+              const tokenIndex = user.refreshToken.findIndex(
+                (item) => item.refreshToken === refreshToken
+              )
+              if (tokenIndex === -1) {
+                res.statusCode = 401
+                res.send('Unauthrized')
+              } else {
+                const token = Auth.getToken({ _id: userId })
+                const newRefreshToken = Auth.getRefreshToken({ _id: userId })
+                user.refreshToken[tokenIndex] = {
+                  refreshToken: newRefreshToken,
+                }
+                user.save().then((err, user) => {
+                  if (err) {
+                    res.status = 500
+                    res.send(err)
+                  } else {
+                    res.cookie(
+                      'refreshToken',
+                      newRefreshToken,
+                      Auth.COOKIE_OPTIONS
+                    )
+                    res.send({ success: true, token })
+                  }
+                })
+              }
+            } else {
+              res.statusCode = 401
+              res.send('Unauthorized')
+            }
+          },
+          (err) => next(err)
+        )
+      } catch (err) {
+        res.statusCode = 401
+        res.send(`Error: ${err}`)
+      }
+    } else {
+      res.statusCode = 401
+      res.send('Unauthorized')
+    }
+  })
 
 authRouter.get(
   '/users',

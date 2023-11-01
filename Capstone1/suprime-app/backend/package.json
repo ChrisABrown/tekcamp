@@ -8,10 +8,10 @@
   "license": "ISC",
   "description": "",
   "scripts": {
-    "initDB": "node --env-file=config.env ./db/init.js",
-    "drop": "node --env-file=config.env ./db/cleanup.js",
-    "start:backend": "node --env-file=config.env ./index.js",
-    "dev": "nodemon --env-file=config.env ./index.js"
+    "initDB": "node --env-file config.env ./db/init.js",
+    "drop": "node --env-file config.env ./db/cleanup.js",
+    "start:backend": "node --env-file config.env ./index.js",
+    "dev": "nodemon --env-file config.env ./index.js"
   },
   "dependencies": {
     "body-parser": "^1.20.2",

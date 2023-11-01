@@ -10,7 +10,7 @@ export default class AuthDAO {
     }
   }
 
-  static async signUp(user = {}, req) {
+  static async signUp(user = {}, pw) {
     const { username, email, profile } = user
 
     try {
@@ -20,7 +20,7 @@ export default class AuthDAO {
           email: email,
           profile: profile,
         }),
-        req.body.password
+        pw
       )
 
       return regUser
@@ -32,7 +32,8 @@ export default class AuthDAO {
 
   static async refreshToken(userId) {
     try {
-      return await User.findOne({ _id: userId })
+      const find = await User.findOne({ userId }).exec()
+      return find
     } catch (e) {
       console.error(`Unauthorized Access`)
       return { error: e }
