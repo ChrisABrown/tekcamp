@@ -1,5 +1,4 @@
 import AuthDAO from '../../DAO/authDAO.js'
-import User from '../../DAO/models/User.js'
 import Auth from '../../authenticate.js'
 import jwt from 'jsonwebtoken'
 export default class AuthController {
