@@ -1,6 +1,6 @@
 import React from 'react'
-import '../../Forms/forms.css'
-import CartItem from '../Components/CartItem'
+import '../css/forms.css'
+import CartItem from '../components/CartItem'
 
 export default function Cart(props) {
   const { cartItems, addToCart, removeFromCart } = props
@@ -15,7 +15,7 @@ export default function Cart(props) {
             purchases={cartItems}
             addToCart={addToCart}
             removeFromCart={removeFromCart}
-          ></CartItem>
+          />
         </div>
       </aside>
     </div>

@@ -1,15 +1,18 @@
 @import 'error.css';
 @import 'forms.css';
+@import 'shop.css';
+@import 'about.css';
 
-* {
+body {
   margin: 0;
   padding: 0;
   font-family: Monaco;
+  font-size: 0.8em;
 }
 
 @media only screen and (min-width: 992px) {
   #sign-in {
-    margin: 40vh 40vw;
+    margin: 10vh 1em 10vh;
   }
 }
 #search-bar {
@@ -19,116 +22,91 @@
   opacity: 50%;
 }
 
-.main-page {
-  background: white;
-  margin-top: 7em;
-  display: flex;
-  flex-flow: column wrap;
-  align-content: center;
-}
 .suprime-red-box {
   background: rgb(236, 4, 4);
-  margin-bottom: 1em;
-  padding: 0.8em 1em;
+  padding: 2em;
   display: flex;
-  width: 13em;
-  align-items: baseline;
-  justify-content: center;
+  align-items: center;
 }
 
 .suprime-logo-font {
   font-size: 3em;
-  font-family: Futura;
   font-style: italic;
-  font-weight: 900;
+  font-family: Futura;
   color: ghostwhite;
-  align-self: center;
+  margin: 4px -5px;
 }
 .suprime-text-font {
   font-family: Monaco;
-  color: black;
-  display: flex;
-  flex-flow: column wrap;
-  margin-left: 2.4em;
+  color: #fff;
 }
-.flex-box {
-  display: flex;
-  flex-flow: column wrap;
-  justify-content: center;
-}
-.links {
-  text-decoration: none;
-  margin-top: 5em;
-  margin-left: 6em;
-  display: flex;
-  flex-flow: column wrap;
-  justify-content: center;
-  color: black;
-}
-
-.footer {
-  width: 90vw;
-  display: flex;
-  flex-flow: row;
-  align-items: center;
-  justify-content: space-between;
-}
-.footer-links {
-  text-decoration: none;
-  color: black;
-}
-
-.shop-page {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.shop-tabs {
-  display: flex;
-  flex-flow: row;
-  justify-content: space-between;
-}
-.shop-tabs a {
-  text-decoration: none;
-  color: black;
-  padding: 0.7em;
-  margin-top: 3em;
-  margin-bottom: 1em;
-}
-.shop-tabs a:active {
-  color: red;
-}
-.shop-tabs a:hover {
-  color: red;
-}
-
-.item-grid {
-  display: flex;
-  flex-flow: row wrap;
-  align-items: center;
-  justify-content: center;
-}
-#shop-logo {
+.logo {
   display: flex;
   flex-flow: row;
   align-items: center;
   justify-content: center;
 }
-#products-grid {
-  display: inline;
-
-  margin-left: 10em;
-}
-.product-details {
+nav {
+  min-height: 100vh;
   display: flex;
   flex-flow: column;
   align-items: center;
-  justify-content: center;
-  width: 15em;
-  font-size: 0.8em;
-  margin: 2em;
-  padding: auto;
+  justify-content: space-around;
 }
+
+.links {
+  text-decoration: none;
+  display: flex;
+  justify-content: space-around;
+  color: black;
+}
+.links:hover {
+  color: #fff;
+  border-radius: 10%;
+  padding: 1%;
+  background-color: rgb(236, 4, 4);
+  transition: 5ms ease-in-out;
+}
+
+footer {
+  overflow: hidden;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 5;
+  position: fixed;
+  background-color: ghostwhite;
+  display: flex;
+  justify-content: space-around;
+  padding: 1em;
+  transform: 1s ease-in-out;
+}
+
+.footer-links {
+  display: flex;
+  flex-flow: row;
+  text-decoration: none;
+  color: black;
+}
+
+.footer-links:hover {
+  opacity: 40%;
+  transition: 3ms ease-in;
+}
+
+.sticky {
+  position: fixed;
+  background-color: rgb(236, 4, 4);
+  bottom: 0;
+  width: 100%;
+  transition: 1s ease-in-out;
+}
+
+.sticky .footer-links {
+  color: #fff;
+  transition: 1s ease-in-out;
+}
+
 #no-show {
   display: none;
 }

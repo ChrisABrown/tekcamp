@@ -1,10 +1,13 @@
 import Message from './models/Message.cjs'
 import mongodb from 'mongodb'
-const ObjectId = mongodb.ObjectId
 
 let messages
 
+const ObjectId = mongodb.ObjectId
+
 export default class MessagesDAO {
+  'use strict'
+
   static async injectDB(conn) {
     if (messages) return
 

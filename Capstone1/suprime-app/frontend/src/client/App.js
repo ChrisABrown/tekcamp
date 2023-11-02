@@ -13,6 +13,10 @@ import { listItems } from './actions/itemActions.js'
 import Home from './views/Home.js'
 import About from './views/About.js'
 import Shop from './views/Shop.js'
+import Contact from './views/Contact.js'
+import ProductDetails from './views/ProductDetails.js'
+import Cart from './views/Cart.js'
+import Profile from './components/Profile.js'
 
 export default function App() {
   const location = useLocation()
@@ -33,15 +37,34 @@ export default function App() {
       <Routes>
         <Route
           path='/'
-          element={<Home items={items} loading={loading} error={error} exact />}
+          element={
+            <Home
+              items={items}
+              loading={loading}
+              error={error}
+              navigate={navigate}
+              exact
+            />
+          }
         />
         <Route path='/about' element={<About navigate={navigate} />} />
         <Route
           path='/shop'
-          element={<Shop items={items} loading={loading} error={error} exact />}
+          element={
+            <Shop
+              items={items}
+              loading={loading}
+              error={error}
+              navigate={navigate}
+              exact
+            />
+          }
         />
-        <Route />
-        <Route />
+
+        <Route path='/shop/:sku' element={<ProductDetails />} />
+        <Route path='/cart' element={<Cart />} />
+        <Route path='/contact' element={<Contact />} />
+        <Route path='/profile' element={<Profile />} />
       </Routes>
       <Outlet />
     </>

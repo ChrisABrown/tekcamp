@@ -1,15 +1,13 @@
 import React from 'react'
 import { useState } from 'react'
-import './forms.css'
-// import "../../styles.css";
-import Logo from '../Logo/Logo'
-import Footer from '../Footer'
-import FormInputs from '../Components/FormInputs'
+import '../css/styles.css'
+import Logo from '../components/Logo'
+import Footer from '../components/Footer'
+import FormInputs from '../components/FormInputs.js'
 
 export default function Contact() {
   const [vals, setVals] = useState({
-    firstname: '',
-    lastname: '',
+    name: '',
     email: '',
     ordernumber: '',
     // message: "",
@@ -19,25 +17,15 @@ export default function Contact() {
     /*Join these into one: name*/
     {
       id: 1,
-      name: 'firstname',
+      name: 'name',
       type: 'text',
-      placeholder: 'firstname',
+      placeholder: 'name',
       pattern: `^[a-zA-Z]{3-16}*$`,
       required: true,
       errMessage: 'min 3-16 characters, no numbers',
     },
     {
       id: 2,
-      name: 'lastname',
-      type: 'text',
-      placeholder: 'lastname',
-      pattern: `^[a-zA-Z]{3,16}*$`,
-      required: true,
-      errMessage: 'min 3-16 characters, no numbers',
-    },
-
-    {
-      id: 3,
       name: 'email',
       type: 'email',
       placeholder: 'email',
@@ -46,10 +34,10 @@ export default function Contact() {
       errMessage: 'Needs to be a valid email address',
     },
     {
-      id: 4,
+      id: 3,
       name: 'ordernumber',
       type: 'text',
-      placeholder: 'ordernumber',
+      placeholder: 'order#',
       required: false,
       pattern: '^[A-Za-z]{2}[0-9]+US$',
       errMessage: 'Order number incorrect',
@@ -64,12 +52,12 @@ export default function Contact() {
   }
 
   return (
-    <div className='contact-page'>
-      <div id='cont-logo'>
-        <Logo />
-        <h4>contact form</h4>
-      </div>
-      <div id='form'>
+    <>
+      <div className='contact-page'>
+        <div className='logo'>
+          <Logo />
+        </div>
+        <h3>Contact Us</h3>
         <form onSubmit={handleSend}>
           {inputs.map((input) => (
             <FormInputs
@@ -79,31 +67,27 @@ export default function Contact() {
               onChange={onChange}
             />
           ))}
-          <div id='dropdown'>
-            <select>
-              <option value=''>(select one)</option>
-              <option value='1'>press</option>
-              <option value='2'>general inquiries</option>
-              <option value='3'>order status inquiries</option>
-            </select>
-          </div>
+
+          <select className='dropdown'>
+            <option value=''>(select one)</option>
+            <option value='1'>press</option>
+            <option value='2'>general inquiries</option>
+            <option value='3'>order status inquiries</option>
+          </select>
+
           <textarea
             name='message'
             id='textarea'
             cols='41'
             rows='10'
             placeholder='message...'
-          ></textarea>
-          <div id='btn-contnr'>
-            <button id='cont-btn' onClick={handleSend}>
-              send
-            </button>
-          </div>
+          />
+          <button className='cont-btn' onClick={handleSend}>
+            send
+          </button>
         </form>
       </div>
-      <div id='cont-ftr'>
-        <Footer />
-      </div>
-    </div>
+      <Footer />
+    </>
   )
 }

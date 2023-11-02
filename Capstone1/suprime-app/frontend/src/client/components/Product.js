@@ -1,4 +1,7 @@
-export default function Product({ item, imgSrc, size, alt }) {
+import { Link } from 'react-router-dom'
+
+export default function Product(props) {
+  const { item, imgSrc, price, alt } = props
   const itemURL = `/${item.sku}`
 
   function handleClick(e) {
@@ -6,13 +9,18 @@ export default function Product({ item, imgSrc, size, alt }) {
     item.images = images
   }
 
-  let sources = Object.keys(imgSrc)
+  let sources = Object.values(imgSrc)
 
   return (
     <>
       <figure className='product-box'>
-        <img src={imgSrc[sources[0]]} alt={alt} />
-        <p>${item.price}</p>
+        <Link to={itemURL}>
+          <img src={sources} alt={alt} />
+        </Link>
+        <section>
+          <p className='product-price'>${price}</p>
+          <p className='product-description'>{alt}</p>
+        </section>
       </figure>
     </>
   )

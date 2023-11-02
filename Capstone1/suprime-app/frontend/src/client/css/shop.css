@@ -1,0 +1,46 @@
+.shop-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.shop-grid {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-flow: row wrap;
+}
+.shop-tabs {
+  grid-area: hd;
+}
+.shop-tabs a {
+  text-decoration: none;
+  color: black;
+  padding: 0.7em;
+  margin-top: 3em;
+  margin-bottom: 1em;
+}
+.shop-tabs a:active {
+  color: red;
+}
+.shop-tabs a:hover {
+  color: red;
+}
+
+.product-box {
+  display: grid;
+  padding: 30px;
+  grid-template-columns: repeat(2, 40vh);
+  grid-template-areas:
+    '. . prod prod . .'
+    '. . prod prod info .';
+}
+img {
+  height: 40vh;
+  grid-area: prod;
+}
+.product-price {
+  grid-area: info;
+}
+.product-description {
+  grid-area: info;
+}
