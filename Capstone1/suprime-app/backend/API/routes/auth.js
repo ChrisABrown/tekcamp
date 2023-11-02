@@ -16,10 +16,9 @@ authRouter
       res.send('Secured Resource')
     }
   )
-  .get('/me', Auth.verifyUser, (req, res, next) => {
-    res.send(req.user)
-  })
+  .get('/user', Auth.verifyUser, AuthController.getUserDetails)
   .post('/login', passport.authenticate('local'), AuthController.logIn)
+  .get('/logout', Auth.verifyUser, AuthController.logOut)
   .post('/signup', AuthController.signUp)
   .post('/refreshToken', AuthController.refreshToken)
 

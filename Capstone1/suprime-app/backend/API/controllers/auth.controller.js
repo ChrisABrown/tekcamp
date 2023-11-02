@@ -32,6 +32,31 @@ export default class AuthController {
         res.send(response).status(200)
   }
 
+  static async logOut(req, res, next) {
+    const { signedCookies = {} } = req
+    const { refreshToken } = signedCookies
+    let tokenIndex
+
+    await AuthDAO.findUser(req.user._id).then((user) => {
+      tokenIndex = user.refreshToken.findIndex(
+        (item) => item.refreshToken === refreshToken
+      )
+      if (tokenIndex !== -1) {
+        user.refreshToken.id(user.refreshToken[tokenIndex]._id).remove()
+      }
+      user.save().then((user, err) => {
+        if (err) {
+          res.statusCode = 500
+          res.send(err)
+        } else {
+          res.clearCookie('refreshToken', Auth.COOKIE_OPTIONS)
+          res.send({ success: true })
+        }
+      })
+    }),
+      (err) => next(err)
+  }
+
   static async signUp(req, res, next) {
     const user = {
       username: req.body.username,
@@ -52,7 +77,6 @@ export default class AuthController {
 
     let response = {
       status: 'error' in newUser ? 'Fail' : 'Success',
-      // data: 'error' in newUser ? newUser.error.name : newUser._doc,
       message:
         'error' in newUser ? newUser.error.message : 'Thanks for signing up',
       token,
@@ -65,19 +89,26 @@ export default class AuthController {
   }
 
   static async refreshToken(req, res, next) {
-    const { signedCookies } = req
+    const { signedCookies = {} } = req
     const { refreshToken } = signedCookies
     let payload
     let tokenIndex
+    let refToken
     if (refreshToken) {
+      for (const ref of refreshToken) {
+        if (!ref.refreshToken in ref) {
+          return res.status(401).json({ message: 'Unauthorized' })
+        }
+        refToken = ref.refreshToken
+      }
       try {
-        payload = jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET)
+        payload = jwt.verify(refToken, process.env.REFRESH_TOKEN_SECRET)
         const userId = payload._id
         await AuthDAO.findUser(userId).then(
           (user) => {
             if (user) {
               tokenIndex = user.refreshToken.findIndex(
-                (item) => item.refreshToken == refreshToken
+                (item) => item.refreshToken == refToken
               )
               if (tokenIndex === -1) {
                 res.statusCode = 401
@@ -117,5 +148,14 @@ export default class AuthController {
       res.statusCode = 401
       res.send('Unauthorized: no refreshToken')
     }
+  }
+
+  static async getUserDetails(req, res, next) {
+    if (!req.user) return res.status(401).json({ message: 'No user found.' })
+    let response = {
+      status: res.status === 200 ? 'Success!' : 'Fail!',
+      userDetails: req.user,
+    }
+    res.send(response)
   }
 }
