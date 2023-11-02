@@ -30,9 +30,9 @@ export default class AuthDAO {
     }
   }
 
-  static async refreshToken(userId) {
+  static async findUser(userId) {
     try {
-      const find = await User.findOne({ userId }).exec()
+      const find = await User.findOne({ _id: userId }).exec()
       return find
     } catch (e) {
       console.error(`Unauthorized Access`)

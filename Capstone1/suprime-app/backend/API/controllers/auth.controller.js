@@ -64,5 +64,58 @@ export default class AuthController {
         res.send(response).status(200)
   }
 
-  static async refreshToken(req, res, next) {}
+  static async refreshToken(req, res, next) {
+    const { signedCookies } = req
+    const { refreshToken } = signedCookies
+    let payload
+    let tokenIndex
+    if (refreshToken) {
+      try {
+        payload = jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET)
+        const userId = payload._id
+        await AuthDAO.findUser(userId).then(
+          (user) => {
+            if (user) {
+              tokenIndex = user.refreshToken.findIndex(
+                (item) => item.refreshToken == refreshToken
+              )
+              if (tokenIndex === -1) {
+                res.statusCode = 401
+                res.send('Unauthorized')
+              } else {
+                const token = Auth.getToken({ _id: userId })
+                const newRefreshToken = Auth.getRefreshToken({ _id: userId })
+                user.refreshToken[tokenIndex] = {
+                  refreshToken: newRefreshToken,
+                }
+                user.save().then((user, error) => {
+                  if (error) {
+                    res.status = 500
+                    res.send(`${error}`)
+                  } else {
+                    res.cookie(
+                      'refreshToken',
+                      newRefreshToken,
+                      Auth.COOKIE_OPTIONS
+                    )
+                    res.send({ success: true, token })
+                  }
+                })
+              }
+            } else {
+              res.statusCode = 401
+              res.send('Unauthorized')
+            }
+          },
+          (err) => next(err)
+        )
+      } catch (err) {
+        res.statusCode = 401
+        res.send(`Error: ${err}`)
+      }
+    } else {
+      res.statusCode = 401
+      res.send('Unauthorized: no refreshToken')
+    }
+  }
 }

@@ -8,8 +8,8 @@ opts.secretOrKey = process.env.JWT_SECRET
 
 passport.use(
   new JwtStrategy(opts, function (jwt_payload, done) {
-    User.findOne({ _id: jwt_payload._id }, function (err, user) {
-      if (err) {
+    User.findOne({ _id: jwt_payload._id }).then((user, error) => {
+      if (error) {
         return done(err, false)
       }
       if (user) {

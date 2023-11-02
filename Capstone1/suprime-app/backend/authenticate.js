@@ -10,7 +10,7 @@ const COOKIE_OPTIONS = {
   sameSite: 'none',
 }
 
-const verifyUser = passport.authenticate('jwt', { session: false })
+const verifyUser = passport.authenticate('jwt')
 
 const getToken = (user) => {
   return jwt.sign(user, process.env.JWT_SECRET, {
