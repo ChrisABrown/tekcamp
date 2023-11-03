@@ -59,6 +59,7 @@ export default class AuthController {
   static async signUp(req, res, next) {
     const user = {
       username: req.body.username,
+      role: req.body.role,
       email: req.body.email,
       profile: req.body.profile,
     }

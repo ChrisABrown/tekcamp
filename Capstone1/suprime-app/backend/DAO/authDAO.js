@@ -11,18 +11,16 @@ export default class AuthDAO {
   }
 
   static async signUp(user = {}, pw) {
-    const { username, email, profile } = user
-
     try {
       let regUser = await User.register(
         new User({
-          username: username,
-          email: email,
-          profile: profile,
+          username: user.username,
+          role: user.role,
+          email: user.email,
+          profile: user.profile,
         }),
         pw
       )
-
       return regUser
     } catch (e) {
       console.error(`unable to register user: ${e}`)
@@ -36,6 +34,16 @@ export default class AuthDAO {
       return find
     } catch (e) {
       console.error(`Unauthorized Access`)
+      return { error: e }
+    }
+  }
+
+  static async deleteUser(userId) {
+    try {
+      const user = await User.findOneAndDelete({ _id: userId }).exec()
+      return user
+    } catch (e) {
+      console.error(`unable to delete user: ${e}`)
       return { error: e }
     }
   }

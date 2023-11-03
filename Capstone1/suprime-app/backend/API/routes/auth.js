@@ -16,23 +16,12 @@ authRouter
       res.send('Secured Resource')
     }
   )
+  .get('/admin-dashboard', Auth.verifyUser)
   .get('/user', Auth.verifyUser, AuthController.getUserDetails)
   .post('/login', passport.authenticate('local'), AuthController.logIn)
   .get('/logout', Auth.verifyUser, AuthController.logOut)
   .post('/signup', AuthController.signUp)
   .post('/refreshToken', AuthController.refreshToken)
-
-// authRouter.get(
-//   '/users',
-
-//   function (req, res, next) {
-//     User.find({})
-//       .then((users) => {
-//         res.send({ userList: users })
-//       })
-//       .catch(next)
-//   }
-// )
 
 //   .put(
 //     '/user',

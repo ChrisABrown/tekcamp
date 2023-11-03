@@ -11,6 +11,7 @@ const COOKIE_OPTIONS = {
 }
 
 const verifyUser = passport.authenticate('jwt')
+const verifyUserByRole = passport.authenticate('')
 
 const getToken = (user) => {
   return jwt.sign(user, process.env.JWT_SECRET, {
@@ -23,6 +24,20 @@ const getRefreshToken = (user) => {
     expiresIn: eval(process.env.REFRESH_TOKEN_EXPIRY),
   })
   return refreshToken
+}
+
+const checkIsInRole = (roles, user) => {
+  roles = ['admin', 'employee', 'user']
+
+  switch (roles) {
+    case 'admin':
+
+    case 'employee':
+    case 'user':
+
+    default:
+      break
+  }
 }
 
 const Auth = {
