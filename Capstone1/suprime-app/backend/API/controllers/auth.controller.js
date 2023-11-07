@@ -9,7 +9,7 @@ export default class AuthController {
 
     const user = await AuthDAO.findUser(req.user._id)
 
-    req.login(user, (err) => {
+    req.logIn(user, (err) => {
       if (err) {
         response.status = 500
         response.message = err
@@ -56,7 +56,11 @@ export default class AuthController {
         }
       })
     }),
-      (err) => next(err)
+      req.logOut(function (err) {
+        if (err) {
+          return next(err)
+        }
+      })
   }
 
   static async signUp(req, res, next) {
@@ -177,5 +181,25 @@ export default class AuthController {
       message: 'error' in users ? 'Unauthorized' : 'Retrieved all Users',
     }
     res.send(response)
+  }
+
+  static async updateUser(req, res, next) {
+    let user = req.body.user
+    let update = {
+      username: user.username,
+      email: user.email,
+      profile: user.profile,
+    }
+
+    if (req.isAuthenticated() && req.user === req.body.user) {
+      await AuthDAO.updateUser(user, update)
+        .then((user) => {
+          return user.save().then((user) => {
+            return res.json({ user: user })
+          })
+        })
+        .catch(next)
+    }
+    next()
   }
 }

@@ -39,6 +39,18 @@ export default class AuthDAO {
     }
   }
 
+  static async updateUser(user = {}, update = {}) {
+    try {
+      const upUser = await User.findByIdAndUpdate({ _id: user._id }, update, {
+        new: true,
+      })
+      return upUser
+    } catch (e) {
+      console.error('Unable to update user info')
+      return { error: e }
+    }
+  }
+
   static async deleteUser(userId) {
     try {
       const user = await User.findOneAndDelete({ _id: userId }).exec()

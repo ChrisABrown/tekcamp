@@ -23,6 +23,7 @@ authRouter
   )
   .get('/user', Auth.verifyUser, AuthController.getUserDetails)
   .get('/logout', Auth.verifyUser, AuthController.logOut)
+  .put('/user', AuthController.updateUser)
   .post('/login', passport.authenticate('local'), AuthController.logIn)
   .post('/signup', AuthController.signUp)
   .post('/refreshToken', AuthController.refreshToken)
@@ -30,29 +31,7 @@ authRouter
 //   .put(
 //     '/user',
 
-//     (req, res, next) => {
-//       User.findById(req.payload.id)
-//         .then((user) => {
-//           let updatedUser = req.body.user
-//           if (!user) return res.sendStatus(401)
-//           if (typeof updatedUser.username !== 'undefined') {
-//             user.username = updatedUser.username
-//           } else if (typeof updatedUser.email !== 'undefined') {
-//             user.email = updatedUser.email
-//           } else if (typeof updatedUser.bio !== 'undefined') {
-//             user.bio = updatedUser.bio
-//           } else if (typeof updatedUser.image !== 'undefined') {
-//             user.image = updatedUser.image
-//           } else if (typeof updatedUser.password !== 'undefined') {
-//             user.setPassword(updatedUser.password)
-//           }
-
-//           return user.save().then((user) => {
-//             return res.json({ user: user })
-//           })
-//         })
-//         .catch(next)
-//     }
+//
 //   )
 
 // expressRouter
