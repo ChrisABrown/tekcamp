@@ -1,5 +1,5 @@
 import { Router as expressRouter } from 'express'
-import AuthController from '../controllers/auth.controller.js'
+import AuthController, { verifyToken } from '../controllers/auth.controller.js'
 import passport from 'passport'
 import Auth from '../../authenticate.js'
 
@@ -16,10 +16,10 @@ authRouter
       res.send('Secured Resource')
     }
   )
-  .get('/admin-dashboard', Auth.verifyUser)
+  .get('/admin-dashboard', verifyToken(['admin']), AuthController.getAllUsers)
   .get('/user', Auth.verifyUser, AuthController.getUserDetails)
-  .post('/login', passport.authenticate('local'), AuthController.logIn)
   .get('/logout', Auth.verifyUser, AuthController.logOut)
+  .post('/login', passport.authenticate('local'), AuthController.logIn)
   .post('/signup', AuthController.signUp)
   .post('/refreshToken', AuthController.refreshToken)
 

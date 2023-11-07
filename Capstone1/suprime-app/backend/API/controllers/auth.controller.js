@@ -1,21 +1,36 @@
 import AuthDAO from '../../DAO/authDAO.js'
 import Auth from '../../authenticate.js'
 import jwt from 'jsonwebtoken'
+
+export const verifyToken = (permissions) => (req, res, next) => {
+  const token = Auth.getToken({ _id: req.user_id })
+  if (!token) return res.status(401).json({ message: 'No token provided' })
+  console.log(req.user)
+  jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
+    if (err) return res.status(401).json({ message: 'Invalid token' })
+    if (permissions.includes(req.user)) {
+      next()
+    } else {
+      return res.status(403).json({
+        message: 'You do not have the permissions to access this resource',
+      })
+    }
+  })
+}
 export default class AuthController {
   static async logIn(req, res, next) {
     const token = Auth.getToken({ _id: req.user._id })
     const refreshToken = Auth.getRefreshToken({ _id: req.user._id })
 
-    const user = await AuthDAO.logIn(req.user)
-
-    user.save().then((user) => {
+    const user = await AuthDAO.findUser(req.user._id)
+    req.login(user, (err) => {
+      if (err) {
+        response.status = 500
+        response.message = err
+        return next(err)
+      }
       user.refreshToken.push({ refreshToken })
-      user.save().then((err) => {
-        if (err) {
-          response.status = 500
-          response.message = err
-        }
-      })
+      user.save()
     })
 
     let response = {
@@ -157,5 +172,24 @@ export default class AuthController {
       userDetails: req.user,
     }
     res.send(response)
+  }
+
+  static async getAllUsers(req, res, next) {
+    let users
+    try {
+      users = await AuthDAO.getAllUsers()
+    } catch (e) {
+      response.status = 400
+      next(e)
+    }
+
+    let response = {
+      status: res.status === 200 ? 'Success' : 'Fail',
+      userList: users,
+    }
+
+    req.user.role !== 'admin'
+      ? res.send({ message: 'Unauthorized' }).status(403)
+      : res.send(response).status(200)
   }
 }

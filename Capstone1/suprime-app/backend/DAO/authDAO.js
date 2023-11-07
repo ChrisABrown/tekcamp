@@ -1,15 +1,6 @@
 import User from './models/User.js'
 
 export default class AuthDAO {
-  static async logIn(user = {}) {
-    try {
-      return await User.findById(user._id)
-    } catch (e) {
-      console.error(`unable to find user: ${e}`)
-      return { error: e }
-    }
-  }
-
   static async signUp(user = {}, pw) {
     try {
       let regUser = await User.register(
@@ -24,6 +15,16 @@ export default class AuthDAO {
       return regUser
     } catch (e) {
       console.error(`unable to register user: ${e}`)
+      return { error: e }
+    }
+  }
+
+  static async getAllUsers() {
+    try {
+      const users = await User.find({}).exec()
+      return users
+    } catch (e) {
+      console.error(`unable to retrieve users`)
       return { error: e }
     }
   }

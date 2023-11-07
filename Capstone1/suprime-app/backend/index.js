@@ -23,7 +23,7 @@ app.use(
   })
 )
 
-app.use(passport.initialize())
+app.use(passport.session())
 app.use('/api/v1/items', itemsRouter)
 app.use('/api/v1/users', authRouter)
 
