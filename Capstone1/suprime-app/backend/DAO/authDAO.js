@@ -39,12 +39,33 @@ export default class AuthDAO {
     }
   }
 
-  static async updateUser(user = {}, update = {}) {
+  static async getUser(userId) {
     try {
-      const upUser = await User.findByIdAndUpdate({ _id: user._id }, update, {
-        new: true,
-      })
-      return upUser
+      return await User.aggregate([
+        {
+          $match: {
+            _id: userId,
+          },
+        },
+      ]).exec()
+    } catch (e) {
+      console.error('unable to retrieve user')
+      return { error: e }
+    }
+  }
+
+  static async updateUser(userId, user = {}) {
+    try {
+      return await User.updateOne(
+        {
+          _id: userId,
+        },
+        {
+          username: user.username,
+          email: user.email,
+          profile: user.profile,
+        }
+      )
     } catch (e) {
       console.error('Unable to update user info')
       return { error: e }

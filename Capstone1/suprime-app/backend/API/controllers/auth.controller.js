@@ -1,4 +1,5 @@
 import AuthDAO from '../../DAO/authDAO.js'
+import AppError from '../../appError.js'
 import Auth from '../../authenticate.js'
 import jwt from 'jsonwebtoken'
 
@@ -65,7 +66,7 @@ export default class AuthController {
 
   static async signUp(req, res, next) {
     const user = {
-      username: req.body.username,
+      username: usrObjname,
       role: req.body.role,
       email: req.body.email,
       profile: req.body.profile,
@@ -184,22 +185,39 @@ export default class AuthController {
   }
 
   static async updateUser(req, res, next) {
-    let user = req.body.user
-    let update = {
-      username: user.username,
-      email: user.email,
-      profile: user.profile,
-    }
+    try {
+      const userId = req.query._id || {}
+      const usrObj = req.body.user
 
-    if (req.isAuthenticated() && req.user === req.body.user) {
-      await AuthDAO.updateUser(user, update)
-        .then((user) => {
-          return user.save().then((user) => {
-            return res.json({ user: user })
-          })
-        })
-        .catch(next)
+      const user = {
+        _id: userId,
+        username: usrObj.username,
+        email: usrObj.email,
+        profile: {
+          firstName: usrObj.profile.firstName,
+          lastName: usrObj.profile.lastName,
+          avatar: usrObj.profile.avatar,
+          bio: usrObj.profile.bio,
+          address: usrObj.profile.address,
+        },
+      }
+
+      const response = await AuthDAO.updateUser(userId, user)
+
+      res.json({
+        status:
+          response.modifiedCount === 0
+            ? 'Update Failed'
+            : 'Updated Successfully',
+        message:
+          response.matchedCount === 1
+            ? `Matched ${response.matchedCount} document`
+            : `No matches for userId: ${userId}`,
+      })
+    } catch (e) {
+      let err = new AppError(e.message, res.status)
+      next(err)
+      res.json({ data: {}, error: e, message: `api ${e}` })
     }
-    next()
   }
 }
