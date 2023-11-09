@@ -1,6 +1,6 @@
 // import Message from './Message.cjs'
 
-import { ObjectId } from 'mongodb'
+import { ObjectId } from 'mongo'
 import uniqueValidator from 'mongoose-unique-validator'
 import mongoose from 'mongoose'
 import passportLocalMongoose from 'passport-local-mongoose'

@@ -1,14 +1,17 @@
 import MessagesDAO from '../../DAO/messagesDAO.js'
+import AppError from '../../appError.js'
 
 export default class MessagesController {
   static async apiPostMessage(req, res, next) {
+    if (!req.user)
+      res.json({ status: 'fail', message: 'Must be logged in to post message' })
     try {
       const order = req.body.order
       const date = new Date()
       const messType = req.body.messageType
       const userInfo = {
         name: req.body.name,
-        _id: req.body.user_id,
+        _id: req.user._id,
         email: req.body.email,
       }
       const messageBody = req.body.messageBody
@@ -20,8 +23,9 @@ export default class MessagesController {
         date,
         userInfo
       )
-      req.json({ status: 'success' })
+      req.json({ status: 'success', data: MessageResponse })
     } catch (e) {
+      next(new AppError(e.message, res.status))
       res.status(500).json({ error: e.message })
     }
   }
@@ -57,7 +61,7 @@ export default class MessagesController {
 
       const MessageResponse = await MessagesDAO.deleteMessage(messageId, userId)
 
-      res.json({ status: 'success' })
+      res.json({ status: 'success', data: MessageResponse })
     } catch (e) {
       res.status(500).json({ error: e.message })
     }

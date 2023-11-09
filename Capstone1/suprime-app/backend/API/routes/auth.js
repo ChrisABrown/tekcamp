@@ -5,8 +5,6 @@ import Auth from '../../authenticate.js'
 
 const authRouter = expressRouter()
 
-// enforce on all endpoints
-
 authRouter
   .get(
     '/admin-dashboard',
@@ -20,11 +18,5 @@ authRouter
   .post('/login', passport.authenticate('local'), AuthController.logIn)
   .post('/signup', AuthController.signUp)
   .post('/refreshToken', AuthController.refreshToken)
-
-// expressRouter
-//   .route('/message')
-//   .get(MessagesController.apiGetMessage)
-//   .post(MessagesController.apiPostMessage)
-//   .delete(MessagesController.apiDeleteMessage)
 
 export default authRouter

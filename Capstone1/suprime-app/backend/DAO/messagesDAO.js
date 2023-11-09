@@ -1,24 +1,7 @@
-import Message from './models/Message.cjs'
+import Message from './models/Message.js'
 import mongodb from 'mongodb'
 
-let messages
-
-const ObjectId = mongodb.ObjectId
-
 export default class MessagesDAO {
-  'use strict'
-
-  static async injectDB(conn) {
-    if (messages) return
-
-    try {
-      messages = await conn.db(process.env.SUPRIME_DB_NS).collection('Messages')
-    } catch (e) {
-      console.error(
-        `unable to establish connection handle in MessagesDAO: ${e}`
-      )
-    }
-  }
   static async apiGetMessagesByType({
     filters = null,
     page = 0,
@@ -36,9 +19,9 @@ export default class MessagesDAO {
     }
     let cursor
     try {
-      cursor = await messages.find(query).limit(messagesPerPage)
+      cursor = await Message.find(query).limit(messagesPerPage)
       const messagesList = await cursor.toArray()
-      const totalNumMessages = await messages.countDocuments(query)
+      const totalNumMessages = await Message.countDocuments(query)
       return { messagesList, totalNumMessages }
     } catch (e) {
       console.error(`Unable to issue find command, ${e}`)
@@ -48,7 +31,7 @@ export default class MessagesDAO {
 
   static async getMessagesByTypeWithinLastWeek(createdOn) {
     try {
-      return await messages.aggregate([
+      return await Message.aggregate([
         {
           $match: {
             date: {
@@ -66,7 +49,10 @@ export default class MessagesDAO {
           },
         },
       ])
-    } catch (error) {}
+    } catch (error) {
+      console.error(`unable to find messages`)
+      return { messagesList: [], totalNumMessages: 0 }
+    }
   }
 
   static async addMessage(order, messType, messageBody, date, userInfo) {
