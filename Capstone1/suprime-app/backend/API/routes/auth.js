@@ -13,7 +13,7 @@ authRouter
   )
   .get('/employee-dashboard', Auth.verifyToken(['employee', 'admin']))
   .get('/user', Auth.verifyUser, AuthController.getUserDetails)
-  .get('/logout', Auth.verifyUser, AuthController.logOut)
+  .get('/logout', AuthController.logOut)
   .put('/user', Auth.verifyUser, AuthController.updateUser)
   .post('/login', passport.authenticate('local'), AuthController.logIn)
   .post('/signup', AuthController.signUp)

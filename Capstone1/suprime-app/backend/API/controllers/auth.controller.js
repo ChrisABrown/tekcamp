@@ -39,13 +39,14 @@ export default class AuthController {
     const { signedCookies = {} } = req
     const { refreshToken } = signedCookies
     let tokenIndex
+    if (!req.user) return res.status(500).json({ message: 'no user signed in' })
 
     await AuthDAO.findUser(req.user._id).then((user) => {
       tokenIndex = user.refreshToken.findIndex(
         (item) => item.refreshToken === refreshToken
       )
       if (tokenIndex !== -1) {
-        user.refreshToken.id(user.refreshToken[tokenIndex]._id).remove()
+        user.refreshToken = []
       }
       user.save().then((user, err) => {
         if (err) {
@@ -53,7 +54,10 @@ export default class AuthController {
           res.send(err)
         } else {
           res.clearCookie('refreshToken', Auth.COOKIE_OPTIONS)
-          res.send({ success: true })
+          res.send({
+            success: true,
+            message: `${user.username} logged out successfully`,
+          })
         }
       })
     }),
@@ -66,7 +70,7 @@ export default class AuthController {
 
   static async signUp(req, res, next) {
     const user = {
-      username: usrObjname,
+      username: req.body.username,
       role: req.body.role,
       email: req.body.email,
       profile: req.body.profile,

@@ -34,6 +34,8 @@ const verifyToken = (permissions) => (req, res, next) => {
   const user = req.session.user
   const token = getToken({ _id: req.user_id })
 
+  if (!user) return res.status(500).json({ message: 'Must be logged in' })
+
   if (!token) return res.status(401).json({ message: 'No token provided' })
 
   jwt.verify(token, JWT_SECRET, (err, decoded) => {

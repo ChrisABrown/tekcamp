@@ -1,5 +1,5 @@
 import Message from './models/Message.js'
-import mongodb from 'mongodb'
+import User from './models/User.js'
 
 export default class MessagesDAO {
   static async apiGetMessagesByType({
@@ -55,16 +55,25 @@ export default class MessagesDAO {
     }
   }
 
-  static async addMessage(order, messType, messageBody, date, userInfo) {
+  static async addMessage(order, messageType, messageBody, userId) {
     const message = new Message({
-      messageType: messType,
-      order: order._id,
-      user: userInfo._id,
+      messageType: messageType,
+      order: order,
+      user: userId,
       messageBody: messageBody,
-      createdOn: date,
     })
     try {
-      return await Message.create(message)
+      await User.findOne({ _id: userId }).then((user) => {
+        console.log(message)
+        user.messages.push(message)
+        user.save().then((err) => {
+          if (err) {
+            return { error: err }
+          }
+        })
+      })
+
+      return await Message.insertMany(message)
     } catch (e) {
       console.error(`Unable to issue create command, ${e}`)
       return { error: e }

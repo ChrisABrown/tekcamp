@@ -1,32 +1,28 @@
 import MessagesDAO from '../../DAO/messagesDAO.js'
 import AppError from '../../appError.js'
+import { ObjectId } from 'mongodb'
 
 export default class MessagesController {
   static async apiPostMessage(req, res, next) {
     if (!req.user)
-      res.json({ status: 'fail', message: 'Must be logged in to post message' })
+      res
+        .status(404)
+        .json({ status: 'fail', message: 'Must be logged in to post message' })
     try {
-      const order = req.body.order
-      const date = new Date()
-      const messType = req.body.messageType
-      const userInfo = {
-        name: req.body.name,
-        _id: req.user._id,
-        email: req.body.email,
-      }
+      const order = new ObjectId()
+      const messageType = req.body.messageType
+      const userId = req.user._id
       const messageBody = req.body.messageBody
 
       const MessageResponse = await MessagesDAO.addMessage(
         order,
-        messType,
+        messageType,
         messageBody,
-        date,
-        userInfo
+        userId
       )
-      req.json({ status: 'success', data: MessageResponse })
+      res.send({ status: 'success', data: MessageResponse })
     } catch (e) {
       next(new AppError(e.message, res.status))
-      res.status(500).json({ error: e.message })
     }
   }
 
