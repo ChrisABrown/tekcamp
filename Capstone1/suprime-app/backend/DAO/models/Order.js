@@ -1,6 +1,31 @@
 import mongoose from 'mongoose'
-import { ObjectId } from 'mongodb'
+
 const Schema = mongoose.Schema
+
+const CartItem = new Schema({
+  itemName: {
+    type: String,
+    required: true,
+  },
+  color: {
+    type: String,
+    required: true,
+  },
+  price: {
+    type: Number,
+    required: true,
+  },
+  size: {
+    type: String,
+    enum: ['S', 'M', 'L', 'XL', 'XXL'],
+    required: true,
+  },
+  quantity: {
+    type: Number,
+    required: true,
+  },
+  SKU: String,
+})
 
 const OrderSchema = new Schema(
   {
@@ -26,12 +51,8 @@ const OrderSchema = new Schema(
       },
     },
     items: {
-      type: [
-        {
-          type: ObjectId,
-          ref: 'Item',
-        },
-      ],
+      type: [CartItem],
+      required: true,
     },
     orderTotal: Number,
   },

@@ -55,7 +55,7 @@ export default class ItemsDAO {
         description: item.description,
         size: item.size,
       })
-      return await Item.insertMany(item)
+      return await Item.create(item)
     } catch (e) {
       return { error: e, message: `unable to post item: ${e}` }
     }

@@ -72,7 +72,7 @@ export default class MessagesDAO {
         })
       })
 
-      return await Message.insertMany(message)
+      return await Message.create(message)
     } catch (e) {
       console.error(`Unable to issue create command, ${e}`)
       return { error: e }

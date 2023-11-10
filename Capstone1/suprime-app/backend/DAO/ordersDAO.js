@@ -42,7 +42,7 @@ export default class OrdersDAO {
     }
   }
 
-  static async apiCreateOrder({ order }) {
+  static async apiCreateOrder(order) {
     try {
       order = new Order({
         user: order.user,
@@ -52,9 +52,17 @@ export default class OrdersDAO {
         orderTotal: order.orderTotal,
       })
 
-      return await Order.insertMany(order)
+      return await Order.create(order)
     } catch (e) {
       return { error: e, message: `unable to create order: ${e}` }
+    }
+  }
+
+  static async apiDeleteOrder(orderId) {
+    try {
+      return await Order.findByIdAndDelete(orderId)
+    } catch (e) {
+      return { error: e, message: `unable to delete order: ${e}` }
     }
   }
 }

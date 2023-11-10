@@ -8,7 +8,7 @@ export default class AuthController {
     const token = Auth.getToken({ _id: req.user._id })
     const refreshToken = Auth.getRefreshToken({ _id: req.user._id })
 
-    const user = await AuthDAO.findUser(req.user._id)
+    const user = await AuthDAO.apiFindUserByUserId(req.user._id)
 
     req.logIn(user, (err) => {
       if (err) {
@@ -41,7 +41,7 @@ export default class AuthController {
     let tokenIndex
     if (!req.user) return res.status(500).json({ message: 'no user signed in' })
 
-    await AuthDAO.findUser(req.user._id).then((user) => {
+    await AuthDAO.apiFindUserByUserId(req.user._id).then((user) => {
       tokenIndex = user.refreshToken.findIndex(
         (item) => item.refreshToken === refreshToken
       )
