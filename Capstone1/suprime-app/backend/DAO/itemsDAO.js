@@ -1,7 +1,11 @@
 import Item from './models/Item.js'
 
 export default class ItemsDAO {
-  static async getItems({ filters = null, page = 0, itemsPerPage = 6 } = {}) {
+  static async apiGetAllItemsByCategory({
+    filters = null,
+    page = 0,
+    itemsPerPage = 6,
+  } = {}) {
     let query
 
     if (filters) {
@@ -24,7 +28,7 @@ export default class ItemsDAO {
     }
   }
 
-  static async getItemBySKU(sku) {
+  static async apiGetItemBySKU(sku) {
     try {
       return await Item.aggregate([
         {
@@ -39,7 +43,7 @@ export default class ItemsDAO {
     }
   }
 
-  static async postNewItem({ item }) {
+  static async apiAddNewItem({ item }) {
     try {
       item = new Item({
         category: item.category,
@@ -51,13 +55,13 @@ export default class ItemsDAO {
         description: item.description,
         size: item.size,
       })
-      return await Item.insertOne(item)
+      return await Item.insertMany(item)
     } catch (e) {
       return { error: e, message: `unable to post item: ${e}` }
     }
   }
 
-  static async updateItemBySKU(sku, item = {}) {
+  static async apiUpdateItemBySKU(sku, item = {}) {
     try {
       const updateResponse = await Item.updateOne(
         {
@@ -82,7 +86,7 @@ export default class ItemsDAO {
     }
   }
 
-  static async deleteItem(sku) {
+  static async apiDeleteItem(sku) {
     try {
       const deleteResponse = await Item.deleteOne({ SKU: sku })
       return deleteResponse

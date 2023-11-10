@@ -9,14 +9,14 @@ authRouter
   .get(
     '/admin-dashboard',
     Auth.verifyToken(['admin']),
-    AuthController.getAllUsers
+    AuthController.apiGetAllUsers
   )
   .get('/employee-dashboard', Auth.verifyToken(['employee', 'admin']))
-  .get('/user', Auth.verifyUser, AuthController.getUserDetails)
-  .get('/logout', AuthController.logOut)
-  .put('/user', Auth.verifyUser, AuthController.updateUser)
-  .post('/login', passport.authenticate('local'), AuthController.logIn)
-  .post('/signup', AuthController.signUp)
-  .post('/refreshToken', AuthController.refreshToken)
+  .get('/user', Auth.verifyUser, AuthController.apiGetUserDetails)
+  .get('/logout', AuthController.apiLogout)
+  .put('/user', Auth.verifyUser, AuthController.apiUpdateUser)
+  .post('/login', passport.authenticate('local'), AuthController.apiLogin)
+  .post('/signup', AuthController.apiRegisterNewUser)
+  .post('/refreshToken', AuthController.apiRefreshToken)
 
 export default authRouter

@@ -29,7 +29,7 @@ export default class MessagesDAO {
     }
   }
 
-  static async getMessagesByTypeWithinLastWeek(createdOn) {
+  static async apiGetMessagesByTypeWithinLastWeek(createdOn) {
     try {
       return await Message.aggregate([
         {
@@ -55,7 +55,7 @@ export default class MessagesDAO {
     }
   }
 
-  static async addMessage(order, messageType, messageBody, userId) {
+  static async apiPostMessage(order, messageType, messageBody, userId) {
     const message = new Message({
       messageType: messageType,
       order: order,
@@ -79,7 +79,7 @@ export default class MessagesDAO {
     }
   }
 
-  static async deleteMessage(messageId, userId) {
+  static async apiDeleteMessage(messageId, userId) {
     try {
       const deleteResponse = await Message.deleteOne({
         _id: ObjectId(messageId),

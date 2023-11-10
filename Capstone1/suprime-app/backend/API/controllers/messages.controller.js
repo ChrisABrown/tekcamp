@@ -14,7 +14,7 @@ export default class MessagesController {
       const userId = req.user._id
       const messageBody = req.body.messageBody
 
-      const MessageResponse = await MessagesDAO.addMessage(
+      const MessageResponse = await MessagesDAO.apiPostMessage(
         order,
         messageType,
         messageBody,
@@ -55,7 +55,10 @@ export default class MessagesController {
       const messageId = req.body.message_id
       const userId = req.body.user_id
 
-      const MessageResponse = await MessagesDAO.deleteMessage(messageId, userId)
+      const MessageResponse = await MessagesDAO.apiDeleteMessage(
+        messageId,
+        userId
+      )
 
       res.json({ status: 'success', data: MessageResponse })
     } catch (e) {

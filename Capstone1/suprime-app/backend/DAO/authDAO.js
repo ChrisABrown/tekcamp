@@ -1,7 +1,7 @@
 import User from './models/User.js'
 
 export default class AuthDAO {
-  static async signUp(user = {}, pw) {
+  static async apiRegisterNewUser(user = {}, pw) {
     try {
       let regUser = await User.register(
         new User({
@@ -19,7 +19,7 @@ export default class AuthDAO {
     }
   }
 
-  static async getAllUsers() {
+  static async apiGetAllUsers() {
     try {
       const users = await User.find({}).exec()
       return users
@@ -29,32 +29,17 @@ export default class AuthDAO {
     }
   }
 
-  static async findUser(userId) {
+  static async apiFindUserByUserId(userId) {
     try {
       const find = await User.findOne({ _id: userId }).exec()
       return find
     } catch (e) {
-      console.error(`Unauthorized Access`)
+      console.error(`unable to find user`)
       return { error: e }
     }
   }
 
-  static async getUser(userId) {
-    try {
-      return await User.aggregate([
-        {
-          $match: {
-            _id: userId,
-          },
-        },
-      ]).exec()
-    } catch (e) {
-      console.error('unable to retrieve user')
-      return { error: e }
-    }
-  }
-
-  static async updateUser(userId, user = {}) {
+  static async apiUpdateUser(userId, user = {}) {
     try {
       return await User.updateOne(
         {
@@ -72,7 +57,7 @@ export default class AuthDAO {
     }
   }
 
-  static async deleteUser(userId) {
+  static async apiDeleteUser(userId) {
     try {
       const user = await User.findOneAndDelete({ _id: userId }).exec()
       return user

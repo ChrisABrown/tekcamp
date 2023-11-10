@@ -2,6 +2,7 @@ import express from 'express'
 import cors from 'cors'
 import authRouter from './API/routes/auth.js'
 import itemsRouter from './API/routes/items.route.js'
+import ordersRouter from './API/routes/orders.route.js'
 import messagesRouter from './API/routes/messages.route.js'
 import db from './db/db.js'
 import cookieParser from 'cookie-parser'
@@ -45,6 +46,7 @@ app.use(passport.session())
 app.use('/api/v1/messages', messagesRouter)
 app.use('/api/v1/items', itemsRouter)
 app.use('/api/v1/users', authRouter)
+app.use('/api/v1/orders', ordersRouter)
 
 app.use('*', (err, _req, res, next) => {
   err.status = err.status || 'fail'
