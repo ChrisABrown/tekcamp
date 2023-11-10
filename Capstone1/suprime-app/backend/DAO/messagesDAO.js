@@ -1,24 +1,7 @@
-import Message from './models/Message.cjs'
-import mongodb from 'mongodb'
-
-let messages
-
-const ObjectId = mongodb.ObjectId
+import Message from './models/Message.js'
+import User from './models/User.js'
 
 export default class MessagesDAO {
-  'use strict'
-
-  static async injectDB(conn) {
-    if (messages) return
-
-    try {
-      messages = await conn.db(process.env.SUPRIME_DB_NS).collection('Messages')
-    } catch (e) {
-      console.error(
-        `unable to establish connection handle in MessagesDAO: ${e}`
-      )
-    }
-  }
   static async apiGetMessagesByType({
     filters = null,
     page = 0,
@@ -36,9 +19,9 @@ export default class MessagesDAO {
     }
     let cursor
     try {
-      cursor = await messages.find(query).limit(messagesPerPage)
+      cursor = await Message.find(query).limit(messagesPerPage)
       const messagesList = await cursor.toArray()
-      const totalNumMessages = await messages.countDocuments(query)
+      const totalNumMessages = await Message.countDocuments(query)
       return { messagesList, totalNumMessages }
     } catch (e) {
       console.error(`Unable to issue find command, ${e}`)
@@ -46,9 +29,9 @@ export default class MessagesDAO {
     }
   }
 
-  static async getMessagesByTypeWithinLastWeek(createdOn) {
+  static async apiGetMessagesByTypeWithinLastWeek(createdOn) {
     try {
-      return await messages.aggregate([
+      return await Message.aggregate([
         {
           $match: {
             date: {
@@ -66,18 +49,29 @@ export default class MessagesDAO {
           },
         },
       ])
-    } catch (error) {}
+    } catch (error) {
+      console.error(`unable to find messages`)
+      return { messagesList: [], totalNumMessages: 0 }
+    }
   }
 
-  static async addMessage(order, messType, messageBody, date, userInfo) {
+  static async apiPostMessage(order, messageType, messageBody, userId) {
     const message = new Message({
-      messageType: messType,
-      order: order._id,
-      user: userInfo._id,
+      messageType: messageType,
+      order: order,
+      user: userId,
       messageBody: messageBody,
-      createdOn: date,
     })
     try {
+      await User.findOne({ _id: userId }).then((user) => {
+        user.messages.push(message)
+        user.save().then((err) => {
+          if (err) {
+            return { error: err }
+          }
+        })
+      })
+
       return await Message.create(message)
     } catch (e) {
       console.error(`Unable to issue create command, ${e}`)
@@ -85,7 +79,7 @@ export default class MessagesDAO {
     }
   }
 
-  static async deleteMessage(messageId, userId) {
+  static async apiDeleteMessage(messageId, userId) {
     try {
       const deleteResponse = await Message.deleteOne({
         _id: ObjectId(messageId),

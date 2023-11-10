@@ -1,0 +1,39 @@
+{
+  "billing": {
+    "street1": "125 westmoore street",
+    "street2": "",
+    "city": "West Bubble",
+    "state": "NY",
+    "country": "USA",
+    "zip": "11234"
+  },
+  "shipping": {
+    "street1": "125 westmoore street",
+    "street2": "",
+    "city": "West Bubble",
+    "state": "NY",
+    "country": "USA",
+    "zip": "11234"
+  },
+  "cart": {
+    "items": [
+      {
+        "itemName": "Boxer Briefs 3-pack",
+        "color": "Black",
+        "price": 12,
+        "size": "S",
+        "quantity": 2,
+        "SKU": "yprgm"
+      },
+      {
+        "itemName": "MoleSkin Work Jacket",
+        "color": "Black",
+        "price": 398,
+        "size": "S",
+        "quantity": 1,
+        "SKU": "NhWRt"
+      }
+    ],
+    "total": 545
+  }
+}

@@ -13,11 +13,12 @@ export default class ItemsController {
     if (req.query.category) {
       filters.category = req.query.category
     }
-    const { totalNumItems, itemsList } = await ItemsDAO.getItems({
-      filters,
-      page,
-      itemsPerPage,
-    })
+    const { totalNumItems, itemsList } =
+      await ItemsDAO.apiGetAllItemsByCategory({
+        filters,
+        page,
+        itemsPerPage,
+      })
 
     let response = {
       items: itemsList,
@@ -26,15 +27,14 @@ export default class ItemsController {
       entries_per_page: itemsPerPage,
       total_results: totalNumItems,
     }
-    !response
-      ? next(new AppError()) && res.json(new AppError('NotFound', 404))
-      : res.send(response).status(200)
+    let err = new AppError('Not Found', 404)
+    !response ? next(err) : res.send(response).status(200)
   }
 
   static async apiGetItemBySKU(req, res, next) {
     try {
       let sku = req.params.sku || {}
-      let item = await ItemsDAO.getItemBySKU(sku)
+      let item = await ItemsDAO.apiGetItemBySKU(sku)
       if (!item) {
         res.status(404).json({
           itemSKU: `${req.params.sku}`,
@@ -54,7 +54,7 @@ export default class ItemsController {
     }
   }
 
-  static async apiPostItem(req, res) {
+  static async apiAddNewItem(req, res) {
     try {
       const item = {
         category: req.body.category,
@@ -67,7 +67,7 @@ export default class ItemsController {
         size: req.body.size,
       }
 
-      const ItemResponse = await ItemsDAO.postNewItem({ item })
+      const ItemResponse = await ItemsDAO.apiAddNewItem({ item })
       const postedItem = await Item.findOne({ _id: ItemResponse.insertedId })
 
       res.json({
@@ -96,7 +96,7 @@ export default class ItemsController {
         size: req.body.size,
       }
 
-      const ItemResponse = await ItemsDAO.updateItemBySKU(sku, item)
+      const ItemResponse = await ItemsDAO.apiUpdateItemBySKU(sku, item)
       res.json({
         status:
           ItemResponse.modifiedCount === 0
@@ -118,7 +118,7 @@ export default class ItemsController {
   static async apiDeleteItem(req, res, next) {
     try {
       const sku = req.params.sku || {}
-      const ItemResponse = await ItemsDAO.deleteItem(sku)
+      const ItemResponse = await ItemsDAO.apiDeleteItem(sku)
       res.json({
         status:
           ItemResponse.deletedCount === 0

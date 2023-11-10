@@ -1,23 +1,26 @@
 import AuthDAO from '../../DAO/authDAO.js'
-import User from '../../DAO/models/User.js'
+import AppError from '../../appError.js'
 import Auth from '../../authenticate.js'
 import jwt from 'jsonwebtoken'
+
 export default class AuthController {
-  static async logIn(req, res, next) {
+  static async apiLogin(req, res, next) {
     const token = Auth.getToken({ _id: req.user._id })
     const refreshToken = Auth.getRefreshToken({ _id: req.user._id })
 
-    const user = await AuthDAO.logIn(req.user)
+    const user = await AuthDAO.apiFindUserByUserId(req.user._id)
 
-    user.save().then((user) => {
+    req.logIn(user, (err) => {
+      if (err) {
+        response.status = 500
+        response.message = err
+        return next(err)
+      }
       user.refreshToken.push({ refreshToken })
-      user.save().then((err) => {
-        if (err) {
-          response.status = 500
-          response.message = err
-        }
-      })
+      user.save()
     })
+
+    req.session.user = req.user
 
     let response = {
       status: 'error' in user ? 'Fail' : 'Success',
@@ -32,17 +35,18 @@ export default class AuthController {
         res.send(response).status(200)
   }
 
-  static async logOut(req, res, next) {
+  static async apiLogout(req, res, next) {
     const { signedCookies = {} } = req
     const { refreshToken } = signedCookies
     let tokenIndex
+    if (!req.user) return res.status(500).json({ message: 'no user signed in' })
 
-    await AuthDAO.findUser(req.user._id).then((user) => {
+    await AuthDAO.apiFindUserByUserId(req.user._id).then((user) => {
       tokenIndex = user.refreshToken.findIndex(
         (item) => item.refreshToken === refreshToken
       )
       if (tokenIndex !== -1) {
-        user.refreshToken.id(user.refreshToken[tokenIndex]._id).remove()
+        user.refreshToken = []
       }
       user.save().then((user, err) => {
         if (err) {
@@ -50,21 +54,29 @@ export default class AuthController {
           res.send(err)
         } else {
           res.clearCookie('refreshToken', Auth.COOKIE_OPTIONS)
-          res.send({ success: true })
+          res.send({
+            success: true,
+            message: `${user.username} logged out successfully`,
+          })
         }
       })
     }),
-      (err) => next(err)
+      req.logOut(function (err) {
+        if (err) {
+          return next(err)
+        }
+      })
   }
 
-  static async signUp(req, res, next) {
+  static async apiRegisterNewUser(req, res, next) {
     const user = {
       username: req.body.username,
+      role: req.body.role,
       email: req.body.email,
       profile: req.body.profile,
     }
     const pw = req.body.password
-    const newUser = await AuthDAO.signUp(user, pw)
+    const newUser = await AuthDAO.apiRegisterNewUser(user, pw)
     const token = Auth.getToken({ _id: newUser._id })
     const refreshToken = Auth.getRefreshToken({ _id: newUser._id })
 
@@ -88,7 +100,7 @@ export default class AuthController {
         res.send(response).status(200)
   }
 
-  static async refreshToken(req, res, next) {
+  static async apiRefreshToken(req, res, next) {
     const { signedCookies = {} } = req
     const { refreshToken } = signedCookies
     let payload
@@ -104,7 +116,7 @@ export default class AuthController {
       try {
         payload = jwt.verify(refToken, process.env.REFRESH_TOKEN_SECRET)
         const userId = payload._id
-        await AuthDAO.findUser(userId).then(
+        await AuthDAO.apiFindUserByUserId(userId).then(
           (user) => {
             if (user) {
               tokenIndex = user.refreshToken.findIndex(
@@ -150,12 +162,66 @@ export default class AuthController {
     }
   }
 
-  static async getUserDetails(req, res, next) {
+  static async apiGetUserDetails(req, res, next) {
     if (!req.user) return res.status(401).json({ message: 'No user found.' })
     let response = {
       status: res.status === 200 ? 'Success!' : 'Fail!',
       userDetails: req.user,
     }
     res.send(response)
+  }
+
+  static async apiGetAllUsers(req, res, next) {
+    let users
+    try {
+      users = await AuthDAO.apiGetAllUsers()
+    } catch (e) {
+      response.status = 403
+      next(e)
+    }
+
+    let response = {
+      status: 'error' in users ? 'Fail' : 'Success',
+      userList: users,
+      message: 'error' in users ? 'Unauthorized' : 'Retrieved all Users',
+    }
+    res.send(response)
+  }
+
+  static async apiUpdateUser(req, res, next) {
+    try {
+      const userId = req.query._id || {}
+      const usrObj = req.body.user
+
+      const user = {
+        _id: userId,
+        username: usrObj.username,
+        email: usrObj.email,
+        profile: {
+          firstName: usrObj.profile.firstName,
+          lastName: usrObj.profile.lastName,
+          avatar: usrObj.profile.avatar,
+          bio: usrObj.profile.bio,
+          address: usrObj.profile.address,
+        },
+      }
+
+      const response = await AuthDAO.apiUpdateUser(userId, user)
+
+      res.json({
+        status:
+          response.modifiedCount === 0
+            ? 'Update Failed'
+            : 'Updated Successfully',
+        message:
+          response.matchedCount === 1
+            ? `Matched ${response.matchedCount} document`
+            : `No matches for userId: ${userId}`,
+      })
+    } catch (e) {
+      let err = new AppError(e.message, res.status)
+      next(err)
+      res.json({ data: {}, error: e, message: `api ${e}` })
+    }
   }
 }

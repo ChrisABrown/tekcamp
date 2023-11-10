@@ -1,6 +1,20 @@
-import express from 'express'
+import { Router as expressRouter } from 'express'
 import OrdersController from '../controllers/orders.controller.js'
+import Auth from '../../authenticate.js'
 
-const router = express.Router()
+const ordersRouter = expressRouter()
 
-router.route('/').get(OrdersController.apiGetOrders)
+ordersRouter
+  .route('/')
+  .get(
+    Auth.verifyToken(['admin', 'employee']),
+    OrdersController.apiGetAllOrders
+  )
+  .get(
+    Auth.verifyToken(['admin', 'employee', 'user']),
+    OrdersController.apiGetAllOrdersForSingleUser
+  )
+  .post(OrdersController.apiCreateOrder)
+  .delete(Auth.verifyToken(['admin']), OrdersController.apiDeleteOrder)
+
+export default ordersRouter

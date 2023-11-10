@@ -1,28 +1,28 @@
 import MessagesDAO from '../../DAO/messagesDAO.js'
+import AppError from '../../appError.js'
+import { ObjectId } from 'mongodb'
 
 export default class MessagesController {
   static async apiPostMessage(req, res, next) {
+    if (!req.user)
+      res
+        .status(404)
+        .json({ status: 'fail', message: 'Must be logged in to post message' })
     try {
-      const order = req.body.order
-      const date = new Date()
-      const messType = req.body.messageType
-      const userInfo = {
-        name: req.body.name,
-        _id: req.body.user_id,
-        email: req.body.email,
-      }
+      const order = new ObjectId()
+      const messageType = req.body.messageType
+      const userId = req.user._id
       const messageBody = req.body.messageBody
 
-      const MessageResponse = await MessagesDAO.addMessage(
+      const MessageResponse = await MessagesDAO.apiPostMessage(
         order,
-        messType,
+        messageType,
         messageBody,
-        date,
-        userInfo
+        userId
       )
-      req.json({ status: 'success' })
+      res.send({ status: 'success', data: MessageResponse })
     } catch (e) {
-      res.status(500).json({ error: e.message })
+      next(new AppError(e.message, res.status))
     }
   }
 
@@ -55,9 +55,12 @@ export default class MessagesController {
       const messageId = req.body.message_id
       const userId = req.body.user_id
 
-      const MessageResponse = await MessagesDAO.deleteMessage(messageId, userId)
+      const MessageResponse = await MessagesDAO.apiDeleteMessage(
+        messageId,
+        userId
+      )
 
-      res.json({ status: 'success' })
+      res.json({ status: 'success', data: MessageResponse })
     } catch (e) {
       res.status(500).json({ error: e.message })
     }
