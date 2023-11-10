@@ -64,7 +64,6 @@ export default class MessagesDAO {
     })
     try {
       await User.findOne({ _id: userId }).then((user) => {
-        console.log(message)
         user.messages.push(message)
         user.save().then((err) => {
           if (err) {
