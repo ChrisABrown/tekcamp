@@ -1,11 +1,14 @@
-import Order from '../../DAO/models/Order.js'
 import OrdersDAO from '../../DAO/ordersDAO.js'
 import AppError from '../../appError.js'
 
-const checkUser = (user) => {
+const checkUser = async (user) => {
+  let response = {
+    message: '',
+    status: 0,
+  }
   if (!user) {
     response.message = 'Must be logged in to continue'
-    response.status = 400
+    response.status = 401
     return response
   }
 }
@@ -69,14 +72,16 @@ export default class OrdersController {
   }
 
   static async apiCreateOrder(req, res, next) {
-    checkUser(req.user)
+    const info = await checkUser(req.user).then((result) => {
+      return result
+    })
 
     let response
     try {
       const order = {
         user: req.user._id,
-        billing: req.body.billing,
-        shipping: req.body.shipping,
+        billing: req.body.billingAddress,
+        shipping: req.body.shippingAddress,
         items: req.body.cart.items,
         orderTotal: req.body.cart.total,
       }
@@ -86,26 +91,30 @@ export default class OrdersController {
     } catch (e) {
       let err = new AppError(e.message, res.status)
       next(err)
-      res.json((response = { error: e, message: `api: ${e}` }))
+      res.json((response = { error: `api: ${e}`, response: info }))
     }
   }
 
   static async apiDeleteOrder(req, res, next) {
-    checkUser(req.user)
+    const info = await checkUser(req.user).then((result) => {
+      return result
+    })
+
+    let response
 
     let orderId = req.query.order_id
     try {
       const OrderResponse = await OrdersDAO.apiDeleteOrder(orderId)
 
       let response = {
-        success: 'error' in OrderResponse ? false : true,
         orderId: orderId,
+        info: OrderResponse,
       }
       res.send(response)
     } catch (e) {
       let err = new AppError(e.message, res.status)
       next(err)
-      res.json((response = { error: e, message: `api: ${e}` }))
+      res.json((response = { error: `api: ${e}`, response: info }))
     }
   }
 }

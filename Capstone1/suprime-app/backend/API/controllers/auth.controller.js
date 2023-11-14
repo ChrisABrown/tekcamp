@@ -36,36 +36,25 @@ export default class AuthController {
   }
 
   static async apiLogout(req, res, next) {
-    const { signedCookies = {} } = req
-    const { refreshToken } = signedCookies
-    let tokenIndex
     if (!req.user) return res.status(500).json({ message: 'no user signed in' })
 
-    await AuthDAO.apiFindUserByUserId(req.user._id).then((user) => {
-      tokenIndex = user.refreshToken.findIndex(
-        (item) => item.refreshToken === refreshToken
-      )
-      if (tokenIndex !== -1) {
-        user.refreshToken = []
+    const user = await AuthDAO.apiFindUserByUserId(req.user._id)
+
+    req.logOut(user, (err) => {
+      user.refreshToken = new Array(0)
+      user.save()
+      if (err) {
+        res.statusCode = 500
+        res.send(err)
+        return next(err)
+      } else {
+        res.clearCookie('refreshToken', Auth.COOKIE_OPTIONS)
+        res.send({
+          success: true,
+          message: `${user.username} logged out successfully`,
+        })
       }
-      user.save().then((user, err) => {
-        if (err) {
-          res.statusCode = 500
-          res.send(err)
-        } else {
-          res.clearCookie('refreshToken', Auth.COOKIE_OPTIONS)
-          res.send({
-            success: true,
-            message: `${user.username} logged out successfully`,
-          })
-        }
-      })
-    }),
-      req.logOut(function (err) {
-        if (err) {
-          return next(err)
-        }
-      })
+    })
   }
 
   static async apiRegisterNewUser(req, res, next) {
@@ -120,7 +109,7 @@ export default class AuthController {
           (user) => {
             if (user) {
               tokenIndex = user.refreshToken.findIndex(
-                (item) => item.refreshToken == refToken
+                (item) => item.refreshToken === refToken
               )
               if (tokenIndex === -1) {
                 res.statusCode = 401

@@ -46,13 +46,33 @@ export default class OrdersDAO {
     try {
       order = new Order({
         user: order.user,
-        billing: order.billing,
-        shipping: order.shipping,
+        billingAddress: order.billing,
+        shippingAddress: order.shipping,
         items: order.items,
         orderTotal: order.orderTotal,
       })
+      let query = { _id: order.user }
 
-      return await Order.create(order)
+      let user = await User.findOne(query)
+      user = user.toJSON()
+
+      if ('orderList' in user) {
+        user.orderList.push(order)
+      }
+
+      const createdOrder = await User.updateOne(
+        query,
+        {
+          orderList: [...user.orderList],
+        },
+        {
+          new: true,
+        }
+      )
+
+      await Order.create(order)
+
+      return createdOrder
     } catch (e) {
       return { error: e, message: `unable to create order: ${e}` }
     }
@@ -60,7 +80,23 @@ export default class OrdersDAO {
 
   static async apiDeleteOrder(orderId) {
     try {
-      return await Order.findByIdAndDelete(orderId)
+      let filter = { 'orderList._id': orderId }
+
+      return await User.findOne(filter).then((user) => {
+        let orderList = user.orderList
+        const orderIndex = user.orderList.findIndex(
+          (item) => item._id.toString() === orderId
+        )
+        if (orderIndex === -1) return { message: 'orderId not found' }
+        const orderToBeDeleted = orderList[orderIndex]._id.toString()
+        if (orderToBeDeleted === orderId) {
+          orderList.pull(orderList[orderIndex])
+          user.save()
+          Order.findOneAndDelete({ _id: orderId }).exec()
+          return orderList
+        }
+        return { message: 'unable to find order to delete' }
+      })
     } catch (e) {
       return { error: e, message: `unable to delete order: ${e}` }
     }

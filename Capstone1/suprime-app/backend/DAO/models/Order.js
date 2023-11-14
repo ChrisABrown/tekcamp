@@ -27,29 +27,28 @@ const CartItem = new Schema({
   SKU: String,
 })
 
-const OrderSchema = new Schema(
+export const OrderSchema = new Schema(
   {
     user: { type: Schema.Types.ObjectId, ref: 'User', required: true },
-    billing: {
-      address: {
-        street1: String,
-        street2: String,
-        city: String,
-        state: String,
-        country: String,
-        zip: String,
-      },
+
+    billingAddress: {
+      street1: String,
+      street2: String,
+      city: String,
+      state: String,
+      country: String,
+      zip: String,
     },
-    shipping: {
-      address: {
-        street1: String,
-        street2: String,
-        city: String,
-        state: String,
-        country: String,
-        zip: String,
-      },
+
+    shippingAddress: {
+      street1: String,
+      street2: String,
+      city: String,
+      state: String,
+      country: String,
+      zip: String,
     },
+
     items: {
       type: [CartItem],
       required: true,

@@ -66,9 +66,7 @@ export default class MessagesDAO {
       await User.findOne({ _id: userId }).then((user) => {
         user.messages.push(message)
         user.save().then((err) => {
-          if (err) {
-            return { error: err }
-          }
+          if (err) return { error: err }
         })
       })
 
@@ -88,7 +86,7 @@ export default class MessagesDAO {
 
       return deleteResponse
     } catch (e) {
-      console.error(`unable to delete review: ${e}`)
+      console.error(`unable to delete message: ${e}`)
       return { error: e }
     }
   }

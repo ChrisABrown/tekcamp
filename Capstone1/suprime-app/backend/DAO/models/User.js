@@ -2,6 +2,7 @@ import uniqueValidator from 'mongoose-unique-validator'
 import mongoose from 'mongoose'
 import passportLocalMongoose from 'passport-local-mongoose'
 import { MessageSchema } from './Message.js'
+import { OrderSchema } from './Order.js'
 
 const Schema = mongoose.Schema
 const Session = new Schema({
@@ -69,6 +70,10 @@ const userSchema = new Schema(
     timestamps: true,
   }
 )
+
+userSchema.add({
+  orderList: [OrderSchema],
+})
 
 userSchema.set('toJSON', {
   transform: function (doc, ret, options) {
