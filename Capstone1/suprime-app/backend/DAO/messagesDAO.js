@@ -16,6 +16,13 @@ export default class MessagesDAO {
           },
         }
       }
+      if ('user' in filters) {
+        query = {
+          $text: {
+            $search: filters['user'],
+          },
+        }
+      }
     }
     let cursor
     try {
@@ -77,14 +84,25 @@ export default class MessagesDAO {
     }
   }
 
-  static async apiDeleteMessage(messageId, userId) {
+  static async apiDeleteMessage(messageId) {
     try {
-      const deleteResponse = await Message.deleteOne({
-        _id: ObjectId(messageId),
-        user: ObjectId(userId),
-      })
+      let filter = { 'messages._id': messageId }
 
-      return deleteResponse
+      return await User.findOne(filter).then((user) => {
+        let messagesList = user.messages
+        const messageIndex = user.messages.findIndex(
+          (item) => item._id.toString() === messageId
+        )
+        if (messageIndex === -1) return { message: 'messageId not found' }
+        const messageToBeDeleted = messagesList[messageIndex]._id.toString()
+        if (messageToBeDeleted === messageId) {
+          messagesList.pull(messagesList[messageIndex])
+          user.save()
+          Message.findOneAndDelete({ _id: messageId }).exec()
+          return messagesList
+        }
+        return { message: `no message found with id: ${messageId}` }
+      })
     } catch (e) {
       console.error(`unable to delete message: ${e}`)
       return { error: e }

@@ -2,14 +2,30 @@ import Order from './models/Order.js'
 import User from './models/User.js'
 
 export default class OrdersDAO {
-  static async apiGetAllOrders() {
-    try {
-      const ordersList = await Order.find({}).exec()
+  static async apiGetAllOrders({
+    filters = null,
+    page = 0,
+    ordersPerPage = 5,
+  } = {}) {
+    let query
 
-      return ordersList
-    } catch (err) {
+    if (filters) {
+      if ('order_id' in filters) {
+        query = {
+          order_id: {
+            $eq: filters['order_id'],
+          },
+        }
+      }
+    }
+    try {
+      const ordersList = await Order.find(query).limit(ordersPerPage)
+      const totalOrders = await Order.countDocuments({}).exec()
+
+      return { totalOrders, ordersList }
+    } catch (e) {
       console.error('unable to issued find command')
-      return { error: err }
+      return { error: e }
     }
   }
 
@@ -30,10 +46,8 @@ export default class OrdersDAO {
       }
     }
 
-    let ordersList
-
     try {
-      ordersList = await Order.find(query).limit(ordersPerPage)
+      const ordersList = await Order.find(query).limit(ordersPerPage)
       const totalOrders = await Order.countDocuments(query)
       return { totalOrders, ordersList }
     } catch (e) {

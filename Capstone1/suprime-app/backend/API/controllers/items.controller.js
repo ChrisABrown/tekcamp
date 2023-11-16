@@ -1,9 +1,13 @@
 import ItemsDAO from '../../DAO/itemsDAO.js'
-import AppError from '../../appError.js'
+import AppError from '../../utils/appError.js'
 import Item from '../../DAO/models/Item.js'
+
+let err
+let response = {}
 
 export default class ItemsController {
   static async apiGetItems(req, res, next) {
+    if (req.query.sku) return next()
     const itemsPerPage = req.query.itemsPerPage
       ? parseInt(req.query.itemsPerPage)
       : 6
@@ -20,37 +24,39 @@ export default class ItemsController {
         itemsPerPage,
       })
 
-    let response = {
+    response = {
       items: itemsList,
       filters: filters,
       page: page,
       entries_per_page: itemsPerPage,
       total_results: totalNumItems,
     }
-    let err = new AppError('Not Found', 404)
-    !response ? next(err) : res.send(response).status(200)
+    err = new AppError(response.message, res.status)
+    !response
+      ? next(err) &&
+        res.send((response = { error: `api: ${e}`, response: info(req.user) }))
+      : res.send(response)
   }
 
   static async apiGetItemBySKU(req, res, next) {
     try {
-      let sku = req.params.sku || {}
+      let sku = req.query.sku || {}
       let item = await ItemsDAO.apiGetItemBySKU(sku)
       if (!item) {
-        res.status(404).json({
-          itemSKU: `${req.params.sku}`,
-          error: 'No Item found with itemSKU',
-        })
-        return
+        res.send(
+          (response = {
+            itemSKU: `${req.query.sku}`,
+            error: `No item found with sku: ${req.params}`,
+          })
+        )
       }
 
-      let response = {
-        data: item,
-      }
-      res.json(response)
+      response.data = item
+      res.send(response)
     } catch (e) {
-      let err = new AppError(e.message, res.status)
+      err = new AppError(e.message, res.status)
       next(err)
-      res.json((response = { data: {}, error: e, message: `api: ${e}` }))
+      res.send((response = { data: {}, error: `api: ${e}` }))
     }
   }
 
@@ -70,21 +76,21 @@ export default class ItemsController {
       const ItemResponse = await ItemsDAO.apiAddNewItem({ item })
       const postedItem = await Item.findOne({ _id: ItemResponse.insertedId })
 
-      res.json({
+      res.send({
         status: 'error' in ItemResponse ? 'Fail' : 'Success',
         data: ItemResponse,
         itemSku: postedItem.SKU,
       })
     } catch (e) {
-      let err = new AppError(e.message, res.status)
+      err = new AppError(e.message, res.status)
       next(err)
-      res.json({ data: {}, error: e, message: `api: ${e}` })
+      res.send({ data: {}, error: `api: ${e}` })
     }
   }
 
   static async apiUpdateItemBySKU(req, res, next) {
     try {
-      const sku = req.params.sku || {}
+      const sku = req.query.sku || {}
       const item = {
         category: req.body.category,
         itemId: req.body.itemId,
@@ -97,7 +103,7 @@ export default class ItemsController {
       }
 
       const ItemResponse = await ItemsDAO.apiUpdateItemBySKU(sku, item)
-      res.json({
+      res.send({
         status:
           ItemResponse.modifiedCount === 0
             ? 'Update Failed'
@@ -109,17 +115,17 @@ export default class ItemsController {
             : `No matches for itemSku: ${sku}`,
       })
     } catch (e) {
-      let err = new AppError(e.message, res.status)
+      err = new AppError(e.message, res.status)
       next(err)
-      res.json({ data: {}, error: e, message: `api: ${e}` })
+      res.send({ data: {}, error: `api: ${e}` })
     }
   }
 
   static async apiDeleteItem(req, res, next) {
     try {
-      const sku = req.params.sku || {}
+      const sku = req.query.sku || {}
       const ItemResponse = await ItemsDAO.apiDeleteItem(sku)
-      res.json({
+      res.send({
         status:
           ItemResponse.deletedCount === 0
             ? 'Deletion Failed'
@@ -131,9 +137,9 @@ export default class ItemsController {
             : `No matches for itemSku: ${sku}`,
       })
     } catch (e) {
-      let err = new AppError(e.message, res.status)
+      err = new AppError(e.message, res.status)
       next(err)
-      res.json({ data: {}, error: e, message: `api: ${e}` })
+      res.send({ data: {}, error: `api: ${e}` })
     }
   }
 }

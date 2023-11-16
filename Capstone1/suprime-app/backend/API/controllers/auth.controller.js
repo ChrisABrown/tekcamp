@@ -1,7 +1,11 @@
 import AuthDAO from '../../DAO/authDAO.js'
-import AppError from '../../appError.js'
+import AppError from '../../utils/appError.js'
 import Auth from '../../authenticate.js'
 import jwt from 'jsonwebtoken'
+import { checkUser } from '../../utils/functions.js'
+
+let err
+let response = {}
 
 export default class AuthController {
   static async apiLogin(req, res, next) {
@@ -22,21 +26,26 @@ export default class AuthController {
 
     req.session.user = req.user
 
-    let response = {
+    response = {
       status: 'error' in user ? 'Fail' : 'Success',
       message:
         'error' in user ? user.error.message : `Welcome ${req.user.username}`,
       token: token,
     }
 
+    err = new AppError(response.message, res.status)
+
     !response
-      ? next(new AppError()) && res.json(new AppError('NotFound', 404))
+      ? next(err) &&
+        res.send(
+          (response = { error: `api: ${err}`, response: info(req.user) })
+        )
       : res.cookie('refreshToken', user.refreshToken, Auth.COOKIE_OPTIONS) &&
-        res.send(response).status(200)
+        res.send(response)
   }
 
   static async apiLogout(req, res, next) {
-    if (!req.user) return res.status(500).json({ message: 'no user signed in' })
+    checkUser(req.user)
 
     const user = await AuthDAO.apiFindUserByUserId(req.user._id)
 
@@ -45,14 +54,21 @@ export default class AuthController {
       user.save()
       if (err) {
         res.statusCode = 500
-        res.send(err)
-        return next(err)
+        next(err)
+        res.send(
+          (response = {
+            error: `api: ${err}`,
+            response: info(req.user),
+          })
+        )
       } else {
         res.clearCookie('refreshToken', Auth.COOKIE_OPTIONS)
-        res.send({
-          success: true,
-          message: `${user.username} logged out successfully`,
-        })
+        res.send(
+          (response = {
+            success: true,
+            message: `${user.username} logged out successfully`,
+          })
+        )
       }
     })
   }
@@ -72,21 +88,33 @@ export default class AuthController {
     newUser.refreshToken.push({ refreshToken })
     newUser.save().then((err) => {
       if (err) {
-        ;(response.status = 500), (response.message = err)
+        response = {
+          status: res.status,
+          message: `api: ${err}`,
+        }
+        res.send(response)
+        return
       }
     })
 
-    let response = {
+    response = {
       status: 'error' in newUser ? 'Fail' : 'Success',
       message:
         'error' in newUser ? newUser.error.message : 'Thanks for signing up',
       token,
     }
+    err = new AppError(response.message, res.status)
 
     !response
-      ? next(new AppError()) && res.json(new AppError('NotFound', 404))
+      ? next(err) &&
+        res.send(
+          (response = {
+            error: `api: ${err}`,
+            response: info(req.user),
+          })
+        )
       : res.cookie('refreshToken', newUser.refreshToken, Auth.COOKIE_OPTIONS) &&
-        res.send(response).status(200)
+        res.send(response)
   }
 
   static async apiRefreshToken(req, res, next) {
@@ -98,7 +126,13 @@ export default class AuthController {
     if (refreshToken) {
       for (const ref of refreshToken) {
         if (!ref.refreshToken in ref) {
-          return res.status(401).json({ message: 'Unauthorized' })
+          res.send(
+            (response = {
+              status: res.status,
+              message: 'Unauthorized',
+            })
+          )
+          return
         }
         refToken = ref.refreshToken
       }
@@ -112,69 +146,100 @@ export default class AuthController {
                 (item) => item.refreshToken === refToken
               )
               if (tokenIndex === -1) {
-                res.statusCode = 401
-                res.send('Unauthorized')
+                res.send(
+                  (response = {
+                    status: res.status,
+                    message: 'Unauthorized',
+                  })
+                )
+                return
               } else {
                 const token = Auth.getToken({ _id: userId })
                 const newRefreshToken = Auth.getRefreshToken({ _id: userId })
                 user.refreshToken[tokenIndex] = {
                   refreshToken: newRefreshToken,
                 }
-                user.save().then((user, error) => {
-                  if (error) {
-                    res.status = 500
-                    res.send(`${error}`)
+                user.save().then((user, err) => {
+                  if (err) {
+                    res.send(
+                      (response = {
+                        status: res.status,
+                        message: `api: ${err}`,
+                      })
+                    )
                   } else {
                     res.cookie(
                       'refreshToken',
                       newRefreshToken,
                       Auth.COOKIE_OPTIONS
                     )
-                    res.send({ success: true, token })
+                    res.send((response = { success: true, token }))
                   }
                 })
               }
             } else {
-              res.statusCode = 401
-              res.send('Unauthorized')
+              res.send(
+                (response = {
+                  status: res.status,
+                  message: 'Unauthorized',
+                })
+              )
+              return
             }
           },
           (err) => next(err)
         )
-      } catch (err) {
-        res.statusCode = 401
-        res.send(`Error: ${err}`)
+      } catch (e) {
+        res.send(
+          (response = {
+            status: res.status,
+            message: `Error: ${e}`,
+          })
+        )
       }
     } else {
-      res.statusCode = 401
-      res.send('Unauthorized: no refreshToken')
+      res.send(
+        (response = {
+          status: res.status,
+          message: 'Unauthorized: no refreshToken',
+        })
+      )
+      return
     }
   }
 
   static async apiGetUserDetails(req, res, next) {
-    if (!req.user) return res.status(401).json({ message: 'No user found.' })
-    let response = {
+    checkUser(req.user)
+    response = {
       status: res.status === 200 ? 'Success!' : 'Fail!',
       userDetails: req.user,
     }
-    res.send(response)
+
+    err = new AppError(response.message, res.status)
+    !response
+      ? next(err) &&
+        res.send(
+          (response = {
+            message: `api: ${err}`,
+          })
+        )
+      : res.send(response)
   }
 
   static async apiGetAllUsers(req, res, next) {
     let users
-    try {
-      users = await AuthDAO.apiGetAllUsers()
-    } catch (e) {
-      response.status = 403
-      next(e)
-    }
-
-    let response = {
+    response = {
       status: 'error' in users ? 'Fail' : 'Success',
       userList: users,
       message: 'error' in users ? 'Unauthorized' : 'Retrieved all Users',
     }
-    res.send(response)
+    try {
+      users = await AuthDAO.apiGetAllUsers()
+      res.send(response)
+    } catch (e) {
+      next(e)
+      res.send((response = { message: `api: ${e}` }))
+    }
   }
 
   static async apiUpdateUser(req, res, next) {
@@ -195,22 +260,22 @@ export default class AuthController {
         },
       }
 
-      const response = await AuthDAO.apiUpdateUser(userId, user)
+      const updateResponse = await AuthDAO.apiUpdateUser(userId, user)
 
-      res.json({
+      res.send({
         status:
-          response.modifiedCount === 0
+          updateResponse.modifiedCount === 0
             ? 'Update Failed'
             : 'Updated Successfully',
         message:
-          response.matchedCount === 1
-            ? `Matched ${response.matchedCount} document`
+          updateResponse.matchedCount === 1
+            ? `Matched ${updateResponse.matchedCount} document`
             : `No matches for userId: ${userId}`,
       })
     } catch (e) {
-      let err = new AppError(e.message, res.status)
+      err = new AppError(e.message, res.status)
       next(err)
-      res.json({ data: {}, error: e, message: `api ${e}` })
+      res.send({ data: {}, error: `api ${err}` })
     }
   }
 }

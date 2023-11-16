@@ -15,6 +15,9 @@ ordersRouter
     OrdersController.apiGetAllOrdersForSingleUser
   )
   .post(OrdersController.apiCreateOrder)
-  .delete(Auth.verifyToken(['admin']), OrdersController.apiDeleteOrder)
+  .delete(
+    Auth.verifyToken(['admin', 'employee']),
+    OrdersController.apiDeleteOrder
+  )
 
 export default ordersRouter

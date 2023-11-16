@@ -11,6 +11,7 @@ import './strategies/JwtStrategy.js'
 import './strategies/LocalStrategy.js'
 import './authenticate.js'
 import session from 'express-session'
+import Auth from './authenticate.js'
 
 const app = express()
 const PORT = process.env.PORT
@@ -44,7 +45,7 @@ const corsOptions = {
 app.use(cors(corsOptions))
 app.use(passport.session())
 app.use('/api/v1/messages', messagesRouter)
-app.use('/api/v1/items', itemsRouter)
+app.use('/api/v1/items', Auth.verifyToken(['admin', 'employee']), itemsRouter)
 app.use('/api/v1/users', authRouter)
 app.use('/api/v1/orders', ordersRouter)
 

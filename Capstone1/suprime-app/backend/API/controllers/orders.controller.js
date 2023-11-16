@@ -1,47 +1,56 @@
 import OrdersDAO from '../../DAO/ordersDAO.js'
-import AppError from '../../appError.js'
+import AppError from '../../utils/appError.js'
+import { info, checkUser } from '../../utils/functions.js'
 
-const checkUser = async (user) => {
-  let response = {
-    message: '',
-    status: 0,
-  }
-  if (!user) {
-    response.message = 'Must be logged in to continue'
-    response.status = 401
-    return response
-  }
-}
+let err
+let response = {}
 
 export default class OrdersController {
   static async apiGetAllOrders(req, res, next) {
     checkUser(req.user)
     if (req.query.user) return next()
 
-    let response = {
-      success: null,
-      status: null,
-      data: null,
-      message: '',
+    const ordersPerPage = req.query.ordersPerPage
+      ? parseInt(req.query.ordersPerPage)
+      : 5
+
+    const page = req.query.page ? parseInt(req.query.page) : 0
+
+    let filters = {}
+
+    if (req.query.order_id) {
+      filters.order_id = req.query.order_id
     }
 
-    try {
-      const ordersList = await OrdersDAO.apiGetAllOrders()
-
-      response.success = res.status
-      response.data = ordersList
-      response.message = `found orders`
-      res.send(response)
-    } catch (e) {
-      let err = new AppError(e.message, res.status)
-
-      next(err)
-      res.json((response = { error: e, message: `api: ${e}` }))
+    const { totalOrders, ordersList } = await OrdersDAO.apiGetAllOrders({
+      filters,
+      page,
+      ordersPerPage,
+    })
+    response = {
+      user: req.user._id,
+      orders: ordersList,
+      filters: filters,
+      page: page,
+      orders_per_page: ordersPerPage,
+      total_orders: totalOrders,
+      message: `found ${count} orders`,
     }
+
+    err = new AppError(response.message, res.status)
+
+    !response
+      ? next(err) &&
+        res.send(
+          (response = { error: `api: ${err}`, response: info(req.user) })
+        )
+      : res.send(response)
   }
 
   static async apiGetAllOrdersForSingleUser(req, res, next) {
-    const ordersPerPage = req.query.ordersPerPage ? parseInt(ordersPerPage) : 5
+    const ordersPerPage = req.query.ordersPerPage
+      ? parseInt(req.query.ordersPerPage)
+      : 5
 
     const page = req.query.page ? parseInt(req.query.page) : 0
 
@@ -57,26 +66,27 @@ export default class OrdersController {
         ordersPerPage,
       })
 
-    let response = {
+    response = {
       user: req.user._id,
       orders: ordersList,
       filters: filters,
       page: page,
       orders_per_page: ordersPerPage,
       total_orders: totalOrders,
-      message: '',
+      message: `found ${totalOrders} orders for ${filters.user}`,
     }
-    let err = new AppError('Must be logged in to access', 404)
 
-    !response ? next(err) : res.send(response)
+    err = new AppError(response.message, res.status)
+
+    !response
+      ? next(err) &&
+        res.send(
+          (response = { error: `api: ${err}`, response: info(req.user) })
+        )
+      : res.send(response)
   }
 
   static async apiCreateOrder(req, res, next) {
-    const info = await checkUser(req.user).then((result) => {
-      return result
-    })
-
-    let response
     try {
       const order = {
         user: req.user._id,
@@ -87,34 +97,40 @@ export default class OrdersController {
       }
       const OrderResponse = await OrdersDAO.apiCreateOrder(order)
 
-      res.json(OrderResponse)
+      response.data = OrderResponse
+      response.message = `processing order...`
+
+      res.send({
+        status: response.status,
+        data: response.data,
+        message: response.message,
+        response: info(req.user),
+      })
     } catch (e) {
-      let err = new AppError(e.message, res.status)
+      err = new AppError(e.message, res.status)
       next(err)
-      res.json((response = { error: `api: ${e}`, response: info }))
+      res.send((response = { error: `api: ${e}`, response: info(req.user) }))
     }
   }
 
   static async apiDeleteOrder(req, res, next) {
-    const info = await checkUser(req.user).then((result) => {
-      return result
-    })
-
-    let response
-
     let orderId = req.query.order_id
     try {
       const OrderResponse = await OrdersDAO.apiDeleteOrder(orderId)
 
-      let response = {
-        orderId: orderId,
-        info: OrderResponse,
-      }
-      res.send(response)
+      response.data = OrderResponse
+      response.message = `deleted order with id: ${orderId}`
+
+      res.send({
+        status: response.status,
+        data: response.data,
+        message: response.message,
+        response: info(req.user),
+      })
     } catch (e) {
-      let err = new AppError(e.message, res.status)
+      err = new AppError(e.message, res.status)
       next(err)
-      res.json((response = { error: `api: ${e}`, response: info }))
+      res.send((response = { error: `api: ${e}`, response: info(req.user) }))
     }
   }
 }
