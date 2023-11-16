@@ -22,11 +22,16 @@ export default class OrdersController {
       filters.order_id = req.query.order_id
     }
 
-    const { totalOrders, ordersList } = await OrdersDAO.apiGetAllOrders({
-      filters,
-      page,
-      ordersPerPage,
-    })
+    let orderId = req.query.order_id
+
+    const { totalOrders, ordersList } = await OrdersDAO.apiGetAllOrders(
+      {
+        filters,
+        page,
+        ordersPerPage,
+      },
+      orderId
+    )
     response = {
       user: req.user._id,
       orders: ordersList,
@@ -34,7 +39,7 @@ export default class OrdersController {
       page: page,
       orders_per_page: ordersPerPage,
       total_orders: totalOrders,
-      message: `found ${count} orders`,
+      message: `found ${totalOrders} orders`,
     }
 
     err = new AppError(response.message, res.status)

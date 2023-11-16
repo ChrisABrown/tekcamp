@@ -2,11 +2,10 @@ import Order from './models/Order.js'
 import User from './models/User.js'
 
 export default class OrdersDAO {
-  static async apiGetAllOrders({
-    filters = null,
-    page = 0,
-    ordersPerPage = 5,
-  } = {}) {
+  static async apiGetAllOrders(
+    { filters = null, page = 0, ordersPerPage = 5 } = {},
+    orderId
+  ) {
     let query
 
     if (filters) {
@@ -21,6 +20,7 @@ export default class OrdersDAO {
     try {
       const ordersList = await Order.find(query).limit(ordersPerPage)
       const totalOrders = await Order.countDocuments({}).exec()
+      const foundOrder = await Order.count(query)
 
       return { totalOrders, ordersList }
     } catch (e) {

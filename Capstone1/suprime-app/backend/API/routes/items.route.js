@@ -8,8 +8,14 @@ itemsRouter
   .route('/')
   .get(ItemsController.apiGetItems)
   .get(ItemsController.apiGetItemBySKU)
-  .post(ItemsController.apiAddNewItem)
-  .put(ItemsController.apiUpdateItemBySKU)
-  .delete(ItemsController.apiDeleteItem)
+  .post(Auth.verifyToken(['admin', 'employee']), ItemsController.apiAddNewItem)
+  .put(
+    Auth.verifyToken(['admin', 'employee']),
+    ItemsController.apiUpdateItemBySKU
+  )
+  .delete(
+    Auth.verifyToken(['admin', 'employee']),
+    ItemsController.apiDeleteItem
+  )
 
 export default itemsRouter

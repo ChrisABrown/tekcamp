@@ -11,12 +11,11 @@ import './strategies/JwtStrategy.js'
 import './strategies/LocalStrategy.js'
 import './authenticate.js'
 import session from 'express-session'
-import Auth from './authenticate.js'
 
 const app = express()
 const PORT = process.env.PORT
-const WHITELISTED_DOMAINS = process.env.WHITELISTED_DOMAINS
 const baseURL = `http://localhost:${PORT}`
+const origin = process.env.CLIENT_ORIGIN_URL
 
 app.use(express.json())
 app.use(cookieParser(process.env.COOKIE_SECRET))
@@ -28,24 +27,15 @@ app.use(
   })
 )
 
-const whitelist = WHITELISTED_DOMAINS ? WHITELISTED_DOMAINS.split(',') : []
-
 const corsOptions = {
-  origin: function (origin, callback) {
-    if (!origin || whitelist.indexOf(origin) !== -1) {
-      callback(null, true)
-    } else {
-      callback(new Error('Not allowed by CORS'))
-    }
-  },
-
+  origin: origin,
   credentials: true,
 }
 
 app.use(cors(corsOptions))
 app.use(passport.session())
 app.use('/api/v1/messages', messagesRouter)
-app.use('/api/v1/items', Auth.verifyToken(['admin', 'employee']), itemsRouter)
+app.use('/api/v1/items', itemsRouter)
 app.use('/api/v1/users', authRouter)
 app.use('/api/v1/orders', ordersRouter)
 
