@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-export const URL = `${process.env.API_SERVER_URL}`
+export const URL = `${process.env.REACT_APP_API_SERVER_URL}`
 const endpoints = ['api/v1/items', 'api/v1/orders']
 
 const items = axios.create({
@@ -63,7 +63,7 @@ const fetchItems = async () => {
 
 const fetchItemBySku = async (sku) => {
   try {
-    return await items.get(`${endpoints[0]}/:${sku}`).then((res) => {
+    return await items.get(`${endpoints[0]}?sku=${sku}`).then((res) => {
       return res.data
     })
   } catch (e) {

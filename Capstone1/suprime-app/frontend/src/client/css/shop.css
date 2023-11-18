@@ -5,9 +5,10 @@
 }
 .shop-grid {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-around;
   flex-flow: row wrap;
+  padding-bottom: 30px;
 }
 .shop-tabs {
   grid-area: hd;
@@ -28,19 +29,35 @@
 
 .product-box {
   display: grid;
-  padding: 30px;
   grid-template-columns: repeat(2, 40vh);
   grid-template-areas:
     '. . prod prod . .'
+    '. . prod prod info .'
     '. . prod prod info .';
 }
 img {
-  height: 40vh;
   grid-area: prod;
+}
+.product-info {
+  display: flex;
+  flex-flow: column;
+  justify-content: space-around;
+}
+.product-image {
+  padding: 10px;
 }
 .product-price {
   grid-area: info;
 }
 .product-description {
+  /* width: 50%; */
   grid-area: info;
+}
+.btn {
+  grid-area: info;
+  width: 50%;
+  background-color: red;
+  color: ghostwhite;
+  border: none;
+  padding: 10px 10px;
 }

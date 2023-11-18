@@ -27,7 +27,7 @@
     "redux": "^4.2.1"
   },
   "scripts": {
-    "start:frontend": "NODE_ENV=development react-scripts start",
+    "start:frontend": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
