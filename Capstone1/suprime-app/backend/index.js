@@ -13,8 +13,6 @@ import './authenticate.js'
 import session from 'express-session'
 
 const app = express()
-const PORT = process.env.PORT
-const baseURL = `http://localhost:${PORT}`
 const origin = process.env.CLIENT_ORIGIN_URL
 
 app.use(express.json())
@@ -55,6 +53,4 @@ app.use('*', (err, _req, res, next) => {
 })
 db.connect(process.env.SUPRIME_DB_URI)
 
-app.listen(PORT, () => {
-  console.log(`listening on ${baseURL}`)
-})
+export default app

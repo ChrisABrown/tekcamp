@@ -79,7 +79,7 @@ export default class ItemsController {
       res.send({
         status: 'error' in ItemResponse ? 'Fail' : 'Success',
         data: ItemResponse,
-        itemSku: postedItem.SKU,
+        itemSKU: postedItem.SKU,
       })
     } catch (e) {
       err = new AppError(e.message, res.status)
