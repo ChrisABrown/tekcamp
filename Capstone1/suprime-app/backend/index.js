@@ -1,6 +1,6 @@
 import express from 'express'
 import cors from 'cors'
-import authRouter from './API/routes/auth.js'
+import authRouter from './API/routes/auth.route.js.js'
 import itemsRouter from './API/routes/items.route.js'
 import ordersRouter from './API/routes/orders.route.js'
 import messagesRouter from './API/routes/messages.route.js'
