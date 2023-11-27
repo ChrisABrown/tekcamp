@@ -12,6 +12,10 @@ export default class AuthDAO {
         }),
         pw
       )
+      User.countDocuments({ _id: regUser._id }).then((err, count) => {
+        err = new Error()
+        if (count !== 1) return err
+      })
       return regUser
     } catch (e) {
       console.error(`unable to register user: ${e}`)

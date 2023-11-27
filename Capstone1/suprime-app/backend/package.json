@@ -39,5 +39,8 @@
       "mongodb": "6.1.0",
       "bson": "^6.0.0"
     }
+  },
+  "devDependencies": {
+    "express-session": "^1.17.3"
   }
 }

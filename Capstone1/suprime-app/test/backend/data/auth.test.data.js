@@ -1,7 +1,7 @@
 export const admin = {
-  username: 'TestAdmin',
+  username: 'Admin',
   role: 'admin',
-  email: 'test@email.com',
+  email: 'tst@email.com',
   password: '$password',
   profile: {
     firstName: 'Test',

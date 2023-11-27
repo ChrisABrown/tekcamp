@@ -6,16 +6,18 @@
   "type": "module",
   "scripts": {
     "start": "concurrently \"cd ./backend && npm run start:backend\" \"cd ./frontend && npm run start:frontend\"",
-    "dev": "concurrently \"cd ./backend && npm run dev\" \"cd ./frontend && npm run start:frontend\""
+    "dev": "concurrently \"cd ./backend && npm run dev\" \"cd ./frontend && npm run start:frontend\"",
+    "test": "node --env-file=./.env.test node_modules/mocha/bin/mocha.js test/**/*.spec.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "concurrently": "^8.2.1"
-  },
-  "dependencies": {
-    "express-session": "^1.17.3",
+    "chai": "^4.3.10",
+    "chai-http": "^4.4.0",
+    "concurrently": "^8.2.1",
+    "mocha": "^10.2.0",
+    "mongoose": "^8.0.1",
     "supertest": "^6.3.3"
   }
 }

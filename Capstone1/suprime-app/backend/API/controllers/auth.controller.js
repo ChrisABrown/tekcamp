@@ -82,25 +82,30 @@ export default class AuthController {
     }
     const pw = req.body.password
     const newUser = await AuthDAO.apiRegisterNewUser(user, pw)
-    const token = Auth.getToken({ _id: newUser._id })
-    const refreshToken = Auth.getRefreshToken({ _id: newUser._id })
 
-    newUser.refreshToken.push({ refreshToken })
-    newUser.save().then((err) => {
-      if (err) {
-        response = {
-          status: res.status,
-          message: `api: ${err}`,
+    let token = ''
+
+    if (newUser instanceof Error && newUser !== undefined) {
+      const refreshToken = Auth.getRefreshToken({ _id: newUser._id })
+      token = Auth.getToken({ _id: newUser._id })
+      newUser.refreshToken.push({ refreshToken })
+      newUser.save().then((err) => {
+        if (err) {
+          response = {
+            status: res.status,
+            message: `api: ${err}`,
+          }
+          return
         }
-        res.send(response)
-        return
-      }
-    })
+      })
+    }
 
     response = {
-      status: 'error' in newUser ? 'Fail' : 'Success',
+      status: newUser instanceof Error ? 'Fail' : 'Success',
       message:
-        'error' in newUser ? newUser.error.message : 'Thanks for signing up',
+        newUser instanceof Error
+          ? newUser.error.message
+          : 'Thanks for signing up',
       token,
     }
     err = new AppError(response.message, res.status)
