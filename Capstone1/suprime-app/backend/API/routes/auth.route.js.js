@@ -15,8 +15,8 @@ authRouter
   .get('/user', Auth.verifyUser, AuthController.apiGetUserDetails)
   .get('/logout', AuthController.apiLogout)
   .put('/user', Auth.verifyUser, AuthController.apiUpdateUser)
-  .post('/login', passport.authenticate('local'), AuthController.apiLogin)
   .post('/signup', AuthController.apiRegisterNewUser)
+  .post('/login', passport.authenticate('local'), AuthController.apiLogin)
   .post('/refreshToken', AuthController.apiRefreshToken)
 
 export default authRouter

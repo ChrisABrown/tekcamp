@@ -3,42 +3,33 @@ import User from './models/User.js'
 export default class AuthDAO {
   static async apiRegisterNewUser(user = {}, pw) {
     try {
-      let regUser = await User.register(
+      return await User.register(
         new User({
           username: user.username,
           role: user.role,
           email: user.email,
           profile: user.profile,
+          refreshToken: user.refreshToken,
         }),
         pw
       )
-      User.countDocuments({ _id: regUser._id }).then((err, count) => {
-        err = new Error()
-        if (count !== 1) return err
-      })
-      return regUser
     } catch (e) {
-      console.error(`unable to register user: ${e}`)
       return { error: e }
     }
   }
 
   static async apiGetAllUsers() {
     try {
-      const users = await User.find({}).exec()
-      return users
+      return await User.find({}).exec()
     } catch (e) {
-      console.error(`unable to retrieve users`)
       return { error: e }
     }
   }
 
   static async apiFindUserByUserId(userId) {
     try {
-      const find = await User.findOne({ _id: userId }).exec()
-      return find
+      return await User.findOne({ _id: userId }).exec()
     } catch (e) {
-      console.error(`unable to find user`)
       return { error: e }
     }
   }
@@ -56,17 +47,14 @@ export default class AuthDAO {
         }
       )
     } catch (e) {
-      console.error('Unable to update user info')
       return { error: e }
     }
   }
 
   static async apiDeleteUser(userId) {
     try {
-      const user = await User.findOneAndDelete({ _id: userId }).exec()
-      return user
+      return await User.findOneAndDelete({ _id: userId }).exec()
     } catch (e) {
-      console.error(`unable to delete user: ${e}`)
       return { error: e }
     }
   }

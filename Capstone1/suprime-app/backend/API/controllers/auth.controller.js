@@ -27,7 +27,7 @@ export default class AuthController {
     req.session.user = req.user
 
     response = {
-      status: 'error' in user ? 'Fail' : 'Success',
+      success: 'error' in user ? false : true,
       message:
         'error' in user ? user.error.message : `Welcome ${req.user.username}`,
       token: token,
@@ -79,45 +79,35 @@ export default class AuthController {
       role: req.body.role,
       email: req.body.email,
       profile: req.body.profile,
+      refreshToken: [],
     }
     const pw = req.body.password
     const newUser = await AuthDAO.apiRegisterNewUser(user, pw)
+    const token = Auth.getToken({ _id: newUser._id })
+    const refreshToken = Auth.getRefreshToken({ _id: newUser._id })
 
-    let token = ''
+    response = {
+      success: true,
+      message: 'Thanks for signing up',
+      token: token,
+    }
 
-    if (newUser instanceof Error && newUser !== undefined) {
-      const refreshToken = Auth.getRefreshToken({ _id: newUser._id })
-      token = Auth.getToken({ _id: newUser._id })
+    if ('error' in newUser) {
+      response.success = false
+      response.message = newUser.error.message
+      response.token = ''
+    } else {
       newUser.refreshToken.push({ refreshToken })
-      newUser.save().then((err) => {
-        if (err) {
-          response = {
-            status: res.status,
-            message: `api: ${err}`,
-          }
-          return
-        }
+      newUser.save().then((user, err) => {
+        if (err) return err
+        return user
       })
     }
 
-    response = {
-      status: newUser instanceof Error ? 'Fail' : 'Success',
-      message:
-        newUser instanceof Error
-          ? newUser.error.message
-          : 'Thanks for signing up',
-      token,
-    }
     err = new AppError(response.message, res.status)
 
     !response
-      ? next(err) &&
-        res.send(
-          (response = {
-            error: `api: ${err}`,
-            response: info(req.user),
-          })
-        )
+      ? next(err) && res.send(response)
       : res.cookie('refreshToken', newUser.refreshToken, Auth.COOKIE_OPTIONS) &&
         res.send(response)
   }

@@ -16,6 +16,7 @@ const app = express()
 const origin = process.env.CLIENT_ORIGIN_URL
 
 app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
 app.use(cookieParser(process.env.COOKIE_SECRET))
 app.use(
   session({
@@ -32,11 +33,6 @@ const corsOptions = {
 
 app.use(cors(corsOptions))
 app.use(passport.session())
-app.use('/api/v1/messages', messagesRouter)
-app.use('/api/v1/items', itemsRouter)
-app.use('/api/v1/users', authRouter)
-app.use('/api/v1/orders', ordersRouter)
-
 app.use('*', (err, _req, res, next) => {
   err.status = err.status || 'fail'
   err.statusCode = err.statusCode || 500
@@ -51,6 +47,12 @@ app.use('*', (err, _req, res, next) => {
       })
     : next(err)
 })
-db.connect(process.env.SUPRIME_DB_URI)
+
+app.use('/api/v1/messages', messagesRouter)
+app.use('/api/v1/items', itemsRouter)
+app.use('/api/v1/users', authRouter)
+app.use('/api/v1/orders', ordersRouter)
+
+await db.connect(process.env.SUPRIME_DB_URI)
 
 export default app

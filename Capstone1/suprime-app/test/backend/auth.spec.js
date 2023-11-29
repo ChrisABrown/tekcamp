@@ -1,25 +1,42 @@
+import request from 'supertest'
 import app from '../../backend/index.js'
-import { admin as _admin } from './data/auth.test.data.js'
-import { describe } from 'mocha'
-import chai, { expect } from 'chai'
-import chaiHttp from 'chai-http'
+import { closeDB, init } from './utils/setup.js'
+import { admin as _admin } from '../backend/data/auth.test.data.js'
 
-chai.use(chaiHttp)
+describe('API Response Tests', (body, token) => {
+  let response
 
-describe('Auth tests for authenticating users', (body, token) => {
-  it('should respond with statusCode 200, adding a user to the database', async function () {
-    this.timeout(6000)
+  beforeAll(async () => {
+    init()
+  })
 
-    const res = chai
-      .request(app)
-      .post('/api/v1/users/signup')
-      .send(_admin)
-      .end((err, res) => {
-        if (err) console.error(err)
-        body = res.body
-        token = body.token
-        expect(res.statusCode).to.be.equal(200)
-        expect(body.status).to.be.equal('Success')
+  afterAll(async () => {
+    closeDB()
+  })
+  describe('Auth API Tests', () => {
+    test('POST /api/v1/users/signup', async () => {
+      response = await request(app).post('/api/v1/users/signup').send(_admin)
+      body = response.body
+      expect(body.success).toBe(true)
+      expect(body).toHaveProperty('token')
+    })
+    test('POST /api/v1/users/login', async () => {
+      response = await request(app).post('/api/v1/users/login').send({
+        username: _admin.username,
+        password: _admin.password,
       })
+      expect(body).toHaveProperty('token')
+    })
+  })
+
+  describe('Item API tests', () => {
+    test('GET /api/v1/items', (done) => {
+      request(app)
+        .get('/api/v1/items')
+        .then((response) => {
+          expect(response.statusCode).toBe(200)
+          done()
+        })
+    })
   })
 })
