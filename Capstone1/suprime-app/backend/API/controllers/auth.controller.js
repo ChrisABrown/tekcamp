@@ -9,11 +9,9 @@ let response = {}
 
 export default class AuthController {
   static async apiLogin(req, res, next) {
-    const token = Auth.getToken({ _id: req.user._id })
-    const refreshToken = Auth.getRefreshToken({ _id: req.user._id })
-
     const user = await AuthDAO.apiFindUserByUserId(req.user._id)
-
+    const token = Auth.getToken({ _id: user._id })
+    const refreshToken = Auth.getRefreshToken({ _id: user._id })
     req.logIn(user, (err) => {
       if (err) {
         response.status = 500
@@ -36,10 +34,7 @@ export default class AuthController {
     err = new AppError(response.message, res.status)
 
     !response
-      ? next(err) &&
-        res.send(
-          (response = { error: `api: ${err}`, response: info(req.user) })
-        )
+      ? next(err) && res.send((response = { error: `api: ${err}` }))
       : res.cookie('refreshToken', user.refreshToken, Auth.COOKIE_OPTIONS) &&
         res.send(response)
   }
@@ -113,94 +108,96 @@ export default class AuthController {
   }
 
   static async apiRefreshToken(req, res, next) {
-    const { signedCookies = {} } = req
-    const { refreshToken } = signedCookies
     let payload
     let tokenIndex
     let refToken
-    if (refreshToken) {
-      for (const ref of refreshToken) {
-        if (!ref.refreshToken in ref) {
-          res.send(
-            (response = {
-              status: res.status,
-              message: 'Unauthorized',
-            })
-          )
-          return
+    const refreshToken = []
+
+    checkUser(req.user)
+      .then((res) => {
+        let userRefArr
+        if (res.user !== undefined) {
+          userRefArr = res.user.refreshToken
+          for (let ref of userRefArr) {
+            refToken = ref
+          }
+          refreshToken.push({ refToken })
+          return refToken
         }
-        refToken = ref.refreshToken
-      }
-      try {
-        payload = jwt.verify(refToken, process.env.REFRESH_TOKEN_SECRET)
-        const userId = payload._id
-        await AuthDAO.apiFindUserByUserId(userId).then(
-          (user) => {
-            if (user) {
-              tokenIndex = user.refreshToken.findIndex(
-                (item) => item.refreshToken === refToken
-              )
-              if (tokenIndex === -1) {
+      })
+      .then(async () => {
+        if (refreshToken) {
+          try {
+            let foundToken = await refToken['refreshToken']
+            payload = jwt.verify(foundToken, process.env.REFRESH_TOKEN_SECRET)
+
+            const userId = payload.user._id
+            await AuthDAO.apiFindUserByUserId(userId).then((user) => {
+              if (user) {
+                tokenIndex = user.refreshToken.findIndex(
+                  (item) => item.refreshToken === foundToken
+                )
+                if (tokenIndex === -1) {
+                  res.send(
+                    (response = {
+                      status: res.status,
+                      message: 'Unauthorized: token not found',
+                    })
+                  )
+                  return
+                } else {
+                  const token = Auth.getToken(user._id)
+                  const newRefreshToken = Auth.getRefreshToken(user._id)
+                  user.refreshToken[tokenIndex] = {
+                    refreshToken: newRefreshToken,
+                  }
+                  user.save().then((user, err) => {
+                    if (err) {
+                      res.send(
+                        (response = {
+                          status: res.status,
+                          message: `api: ${err}`,
+                        })
+                      )
+                    } else {
+                      res.cookie(
+                        'refreshToken',
+                        newRefreshToken,
+                        Auth.COOKIE_OPTIONS
+                      )
+                      res.send((response = { success: true, token }))
+                    }
+                  })
+                }
+              } else {
                 res.send(
                   (response = {
                     status: res.status,
-                    message: 'Unauthorized',
+                    message: 'Unauthorized: no user',
                   })
                 )
                 return
-              } else {
-                const token = Auth.getToken({ _id: userId })
-                const newRefreshToken = Auth.getRefreshToken({ _id: userId })
-                user.refreshToken[tokenIndex] = {
-                  refreshToken: newRefreshToken,
-                }
-                user.save().then((user, err) => {
-                  if (err) {
-                    res.send(
-                      (response = {
-                        status: res.status,
-                        message: `api: ${err}`,
-                      })
-                    )
-                  } else {
-                    res.cookie(
-                      'refreshToken',
-                      newRefreshToken,
-                      Auth.COOKIE_OPTIONS
-                    )
-                    res.send((response = { success: true, token }))
-                  }
-                })
               }
-            } else {
-              res.send(
-                (response = {
-                  status: res.status,
-                  message: 'Unauthorized',
-                })
-              )
-              return
-            }
-          },
-          (err) => next(err)
-        )
-      } catch (e) {
-        res.send(
-          (response = {
-            status: res.status,
-            message: `Error: ${e}`,
-          })
-        )
-      }
-    } else {
-      res.send(
-        (response = {
-          status: res.status,
-          message: 'Unauthorized: no refreshToken',
-        })
-      )
-      return
-    }
+            })
+          } catch (e) {
+            res.send(
+              (response = {
+                status: res.status,
+                message: `${e}`,
+              })
+            )
+          }
+        } else {
+          res.send(
+            (response = {
+              status: res.status,
+              message: 'Unauthorized: no refreshToken',
+            })
+          )
+          err = new AppError(response.message, res.status)
+          return next(err)
+        }
+      })
   }
 
   static async apiGetUserDetails(req, res, next) {

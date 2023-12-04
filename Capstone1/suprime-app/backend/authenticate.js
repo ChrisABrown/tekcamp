@@ -24,7 +24,7 @@ const getToken = (user) => {
 }
 
 const getRefreshToken = (user) => {
-  const refreshToken = jwt.sign(user, REFRESH_TOKEN_SECRET, {
+  const refreshToken = jwt.sign({ user: user }, REFRESH_TOKEN_SECRET, {
     expiresIn: eval(REFRESH_TOKEN_EXP),
   })
   return refreshToken

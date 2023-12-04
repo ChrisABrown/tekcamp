@@ -1,6 +1,6 @@
 import OrdersDAO from '../../DAO/ordersDAO.js'
 import AppError from '../../utils/appError.js'
-import { info, checkUser } from '../../utils/functions.js'
+import { checkUser } from '../../utils/functions.js'
 
 let err
 let response = {}

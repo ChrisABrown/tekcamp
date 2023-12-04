@@ -1,11 +1,9 @@
 import request from 'supertest'
 import app from '../../backend/index.js'
 import { closeDB, init } from './utils/setup.js'
-import { admin as _admin } from '../backend/data/auth.test.data.js'
+import { apiAuthTests } from './utils/test1.js'
 
-describe('API Response Tests', (body, token) => {
-  let response
-
+describe('API Response Tests', () => {
   beforeAll(async () => {
     init()
   })
@@ -13,21 +11,9 @@ describe('API Response Tests', (body, token) => {
   afterAll(async () => {
     closeDB()
   })
-  describe('Auth API Tests', () => {
-    test('POST /api/v1/users/signup', async () => {
-      response = await request(app).post('/api/v1/users/signup').send(_admin)
-      body = response.body
-      expect(body.success).toBe(true)
-      expect(body).toHaveProperty('token')
-    })
-    test('POST /api/v1/users/login', async () => {
-      response = await request(app).post('/api/v1/users/login').send({
-        username: _admin.username,
-        password: _admin.password,
-      })
-      expect(body).toHaveProperty('token')
-    })
-  })
+
+  //Auth API Tests meant to run one after another to test signup, login, and token verification processes
+  describe('Auth API Tests', apiAuthTests)
 
   describe('Item API tests', () => {
     test('GET /api/v1/items', (done) => {
