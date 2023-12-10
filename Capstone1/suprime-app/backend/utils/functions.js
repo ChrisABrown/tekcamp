@@ -2,7 +2,7 @@ import { response } from 'express'
 
 let res = response
 
-export const checkUser = async (user) => {
+export const checkUser = (user) => {
   let response = {
     success: true,
     user: user,
@@ -13,5 +13,5 @@ export const checkUser = async (user) => {
     response.success = false
     return response
   }
-  return response
+  return Promise.resolve(response)
 }

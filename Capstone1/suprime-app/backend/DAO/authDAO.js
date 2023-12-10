@@ -27,6 +27,7 @@ export default class AuthDAO {
   }
 
   static async apiFindUserByUserId(userId) {
+    if (userId === undefined) return
     try {
       return await User.findOne({ _id: userId }).exec()
     } catch (e) {

@@ -12,7 +12,7 @@ const COOKIE_OPTIONS = {
   secure: !dev,
   signed: true,
   maxAge: eval(REFRESH_TOKEN_EXP) * 1000,
-  sameSite: 'none',
+  sameSite: false,
 }
 
 const verifyUser = passport.authenticate('jwt')
