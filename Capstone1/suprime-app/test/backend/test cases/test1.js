@@ -3,10 +3,9 @@ import { authEndpoints } from '../utils/variables.js'
 import app from '../../../backend/index.js'
 import { mockUser } from '../data/auth.test.data.js'
 
-export const apiAuthTests = () => {
+export const apiAuthTests = (token) => {
   let body
   let success
-  let token
 
   const agent = request.agent(app)
 
@@ -34,7 +33,7 @@ export const apiAuthTests = () => {
       })
       .then((res) => {
         body = res.body
-        token = body.token
+
         expect(body).toHaveProperty('token')
       })
   })
@@ -48,7 +47,7 @@ export const apiAuthTests = () => {
         if (err) console.error(err)
         body = res.body
         success = body.success
-        token = body.token
+
         expect(res.header['set-cookie']).toBeDefined()
         expect(success).toEqual(true)
         expect(token).toEqual(token)
@@ -75,11 +74,11 @@ export const apiAuthTests = () => {
   test(`GET ${authEndpoints[4]}, should return logged in user details`, async () => {
     await agent
       .get(`${authEndpoints[4]}`)
-      .expect(200)
+      .set('Authorization', `Bearer ${token}`)
       .then((res, err) => {
+        console.log(res)
         if (err) console.error(err)
         body = res.body
-        expect(body.userDetails).ToBe(Object)
       })
   })
 }

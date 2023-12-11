@@ -6,15 +6,17 @@ import Auth from '../../authenticate.js'
 const authRouter = expressRouter()
 
 authRouter
-  .get(
-    '/admin-dashboard',
-    Auth.verifyToken(['admin']),
-    AuthController.apiGetAllUsers
-  )
-  .get('/employee-dashboard', Auth.verifyToken(['employee', 'admin']))
-  .get('/user', Auth.verifyUser, AuthController.apiGetUserDetails)
+  .route('/')
+  .get(Auth.verifyToken(['admin']), AuthController.apiGetUsersByRole)
+  .get(Auth.verifyToken(['employee']))
+
+authRouter
+  .route('/user')
+  .get(Auth.verifyUser(), AuthController.apiGetUserDetails)
+  .put(Auth.verifyUser(), AuthController.apiUpdateUser)
+
+authRouter
   .get('/logout', AuthController.apiLogout)
-  .put('/user', Auth.verifyUser, AuthController.apiUpdateUser)
   .post('/signup', AuthController.apiRegisterNewUser)
   .post('/login', passport.authenticate('local'), AuthController.apiLogin)
   .post('/refreshToken', AuthController.apiRefreshToken)

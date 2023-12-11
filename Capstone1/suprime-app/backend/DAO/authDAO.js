@@ -18,11 +18,32 @@ export default class AuthDAO {
     }
   }
 
-  static async apiGetAllUsers() {
-    try {
-      return await User.find({}).exec()
-    } catch (e) {
-      return { error: e }
+  static async apiGetAllUsers({
+    filters = null,
+    page = 0,
+    usersPerPage = 3,
+  } = {}) {
+    {
+      let query
+
+      if (filters) {
+        if ('role' in filters) {
+          query = {
+            role: {
+              $eq: filters['role'],
+            },
+          }
+        }
+      }
+      let usersList
+      try {
+        usersList = await User.find(query).limit(usersPerPage)
+        const totalNumUsers = await User.countDocuments(query)
+        return { totalNumUsers, usersList }
+      } catch (e) {
+        console.error(`Unable to issue find command, ${e}`)
+        return { usersList: [], totalNumUsers: 0 }
+      }
     }
   }
 
@@ -45,6 +66,8 @@ export default class AuthDAO {
           username: user.username,
           email: user.email,
           profile: user.profile,
+          messages: user.messages,
+          orderList: user.orderList,
         }
       )
     } catch (e) {

@@ -23,6 +23,7 @@ export default class AuthController {
     })
 
     req.session.user = req.user
+    req.headers.authorization = `Bearer ${token}`
 
     response = {
       success: 'error' in user ? false : true,
@@ -197,47 +198,62 @@ export default class AuthController {
   }
 
   static async apiGetUserDetails(req, res, next) {
-    checkUser(req.user)
-    response = {
-      status: res.status === 200 ? 'Success!' : 'Fail!',
-      userDetails: req.user,
-    }
+    let user
+    checkUser(req.user).then((_res, error) => {
+      user = _res.user
+      const token = Auth.getToken({ _id: user._id })
 
-    err = new AppError(response.message, res.status)
-    !response
-      ? next(err) &&
-        res.send(
-          (response = {
-            message: `api: ${err}`,
-          })
-        )
-      : res.send(response)
+      req.headers.authorization = `Bearer ${token}`
+
+      response = {
+        userDetails: user,
+        message: `Hi, ${user?.profile?.firstName}`,
+      }
+
+      err = new AppError(response['message'], res.status)
+
+      if (error) next(err)
+      res.json(response)
+    })
   }
 
-  static async apiGetAllUsers(req, res, next) {
-    let users
+  static async apiGetUsersByRole(req, res, next) {
+    const usersPerPage = req.query.usersPerPage
+      ? parseInt(req.query.usersPerPage)
+      : 3
+    const page = req.query.page ? parseInt(req.query.page) : 0
+
+    let filters = {}
+    if (req.query.role) {
+      filters.role = req.query.role
+    }
+    const { totalNumUsers, usersList } = await AuthDAO.apiGetAllUsers({
+      filters,
+      page,
+      usersPerPage,
+    })
+
     response = {
-      status: 'error' in users ? 'Fail' : 'Success',
-      userList: users,
-      message: 'error' in users ? 'Unauthorized' : 'Retrieved all Users',
+      users: usersList,
+      filters: filters,
+      page: page,
+      entries_per_page: usersPerPage,
+      total_users: totalNumUsers,
     }
-    try {
-      users = await AuthDAO.apiGetAllUsers()
-      res.send(response)
-    } catch (e) {
-      next(e)
-      res.send((response = { message: `api: ${e}` }))
-    }
+    err = new AppError(response.message, res.status)
+    !response
+      ? next(err) && res.send((response = { error: `api: ${e}` }))
+      : res.send(response)
   }
 
   static async apiUpdateUser(req, res, next) {
     try {
-      const userId = req.query._id || {}
+      const userId = req.user._id || {}
       const usrObj = req.body.user
 
       const user = {
         _id: userId,
-        username: usrObj.username,
+        username: usrObj?.username,
         email: usrObj.email,
         profile: {
           firstName: usrObj.profile.firstName,
@@ -246,10 +262,13 @@ export default class AuthController {
           bio: usrObj.profile.bio,
           address: usrObj.profile.address,
         },
+        messages: new Array(0),
+        orderList: new Array(0),
       }
 
       const updateResponse = await AuthDAO.apiUpdateUser(userId, user)
 
+      console.log(updateResponse)
       res.send({
         status:
           updateResponse.modifiedCount === 0
@@ -263,7 +282,7 @@ export default class AuthController {
     } catch (e) {
       err = new AppError(e.message, res.status)
       next(err)
-      res.send({ data: {}, error: `api ${err}` })
+      // res.send({ data: {}, error: `api ${err}` })
     }
   }
 }

@@ -1,6 +1,6 @@
 import express from 'express'
 import cors from 'cors'
-import authRouter from './API/routes/auth.route.js.js'
+import authRouter from './API/routes/auth.route.js'
 import itemsRouter from './API/routes/items.route.js'
 import ordersRouter from './API/routes/orders.route.js'
 import messagesRouter from './API/routes/messages.route.js'
@@ -34,6 +34,7 @@ const corsOptions = {
 app.use(cors(corsOptions))
 app.use(passport.session())
 app.use('*', (err, _req, res, next) => {
+  err.name = 'Generic Error'
   err.status = err.status || 'fail'
   err.statusCode = err.statusCode || 500
 
