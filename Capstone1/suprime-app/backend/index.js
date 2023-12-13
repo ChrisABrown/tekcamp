@@ -32,6 +32,7 @@ const corsOptions = {
 }
 
 app.use(cors(corsOptions))
+app.use(passport.initialize())
 app.use(passport.session())
 app.use('*', (err, _req, res, next) => {
   err.name = 'Generic Error'
