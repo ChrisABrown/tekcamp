@@ -240,10 +240,8 @@ export default class AuthController {
       entries_per_page: usersPerPage,
       total_users: totalNumUsers,
     }
-    err = new AppError(response.message, res.status)
-    !response
-      ? next(err) && res.send((response = { error: `api: ${e}` }))
-      : res.send(response)
+
+    res.send(response)
   }
 
   static async apiUpdateUser(req, res, next) {

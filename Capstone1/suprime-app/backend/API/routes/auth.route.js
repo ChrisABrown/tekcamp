@@ -8,7 +8,7 @@ const authRouter = expressRouter()
 authRouter
   .route('/')
   .get(Auth.verifyToken(['admin']), AuthController.apiGetUsersByRole)
-  .get(Auth.verifyToken(['employee']))
+// .get(Auth.verifyToken(['employee']))
 
 authRouter
   .route('/user')

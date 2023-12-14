@@ -43,4 +43,14 @@ export const apiAuthTests = (agent) => {
       expect(body.message).toBeDefined()
     })
   })
+
+  test(`GET /api/v1/users, should allow access to admin users and return list of users`, async () => {
+    await agent.get(`${authEndpoints[5]}`).then((res, err) => {
+      if (err) console.log(err)
+      body = res.body
+      expect(body).toHaveProperty('users')
+      expect(typeof body.users).toBe('object')
+      expect(body.total_users).toEqual(2)
+    })
+  })
 }

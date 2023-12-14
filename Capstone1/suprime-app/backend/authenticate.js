@@ -29,22 +29,26 @@ const getRefreshToken = (user) => {
 }
 
 const verifyToken = (permissions) => (req, res, next) => {
-  const user = req.session.user
-  const token = getToken({ _id: req.user_id })
+  let user = req.user
+  const token = getToken({ _id: user._id })
 
   if (!user) return res.status(500).json({ message: 'Must be logged in' })
 
   if (!token) return res.status(401).json({ message: 'No token provided' })
 
   jwt.verify(token, JWT_SECRET, (err, decoded) => {
-    if (err) return res.status(401).json({ message: 'Invalid token' })
     decoded.user = user
 
-    permissions.includes(decoded.user.role)
-      ? next()
-      : res.status(403).json({
-          message: 'You do not have the permissions to access this resource',
-        })
+    if (err) {
+      return res.status(401).json({ message: 'Invalid token' })
+    }
+
+    if (!permissions.includes(decoded.user.role)) {
+      res.status(403).json({
+        message: 'You do not have the permissions to access this resource',
+      })
+    }
+    next()
   })
 }
 

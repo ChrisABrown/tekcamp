@@ -4,6 +4,7 @@ export const authEndpoints = [
   '/api/v1/users/refreshToken',
   '/api/v1/users/logout',
   '/api/v1/users/user',
+  '/api/v1/users',
 ]
 
 export const itemEndpoints = ['/api/v1/items']
