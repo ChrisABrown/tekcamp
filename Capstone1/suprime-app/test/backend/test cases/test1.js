@@ -53,4 +53,43 @@ export const apiAuthTests = (agent) => {
       expect(body.total_users).toEqual(2)
     })
   })
+
+  test('GET /api/v1/users, should return list of all users with a "user" role', async () => {
+    await agent
+      .get(`${authEndpoints[5]}`)
+      .query({ role: 'user' })
+      .then((res, err) => {
+        if (err) console.log(err)
+        body = res.body
+        expect(body).toHaveProperty('users')
+        expect(typeof body.users).toBe('object')
+        expect(body.total_users).toEqual(1)
+      })
+  })
+
+  test('GET /api/v1/users, should return list of all users with a "admin" role', async () => {
+    await agent
+      .get(`${authEndpoints[5]}`)
+      .query({ role: 'admin' })
+      .then((res, err) => {
+        if (err) console.log(err)
+        body = res.body
+        expect(body).toHaveProperty('users')
+        expect(typeof body.users).toBe('object')
+        expect(body.total_users).toEqual(1)
+      })
+  })
+
+  test('GET /api/v1/users, should return list of all users with a "employee" role', async () => {
+    await agent
+      .get(`${authEndpoints[5]}`)
+      .query({ role: 'employee' })
+      .then((res, err) => {
+        if (err) console.log(err)
+        body = res.body
+        expect(body).toHaveProperty('users')
+        expect(typeof body.users).toBe('object')
+        expect(body.total_users).toEqual(0)
+      })
+  })
 }
