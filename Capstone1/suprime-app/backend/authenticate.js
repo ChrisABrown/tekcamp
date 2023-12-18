@@ -69,7 +69,6 @@ const verifyUser = () => (req, res, next) => {
       .status(401)
       .json({ message: 'Unauthorized: User not authenticated' })
   }
-  next()
 }
 
 const Auth = {

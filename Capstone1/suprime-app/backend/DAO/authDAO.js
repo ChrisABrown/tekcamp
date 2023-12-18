@@ -52,6 +52,7 @@ export default class AuthDAO {
     try {
       return await User.findOne({ _id: userId }).exec()
     } catch (e) {
+      console.error(`No user found with userId: ${userId}`)
       return { error: e }
     }
   }
@@ -66,11 +67,10 @@ export default class AuthDAO {
           username: user.username,
           email: user.email,
           profile: user.profile,
-          messages: user.messages,
-          orderList: user.orderList,
         }
       )
     } catch (e) {
+      console.error(`User with userId: ${userId}, cannot be found`)
       return { error: e }
     }
   }

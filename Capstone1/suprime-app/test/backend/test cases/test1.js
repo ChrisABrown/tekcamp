@@ -1,4 +1,5 @@
 import { authEndpoints } from '../utils/variables.js'
+import { deletedUser, updateUser } from '../data/auth.test.data.js'
 
 export const apiAuthTests = (agent) => {
   let body
@@ -44,7 +45,7 @@ export const apiAuthTests = (agent) => {
     })
   })
 
-  test(`GET /api/v1/users, should allow access to admin users and return list of users`, async () => {
+  test(`GET ${authEndpoints[5]}, should allow access to admin users and return list of users`, async () => {
     await agent.get(`${authEndpoints[5]}`).then((res, err) => {
       if (err) console.log(err)
       body = res.body
@@ -54,7 +55,7 @@ export const apiAuthTests = (agent) => {
     })
   })
 
-  test('GET /api/v1/users, should return list of all users with a "user" role', async () => {
+  test(`GET ${authEndpoints[5]}, should return list of all users with a "user" role`, async () => {
     await agent
       .get(`${authEndpoints[5]}`)
       .query({ role: 'user' })
@@ -67,7 +68,7 @@ export const apiAuthTests = (agent) => {
       })
   })
 
-  test('GET /api/v1/users, should return list of all users with a "admin" role', async () => {
+  test(`GET ${authEndpoints[5]}, should return list of all users with a "admin" role`, async () => {
     await agent
       .get(`${authEndpoints[5]}`)
       .query({ role: 'admin' })
@@ -80,7 +81,7 @@ export const apiAuthTests = (agent) => {
       })
   })
 
-  test('GET /api/v1/users, should return list of all users with a "employee" role', async () => {
+  test(`GET ${authEndpoints[5]}, should return list of all users with a "employee" role`, async () => {
     await agent
       .get(`${authEndpoints[5]}`)
       .query({ role: 'employee' })
@@ -91,5 +92,28 @@ export const apiAuthTests = (agent) => {
         expect(typeof body.users).toBe('object')
         expect(body.total_users).toEqual(0)
       })
+  })
+
+  test(`PUT ${authEndpoints[4]}, should update user info for logged in user only`, async () => {
+    await agent
+      .put(`${authEndpoints[4]}`)
+      .send({ user: updateUser })
+      .then((res, err) => {
+        if (err) console.log(err)
+        body = res.body
+        expect(body.user).not.toMatchObject(updateUser)
+        expect(body.user._id).toBe(body.updatedUser._id)
+      })
+  })
+
+  test(`DELETE ${authEndpoints[5]}, should user based of input userId`, async () => {
+    const userToDelete = await request
+      .post(`${authEndpoints[0]}`)
+      .set('Accept', 'application/json')
+      .send(deletedUser)
+
+    console.log(userToDelete)
+
+    // await agent.delete(`${authEndpoints[5]}`).query({_id:})
   })
 }

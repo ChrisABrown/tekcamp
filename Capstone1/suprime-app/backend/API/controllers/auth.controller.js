@@ -245,42 +245,74 @@ export default class AuthController {
   }
 
   static async apiUpdateUser(req, res, next) {
-    try {
-      const userId = req.user._id || {}
-      const usrObj = req.body.user
+    let user
 
-      const user = {
-        _id: userId,
-        username: usrObj?.username,
-        email: usrObj.email,
-        profile: {
-          firstName: usrObj.profile.firstName,
-          lastName: usrObj.profile.lastName,
-          avatar: usrObj.profile.avatar,
-          bio: usrObj.profile.bio,
-          address: usrObj.profile.address,
-        },
-        messages: new Array(0),
-        orderList: new Array(0),
+    checkUser(req.user).then((_res, error) => {
+      if (error) return error
+      user = _res.user
+
+      try {
+        const userId = user._id || {}
+        const usrObj = req.body.user
+
+        const updateUser = {
+          _id: userId,
+          username: usrObj.username,
+          email: usrObj.email,
+          profile: {
+            firstName: usrObj.profile.firstName,
+            lastName: usrObj.profile.lastName,
+            avatar: usrObj.profile.avatar,
+            bio: usrObj.profile.bio,
+            address: usrObj.profile.address,
+          },
+        }
+
+        AuthDAO.apiUpdateUser(userId, updateUser).then((_res, error) => {
+          if (error) next(error)
+          response = {
+            success: _res.updatedCount === 0 ? false : true,
+            message:
+              _res.matchedCount === 1
+                ? `Matched ${_res.matchedCount} document`
+                : `No matches for userId: ${userId}`,
+            user: user,
+            updatedUser: updateUser,
+          }
+          return res.json(response)
+        })
+      } catch (e) {
+        err = new AppError(e.message, res.statusCode)
+
+        res.json({ error: err })
       }
+    })
+  }
 
-      const updateResponse = await AuthDAO.apiUpdateUser(userId, user)
+  static async apiDeleteUser(req, res, next) {
+    let user
+    let idToBeDeleted
 
-      console.log(updateResponse)
-      res.send({
-        status:
-          updateResponse.modifiedCount === 0
-            ? 'Update Failed'
-            : 'Updated Successfully',
-        message:
-          updateResponse.matchedCount === 1
-            ? `Matched ${updateResponse.matchedCount} document`
-            : `No matches for userId: ${userId}`,
-      })
-    } catch (e) {
-      err = new AppError(e.message, res.status)
-      next(err)
-      // res.send({ data: {}, error: `api ${err}` })
-    }
+    checkUser(req.user).then((_res, error) => {
+      user = req.user
+      idToBeDeleted = req.query._id
+      if (error) next(error)
+
+      try {
+        if (user._id === idToBeDeleted) {
+          return
+        }
+        AuthDAO.apiDeleteUser(idToBeDeleted).then((_res, error) => {
+          if (error) return error
+          response = {
+            success: _res,
+          }
+        })
+      } catch (e) {
+        err = new AppError(e.message, res.statusCode)
+
+        res.json({ error: err })
+      }
+    })
   }
 }
