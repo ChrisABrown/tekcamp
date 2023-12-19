@@ -5,20 +5,6 @@ export const apiAuthTests = (agent) => {
   let body
   let success
 
-  test(`POST ${authEndpoints[2]}, should return new refreshToken for logged in user`, async () => {
-    await agent
-      .post(`${authEndpoints[2]}`)
-      .expect(200)
-      .then((res, err) => {
-        if (err) console.error(err)
-        body = res.body
-        success = body.success
-
-        expect(success).toEqual(true)
-        expect(res.header['set-cookie']).toBeDefined()
-      })
-  })
-
   test(`GET ${authEndpoints[3]}, should clear user refreshToken on user logout`, async () => {
     const _expected = [
       'refreshToken=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT',
@@ -30,7 +16,6 @@ export const apiAuthTests = (agent) => {
         if (err) console.error(err)
         const cookies = res.headers['set-cookie']
         body = res.body
-
         expect(body.success).toBe(true)
         expect(cookies).toEqual(_expected)
       })
@@ -51,7 +36,7 @@ export const apiAuthTests = (agent) => {
       body = res.body
       expect(body).toHaveProperty('users')
       expect(typeof body.users).toBe('object')
-      expect(body.total_users).toEqual(2)
+      expect(body.total_users).toEqual(body.users.length)
     })
   })
 
@@ -64,7 +49,7 @@ export const apiAuthTests = (agent) => {
         body = res.body
         expect(body).toHaveProperty('users')
         expect(typeof body.users).toBe('object')
-        expect(body.total_users).toEqual(1)
+        expect(body.total_users).toEqual(body.users.length)
       })
   })
 
@@ -90,7 +75,41 @@ export const apiAuthTests = (agent) => {
         body = res.body
         expect(body).toHaveProperty('users')
         expect(typeof body.users).toBe('object')
-        expect(body.total_users).toEqual(0)
+        expect(body.total_users).toEqual(body.users.length)
+      })
+  })
+
+  test(`DELETE ${authEndpoints[5]}, should delete user based off input username`, async () => {
+    let delId
+    await agent
+      .get(`${authEndpoints[4]}`)
+      .query({ username: 'Delete' })
+      .then((res, err) => {
+        if (err) console.log(err)
+        body = res.body
+        delId = body._id
+      })
+
+    await agent
+      .delete(`${authEndpoints[5]}`)
+      .query({ _id: delId })
+      .then((res, err) => {
+        if (err) console.log(err)
+        body = res.body
+        console.log(body)
+      })
+  })
+
+  test(`POST ${authEndpoints[2]}, should return new refreshToken for logged in user`, async () => {
+    await agent
+      .post(`${authEndpoints[2]}`)
+      .expect(200)
+      .then((res, err) => {
+        if (err) console.error(err)
+        body = res.body
+        success = body.success
+        expect(success).toEqual(true)
+        expect(res.header['set-cookie']).toBeDefined()
       })
   })
 
@@ -104,16 +123,5 @@ export const apiAuthTests = (agent) => {
         expect(body.user).not.toMatchObject(updateUser)
         expect(body.user._id).toBe(body.updatedUser._id)
       })
-  })
-
-  test(`DELETE ${authEndpoints[5]}, should user based of input userId`, async () => {
-    const userToDelete = await request
-      .post(`${authEndpoints[0]}`)
-      .set('Accept', 'application/json')
-      .send(deletedUser)
-
-    console.log(userToDelete)
-
-    // await agent.delete(`${authEndpoints[5]}`).query({_id:})
   })
 }

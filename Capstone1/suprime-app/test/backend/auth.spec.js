@@ -1,6 +1,6 @@
 import request from 'supertest'
 import app from '../../backend/index.js'
-import { admin, mockUser } from './data/auth.test.data.js'
+import { admin, deletedUser, mockUser } from './data/auth.test.data.js'
 import { closeDB, init } from './utils/setup.js'
 import { apiAuthTests } from './test cases/test1.js'
 import { authEndpoints } from './utils/variables.js'
@@ -16,11 +16,14 @@ describe('API Response Tests', () => {
       .post(`${authEndpoints[0]}`)
       .set('Accept', 'application/json')
       .send(admin)
-
     await agent
       .post(`${authEndpoints[0]}`)
       .set('Accept', 'application/json')
       .send(mockUser)
+    await agent
+      .post(`${authEndpoints[0]}`)
+      .set('Accept', 'application/json')
+      .send(deletedUser)
   })
 
   beforeEach(async () => {

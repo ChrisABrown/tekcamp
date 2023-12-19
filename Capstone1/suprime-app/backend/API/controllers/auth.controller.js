@@ -199,49 +199,71 @@ export default class AuthController {
 
   static async apiGetUserDetails(req, res, next) {
     let user
+    const username = req.query.username
+    if (
+      (username && req.user.role === 'admin') ||
+      (username && req.user.role === 'employee')
+    ) {
+      const userId = await AuthDAO.apiReturnUserId(username)
+      return res.json(
+        (response = {
+          _id: userId,
+          user: username,
+        })
+      )
+    }
+
     checkUser(req.user).then((_res, error) => {
       user = _res.user
       const token = Auth.getToken({ _id: user._id })
 
       req.headers.authorization = `Bearer ${token}`
 
-      response = {
-        userDetails: user,
-        message: `Hi, ${user?.profile?.firstName}`,
+      err = new AppError(response['message'], res.statusCode)
+
+      if (error) {
+        next(err)
+      } else {
+        res.json(
+          (response = {
+            userDetails: user,
+            message: `Hi, ${user?.profile?.firstName}`,
+          })
+        )
       }
-
-      err = new AppError(response['message'], res.status)
-
-      if (error) next(err)
-      res.json(response)
     })
   }
 
   static async apiGetUsersByRole(req, res, next) {
-    const usersPerPage = req.query.usersPerPage
-      ? parseInt(req.query.usersPerPage)
-      : 3
-    const page = req.query.page ? parseInt(req.query.page) : 0
+    try {
+      const usersPerPage = req.query.usersPerPage
+        ? parseInt(req.query.usersPerPage)
+        : 3
+      const page = req.query.page ? parseInt(req.query.page) : 0
 
-    let filters = {}
-    if (req.query.role) {
-      filters.role = req.query.role
+      let filters = {}
+      if (req.query.role) {
+        filters.role = req.query.role
+      }
+      const { totalNumUsers, usersList } = await AuthDAO.apiGetAllUsers({
+        filters,
+        page,
+        usersPerPage,
+      })
+
+      response = {
+        users: usersList,
+        filters: filters,
+        page: page,
+        entries_per_page: usersPerPage,
+        total_users: totalNumUsers,
+      }
+
+      res.send(response)
+    } catch (e) {
+      err = new AppError(e.message, res.statusCode)
+      next(err)
     }
-    const { totalNumUsers, usersList } = await AuthDAO.apiGetAllUsers({
-      filters,
-      page,
-      usersPerPage,
-    })
-
-    response = {
-      users: usersList,
-      filters: filters,
-      page: page,
-      entries_per_page: usersPerPage,
-      total_users: totalNumUsers,
-    }
-
-    res.send(response)
   }
 
   static async apiUpdateUser(req, res, next) {
@@ -291,23 +313,26 @@ export default class AuthController {
 
   static async apiDeleteUser(req, res, next) {
     let user
-    let idToBeDeleted
+    let idToBeDeleted = req.query._id
+
+    await AuthDAO.apiDeleteUser(idToBeDeleted).then((_res, err) => {
+      if (err) console.log(err)
+    })
 
     checkUser(req.user).then((_res, error) => {
       user = req.user
-      idToBeDeleted = req.query._id
       if (error) next(error)
 
       try {
         if (user._id === idToBeDeleted) {
           return
         }
-        AuthDAO.apiDeleteUser(idToBeDeleted).then((_res, error) => {
-          if (error) return error
-          response = {
-            success: _res,
-          }
-        })
+
+        // return res.json(
+        //   (response = {
+        //     success: _res,
+        //   })
+        // )
       } catch (e) {
         err = new AppError(e.message, res.statusCode)
 

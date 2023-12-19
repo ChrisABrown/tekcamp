@@ -47,6 +47,16 @@ export default class AuthDAO {
     }
   }
 
+  static async apiReturnUserId(username) {
+    try {
+      const user = await User.findOne({ username: username })
+      return user._id
+    } catch (e) {
+      console.error(`Unable to find user with username: ${username}`)
+      return { error: e }
+    }
+  }
+
   static async apiFindUserByUserId(userId) {
     if (userId === undefined) return
     try {
@@ -76,10 +86,13 @@ export default class AuthDAO {
   }
 
   static async apiDeleteUser(userId) {
-    try {
-      return await User.findOneAndDelete({ _id: userId }).exec()
-    } catch (e) {
-      return { error: e }
-    }
+    User.findById(userId).then((_res, err) => {
+      if (err) return err
+      try {
+        return User.findByIdAndDelete({ _id: _res._id })
+      } catch (e) {
+        return { error: e, message: e.message }
+      }
+    })
   }
 }
