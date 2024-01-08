@@ -8,10 +8,9 @@ export const checkUser = (user) => {
     user: user,
   }
 
-  if (user === undefined && res.statusCode === 401) {
-    err.message = 'Must be logged in to continue'
-    err.success = false
-    return err
+  if (user === undefined || res.statusCode === 401) {
+    response.message = 'Must be logged in to continue'
+    response.success = false
   }
   return Promise.resolve(response)
 }

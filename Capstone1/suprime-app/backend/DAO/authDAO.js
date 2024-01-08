@@ -60,7 +60,7 @@ export default class AuthDAO {
   static async apiFindUserByUserId(userId) {
     if (userId === undefined) return
     try {
-      return await User.findOne({ _id: userId }).exec()
+      return await User.findOne({ _id: userId })
     } catch (e) {
       console.error(`No user found with userId: ${userId}`)
       return { error: e }

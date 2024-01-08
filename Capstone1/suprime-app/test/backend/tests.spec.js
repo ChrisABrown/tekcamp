@@ -2,8 +2,9 @@ import request from 'supertest'
 import app from '../../backend/index.js'
 import { admin, deletedUser, mockUser } from './data/auth.test.data.js'
 import { closeDB, init } from './utils/setup.js'
-import { apiAuthTests } from './test cases/test1.js'
+import { apiAuthTests } from './test_cases/authTests.js'
 import { authEndpoints } from './utils/variables.js'
+import { apiItemTests } from './test_cases/test2.js'
 
 const agent = request.agent(app)
 
@@ -11,15 +12,16 @@ describe('API Response Tests', () => {
   let token
   beforeAll(async () => {
     init()
-
     await agent
       .post(`${authEndpoints[0]}`)
       .set('Accept', 'application/json')
       .send(admin)
+
     await agent
       .post(`${authEndpoints[0]}`)
       .set('Accept', 'application/json')
       .send(mockUser)
+
     await agent
       .post(`${authEndpoints[0]}`)
       .set('Accept', 'application/json')
@@ -29,7 +31,6 @@ describe('API Response Tests', () => {
   beforeEach(async () => {
     const { body } = await agent
       .post(`${authEndpoints[1]}`)
-      .set('Accept', 'application/json')
       .send({ username: admin.username, password: admin.password })
     token = body.token
     return token
@@ -45,15 +46,6 @@ describe('API Response Tests', () => {
 
   //Auth API Tests meant to run one after another to test signup, login, and token verification processes
   describe('Auth API Tests', () => apiAuthTests(agent))
-  // describe('Unauthorized Auth API Tests')
-
-  describe('Item API tests', () => {
-    test('GET /api/v1/items', async () => {
-      await request(app)
-        .get('/api/v1/items')
-        .then((response) => {
-          expect(response.statusCode).toBe(200)
-        })
-    })
-  })
+  //Auth API Tests for adding, deleting, and updating Items
+  describe('Item API tests', () => apiItemTests(agent))
 })

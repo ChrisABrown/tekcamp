@@ -9,47 +9,61 @@ let response = {}
 
 export default class AuthController {
   static async apiLogin(req, res, next) {
-    const user = await AuthDAO.apiFindUserByUserId(req.user._id)
-    const token = Auth.getToken({ _id: user._id })
-    const refreshToken = Auth.getRefreshToken({ _id: user._id })
-    req.logIn(user, (err) => {
-      if (err) {
-        response.status = 500
-        response.message = err
-        return next(err)
-      }
-      user.refreshToken.push({ refreshToken })
-      user.save()
-    })
-
-    req.session.user = req.user
-    req.headers.authorization = `Bearer ${token}`
-
-    response = {
-      success: 'error' in user ? false : true,
-      message:
-        'error' in user ? user.error.message : `Welcome ${req.user.username}`,
-      token: token,
-    }
-
-    err = new AppError(response.message, res.status)
-
-    !response
-      ? next(err) && res.send((response = { error: `api: ${err}` }))
-      : res.cookie('refreshToken', user.refreshToken, Auth.COOKIE_OPTIONS) &&
-        res.send(response)
-  }
-
-  static async apiLogout(req, res, next) {
     checkUser(req.user).then((_res, err) => {
       if (err) {
-        res.send({
+        res.json({
           error: err,
         })
       }
 
       try {
-        AuthDAO.apiFindUserByUserId(_res.user._id).then((user, err) => {
+        AuthDAO.apiFindUserByUserId(_res.user._id).then((user, error) => {
+          req.logIn(user, (err) => {
+            const refreshToken = Auth.getRefreshToken({ _id: user._id })
+            user.refreshToken.push({ refreshToken })
+            user.save()
+            if (err) {
+              res.statusCode = 500
+              next(err)
+              res.json((response = { error: `api: ${err}` }))
+            }
+          })
+
+          const token = Auth.getToken({ _id: user._id })
+          req.session.user = user
+          req.headers.authorization = `Bearer ${token}`
+
+          response = {
+            success: user ? true : false,
+            message: user ? `Welcome ${user.username}` : error,
+            token: token,
+          }
+
+          res.cookie(
+            'refreshToken',
+            _res.user.refreshToken,
+            Auth.COOKIE_OPTIONS
+          )
+          res.json(response)
+        })
+      } catch (err) {
+        err = new AppError(response.message, res.status)
+
+        next(err)
+      }
+    })
+  }
+
+  static async apiLogout(req, res, next) {
+    checkUser(req.user).then((_res, err) => {
+      if (err) {
+        res.json({
+          error: err,
+        })
+      }
+
+      try {
+        AuthDAO.apiFindUserByUserId(_res.user._id).then((user) => {
           req.logOut(user, (err) => {
             user.refreshToken = new Array(0)
             user.save()
@@ -73,6 +87,7 @@ export default class AuthController {
           })
         })
       } catch (err) {
+        err = new AppError(res.message, res.statusCode)
         res.json({ error: err })
       }
     })
@@ -121,15 +136,14 @@ export default class AuthController {
     const { signedCookies = {} } = req
     const { refreshToken } = signedCookies
 
-    let payload
-    let tokenIndex
-    let refToken
-    let foundToken
-
     checkUser(req.user).then((response) => {
+      let payload
+      let tokenIndex
+      let refToken
+
       if (response.user !== undefined) {
         const userRefArr = response.user.refreshToken
-        for (let ref of userRefArr) {
+        for (const ref of userRefArr) {
           refToken = ref
         }
 
@@ -137,15 +151,16 @@ export default class AuthController {
       }
 
       if (refreshToken) {
-        foundToken = refToken.refreshToken
+        const foundToken = refToken.refreshToken
+
         payload = jwt.verify(foundToken, process.env.REFRESH_TOKEN_SECRET)
 
         const userId = payload.user._id
-        let foundUser = AuthDAO.apiFindUserByUserId(userId)
+        const foundUser = AuthDAO.apiFindUserByUserId(userId)
 
         foundUser.then((user, err) => {
           if (err) {
-            res.send(
+            return res.json(
               (response = {
                 status: res.status,
                 message: response.message,
@@ -157,13 +172,12 @@ export default class AuthController {
           )
 
           if (tokenIndex === -1) {
-            res.send(
+            return res.json(
               (response = {
                 status: res.status,
                 message: 'Unauthorized: token not found',
               })
             )
-            return
           } else {
             const newRefreshToken = Auth.getRefreshToken(user._id)
             user.refreshToken[tokenIndex] = {
@@ -171,7 +185,7 @@ export default class AuthController {
             }
             user.save().then((user, err) => {
               if (err) {
-                res.send(
+                return res.json(
                   (response = {
                     status: res.status,
                     message: `api: ${err}`,
@@ -179,20 +193,20 @@ export default class AuthController {
                 )
               } else {
                 res.cookie('refreshToken', newRefreshToken, Auth.COOKIE_OPTIONS)
-                res.send((response = { success: true, user: user._id }))
+                return res.json((response = { success: true, user: user._id }))
               }
             })
           }
         })
       } else {
-        res.send(
+        err = new AppError(response.message, res.status)
+        next(err)
+        return res.json(
           (response = {
             status: res.status,
             message: 'Unauthorized: no refreshToken',
           })
         )
-        err = new AppError(response.message, res.status)
-        return next(err)
       }
     })
   }
@@ -312,27 +326,19 @@ export default class AuthController {
   }
 
   static async apiDeleteUser(req, res, next) {
-    let user
+    let delUser
     let idToBeDeleted = req.query._id
+    const user = await AuthDAO.apiFindUserByUserId(idToBeDeleted)
 
-    await AuthDAO.apiDeleteUser(idToBeDeleted).then((_res, err) => {
-      if (err) console.log(err)
-    })
-
-    checkUser(req.user).then((_res, error) => {
-      user = req.user
+    checkUser(user).then((_res, error) => {
       if (error) next(error)
-
+      delUser = _res.user
       try {
-        if (user._id === idToBeDeleted) {
-          return
-        }
-
-        // return res.json(
-        //   (response = {
-        //     success: _res,
-        //   })
-        // )
+        AuthDAO.apiDeleteUser(delUser._id).then((_res, err) => {
+          if (err) next(err)
+          return _res
+        })
+        return res.json({ success: _res.success, userId: _res.user._id })
       } catch (e) {
         err = new AppError(e.message, res.statusCode)
 

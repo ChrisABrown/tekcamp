@@ -29,7 +29,7 @@ const getRefreshToken = (user) => {
 }
 
 const verifyToken = (permissions) => (req, res, next) => {
-  let user = req.user
+  const user = req.user
   const token = getToken({ _id: user._id })
 
   if (!user) return res.status(500).json({ message: 'Must be logged in' })
