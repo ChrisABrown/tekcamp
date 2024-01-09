@@ -140,6 +140,7 @@ export default class AuthController {
       let payload
       let tokenIndex
       let refToken
+      let foundToken
 
       if (response.user !== undefined) {
         const userRefArr = response.user.refreshToken
@@ -148,11 +149,10 @@ export default class AuthController {
         }
 
         refreshToken.push({ refToken })
+        foundToken = refToken.refreshToken
       }
 
       if (refreshToken) {
-        const foundToken = refToken.refreshToken
-
         payload = jwt.verify(foundToken, process.env.REFRESH_TOKEN_SECRET)
 
         const userId = payload.user._id

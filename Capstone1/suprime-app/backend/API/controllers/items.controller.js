@@ -33,30 +33,33 @@ export default class ItemsController {
     }
     err = new AppError(response.message, res.status)
     !response
-      ? next(err) &&
-        res.send((response = { error: `api: ${e}`, response: info(req.user) }))
-      : res.send(response)
+      ? next(err) && res.json((response = { error: err }))
+      : res.json(response)
   }
 
   static async apiGetItemBySKU(req, res, next) {
     try {
       let sku = req.query.sku || {}
-      let item = await ItemsDAO.apiGetItemBySKU(sku)
-      if (!item) {
-        res.send(
-          (response = {
-            itemSKU: `${req.query.sku}`,
-            error: `No item found with sku: ${req.params}`,
-          })
-        )
+      let filter = {}
+      filter.sku = sku
+      const item = await ItemsDAO.apiGetItemBySKU()
+
+      response = {
+        foundItem: item,
+        filter: filter,
       }
 
-      response.data = item
-      res.send(response)
+      if (sku === undefined || item.length === 0 || sku === null) {
+        res.json({
+          itemSKU: `${sku}`,
+          error: `No item found with sku: ${sku}`,
+        })
+      } else {
+        res.json(response)
+      }
     } catch (e) {
       err = new AppError(e.message, res.status)
-      next(err)
-      res.send((response = { data: {}, error: `api: ${e}` }))
+      next(err) && res.json((response = { error: err }))
     }
   }
 

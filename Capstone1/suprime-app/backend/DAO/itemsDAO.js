@@ -28,15 +28,17 @@ export default class ItemsDAO {
     }
   }
 
-  static async apiGetItemBySKU(sku) {
+  static async apiGetItemBySKU({ filter = null } = {}) {
+    let query
+
+    query = {
+      sku: {
+        $eq: filter['sku'],
+      },
+    }
+
     try {
-      return await Item.aggregate([
-        {
-          $match: {
-            SKU: sku,
-          },
-        },
-      ]).exec()
+      return await Item.find(query)
     } catch (e) {
       console.error(`Something went wrong in getItemBySKU, ${e}`)
       return { foundItem: {} }

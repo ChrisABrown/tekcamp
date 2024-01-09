@@ -7,4 +7,4 @@ export const authEndpoints = [
   '/api/v1/users',
 ]
 
-export const itemEndpoints = ['/api/v1/items']
+export const itemEndpoint = '/api/v1/items'

@@ -20,7 +20,6 @@ const ItemSchema = new Schema({
   SKU: {
     type: String,
     required: true,
-    unique: true,
     default: () => nanoid(5),
   },
   description: String,
