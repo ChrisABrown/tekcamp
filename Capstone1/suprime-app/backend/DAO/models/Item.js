@@ -3,7 +3,7 @@ import { nanoid } from 'nanoid'
 
 const Schema = mongoose.Schema
 
-const ItemSchema = new Schema({
+export const ItemSchema = new Schema({
   itemId: {
     type: String,
     unique: true,
@@ -20,6 +20,7 @@ const ItemSchema = new Schema({
   SKU: {
     type: String,
     required: true,
+    unique: true,
     default: () => nanoid(5),
   },
   description: String,

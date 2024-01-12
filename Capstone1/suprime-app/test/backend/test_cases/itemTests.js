@@ -3,6 +3,7 @@ import { itemEndpoint } from '../utils/variables'
 export const apiItemTests = (agent) => {
   const SKU = []
   let items
+
   test(`GET ${itemEndpoint}, returns all items`, async () => {
     const { body } = await agent.get(`${itemEndpoint}`)
     items = body.items
@@ -18,13 +19,12 @@ export const apiItemTests = (agent) => {
   test(`GET ${itemEndpoint}, returns item with specific SKU`, async () => {
     const randomSKU = SKU[Math.floor(Math.random() * SKU.length)]
 
-    const res = await agent
+    const { body } = await agent
       .get(`${itemEndpoint}`)
-      .query({ sku: `${randomSKU}` })
+      .query({ sku: randomSKU })
 
-    console.log(res)
-    // expect(typeof body.foundItem).toBe('object')
-    // expect(body).toHaveProperty('filter')
-    // expect(body.filter).toEqual({ sku: `${randomSKU}` })
+    expect(typeof body.foundItem).toBe('object')
+    expect(body).toHaveProperty('filter')
+    expect(body.filter).toEqual({ sku: `${randomSKU}` })
   })
 }

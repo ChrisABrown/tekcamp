@@ -40,13 +40,14 @@ export default class ItemsController {
   static async apiGetItemBySKU(req, res, next) {
     try {
       let sku = req.query.sku || {}
-      let filter = {}
-      filter.sku = sku
-      const item = await ItemsDAO.apiGetItemBySKU()
-
+      let filters = {}
+      if (req.query.sku) {
+        filters.sku = req.query.sku
+      }
+      const { item } = await ItemsDAO.apiGetItemBySKU({ filters, sku })
       response = {
         foundItem: item,
-        filter: filter,
+        filter: filters,
       }
 
       if (sku === undefined || item.length === 0 || sku === null) {

@@ -12,7 +12,7 @@ const Session = new Schema({
   },
 })
 
-const userSchema = new Schema(
+export const userSchema = new Schema(
   {
     username: {
       type: String,

@@ -2,6 +2,10 @@ import mongoose from 'mongoose'
 import { inventory } from '../data/item.test.data'
 import { authEndpoints } from './variables.js'
 import { admin, deletedUser, mockUser } from '../data/auth.test.data.js'
+import { ItemSchema } from '../../../backend/DAO/models/Item.js'
+import User from '../../../backend/DAO/models/User.js'
+import Message from '../../../backend/DAO/models/Message.js'
+import Order from '../../../backend/DAO/models/Order.js'
 
 let connection
 let db
@@ -15,7 +19,8 @@ export const init = async () => {
 }
 export const fillInventory = async () => {
   db = mongoose.connection
-  db.collection('items').insertMany(inventory)
+  mongoose.model('Item', ItemSchema)
+  db.model('Item').insertMany(inventory)
 }
 
 export const closeDB = async () => {

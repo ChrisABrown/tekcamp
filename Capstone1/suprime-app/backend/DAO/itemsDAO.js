@@ -17,6 +17,7 @@ export default class ItemsDAO {
         }
       }
     }
+
     let itemsList
     try {
       itemsList = await Item.find(query).limit(itemsPerPage)
@@ -28,17 +29,23 @@ export default class ItemsDAO {
     }
   }
 
-  static async apiGetItemBySKU({ filter = null } = {}) {
+  static async apiGetItemBySKU({ filters = null, sku } = {}) {
     let query
 
-    query = {
-      sku: {
-        $eq: filter['sku'],
-      },
+    if (filters) {
+      if ('sku' in filters) {
+        query = {
+          SKU: {
+            $eq: filters['sku'],
+          },
+        }
+      }
     }
-
+    let item
     try {
-      return await Item.find(query)
+      item = await Item.find({ SKU: sku })
+
+      return { item }
     } catch (e) {
       console.error(`Something went wrong in getItemBySKU, ${e}`)
       return { foundItem: {} }
