@@ -21,7 +21,7 @@ export const admin = {
 
 export const mockUser = {
   username: 'Mock',
-  role: 'user',
+  role: 'employee',
   email: 'mcok@email.com',
   password: 'mock',
   profile: {

@@ -3,7 +3,6 @@ import {
   init,
   fillInventory,
   addUsers,
-  signInAdmin,
   signOutAdmin,
 } from './utils/setup.js'
 import { apiAuthTests } from './test_cases/authTests.js'
@@ -22,10 +21,6 @@ describe('API Response Tests', () => {
 
   afterAll(async () => {
     closeDB()
-  })
-
-  beforeEach(async () => {
-    await signInAdmin(agent)
   })
 
   afterEach(async () => {

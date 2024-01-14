@@ -16,9 +16,10 @@ const COOKIE_OPTIONS = {
 }
 
 const getToken = (user) => {
-  return jwt.sign({ user: user }, JWT_SECRET, {
+  const token = jwt.sign({ user: user }, JWT_SECRET, {
     expiresIn: eval(SESSION_EXP),
   })
+  return token
 }
 
 const getRefreshToken = (user) => {
@@ -29,27 +30,28 @@ const getRefreshToken = (user) => {
 }
 
 const verifyToken = (permissions) => (req, res, next) => {
-  const user = req.user
-  const token = getToken({ _id: user._id })
+  const token = getToken({ user: req.user })
 
-  if (!user) return res.status(500).json({ message: 'Must be logged in' })
+  if (!req.user || req.user === null) {
+    return res.status(500).json({ message: 'Must be logged in' })
+  } else if (!token || token === undefined) {
+    return res.status(401).json({ message: 'No token provided' })
+  } else {
+    jwt.verify(token, JWT_SECRET, (err, decoded) => {
+      decoded.user = req.user
 
-  if (!token) return res.status(401).json({ message: 'No token provided' })
+      if (err) {
+        return res.status(401).json({ message: 'Invalid token' })
+      }
 
-  jwt.verify(token, JWT_SECRET, (err, decoded) => {
-    decoded.user = user
-
-    if (err) {
-      return res.status(401).json({ message: 'Invalid token' })
-    }
-
-    if (!permissions.includes(decoded.user.role)) {
-      res.status(403).json({
-        message: 'You do not have the permissions to access this resource',
-      })
-    }
-    next()
-  })
+      if (!permissions.includes(decoded.user.role)) {
+        res.status(403).json({
+          message: 'You do not have the permissions to access this resource',
+        })
+      }
+      next()
+    })
+  }
 }
 
 const verifyUser = () => (req, res, next) => {

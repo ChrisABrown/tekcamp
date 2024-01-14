@@ -1,8 +1,14 @@
 import { itemEndpoint } from '../utils/variables'
+import { reqAddProduct } from '../data/item.test.data'
+import { signInEmployee } from '../utils/setup'
 
 export const apiItemTests = (agent) => {
   const SKU = []
   let items
+
+  beforeEach(async () => {
+    await signInEmployee(agent)
+  })
 
   test(`GET ${itemEndpoint}, returns all items`, async () => {
     const { body } = await agent.get(`${itemEndpoint}`)
@@ -26,5 +32,11 @@ export const apiItemTests = (agent) => {
     expect(typeof body.foundItem).toBe('object')
     expect(body).toHaveProperty('filter')
     expect(body.filter).toEqual({ sku: `${randomSKU}` })
+  })
+
+  test(`POST ${itemEndpoint}, should add a new item to the database`, async () => {
+    const { body } = await agent.post(`${itemEndpoint}`).send({ reqAddProduct })
+
+    console.log(body)
   })
 }

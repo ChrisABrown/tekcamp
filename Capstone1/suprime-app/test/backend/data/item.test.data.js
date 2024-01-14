@@ -1,19 +1,23 @@
 export const reqAddProduct = {
-  itemId: 'test item',
   category: 'test',
+  itemId: 'test item',
+  SKU: null,
   color: 'test',
-  SKU: '',
   image: 'test.test.com',
   price: 200,
+  description: 'testing',
+  size: [],
 }
 
 export const reqUpdateProduct = {
   itemId: 'update item',
   category: 'Utest',
   color: 'Utest',
-  SKU: '',
+  SKU: 'new',
   image: 'Utest.test.com',
   price: 100,
+  description: 'updated testing',
+  size: ['new'],
 }
 
 export const inventory = [

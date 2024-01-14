@@ -147,12 +147,11 @@ export default class AuthController {
         for (const ref of userRefArr) {
           refToken = ref
         }
-
         refreshToken.push({ refToken })
-        foundToken = refToken.refreshToken
       }
 
       if (refreshToken) {
+        foundToken = refToken.refreshToken
         payload = jwt.verify(foundToken, process.env.REFRESH_TOKEN_SECRET)
 
         const userId = payload.user._id

@@ -64,7 +64,7 @@ export default class ItemsController {
     }
   }
 
-  static async apiAddNewItem(req, res) {
+  static async apiAddNewItem(req, res, next) {
     try {
       const item = {
         category: req.body.category,
@@ -79,16 +79,17 @@ export default class ItemsController {
 
       const ItemResponse = await ItemsDAO.apiAddNewItem({ item })
       const postedItem = await Item.findOne({ _id: ItemResponse.insertedId })
+      console.log(ItemResponse, postedItem)
 
-      res.send({
+      res.json({
         status: 'error' in ItemResponse ? 'Fail' : 'Success',
         data: ItemResponse,
         itemSKU: postedItem.SKU,
       })
     } catch (e) {
       err = new AppError(e.message, res.status)
-      next(err)
-      res.send({ data: {}, error: `api: ${e}` })
+      if (e) console.error(err)
+      res.json({ data: {}, error: `${e}` })
     }
   }
 

@@ -46,6 +46,14 @@ export const addUsers = async (agent) => {
     .send(deletedUser)
 }
 
+export const signInEmployee = async (agent) => {
+  const { body } = await agent
+    .post(`${authEndpoints[1]}`)
+    .send({ username: mockUser.username, password: mockUser.password })
+  token = body.token
+  return token
+}
+
 export const signInAdmin = async (agent) => {
   const { body } = await agent
     .post(`${authEndpoints[1]}`)
