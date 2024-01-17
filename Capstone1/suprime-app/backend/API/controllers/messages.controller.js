@@ -29,12 +29,9 @@ export default class MessagesController {
     } catch (e) {
       err = new AppError(e.message, res.status)
       next(err)
-      res.json(
-        (response = {
-          error: `api: ${e}`,
-          response: info(req.user),
-        })
-      )
+      res.json({
+        error: `api: ${e}`,
+      })
     }
   }
 

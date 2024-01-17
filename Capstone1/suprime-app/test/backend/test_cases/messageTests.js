@@ -5,6 +5,11 @@ export const apiMessageTests = (agent) => {
   beforeEach(async () => {
     await signInAdmin(agent)
   })
+
+  test(`POST ${messageEndpoint}, should post new message for signed in user`, async () => {
+    const { body } = await agent.post(`${messageEndpoint}`).send()
+  })
+
   test(`GET ${messageEndpoint}, should return messages for signed in user`, async () => {
     const message_types = ['press', 'general inquiries', 'order inquiries']
     const randomType =
