@@ -2,33 +2,32 @@ import Message from './models/Message.js'
 import User from './models/User.js'
 
 export default class MessagesDAO {
-  static async apiGetMessagesByType({
+  static async apiGetMessagesByTypeOrUser({
     filters = null,
     page = 0,
     messagesPerPage = 10,
-  }) {
+  } = {}) {
     let query
     if (filters) {
       if ('messageType' in filters) {
         query = {
-          $text: {
-            $search: filters['messageType'],
+          messageType: {
+            $eq: filters['messageType'],
           },
         }
       }
       if ('user' in filters) {
         query = {
-          $text: {
-            $search: filters['user'],
+          user: {
+            $eq: filters['user'],
           },
         }
       }
     }
-    let cursor
     try {
-      cursor = await Message.find(query).limit(messagesPerPage)
-      const messagesList = await cursor.toArray()
+      const messagesList = await Message.find(query).limit(messagesPerPage)
       const totalNumMessages = await Message.countDocuments(query)
+
       return { messagesList, totalNumMessages }
     } catch (e) {
       console.error(`Unable to issue find command, ${e}`)

@@ -1,14 +1,15 @@
-import {
-  closeDB,
-  init,
-  fillInventory,
-  addUsers,
-  signOutAdmin,
-} from './utils/setup.js'
-import { apiAuthTests } from './test_cases/authTests.js'
-import { apiItemTests } from './test_cases/itemTests.js'
 import request from 'supertest'
 import app from '../../backend/index.js'
+import { apiAuthTests } from './test_cases/authTests.js'
+import { apiItemTests } from './test_cases/itemTests.js'
+import { apiMessageTests } from './test_cases/messageTests.js'
+import {
+  addUsers,
+  closeDB,
+  fillInventory,
+  init,
+  signOutAdmin,
+} from './utils/setup.js'
 
 const agent = request.agent(app)
 
@@ -29,6 +30,8 @@ describe('API Response Tests', () => {
 
   //Auth API Tests meant to run one after another to test signup, login, and token verification processes
   describe('Auth API Tests', () => apiAuthTests(agent))
-  //Auth API Tests for adding, deleting, and updating Items
-  describe('Item API tests', () => apiItemTests(agent))
+  //API Tests for adding, deleting, and updating Items
+  describe('Item API Tests', () => apiItemTests(agent))
+  //APi Tests for adding, deleting, and updating Messages
+  describe('Message API Tests', () => apiMessageTests(agent))
 })

@@ -18,9 +18,8 @@ export default class ItemsDAO {
       }
     }
 
-    let itemsList
     try {
-      itemsList = await Item.find(query).limit(itemsPerPage)
+      const itemsList = await Item.find(query).limit(itemsPerPage)
       const totalNumItems = await Item.countDocuments(query)
       return { totalNumItems, itemsList }
     } catch (e) {
@@ -43,7 +42,7 @@ export default class ItemsDAO {
     }
     let item
     try {
-      item = await Item.find({ SKU: sku })
+      item = await Item.find(query)
 
       return { item }
     } catch (e) {
@@ -52,9 +51,9 @@ export default class ItemsDAO {
     }
   }
 
-  static async apiAddNewItem({ item }) {
+  static async apiAddNewItem(item) {
     try {
-      item = new Item({
+      const newItem = new Item({
         category: item.category,
         itemId: item.itemId,
         SKU: item.SKU,
@@ -64,9 +63,13 @@ export default class ItemsDAO {
         description: item.description,
         size: item.size,
       })
-      return await Item.create(item)
+
+      newItem.save()
+
+      const postedItem = await Item.find({ _id: newItem._id })
+      return postedItem
     } catch (e) {
-      return { error: e, message: `unable to post item: ${e}` }
+      return { error: `unable to post item: ${e}` }
     }
   }
 

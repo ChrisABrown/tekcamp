@@ -7,7 +7,6 @@ let response = {}
 
 export default class MessagesController {
   static async apiPostMessage(req, res, next) {
-    checkUser(req.user)
     try {
       const order = req.body.orderNum
       const messageType = req.body.messageType
@@ -21,12 +20,12 @@ export default class MessagesController {
         userId
       )
 
-      response.data = res.send({
-        status: response.status,
+      response = {
+        status: 'error' in MessageResponse ? 'Fail' : 'Success',
         data: MessageResponse,
-        message: 'success',
-        response: info(req.user),
-      })
+      }
+
+      res.json(response)
     } catch (e) {
       err = new AppError(e.message, res.status)
       next(err)
@@ -40,39 +39,38 @@ export default class MessagesController {
   }
 
   static async apiGetMessage(req, res, next) {
-    checkUser(req.user)
+    try {
+      const messagesPerPage = req.query.messagesPerPage
+        ? parseInt(req.query.messagesPerPage)
+        : 10
+      const page = req.query.pge ? parseInt(req.query.page) : 0
 
-    const messagesPerPage = req.query.messagesPerPage
-      ? parseInt(req.query.messagesPerPage)
-      : 10
-    const page = req.query.pge ? parseInt(req.query.page) : 0
+      let filters = {}
+      if (req.query.messageType || req.query.user) {
+        filters.messageType = req.query.messageType
+        filters.user = req.query.user
+      }
+      const { messagesList, totalNumMessages } =
+        await MessagesDAO.apiGetMessagesByTypeOrUser({
+          filters,
+          page,
+          messagesPerPage,
+        })
 
-    let filters = {}
-    if (req.query.messageType || req.query.user) {
-      filters.messageType = req.query.messageType
-      filters.user = req.query.user
+      response = {
+        messages: messagesList,
+        page: page,
+        filters: filters,
+        messagesPerPage: messagesPerPage,
+        totalNumMessages: totalNumMessages,
+        message: `found ${totalNumMessages} ${req.query.messageType} messages`,
+      }
+      res.json(response)
+    } catch (e) {
+      err = new AppError(e.message, res.status)
+
+      if (e) next(err) && res.json({ error: `${err}` })
     }
-    const { messagesList, totalNumMessages } =
-      await MessagesDAO.apiGetMessagesByType({
-        filters,
-        page,
-        messagesPerPage,
-      })
-
-    response = {
-      messages: messagesList,
-      page: page,
-      filters: filters,
-      messagesPerPage: messagesPerPage,
-      totalNumMessages: totalNumMessages,
-      message: `found ${totalNumMessages} of ${req.query.messageType} messages`,
-    }
-
-    err = new AppError(response.message, res.status)
-    !response
-      ? next(err) &&
-        res.send((response = { error: `api: ${e}`, response: info(req.user) }))
-      : res.send(response)
   }
 
   static async apiDeleteMessage(req, res, next) {

@@ -66,29 +66,27 @@ export default class ItemsController {
 
   static async apiAddNewItem(req, res, next) {
     try {
+      const itemObj = req.body.item
       const item = {
-        category: req.body.category,
-        itemId: req.body.itemId,
-        SKU: req.body.SKU,
-        color: req.body.color,
-        image: req.body.image,
-        price: req.body.price,
-        description: req.body.description,
-        size: req.body.size,
+        category: itemObj.category,
+        itemId: itemObj.itemId,
+        color: itemObj.color,
+        image: itemObj.image,
+        price: itemObj.price,
+        description: itemObj.description,
+        size: itemObj.size,
       }
 
-      const ItemResponse = await ItemsDAO.apiAddNewItem({ item })
-      const postedItem = await Item.findOne({ _id: ItemResponse.insertedId })
-      console.log(ItemResponse, postedItem)
+      const ItemResponse = await ItemsDAO.apiAddNewItem(item)
 
       res.json({
         status: 'error' in ItemResponse ? 'Fail' : 'Success',
-        data: ItemResponse,
-        itemSKU: postedItem.SKU,
+        data: ItemResponse[0],
+        itemSKU: ItemResponse[0].SKU,
       })
     } catch (e) {
       err = new AppError(e.message, res.status)
-      if (e) console.error(err)
+      if (e) next(err)
       res.json({ data: {}, error: `${e}` })
     }
   }
@@ -96,28 +94,31 @@ export default class ItemsController {
   static async apiUpdateItemBySKU(req, res, next) {
     try {
       const sku = req.query.sku || {}
+      let filters = {}
+      if (req.query.sku) {
+        filters.sku = req.query.sku
+      }
+      const itemObj = req.body.item
       const item = {
-        category: req.body.category,
-        itemId: req.body.itemId,
+        category: itemObj.category,
+        itemId: itemObj.itemId,
         SKU: sku,
-        color: req.body.color,
-        image: req.body.image,
-        price: req.body.price,
-        description: req.body.description,
-        size: req.body.size,
+        color: itemObj.color,
+        image: itemObj.image,
+        price: itemObj.price,
+        description: itemObj.description,
+        size: itemObj.size,
       }
 
       const ItemResponse = await ItemsDAO.apiUpdateItemBySKU(sku, item)
+      const updatedItem = await ItemsDAO.apiGetItemBySKU({ filters, sku })
       res.send({
-        status:
-          ItemResponse.modifiedCount === 0
-            ? 'Update Failed'
-            : 'Updated Successfully',
-        data: ItemResponse,
+        status: ItemResponse.modifiedCount === 0 ? 'Fail' : 'Success',
+        data: updatedItem.item[0],
         message:
           ItemResponse.matchedCount === 1
             ? `Matched ${ItemResponse.matchedCount} document`
-            : `No matches for itemSku: ${sku}`,
+            : `No matches for itemSku: ${req.query.sku}`,
       })
     } catch (e) {
       err = new AppError(e.message, res.status)
@@ -131,10 +132,7 @@ export default class ItemsController {
       const sku = req.query.sku || {}
       const ItemResponse = await ItemsDAO.apiDeleteItem(sku)
       res.send({
-        status:
-          ItemResponse.deletedCount === 0
-            ? 'Deletion Failed'
-            : 'Deleted Successfully',
+        status: ItemResponse.deletedCount === 0 ? 'Fail' : 'Success',
         data: ItemResponse,
         message:
           ItemResponse.deletedCount === 1

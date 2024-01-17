@@ -8,3 +8,4 @@ export const authEndpoints = [
 ]
 
 export const itemEndpoint = '/api/v1/items'
+export const messageEndpoint = '/api/v1/messages'

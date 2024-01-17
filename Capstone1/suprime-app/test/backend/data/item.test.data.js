@@ -1,7 +1,6 @@
 export const reqAddProduct = {
   category: 'test',
   itemId: 'test item',
-  SKU: null,
   color: 'test',
   image: 'test.test.com',
   price: 200,
@@ -13,7 +12,6 @@ export const reqUpdateProduct = {
   itemId: 'update item',
   category: 'Utest',
   color: 'Utest',
-  SKU: 'new',
   image: 'Utest.test.com',
   price: 100,
   description: 'updated testing',

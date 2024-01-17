@@ -8,7 +8,7 @@ const messagesRouter = expressRouter()
 messagesRouter
   .route('/')
   .get(Auth.verifyToken(['admin']), MessagesController.apiGetMessage)
-  .post(MessagesController.apiPostMessage)
+  .post(Auth.verifyUser(), MessagesController.apiPostMessage)
   .delete(Auth.verifyToken(['admin']), MessagesController.apiDeleteMessage)
 
 export default messagesRouter
