@@ -62,6 +62,6 @@ export const signInAdmin = async (agent) => {
   return token
 }
 
-export const signOutAdmin = async (agent) => {
+export const signOut = async (agent) => {
   await agent.get(`${authEndpoints[3]}`)
 }

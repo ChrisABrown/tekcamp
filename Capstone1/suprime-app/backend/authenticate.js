@@ -32,9 +32,7 @@ const getRefreshToken = (user) => {
 const verifyToken = (permissions) => (req, res, next) => {
   const token = getToken({ user: req.user })
 
-  if (!req.user || req.user === null) {
-    return res.status(500).json({ message: 'Must be logged in' })
-  } else if (!token || token === undefined) {
+  if (!token || token === undefined) {
     return res.status(401).json({ message: 'No token provided' })
   } else {
     jwt.verify(token, JWT_SECRET, (err, decoded) => {

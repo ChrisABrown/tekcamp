@@ -3,13 +3,7 @@ import app from '../../backend/index.js'
 import { apiAuthTests } from './test_cases/authTests.js'
 import { apiItemTests } from './test_cases/itemTests.js'
 import { apiMessageTests } from './test_cases/messageTests.js'
-import {
-  addUsers,
-  closeDB,
-  fillInventory,
-  init,
-  signOutAdmin,
-} from './utils/setup.js'
+import { addUsers, closeDB, fillInventory, init } from './utils/setup.js'
 
 const agent = request.agent(app)
 
@@ -22,10 +16,6 @@ describe('API Response Tests', () => {
 
   afterAll(async () => {
     closeDB()
-  })
-
-  afterEach(async () => {
-    await signOutAdmin(agent)
   })
 
   //Auth API Tests meant to run one after another to test signup, login, and token verification processes

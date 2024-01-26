@@ -1,6 +1,6 @@
 import { itemEndpoint } from '../utils/variables'
 import { reqAddProduct, reqUpdateProduct } from '../data/item.test.data'
-import { signInEmployee } from '../utils/setup'
+import { signInEmployee, signOut } from '../utils/setup'
 
 export const apiItemTests = (agent) => {
   const SKU = []
@@ -8,6 +8,10 @@ export const apiItemTests = (agent) => {
 
   beforeEach(async () => {
     await signInEmployee(agent)
+  })
+
+  afterEach(async () => {
+    await signOut(agent)
   })
 
   test(`GET ${itemEndpoint}, returns all items`, async () => {

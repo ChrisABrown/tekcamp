@@ -1,6 +1,5 @@
 import ItemsDAO from '../../DAO/itemsDAO.js'
 import AppError from '../../utils/appError.js'
-import Item from '../../DAO/models/Item.js'
 
 let err
 let response = {}

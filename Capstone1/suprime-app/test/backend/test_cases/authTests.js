@@ -1,12 +1,16 @@
 import { authEndpoints } from '../utils/variables.js'
 import { updateUser } from '../data/auth.test.data.js'
-import { signInAdmin } from '../utils/setup.js'
+import { signInAdmin, signOut } from '../utils/setup.js'
 
 export const apiAuthTests = (agent) => {
   let body
 
   beforeEach(async () => {
     await signInAdmin(agent)
+  })
+
+  afterEach(async () => {
+    await signOut(agent)
   })
 
   test(`GET ${authEndpoints[4]}, should return logged in user details`, async () => {
