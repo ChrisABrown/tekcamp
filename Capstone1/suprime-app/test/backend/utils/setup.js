@@ -6,6 +6,7 @@ import { ItemSchema } from '../../../backend/DAO/models/Item.js'
 import User from '../../../backend/DAO/models/User.js'
 import Message from '../../../backend/DAO/models/Message.js'
 import Order from '../../../backend/DAO/models/Order.js'
+import { agent } from 'superagent'
 
 let connection
 let db
@@ -64,4 +65,8 @@ export const signInAdmin = async (agent) => {
 
 export const signOut = async (agent) => {
   await agent.get(`${authEndpoints[3]}`)
+}
+
+export const postMessage = async (agent) => {
+  // await agent.
 }

@@ -68,17 +68,19 @@ export default class MessagesDAO {
       user: userId,
       messageBody: messageBody,
     })
+
+    message.save()
+
     try {
-      await User.findOne({ _id: userId }).then((user) => {
-        user.messages.push(message)
-        user.save().then((err) => {
-          if (err) return { error: err }
-        })
+      await User.find({ _id: userId }).then((user, err) => {
+        if (err) console.log(err)
+        user[0].messages.push(message)
+        user[0].save()
       })
 
-      return await Message.create(message)
+      return await Message.find({ _id: message._id })
     } catch (e) {
-      console.error(`Unable to issue create command, ${e}`)
+      console.error(`Unable to issue find command, ${e}`)
       return { error: e }
     }
   }

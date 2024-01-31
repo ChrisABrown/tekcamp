@@ -53,7 +53,7 @@ const verifyToken = (permissions) => (req, res, next) => {
 }
 
 const verifyUser = () => (req, res, next) => {
-  if (req.isAuthenticated() || req.user) {
+  if (req.isAuthenticated() && req.user) {
     const userID = req.user._id
 
     User.findById(userID).then((user, err) => {
@@ -62,12 +62,10 @@ const verifyUser = () => (req, res, next) => {
       }
       !user
         ? res.status(401).json({ message: 'Unauthorized: User not found' })
-        : (req.loggedInUser = user && next())
+        : (req.user = user && next())
     })
   } else {
-    return res
-      .status(401)
-      .json({ message: 'Unauthorized: User not authenticated' })
+    res.json({ message: 'Unauthorized: User not authenticated' })
   }
 }
 

@@ -22,6 +22,6 @@ describe('API Response Tests', () => {
   describe('Auth API Tests', () => apiAuthTests(agent))
   //API Tests for adding, deleting, and updating Items
   describe('Item API Tests', () => apiItemTests(agent))
-  //APi Tests for adding, deleting, and updating Messages
+  //API Tests for adding, deleting, and updating Messages
   describe('Message API Tests', () => apiMessageTests(agent))
 })

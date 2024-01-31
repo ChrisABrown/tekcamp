@@ -8,9 +8,9 @@ let response = {}
 export default class MessagesController {
   static async apiPostMessage(req, res, next) {
     try {
-      const order = req.body.orderNum
+      const order = req.body.order
       const messageType = req.body.messageType
-      const userId = req.user._id
+      const userId = req.user['_id']
       const messageBody = req.body.messageBody
 
       const MessageResponse = await MessagesDAO.apiPostMessage(

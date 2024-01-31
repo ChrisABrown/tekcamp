@@ -10,10 +10,7 @@ messagesRouter
     Auth.verifyToken(['admin', 'employee']),
     MessagesController.apiGetMessage
   )
-  .post(
-    Auth.verifyToken(['user', 'admin', 'employee']),
-    MessagesController.apiPostMessage
-  )
+  .post(Auth.verifyUser(), MessagesController.apiPostMessage)
   .delete(
     Auth.verifyToken(['admin', 'employee']),
     MessagesController.apiDeleteMessage

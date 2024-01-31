@@ -44,8 +44,6 @@ export const apiItemTests = (agent) => {
       .send({ item: reqAddProduct })
     let status = body.status
 
-    console.log(body)
-
     expect(status).toEqual('Success')
     expect(typeof body.data).toBe('object')
     expect(body.itemSKU).toEqual(body.data['SKU'])
@@ -70,7 +68,6 @@ export const apiItemTests = (agent) => {
       .put(`${itemEndpoint}`)
       .query({ sku: randomSKU })
       .send({ item: reqUpdateProduct })
-    console.log(body)
 
     let updatedItem = body.data
     let status = body.status
