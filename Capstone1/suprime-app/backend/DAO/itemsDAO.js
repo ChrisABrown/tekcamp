@@ -1,30 +1,15 @@
-import crypto from 'crypto'
-
-let items
-const SKU = crypto.randomBytes(6).toString('hex')
+import Item from './models/Item.js'
 
 export default class ItemsDAO {
-  static async injectDB(conn) {
-    if (items) {
-      return
-    }
-    try {
-      items = await conn.db(process.env.SUPRIME_DB_NS).collection('Stock')
-    } catch (e) {
-      console.error(`unable to connect in ItemsDAO: ${e}`)
-    }
-  }
-
-  static async getItems({ filters = null, page = 0, itemsPerPage = 10 } = {}) {
+  static async apiGetAllItemsByCategory({
+    filters = null,
+    page = 0,
+    itemsPerPage = 6,
+  } = {}) {
     let query
+
     if (filters) {
-      if ('size' in filters) {
-        query = {
-          $text: {
-            $search: filters['size'],
-          },
-        }
-      } else if ('category' in filters) {
+      if ('category' in filters) {
         query = {
           category: {
             $eq: filters['category'],
@@ -32,37 +17,96 @@ export default class ItemsDAO {
         }
       }
     }
-    let cursor
+
     try {
-      cursor = await items.find(query).limit(itemsPerPage)
-      const itemsList = await cursor.toArray()
-      const totalNumItems = await items.countDocuments(query)
-      return { itemsList, totalNumItems }
+      const itemsList = await Item.find(query).limit(itemsPerPage)
+      const totalNumItems = await Item.countDocuments(query)
+      return { totalNumItems, itemsList }
     } catch (e) {
       console.error(`Unable to issue find command, ${e}`)
       return { itemsList: [], totalNumItems: 0 }
     }
   }
 
-  static async getItemBySKU(sku) {
-    try {
-      return await items
-        .aggregate([
-          {
-            $set: {
-              SKU: {
-                SKU: `${SKU}`,
-              },
-            },
-            $match: {
-              SKU: sku,
-            },
+  static async apiGetItemBySKU({ filters = null, sku } = {}) {
+    let query
+
+    if (filters) {
+      if ('sku' in filters) {
+        query = {
+          SKU: {
+            $eq: filters['sku'],
           },
-        ])
-        .next()
+        }
+      }
+    }
+    let item
+    try {
+      item = await Item.find(query)
+
+      return { item }
     } catch (e) {
-      console.error(`Unable to find item with the SKU: ${sku}`)
-      throw e
+      console.error(`Something went wrong in getItemBySKU, ${e}`)
+      return { foundItem: {} }
+    }
+  }
+
+  static async apiAddNewItem(item) {
+    try {
+      const newItem = new Item({
+        category: item.category,
+        itemId: item.itemId,
+        SKU: item.SKU,
+        color: item.color,
+        image: item.image,
+        price: item.price,
+        description: item.description,
+        size: item.size,
+      })
+
+      newItem.save()
+
+      const postedItem = await Item.find({ _id: newItem._id })
+      return postedItem
+    } catch (e) {
+      return { error: `unable to post item: ${e}` }
+    }
+  }
+
+  static async apiUpdateItemBySKU(sku, item = {}) {
+    try {
+      const updateResponse = await Item.updateOne(
+        {
+          SKU: sku,
+        },
+        {
+          $set: {
+            category: item.category,
+            itemId: item.itemId,
+            SKU: item.SKU,
+            color: item.color,
+            image: item.image,
+            price: item.price,
+            description: item.description,
+            size: item.size,
+          },
+        }
+      )
+      return updateResponse
+    } catch (e) {
+      return { error: e, message: `unable to update item: ${e}` }
+    }
+  }
+
+  static async apiDeleteItem(sku) {
+    try {
+      const deleteResponse = await Item.deleteOne({ SKU: sku })
+      return deleteResponse
+    } catch (e) {
+      return {
+        error: e,
+        message: `unable to delete item. User must be an admin to delete`,
+      }
     }
   }
 }

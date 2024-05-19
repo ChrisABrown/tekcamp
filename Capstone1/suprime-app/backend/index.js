@@ -1,33 +1,60 @@
-import app from './server.js'
-import mongodb from 'mongodb'
-import dotenv from 'dotenv'
-import ItemsDAO from './DAO/itemsDAO.js'
-// import OrdersDAO from './dao/ordersDAO'
-// import UsersDAO from './dao/usersDAO'
-// import MessagesDAO from './dao/messagesDAO'
+import express from 'express'
+import cors from 'cors'
+import authRouter from './API/routes/auth.route.js'
+import itemsRouter from './API/routes/items.route.js'
+import ordersRouter from './API/routes/orders.route.js'
+import messagesRouter from './API/routes/messages.route.js'
+import db from './db/db.js'
+import cookieParser from 'cookie-parser'
+import passport from 'passport'
+import './strategies/JwtStrategy.js'
+import './strategies/LocalStrategy.js'
+import './authenticate.js'
+import session from 'express-session'
 
-async function main() {
-  dotenv.config()
+const app = express()
+const origin = process.env.CLIENT_ORIGIN_URL
 
-  const client = new mongodb.MongoClient(process.env.SUPRIME_DB_URI, {
-    tlsCertificateKeyFile: '../CA.pem',
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
+app.use(cookieParser(process.env.COOKIE_SECRET))
+app.use(
+  session({
+    secret: process.env.COOKIE_SECRET,
+    resave: false,
+    saveUninitialized: false,
   })
-  const port = process.env.PORT || 4040
+)
 
-  try {
-    await client.connect()
-    await ItemsDAO.injectDB(client)
-    // await UsersDAO.injectDB(client)
-    // await OrdersDAO.injectDB(client)
-    // await MessagesDAO.injectDB(client)
-
-    app.listen(port, () => {
-      console.log(`Server is running on port: ${port}`)
-    })
-  } catch (e) {
-    console.log(e)
-    process.exit(1)
-  }
+const corsOptions = {
+  origin: origin,
+  credentials: true,
 }
 
-main().catch(console.error)
+app.use(cors(corsOptions))
+app.use(passport.initialize())
+app.use(passport.session())
+app.use('*', (err, _req, res, next) => {
+  err.name = 'Generic Error'
+  err.status = err.status || 'fail'
+  err.statusCode = err.statusCode || 500
+
+  err.name === 'ValidatorError'
+    ? res.status(422).json({
+        errors: Object.keys(err.errors).reduce((errors, key) => {
+          errors[key] = err.errors[key].message
+
+          return errors
+        }, {}),
+      })
+    : next(err)
+})
+
+app.use('/api/v1/messages', messagesRouter)
+app.use('/api/v1/items', itemsRouter)
+app.use('/api/v1/users', authRouter)
+app.use('/api/v1/orders', ordersRouter)
+
+await db.connect(process.env.SUPRIME_DB_URI)
+
+export default app

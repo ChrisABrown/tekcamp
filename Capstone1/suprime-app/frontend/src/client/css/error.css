@@ -3,9 +3,9 @@
   grid-template-columns: fr(3);
   grid-template-areas: 'head head head', '. logo .', 'footer footer footer';
 }
-body {
-  background-color: red;
-}
+/* body {
+  background: rgb(236, 4, 4);
+} */
 
 div {
   display: flex;

@@ -1,15 +1,8 @@
-import express from 'express'
-import cors from 'cors'
-import router from './API/items.route.js'
+import app from './index.js'
 
-const app = express()
-const itemsRouter = router
+const PORT = process.env.PORT
+const baseURL = `http://localhost:${PORT}`
 
-app.use(cors())
-app.use(express.json())
-app.use('/api/v1/items', itemsRouter)
-app.use('*', (req, res) => {
-  res.status(404).json({ error: 'not found' })
+app.listen(PORT, () => {
+  console.log(`listening on ${baseURL}`)
 })
-
-export default app
