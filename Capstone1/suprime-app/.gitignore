@@ -17,8 +17,7 @@
 # misc
 .DS_Store
 *.pem
-.private.key
-
+*.env
 
 npm-debug.log*
 yarn-debug.log*
